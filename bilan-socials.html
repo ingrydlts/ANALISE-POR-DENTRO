@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilan Socials — Por Dentro</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bege:#F2EDE4; --marrom:#3D2B1F; --oliva:#7A7D5A; --azul:#8FA5B8;
+  --ocre:#C49A4E; --vinho:#6B2737; --off-white:#FAF8F4; --cinza:#9E9E8E;
+  --text:#2A1F18; --verde:#6B8F6A; --bege-escuro:#E8E0D2;
+
+  /* ── Platform brand colors ── */
+  --yt-red: #FF0000;
+  --yt-dark: #282828;
+  --yt-mid: #CC0000;
+  --yt-light: #FFF5F5;
+  --yt-tint: rgba(255,0,0,0.08);
+
+  --ig-purple: #833AB4;
+  --ig-pink: #E1306C;
+  --ig-orange: #F77737;
+  --ig-light: #FDF4FB;
+  --ig-tint: rgba(225,48,108,0.08);
+  --ig-gradient: linear-gradient(135deg, #405DE6 0%, #833AB4 30%, #E1306C 60%, #F77737 85%, #FCAF45 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);font-size:14px;line-height:1.7;}
+
+/* HEADER */
+.masthead{background:var(--marrom);padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,0.3);}
+.masthead-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 40px;border-bottom:1px solid rgba(196,154,78,0.2);}
+.brand{font-family:'Playfair Display',serif;font-size:20px;color:var(--off-white);letter-spacing:1px;}
+.brand span{color:var(--ocre);font-style:italic;}
+.masthead-date{font-family:'DM Mono',monospace;font-size:10px;color:rgba(242,237,228,0.45);letter-spacing:2px;text-transform:uppercase;}
+.tab-nav{display:flex;gap:4px;padding:0 40px 12px;}
+.tab-btn{background:none;border:none;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(242,237,228,0.45);padding:6px 18px;border-radius:20px;cursor:pointer;transition:all 0.2s;}
+.tab-btn:hover{color:var(--off-white);background:rgba(255,255,255,0.08);}
+.tab-btn.active{color:var(--marrom);background:var(--ocre);}
+
+/* HERO */
+.hero{background:var(--marrom);padding:52px 40px 44px;position:relative;overflow:hidden;}
+.hero::after{content:'BILAN';position:absolute;right:-10px;bottom:-30px;font-family:'Playfair Display',serif;font-size:160px;font-weight:700;color:rgba(255,255,255,0.03);letter-spacing:-4px;pointer-events:none;line-height:1;}
+.hero-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ocre);margin-bottom:14px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);color:var(--off-white);line-height:1.1;margin-bottom:10px;}
+.hero h1 em{color:var(--ocre);font-style:italic;}
+.hero-sub{font-size:13px;color:rgba(242,237,228,0.5);letter-spacing:0.5px;}
+.hero-stats{display:flex;gap:40px;margin-top:32px;flex-wrap:wrap;}
+.hstat{display:flex;flex-direction:column;gap:4px;}
+.hstat-num{font-family:'Playfair Display',serif;font-size:30px;color:var(--ocre);line-height:1;}
+.hstat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(242,237,228,0.4);}
+
+/* SECTIONS */
+.section{display:none;animation:fadeIn 0.3s ease;}
+.section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.section-inner{max-width:1060px;margin:0 auto;padding:44px 40px;}
+
+/* SECTION HEADER */
+.sec-hd{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;padding-bottom:14px;border-bottom:1px solid var(--bege-escuro);}
+.sec-hd h2{font-family:'Playfair Display',serif;font-size:32px;color:var(--marrom);}
+.sec-hd h2 em{color:var(--ocre);font-style:italic;}
+.sec-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);}
+
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+/* CARD */
+.card{background:var(--off-white);border-radius:12px;padding:24px 28px;border:1px solid rgba(61,43,31,0.08);}
+.card-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ocre);margin-bottom:10px;}
+.card h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--marrom);margin-bottom:16px;line-height:1.2;}
+.card-body{font-size:13px;color:#5A4A3A;line-height:1.75;}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(61,43,31,0.12);border-radius:8px;overflow:hidden;margin-bottom:28px;}
+.kpi{background:var(--off-white);padding:20px 22px;}
+.kv{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--marrom);line-height:1;margin-bottom:3px;}
+.kv.highlight{color:var(--ocre);}
+.kv.warn{color:var(--vinho);}
+.kl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin-bottom:4px;}
+.kn{font-size:11px;color:var(--oliva);font-weight:500;}
+@media(max-width:700px){.kpi-row{grid-template-columns:1fr 1fr;}}
+
+/* SOURCE BAR */
+.src-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.src-lbl{font-size:12px;color:var(--marrom);width:180px;flex-shrink:0;}
+.src-track{flex:1;height:5px;background:rgba(61,43,31,0.08);border-radius:3px;overflow:hidden;}
+.src-fill{height:100%;border-radius:3px;background:var(--marrom);}
+.src-fill.ocre{background:var(--ocre);}
+.src-fill.oliva{background:var(--oliva);}
+.src-pct{font-size:10px;color:var(--cinza);width:40px;text-align:right;font-family:'DM Mono',monospace;}
+
+/* CONTENT CARD */
+.content-card{background:var(--off-white);border-radius:10px;border:1px solid rgba(61,43,31,0.08);margin-bottom:14px;overflow:hidden;display:flex;align-items:stretch;}
+.content-rank{background:var(--marrom);color:var(--ocre);font-family:'Playfair Display',serif;font-size:22px;font-weight:700;padding:0 22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;min-width:60px;}
+.content-body{padding:16px 20px;flex:1;}
+.content-title{font-size:14px;font-weight:600;color:var(--marrom);margin-bottom:4px;line-height:1.4;}
+.content-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--cinza);margin-bottom:8px;letter-spacing:0.5px;}
+.content-insight{font-size:12px;color:#5A4A3A;line-height:1.6;border-left:3px solid var(--ocre);padding-left:10px;margin-top:8px;}
+.content-stats{display:flex;gap:20px;margin-top:10px;}
+.cstat{display:flex;flex-direction:column;gap:2px;}
+.cstat-v{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--marrom);}
+.cstat-l{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);}
+
+/* BADGE */
+.badge{display:inline-block;font-size:10px;padding:3px 9px;border-radius:3px;font-weight:500;letter-spacing:0.5px;margin-right:4px;}
+.b-green{background:rgba(107,143,106,0.15);color:#4A6E4A;}
+.b-ocre{background:rgba(196,154,78,0.18);color:#7A5A20;}
+.b-azul{background:rgba(143,165,184,0.2);color:#4A6A8A;}
+.b-vinho{background:rgba(107,39,55,0.12);color:var(--vinho);}
+
+/* PRACTICE / IMPROVE ITEMS */
+.practice-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(61,43,31,0.07);align-items:flex-start;}
+.practice-item:last-child{border-bottom:none;}
+.picon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-top:1px;}
+.picon.green{background:rgba(107,143,106,0.15);}
+.picon.red{background:rgba(107,39,55,0.1);}
+.picon.ocre{background:rgba(196,154,78,0.15);}
+.ptext h4{font-size:14px;font-weight:600;color:var(--marrom);margin-bottom:3px;}
+.ptext p{font-size:12px;color:#5A4A3A;line-height:1.6;}
+
+/* CALLOUT */
+.callout{background:rgba(196,154,78,0.1);border-left:3px solid var(--ocre);padding:14px 20px;border-radius:0 6px 6px 0;margin:20px 0;}
+.callout p{font-size:13px;color:var(--marrom);line-height:1.7;}
+.callout strong{color:#7A5A20;}
+
+/* INSIGHT BOX */
+.insight-box{background:var(--marrom);color:var(--off-white);border-radius:10px;padding:22px 26px;margin-bottom:20px;}
+.insight-box .ib-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);margin-bottom:8px;}
+.insight-box h4{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;line-height:1.3;}
+.insight-box p{font-size:12px;color:rgba(242,237,228,0.65);line-height:1.7;}
+
+/* PRIORITY TAG */
+.pri{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:2px;letter-spacing:1px;text-transform:uppercase;margin-left:8px;}
+.pri-high{background:rgba(107,39,55,0.12);color:var(--vinho);}
+.pri-med{background:rgba(196,154,78,0.15);color:#7A5A20;}
+.pri-low{background:rgba(143,165,184,0.2);color:#4A6A8A;}
+
+/* NETWORK CARD */
+.net-card{background:var(--off-white);border-radius:12px;padding:28px;border:1px solid rgba(61,43,31,0.08);}
+.net-icon{font-size:28px;margin-bottom:12px;}
+.net-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--marrom);margin-bottom:4px;}
+.net-sub{font-size:12px;color:var(--cinza);margin-bottom:18px;}
+.net-metric{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(61,43,31,0.06);}
+.net-metric:last-child{border-bottom:none;}
+.net-metric-l{font-size:12px;color:#5A4A3A;}
+.net-metric-v{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--marrom);}
+
+/* ══════════════════════════════════════════
+   PLATFORM IDENTITY — YouTube
+   ══════════════════════════════════════════ */
+
+/* Tab button */
+.tab-btn.yt-tab.active {
+  background: var(--yt-red);
+  color: #fff;
+}
+.tab-btn.yt-tab:hover:not(.active) {
+  color: #fff;
+  background: rgba(255,0,0,0.25);
+}
+
+/* Section header accent */
+#s-yt .sec-hd { border-bottom-color: var(--yt-red); }
+#s-yt .sec-hd em { color: var(--yt-red); }
+
+/* KPI highlight */
+#s-yt .kv.highlight { color: var(--yt-red); }
+#s-yt .kpi-row { background: rgba(255,0,0,0.15); }
+
+/* Card tags */
+#s-yt .card-tag { color: var(--yt-red); }
+
+/* Source bar fills */
+#s-yt .src-fill { background: var(--yt-dark); }
+#s-yt .src-fill.ocre { background: var(--yt-red); }
+#s-yt .src-fill.oliva { background: var(--yt-mid); }
+
+/* Content rank badge */
+#s-yt .content-rank {
+  background: var(--yt-dark);
+  color: var(--yt-red);
+}
+
+/* Content insight left border */
+#s-yt .content-insight { border-left-color: var(--yt-red); }
+
+/* Callout */
+#s-yt .callout { background: var(--yt-tint); border-left-color: var(--yt-red); }
+#s-yt .callout strong { color: var(--yt-mid); }
+
+/* Practice icons */
+#s-yt .picon.green { background: var(--yt-tint); }
+
+/* Priority tags */
+#s-yt .pri-high { background: rgba(255,0,0,0.1); color: var(--yt-mid); }
+
+/* Hero stat accent for YT (via data-platform scoping in hero) */
+.hstat.yt .hstat-num { color: var(--yt-red); }
+
+/* ══════════════════════════════════════════
+   PLATFORM IDENTITY — Instagram
+   ══════════════════════════════════════════ */
+
+/* Tab button */
+.tab-btn.ig-tab.active {
+  background: var(--ig-gradient);
+  color: #fff;
+}
+.tab-btn.ig-tab:hover:not(.active) {
+  color: #fff;
+  background: rgba(131,58,180,0.3);
+}
+
+/* Section header accent */
+#s-ig .sec-hd { border-bottom-color: var(--ig-pink); }
+#s-ig .sec-hd em { color: var(--ig-pink); }
+
+/* Card tags */
+#s-ig .card-tag { color: var(--ig-purple); }
+
+/* Net card title — gradient text */
+#s-ig .net-title {
+  background: var(--ig-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+#s-ig .net-metric-v { color: var(--ig-purple); }
+
+/* Net cards background tint */
+#s-ig .net-card { background: var(--ig-light); border-color: rgba(131,58,180,0.12); }
+
+/* Format cards */
+#s-ig .card { border-top: 3px solid var(--ig-pink); }
+#s-ig .card h3 { color: var(--ig-purple); }
+
+/* Callout */
+#s-ig .callout { background: var(--ig-tint); border-left-color: var(--ig-purple); }
+#s-ig .callout strong { color: var(--ig-purple); }
+
+/* Practice icons */
+#s-ig .picon.green { background: var(--ig-tint); }
+#s-ig .picon.red { background: rgba(225,48,108,0.1); }
+#s-ig .picon.ocre { background: rgba(247,119,55,0.12); }
+
+/* Priority tags */
+#s-ig .pri-high { background: rgba(225,48,108,0.1); color: var(--ig-pink); }
+#s-ig .pri-med { background: rgba(247,119,55,0.12); color: var(--ig-orange); }
+
+/* Hero stat accent for IG */
+.hstat.ig .hstat-num {
+  background: var(--ig-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ══════════════════════════════════════════
+   PLATFORM IDENTITY — Unified (Visão Cross-channel)
+   ══════════════════════════════════════════ */
+
+/* Insight boxes alternating between platforms */
+#s-uni .insight-box.yt-insight {
+  background: var(--yt-dark);
+  border-left: 4px solid var(--yt-red);
+}
+#s-uni .insight-box.yt-insight .ib-tag { color: var(--yt-red); }
+
+#s-uni .insight-box.ig-insight {
+  background: linear-gradient(135deg, #1a0a2e 0%, #2d1042 100%);
+  border-left: 4px solid var(--ig-pink);
+}
+#s-uni .insight-box.ig-insight .ib-tag {
+  background: var(--ig-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Action plan platform tags */
+.pri.yt-tag { background: rgba(255,0,0,0.1); color: var(--yt-mid); }
+.pri.ig-tag { background: rgba(225,48,108,0.1); color: var(--ig-pink); }
+
+/* Platform pill labels */
+.platform-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-right: 6px;
+}
+.pill-yt { background: var(--yt-red); color: #fff; }
+.pill-ig { background: var(--ig-gradient); color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">Por <span>Dentro</span></div>
+    <div class="masthead-date">Bilan — Abril 2026</div>
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn yt-tab active" onclick="show('yt',this)">▶ YouTube</button>
+    <button class="tab-btn ig-tab" onclick="show('ig',this)">◎ Instagram</button>
+    <button class="tab-btn" onclick="show('uni',this)">✦ Visão Unificada</button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Documento Interno · Atualização Mensal</div>
+  <h1>Bilan <em>Socials</em></h1>
+  <div class="hero-sub">Métricas, melhores conteúdos, boas práticas e pontos de melhoria — YouTube + Instagram unificados.</div>
+  <div class="hero-stats">
+    <div class="hstat yt"><div class="hstat-num">33,2k</div><div class="hstat-lbl">▶ Views YT all time</div></div>
+    <div class="hstat yt"><div class="hstat-num">45%</div><div class="hstat-lbl">▶ Retenção média YT</div></div>
+    <div class="hstat ig"><div class="hstat-num">2</div><div class="hstat-lbl">◎ Plataformas ativas</div></div>
+    <div class="hstat"><div class="hstat-num" style="color:var(--ocre)">15</div><div class="hstat-lbl">Roteiros em banco</div></div>
+  </div>
+</div>
+
+<!-- ============================= YOUTUBE ============================= -->
+<div class="section active" id="s-yt">
+  <div class="section-inner">
+    <div class="sec-hd">
+      <h2><span style="color:var(--yt-red)">▶</span> <em>YouTube</em></h2>
+      <span class="sec-tag">Analytics reais · Canal @ingrydlotierzo</span>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi"><div class="kl">Views All Time</div><div class="kv highlight">33,2k</div><div class="kn">19 vídeos publicados</div></div>
+      <div class="kpi"><div class="kl">Views 365 dias</div><div class="kv">4.263</div><div class="kn">crescimento orgânico</div></div>
+      <div class="kpi"><div class="kl">Duração média</div><div class="kv">4:28</div><div class="kn">últimos 90 dias</div></div>
+      <div class="kpi"><div class="kl">Retenção</div><div class="kv warn">45%</div><div class="kn">meta: ≥ 50%</div></div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:28px;">
+      <!-- Fontes de tráfego -->
+      <div class="card">
+        <div class="card-tag">Fontes de Tráfego · 365 dias</div>
+        <h3>Como o público chega ao canal</h3>
+        <div class="card-body">
+          <div class="src-row"><div class="src-lbl">Navegação YouTube</div><div class="src-track"><div class="src-fill" style="width:33%"></div></div><div class="src-pct">33%</div></div>
+          <div class="src-row"><div class="src-lbl">Tráfego externo</div><div class="src-track"><div class="src-fill ocre" style="width:24.2%"></div></div><div class="src-pct">24%</div></div>
+          <div class="src-row"><div class="src-lbl">Pesquisa YouTube</div><div class="src-track"><div class="src-fill" style="width:16.7%"></div></div><div class="src-pct">17%</div></div>
+          <div class="src-row"><div class="src-lbl">Sugestões de vídeos</div><div class="src-track"><div class="src-fill oliva" style="width:15.8%"></div></div><div class="src-pct">16%</div></div>
+          <div class="src-row"><div class="src-lbl">Página do canal</div><div class="src-track"><div class="src-fill" style="width:5.8%"></div></div><div class="src-pct">6%</div></div>
+          <div class="src-row"><div class="src-lbl">Telas finais</div><div class="src-track"><div class="src-fill" style="width:0.3%"></div></div><div class="src-pct">0,1%</div></div>
+        </div>
+      </div>
+      <!-- Fontes externas -->
+      <div class="card">
+        <div class="card-tag">Tráfego Externo · Detalhamento</div>
+        <h3>De onde vem o público externo</h3>
+        <div class="card-body">
+          <div class="src-row"><div class="src-lbl">Google Search</div><div class="src-track"><div class="src-fill ocre" style="width:55.4%"></div></div><div class="src-pct">55%</div></div>
+          <div class="src-row"><div class="src-lbl">WhatsApp</div><div class="src-track"><div class="src-fill" style="width:2.4%"></div></div><div class="src-pct">2,4%</div></div>
+          <div class="src-row"><div class="src-lbl">eurodicas.com.br</div><div class="src-track"><div class="src-fill" style="width:2.3%"></div></div><div class="src-pct">2,3%</div></div>
+          <div class="src-row"><div class="src-lbl">Instagram</div><div class="src-track"><div class="src-fill" style="width:1.4%"></div></div><div class="src-pct">1,4%</div></div>
+          <div class="src-row"><div class="src-lbl">linktw.in</div><div class="src-track"><div class="src-fill" style="width:1.4%"></div></div><div class="src-pct">1,4%</div></div>
+        </div>
+        <div class="callout" style="margin-top:14px;margin-bottom:0;">
+          <p><strong>Google gera 55% do tráfego externo.</strong> O canal é descoberto por busca — SEO no título é prioridade absoluta.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEST CONTENTS -->
+    <div class="sec-hd" style="margin-top:40px;">
+      <h2>🏆 Best <em>Contents</em></h2>
+      <span class="sec-tag">Vídeos com melhor desempenho</span>
+    </div>
+
+    <div class="content-card">
+      <div class="content-rank">#1</div>
+      <div class="content-body">
+        <div class="content-meta">JAN 2024 · Dicas & Vida Real · Iniciante</div>
+        <div class="content-title">Compra de Mercado em Paris 2024: Custa Caro? — Carrefour</div>
+        <div class="content-stats">
+          <div class="cstat"><div class="cstat-v">14,7k</div><div class="cstat-l">Views all time</div></div>
+          <div class="cstat"><div class="cstat-v">699</div><div class="cstat-l">Views 365d</div></div>
+        </div>
+        <div class="content-insight">Vídeo âncora de tráfego. "Quanto custa?" + SEO = fórmula perfeita. Google traz 55% do tráfego externo. Canal concorrente referencia este vídeo. <strong>Próximo passo: atualizar preços 2025/26, série Auchan vs Carrefour vs Lidl.</strong></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-rank">#2</div>
+      <div class="content-body">
+        <div class="content-meta">NOV 2023 · Dicas & Vida Real · Iniciante</div>
+        <div class="content-title">Como usar o Transporte em Paris? — Guia completo</div>
+        <div class="content-stats">
+          <div class="cstat"><div class="cstat-v">7,4k</div><div class="cstat-l">Views all time</div></div>
+          <div class="cstat"><div class="cstat-v">606</div><div class="cstat-l">Views 365d</div></div>
+        </div>
+        <div class="content-insight">Evergreen crescendo há +1 ano. 10 referências via sugestões de outros canais. Busca constante: navigo, zonas, tickets. <strong>Próximo passo: atualizar Navigo Easy 2025. Short: "1 erro de transporte que custa caro".</strong></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-rank">#3</div>
+      <div class="content-body">
+        <div class="content-meta">NOV 2023 · Dicas & Vida Real · Iniciante</div>
+        <div class="content-title">Guia Completo: Conta Bancária na França</div>
+        <div class="content-stats">
+          <div class="cstat"><div class="cstat-v">936</div><div class="cstat-l">Views all time</div></div>
+          <div class="cstat"><div class="cstat-v">254</div><div class="cstat-l">Views 365d</div></div>
+        </div>
+        <div class="content-insight">Canal concorrente "conta com passaporte" é o maior referenciador externo (18 views = 3,9%). <strong>Próximo passo: novo vídeo "Conta bancária SÓ com passaporte" — responde ao concorrente e captura o fluxo.</strong></div>
+      </div>
+    </div>
+
+    <!-- BEST PRACTICES -->
+    <div class="sec-hd" style="margin-top:40px;">
+      <h2>✓ Best <em>Practices</em></h2>
+      <span class="sec-tag">O que funciona no canal</span>
+    </div>
+    <div class="card">
+      <div class="practice-item">
+        <div class="picon green">💡</div>
+        <div class="ptext"><h4>Títulos com palavra de custo ou comparação</h4><p>"Quanto custa", "Caro?", "Guia completo" — acionam busca orgânica no Google e no YouTube. Os 3 vídeos mais vistos têm esse padrão.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon green">🎯</div>
+        <div class="ptext"><h4>Conteúdo evergreen de vida prática</h4><p>Mercado, transporte, conta bancária — continuam crescendo meses após a publicação. Esse é o DNA do canal: utilidade atemporal para quem imigra ou pensa em imigrar.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon green">📊</div>
+        <div class="ptext"><h4>SEO Google funciona melhor que redes sociais</h4><p>55% do tráfego externo vem do Google. O canal é um motor de busca para imigrantes — potencializar isso com descrições ricas e títulos otimizados é a maior alavanca de crescimento.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon green">📺</div>
+        <div class="ptext"><h4>Séries funcionam melhor que vídeos isolados</h4><p>Os 3 vídeos de mercado (Carrefour, Auchan casal, mercado barato) respondem por ~49% das views do canal. Criar séries temáticas amplia o tempo de sessão e as sugestões internas.</p></div>
+      </div>
+    </div>
+
+    <!-- THINGS TO IMPROVE -->
+    <div class="sec-hd" style="margin-top:40px;">
+      <h2>⚠ Things to <em>Improve</em></h2>
+      <span class="sec-tag">Prioridades de melhoria</span>
+    </div>
+    <div class="card">
+      <div class="practice-item">
+        <div class="picon red">📺</div>
+        <div class="ptext"><h4>Telas finais — 0,1% de cliques <span class="pri pri-high">urgente</span></h4><p>Apenas 4 views geradas via end screens no último ano. Configurar telas finais em todos os vídeos com CTA para o próximo é uma melhoria imediata sem nenhum custo de produção.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon red">📱</div>
+        <div class="ptext"><h4>Instagram envia apenas 1,4% das views <span class="pri pri-high">urgente</span></h4><p>Menos que WhatsApp (2,4%). A estratégia de distribuição cruzada está subutilizada — cada publicação no Instagram precisa de um CTA claro direcionando ao vídeo.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon red">⏱</div>
+        <div class="ptext"><h4>Retenção abaixo de 50% <span class="pri pri-med">médio prazo</span></h4><p>Meta: ≥ 50%. Melhorar a estrutura dos primeiros 2 minutos — gancho mais específico, promessa clara de entrega. Usar timestamps visíveis para orientar o espectador.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon ocre">📅</div>
+        <div class="ptext"><h4>Cadência irregular de publicação <span class="pri pri-med">médio prazo</span></h4><p>Meta: 2 vídeos/mês com constância. O banco de 15 roteiros prontos elimina a barreira de conteúdo — o foco agora é transformar roteiros em vídeos publicados.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon ocre">🔗</div>
+        <div class="ptext"><h4>Descrições sem links e sem SEO estruturado <span class="pri pri-low">longo prazo</span></h4><p>Aproveitar o potencial de busca do canal com descrições otimizadas, palavras-chave no primeiro parágrafo e links para recursos mencionados no vídeo.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= INSTAGRAM ============================= -->
+<div class="section" id="s-ig">
+  <div class="section-inner">
+    <div class="sec-hd">
+      <h2><span style="background:var(--ig-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">◎</span> <em>Instagram</em></h2>
+      <span class="sec-tag">@ingrydinparis · Estratégia e diagnóstico</span>
+    </div>
+
+    <!-- Status atual -->
+    <div class="grid2" style="margin-bottom:28px;">
+      <div class="net-card">
+        <div class="net-icon">📊</div>
+        <div class="net-title">Métricas Atuais</div>
+        <div class="net-sub">Dados disponíveis no perfil</div>
+        <div class="net-metric"><span class="net-metric-l">Handle</span><span class="net-metric-v">@ingrydinparis</span></div>
+        <div class="net-metric"><span class="net-metric-l">Referência YT</span><span class="net-metric-v">1,4% das views</span></div>
+        <div class="net-metric"><span class="net-metric-l">Fase atual</span><span class="net-metric-v">Crescimento</span></div>
+        <div class="net-metric"><span class="net-metric-l">Estratégia principal</span><span class="net-metric-v">Funil → YouTube</span></div>
+        <div class="callout" style="margin-top:14px;margin-bottom:0;">
+          <p>Para adicionar métricas completas (seguidores, alcance, engajamento), atualize este documento mensalmente com dados do Instagram Insights.</p>
+        </div>
+      </div>
+
+      <div class="net-card">
+        <div class="net-icon">🎯</div>
+        <div class="net-title">Função Estratégica</div>
+        <div class="net-sub">O papel do Instagram no ecossistema Por Dentro</div>
+        <div class="net-metric"><span class="net-metric-l">Papel principal</span><span class="net-metric-v">Distribuição + topo de funil</span></div>
+        <div class="net-metric"><span class="net-metric-l">Conversão esperada</span><span class="net-metric-v">IG → YouTube</span></div>
+        <div class="net-metric"><span class="net-metric-l">Formatos prioritários</span><span class="net-metric-v">Reels + Carrossel</span></div>
+        <div class="net-metric"><span class="net-metric-l">Frequência</span><span class="net-metric-v">2 Reels + 1 Carrossel/sem</span></div>
+      </div>
+    </div>
+
+    <!-- Formatos -->
+    <div class="grid3" style="margin-bottom:28px;">
+      <div class="card">
+        <div class="card-tag">Formato · Alcance</div>
+        <h3>Reels</h3>
+        <div class="card-body">Principal ferramenta de descoberta. Versão de 30–60s de um insight do vídeo. Hook forte nos primeiros 3 segundos. <strong>Meta: 1–2 por semana.</strong></div>
+      </div>
+      <div class="card">
+        <div class="card-tag">Formato · Profundidade</div>
+        <h3>Carrossel</h3>
+        <div class="card-body">Conteúdo educativo salvável. 5–8 slides com explicação estruturada de um tema. Alta taxa de salvamento — sinaliza valor ao algoritmo. <strong>Meta: 1 por semana.</strong></div>
+      </div>
+      <div class="card">
+        <div class="card-tag">Formato · Conexão</div>
+        <h3>Stories</h3>
+        <div class="card-body">Espaço de proximidade e interação. Polls, perguntas, bastidores. Redirecionar para vídeos publicados. <strong>Meta: 3–5 por semana.</strong></div>
+      </div>
+    </div>
+
+    <!-- Best contents -->
+    <div class="sec-hd" style="margin-top:40px;">
+      <h2>✓ Best <em>Practices</em></h2>
+      <span class="sec-tag">O que funciona no perfil</span>
+    </div>
+    <div class="card">
+      <div class="practice-item">
+        <div class="picon green">🎬</div>
+        <div class="ptext"><h4>Reels de revelação de sistema</h4><p>"Isso que ninguém te conta antes de ir pra França" — formato de gancho provocativo com conteúdo real. Alto potencial de compartilhamento no nicho de imigração.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon green">📖</div>
+        <div class="ptext"><h4>Carrosseis com listas práticas salváveis</h4><p>"5 ajudas da CAF que você não sabe que existe", "Prazo do imposto de renda por zona" — conteúdo que o público guarda para usar depois. Geração de salvamentos = alcance orgânico.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon green">💬</div>
+        <div class="ptext"><h4>Stories interativos com polls e perguntas</h4><p>"Você conseguiria viver com SMIC em Paris?" — gera engajamento imediato, alimenta o algoritmo e fornece inteligência editorial sobre as dúvidas reais do público.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon green">🔗</div>
+        <div class="ptext"><h4>CTA direto para YouTube em cada publicação</h4><p>Cada post deve ter um link ou menção ao vídeo correspondente. O Instagram precisa funcionar como distribuidor do YouTube — a legenda é o ponto de virada.</p></div>
+      </div>
+    </div>
+
+    <!-- Things to improve -->
+    <div class="sec-hd" style="margin-top:40px;">
+      <h2>⚠ Things to <em>Improve</em></h2>
+      <span class="sec-tag">Oportunidades de melhoria</span>
+    </div>
+    <div class="card">
+      <div class="practice-item">
+        <div class="picon red">📉</div>
+        <div class="ptext"><h4>Referência ao YouTube criticamente baixa <span class="pri pri-high">urgente</span></h4><p>1,4% das views do YouTube vêm do Instagram. A plataforma precisa funcionar como amplificadora do canal. Cada Reel deve ter CTA claro: "Vídeo completo no link da bio".</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon red">⏰</div>
+        <div class="ptext"><h4>Constância de publicação <span class="pri pri-high">urgente</span></h4><p>O algoritmo do Instagram recompensa regularidade. Definir e manter frequência semanal fixa é mais importante que produzir conteúdo perfeito esporadicamente.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon ocre">🖼</div>
+        <div class="ptext"><h4>Identidade visual do feed <span class="pri pri-med">médio prazo</span></h4><p>O feed deve refletir a estética do projeto Por Dentro — tons neutros, tipografia clara, coerência visual entre posts. Criar templates fixos para cada formato.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon ocre">🏷</div>
+        <div class="ptext"><h4>Hashtags e SEO no Instagram <span class="pri pri-med">médio prazo</span></h4><p>Usar 5–8 hashtags mistas (nicho + alcance) em cada post. Incluir palavras-chave na primeira linha da legenda para o motor de busca interno do Instagram.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================= VISÃO UNIFICADA ============================= -->
+<div class="section" id="s-uni">
+  <div class="section-inner">
+    <div class="sec-hd">
+      <h2>✦ Visão <em>Unificada</em></h2>
+      <span class="sec-tag">YouTube + Instagram · Cross-channel insights</span>
+    </div>
+
+    <div class="grid2" style="margin-bottom:24px;">
+      <div class="insight-box ig-insight">
+        <div class="ib-tag">◎ Instagram · Insight #1 · Urgente</div>
+        <h4>Instagram não está convertendo para YouTube</h4>
+        <p>Com apenas 1,4% das views do YouTube vindas do Instagram, a estratégia de distribuição cruzada está subutilizada. Cada vídeo publicado no YouTube precisa de um Reel correspondente com CTA direto.</p>
+      </div>
+      <div class="insight-box yt-insight">
+        <div class="ib-tag">▶ YouTube · Insight #2 · Estratégico</div>
+        <h4>Google é o maior aliado — mais que as redes sociais</h4>
+        <p>55% do tráfego externo vem do Google. Investir em SEO nas descrições e títulos do YouTube gera mais resultado que qualquer estratégia de distribuição em rede social.</p>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-bottom:24px;">
+      <div class="insight-box yt-insight">
+        <div class="ib-tag">▶ YouTube · Insight #3 · Editorial</div>
+        <h4>Conteúdo prático bate conteúdo reflexivo em tráfego</h4>
+        <p>Os 3 vídeos mais vistos são 100% práticos (mercado, transporte, conta). O YouTube favorece SEO de utilidade. Instagram pode ser o espaço do storytelling e da reflexão — com vídeo completo como destino.</p>
+      </div>
+      <div class="insight-box yt-insight">
+        <div class="ib-tag">▶ YouTube · Insight #4 · Oportunidade</div>
+        <h4>Telas finais = crescimento imediato zero custo</h4>
+        <p>Apenas 4 views geradas via end screens no último ano. Configurar em todos os vídeos com CTA para o próximo vídeo ou para inscrição pode gerar dezenas de views e inscrições adicionais por mês.</p>
+      </div>
+    </div>
+
+    <div class="sec-hd" style="margin-top:40px;">
+      <h2>📋 Plano de <em>Ação</em></h2>
+      <span class="sec-tag">Prioridades imediatas por plataforma</span>
+    </div>
+    <div class="card">
+      <div class="practice-item">
+        <div class="picon" style="background:rgba(255,0,0,0.12)">①</div>
+        <div class="ptext"><h4><span class="platform-pill pill-yt">▶ YT</span>Configurar telas finais em todos os vídeos <span class="pri yt-tag">Esta semana</span></h4><p>Ação única, impacto permanente. Entrar no YouTube Studio e adicionar end screen com link para o próximo vídeo e botão de inscrição em todos os vídeos publicados.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon" style="background:rgba(225,48,108,0.12)">②</div>
+        <div class="ptext"><h4><span class="platform-pill pill-ig">◎ IG</span>Criar Reel para cada novo vídeo do YouTube <span class="pri ig-tag">Imediato</span></h4><p>Extrair 1 insight forte do vídeo, gravar Reel de 30–60s, publicar no mesmo dia ou no dia seguinte com CTA claro: "Vídeo completo no canal Por Dentro — link na bio".</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon" style="background:rgba(255,0,0,0.08)">③</div>
+        <div class="ptext"><h4><span class="platform-pill pill-yt">▶ YT</span>Publicar 2 vídeos por mês com constância <span class="pri yt-tag">Junho</span></h4><p>O banco de 15 roteiros está pronto. A prioridade agora é executar — selecionar 2 roteiros da semana e gravar. Começar pelos temas sazonais urgentes: IR 2026 e Nuit des Musées.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon" style="background:rgba(131,58,180,0.1)">④</div>
+        <div class="ptext"><h4><span class="platform-pill pill-ig">◎ IG</span>Criar 1 Carrossel educativo por semana no Instagram <span class="pri ig-tag">Junho</span></h4><p>Carrosseis de "guia rápido" alinhados ao tema do vídeo da semana. Alta taxa de salvamento + audiência de qualidade.</p></div>
+      </div>
+      <div class="practice-item">
+        <div class="picon" style="background:rgba(255,0,0,0.08)">⑤</div>
+        <div class="ptext"><h4><span class="platform-pill pill-yt">▶ YT</span>Otimizar descrições dos vídeos com SEO <span class="pri yt-tag">Julho</span></h4><p>Reescrever as descrições dos 5 vídeos mais vistos com palavras-chave no primeiro parágrafo, links de recursos mencionados e capítulos (timestamps).</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
