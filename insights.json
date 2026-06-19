@@ -1,0 +1,146 @@
+{
+  "projeto": "Por Dentro",
+  "canal_youtube": "@ingrydlotierzo",
+  "instagram": "@ingrydinparis",
+  "criado_em": "2026-06-19",
+  "ciclos": [
+    {
+      "id": "2026-04",
+      "periodo": "Abril 2026",
+      "adicionado_em": "2026-06-19",
+      "youtube": {
+        "views": 182,
+        "views_variacao_pct": null,
+        "watchtime_horas": 10.5,
+        "retencao_media_pct": 45,
+        "ctr_medio_pct": 3.8,
+        "inscritos_ganhos": 3,
+        "inscritos_total": null,
+        "impressoes": 1420,
+        "top_video_titulo": "COMPRA DE MERCADO EM PARIS 2024: CUSTA CARO? ⎮ Carrefour",
+        "top_video_views": 33,
+        "principal_fonte_trafego": "Pesquisa YouTube + Google",
+        "principal_fonte_pct": 55,
+        "status_retencao": "abaixo_meta",
+        "status_ctr": "medio"
+      },
+      "instagram": {
+        "alcance": null,
+        "alcance_variacao_pct": null,
+        "impressoes": null,
+        "seguidores_ganhos": null,
+        "seguidores_total": null,
+        "salvamentos": null,
+        "compartilhamentos": null,
+        "cliques_bio": null,
+        "engajamento_medio_pct": null,
+        "top_post_descricao": "Dados não disponíveis — exportar Instagram Insights do app",
+        "top_post_metrica": null,
+        "formato_destaque": null
+      },
+      "insights": [
+        "Canal operando no piloto automático sem novo vídeo em 2,5 meses — tráfego sustentado só pelo catálogo evergreen. Prova de que o SEO está funcionando, mas sem acelerador editorial.",
+        "CTR médio (≈3.8%) abaixo do benchmark de canais de nicho similar (4.5–6%). Thumbnails e títulos do catálogo antigo não estão otimizados para 2026 — oportunidade de refazer títulos sem re-editar vídeos.",
+        "Abril sem publicação nova gerou base de comparação: canal gera ~6 views/dia no piloto automático. Qualquer vídeo publicado multiplica isso imediatamente, como confirmado em Maio."
+      ],
+      "acoes_proximo_ciclo": [
+        "Publicar vídeo fiscal antes do prazo do IR francês (mai/jun) → capturar busca sazonal de alto volume",
+        "Atualizar títulos dos 3 vídeos âncora com ano 2026 → melhorar CTR sem re-editar",
+        "Configurar telas finais em todos os vídeos existentes → capturar os 6+ espectadores/dia que chegam pelo catálogo"
+      ],
+      "decisao_editorial": "Publicar o vídeo de Imposto de Renda antes de 4 de maio para capturar o pico de busca sazonal — janela identificada, não desperdiçar."
+    },
+    {
+      "id": "2026-05",
+      "periodo": "Maio 2026",
+      "adicionado_em": "2026-06-19",
+      "youtube": {
+        "views": 479,
+        "views_variacao_pct": 163,
+        "watchtime_horas": 35.7,
+        "retencao_media_pct": 47,
+        "ctr_medio_pct": 5.9,
+        "inscritos_ganhos": 11,
+        "inscritos_total": null,
+        "impressoes": 3200,
+        "top_video_titulo": "Imposto de Renda na França 2026: O Guia Completo para Imigrantes",
+        "top_video_views": 265,
+        "principal_fonte_trafego": "Pesquisa YouTube + Google",
+        "principal_fonte_pct": 60,
+        "status_retencao": "crescendo",
+        "status_ctr": "alto"
+      },
+      "instagram": {
+        "alcance": null,
+        "alcance_variacao_pct": null,
+        "impressoes": null,
+        "seguidores_ganhos": null,
+        "seguidores_total": null,
+        "salvamentos": null,
+        "compartilhamentos": null,
+        "cliques_bio": null,
+        "engajamento_medio_pct": null,
+        "top_post_descricao": "Dados não disponíveis — exportar Instagram Insights do app",
+        "top_post_metrica": null,
+        "formato_destaque": null
+      },
+      "insights": [
+        "Vídeo de IR publicado em 4 de maio gerou +163% de views vs. Abril, representando 55% de todo o tráfego do mês. CTR 11.31% — 2.5x a média do canal. Título 'Guia Completo + ano + tema fiscal' é fórmula comprovada.",
+        "9 dos 11 novos inscritos de Maio (82%) vieram de um único vídeo. Conteúdo de utilidade prática > lifestyle para conversão em inscrito. O público que chega pelo IR está disposto a se comprometer com o canal.",
+        "O vídeo teve pico nas semanas 2–3 (11–24 de maio, 78–80 views/semana) e não no lançamento — a busca 'imposto de renda França' cresceu junto com o prazo. Publicar antes da janela funcionou."
+      ],
+      "acoes_proximo_ciclo": [
+        "Identificar o próximo evento fiscal/burocrático sazonal e publicar antes da janela de busca → replicar o efeito IR",
+        "Criar Reel + carrossel do Instagram baseado no vídeo IR — o tema ainda está quente em junho",
+        "Série 'Guia Completo': Seguro-desemprego 2026, CAF o que você tem direito 2026 — mesma estrutura, mesmo público"
+      ],
+      "decisao_editorial": "Apostar no formato 'Guia Completo + ano + burocracia específica' como série editorial recorrente — o IR provou que existe demanda e o canal tem autoridade para cobrir esse território."
+    },
+    {
+      "id": "2026-06",
+      "periodo": "Junho 2026 (parcial — até dia 18)",
+      "adicionado_em": "2026-06-19",
+      "youtube": {
+        "views": 131,
+        "views_variacao_pct": -28,
+        "watchtime_horas": 9.2,
+        "retencao_media_pct": 45,
+        "ctr_medio_pct": 4.4,
+        "inscritos_ganhos": 2,
+        "inscritos_total": null,
+        "impressoes": 890,
+        "top_video_titulo": "Imposto de Renda na França 2026: O Guia Completo para Imigrantes",
+        "top_video_views": 38,
+        "principal_fonte_trafego": "Pesquisa YouTube + Google",
+        "principal_fonte_pct": 55,
+        "status_retencao": "estavel",
+        "status_ctr": "medio"
+      },
+      "instagram": {
+        "alcance": null,
+        "alcance_variacao_pct": null,
+        "impressoes": null,
+        "seguidores_ganhos": null,
+        "seguidores_total": null,
+        "salvamentos": null,
+        "compartilhamentos": null,
+        "cliques_bio": null,
+        "engajamento_medio_pct": null,
+        "top_post_descricao": "Dados não disponíveis — exportar Instagram Insights do app",
+        "top_post_metrica": null,
+        "formato_destaque": null
+      },
+      "insights": [
+        "Junho (18 dias) mostra queda natural pós-pico do IR, mas baseline de ~7.3 views/dia — acima dos 6.1/dia de Abril pré-vídeo. O IR trouxe inscritos que continuam voltando.",
+        "Vídeo de transporte teve pico de 3–4 views/dia em 13–17 de junho, anômalo para vídeo de 2023 — provável busca ligada a planejamento de viagens de verão europeu.",
+        "Sem novo vídeo, junho tende a retornar ao patamar de Abril. Publicar antes de 25 de junho sustenta julho."
+      ],
+      "acoes_proximo_ciclo": [
+        "Publicar vídeo antes de 25 de junho para sustentar o tráfego de julho — tema: férias/verão na França ou burocracia pré-férias",
+        "Exportar Instagram Insights real do app → preencher os campos nulos destes ciclos",
+        "Atualizar descrição do vídeo de transporte com link para o IR → capitalizar no tráfego de junho"
+      ],
+      "decisao_editorial": "Junho é a última janela antes do verão europeu — publicar conteúdo de utilidade para imigrantes navegando o sistema francês nas férias (CAF, serviços em agosto, transporte fora do horário)."
+    }
+  ]
+}
