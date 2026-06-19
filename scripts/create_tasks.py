@@ -18,14 +18,39 @@ from datetime import date, timedelta
 
 # ─── Configuração ─────────────────────────────────────────────────────────────
 
-NOTION_TOKEN = os.environ["NOTION_TOKEN"]
-NOTION_DB_ID = os.environ.get("NOTION_DB_ID", "1abd6022-54ce-81fa-8a36-000b754f10b3")
+NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
+NOTION_DB_ID = os.environ.get("NOTION_DB_ID", "1acd6022-54ce-808b-9235-c00889fa0765")
+
+# Valida variáveis obrigatórias
+if not NOTION_TOKEN:
+    print("ERRO: NOTION_TOKEN não encontrado. Configure em GitHub → Settings → Secrets.")
+    sys.exit(1)
+if not NOTION_DB_ID:
+    print("ERRO: NOTION_DB_ID não encontrado. Configure em GitHub → Settings → Secrets.")
+    sys.exit(1)
 
 HEADERS = {
     "Authorization": f"Bearer {NOTION_TOKEN}",
     "Content-Type": "application/json",
     "Notion-Version": "2022-06-28",
 }
+
+
+def verificar_acesso_database():
+    """Testa o acesso ao database antes de qualquer operação."""
+    url = f"https://api.notion.com/v1/databases/{NOTION_DB_ID}"
+    resp = requests.get(url, headers=HEADERS)
+    if resp.status_code != 200:
+        print(f"ERRO: Não foi possível acessar o database '{NOTION_DB_ID}'")
+        print(f"Status: {resp.status_code}")
+        print(f"Resposta do Notion: {resp.text}")
+        print("Causas prováveis:")
+        print("  1. NOTION_DB_ID incorreto — verifique a URL do database no Notion")
+        print("  2. Integration não conectada ao database — Notion → ··· → Connections")
+        print("  3. NOTION_TOKEN inválido ou expirado")
+        sys.exit(1)
+    db_title = resp.json().get("title", [{}])[0].get("plain_text", "sem título")
+    print(f"✅ Database acessado: '{db_title}' ({NOTION_DB_ID})")
 
 # Máximo de tarefas criadas por ciclo (regra do sistema)
 MAX_TASKS = 5
@@ -100,7 +125,9 @@ def ciclo_ja_processado(ciclo_id: str) -> bool:
         "page_size": 1
     }
     resp = requests.post(url, headers=HEADERS, json=payload)
-    resp.raise_for_status()
+    if not resp.ok:
+        print(f"ERRO ao checar duplicatas: {resp.status_code} — {resp.text}")
+        resp.raise_for_status()
     resultados = resp.json().get("results", [])
     return len(resultados) > 0
 
@@ -131,7 +158,9 @@ def criar_tarefa(task: str, prio: str, do_date: str, ai_summary: str) -> dict:
         }
     }
     resp = requests.post(url, headers=HEADERS, json=payload)
-    resp.raise_for_status()
+    if not resp.ok:
+        print(f"ERRO ao criar tarefa '{task}': {resp.status_code} — {resp.text}")
+        resp.raise_for_status()
     return resp.json()
 
 
@@ -150,6 +179,9 @@ def formatar_titulo(acao: str) -> str:
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    # 0. Verifica acesso ao database antes de qualquer coisa
+    verificar_acesso_database()
+
     # 1. Lê o insights.json
     with open("insights.json", "r", encoding="utf-8") as f:
         data = json.load(f)
