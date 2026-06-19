@@ -43,11 +43,15 @@ MAX_TASKS = 5
 # Atualize estes links conforme as páginas do seu Notion
 
 LINKS_SISTEMA = {
-    "analytics":    "https://app.notion.com/p/topordentroviagens",  # página raiz
-    "competitivo":  "",   # ex: link para Inteligência Competitiva no Notion
-    "boas_praticas": "",  # ex: link para Boas Práticas no Notion
-    "calendario":   "",   # ex: link para Calendário Editorial no Notion
-    "dashboard":    "",   # ex: link para GitHub Pages do dashboard
+    # ✅ Preenchidos por Claude (já conhecidos)
+    "tarefas":      "https://app.notion.com/p/1abd602254ce8137b4d0dca737cc669d",
+    "workspace":    "https://app.notion.com/p/topordentroviagens",
+
+    # ✏️ Preencha você — cole o link da página Notion correspondente
+    "competitivo":  "",   # Inteligência Competitiva / benchmark
+    "calendario":   "",   # Calendário Editorial
+    "boas_praticas": "",  # Boas Práticas / o que funcionou
+    "dashboard":    "",   # GitHub Pages do dashboard de analytics
 }
 
 
