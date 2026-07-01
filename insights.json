@@ -141,6 +141,98 @@
         "Atualizar descrição do vídeo de transporte com link para o IR → capitalizar no tráfego de junho"
       ],
       "decisao_editorial": "Junho é a última janela antes do verão europeu — publicar conteúdo de utilidade para imigrantes navegando o sistema francês nas férias (CAF, serviços em agosto, transporte fora do horário)."
+    {
+  "ciclos": [
+    {
+      "id": "2026-06",
+      "periodo": "Junho 2026",
+      "adicionado_em": "2026-07-01",
+      "youtube": {
+        "views": 0,
+        "views_variacao_pct": 0,
+        "watchtime_horas": 0,
+        "retencao_media_pct": 0,
+        "ctr_medio_pct": 0,
+        "inscritos_ganhos": 0,
+        "inscritos_total": 0,
+        "impressoes": 0,
+        "top_video_titulo": "",
+        "top_video_views": 0,
+        "principal_fonte_trafego": "",
+        "principal_fonte_pct": 0,
+        "status_retencao": "",
+        "status_ctr": ""
+      },
+      "instagram": {
+        "alcance": 16563,
+        "alcance_variacao_pct": 0,
+        "impressoes": 31500,
+        "seguidores_ganhos": 314,
+        "seguidores_total": 0,
+        "salvamentos": 0,
+        "compartilhamentos": 0,
+        "visitas_perfil": 670,
+        "engajamento_medio_pct": 15.06,
+        "interacoes": 2494,
+        "top_post_descricao": "Pico 17/Jun (alcance 2.219, 373 interações, 16,8% eng.) e sprint final 29–30/Jun (+145 seguidores em 2 dias)",
+        "top_post_metrica": "+314 seguidores no mês | 15,1% taxa de engajamento",
+        "formato_destaque": "Reel",
+        "dados_diarios": {
+          "alcance":    [1238,475,515,340,476,194,252,937,393,344,276,133,127,308,347,346,2219,840,852,483,186,337,190,308,384,329,272,290,1967,1205],
+          "impressoes": [2063,771,725,534,913,251,344,1675,483,489,1120,207,183,415,729,487,3782,1795,1249,758,252,493,262,625,727,1901,638,1023,3558,3048],
+          "interacoes": [117,89,92,67,76,57,37,104,34,47,36,21,23,24,34,47,373,174,88,53,22,48,54,43,46,100,24,39,273,252],
+          "seguidores_ganhos": [11,9,8,9,12,5,7,14,6,8,8,1,4,2,7,3,4,6,9,13,1,7,3,2,2,4,2,2,76,69],
+          "visitas_perfil": [37,21,13,19,35,4,13,32,10,13,12,8,5,9,17,7,30,16,21,24,6,6,6,14,19,26,13,16,117,101]
+        },
+        "metricas_calculadas": {
+          "frequencia_exposicao": 1.90,
+          "conv_visita_seguidor_pct": 46.9,
+          "conv_alcance_seguidor_pct": 1.9,
+          "interacoes_por_mil_impressoes": 79.2,
+          "pico_alcance_dia": { "dia": 17, "valor": 2219 },
+          "pico_seguidores_dia": { "dia": 29, "valor": 76 },
+          "media_alcance_dia": 552,
+          "media_seguidores_dia": 10.5,
+          "semanas": [
+            { "semana": "S1 (1–7/Jun)",   "alcance": 3490, "interacoes": 535, "seguidores": 61 },
+            { "semana": "S2 (8–14/Jun)",  "alcance": 2518, "interacoes": 289, "seguidores": 43 },
+            { "semana": "S3 (15–21/Jun)", "alcance": 5273, "interacoes": 791, "seguidores": 43 },
+            { "semana": "S4 (22–28/Jun)", "alcance": 2110, "interacoes": 354, "seguidores": 22 },
+            { "semana": "S5 (29–30/Jun)", "alcance": 3172, "interacoes": 525, "seguidores": 145 }
+          ],
+          "media_por_dia_da_semana": [
+            { "dia": "Seg", "alcance_medio": 965, "int_medio": 127 },
+            { "dia": "Ter", "alcance_medio": 522, "int_medio": 85 },
+            { "dia": "Qua", "alcance_medio": 867, "int_medio": 139 },
+            { "dia": "Qui", "alcance_medio": 460, "int_medio": 81 },
+            { "dia": "Sex", "alcance_medio": 448, "int_medio": 71 },
+            { "dia": "Sáb", "alcance_medio": 269, "int_medio": 51 },
+            { "dia": "Dom", "alcance_medio": 264, "int_medio": 31 }
+          ]
+        }
+      },
+      "audiencia": {
+        "dms_analisados": 0,
+        "comentarios": 0,
+        "segmento_brasil": 0,
+        "segmento_processo": 0,
+        "segmento_franca": 0,
+        "temas_audiencia": []
+      },
+      "insights": [
+        "EFEITO PICO DOMINANTE: 2 eventos (17/Jun + 29–30/Jun) representaram 31% do alcance total e 70% dos seguidores novos do mês. O crescimento não é linear — é orientado por publicações de alto impacto.",
+        "TAXA DE CONVERSÃO EXCEPCIONAL: 46,9% das pessoas que visitam o perfil seguem a conta. O gargalo não é convicção, é descoberta — quem chega, fica.",
+        "SEMANAS MORTAS: Semanas 2 (8–14/Jun) e 4 (22–28/Jun) tiveram alcance médio de 359/dia — 65% abaixo das semanas com pico. Cadência irregular de publicação deixou lacunas de visibilidade."
+      ],
+      "acoes_proximo_ciclo": [
+        "Publicar 2× por semana sem exceções — a ausência nas semanas 2 e 4 custou ~450 seguidores potenciais.",
+        "Identificar e replicar o formato do post de 17/Jun (16,8% de engajamento) → criar 2 vídeos no mesmo estilo em Julho.",
+        "Adicionar CTA verbal 'visita meu perfil' nos Reels de alto alcance → com 46,9% de conv. visita→seguidor, cada visita vale."
+      ],
+      "decisao_editorial": "Julho deve ter publicação sistemática (2× semana) com foco em replicar o padrão dos picos de Junho — urgência prática + grande escala de afetados.",
+      "pergunta_editorial": "Se 2 publicações geraram 70% do crescimento de Junho, qual é o padrão que define esse tipo de conteúdo — tema, formato, gancho ou dia — e como transformar isso em sistema replicável para Julho?"
     }
+  ]
+}
   ]
 }
