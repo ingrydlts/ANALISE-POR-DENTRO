@@ -98,8 +98,8 @@
     },
     {
       "id": "2026-06",
-      "periodo": "Junho 2026 (parcial — até dia 18)",
-      "adicionado_em": "2026-06-19",
+      "periodo": "Junho 2026",
+      "adicionado_em": "2026-07-01",
       "youtube": {
         "views": 131,
         "views_variacao_pct": -28,
@@ -117,60 +117,14 @@
         "status_ctr": "medio"
       },
       "instagram": {
-        "alcance": null,
+        "alcance": 16563,
         "alcance_variacao_pct": null,
-        "impressoes": null,
-        "seguidores_ganhos": null,
+        "impressoes": 31500,
+        "seguidores_ganhos": 314,
         "seguidores_total": null,
         "salvamentos": null,
         "compartilhamentos": null,
         "cliques_bio": null,
-        "engajamento_medio_pct": null,
-        "top_post_descricao": "Dados não disponíveis — exportar Instagram Insights do app",
-        "top_post_metrica": null,
-        "formato_destaque": null
-      },
-      "insights": [
-        "Junho (18 dias) mostra queda natural pós-pico do IR, mas baseline de ~7.3 views/dia — acima dos 6.1/dia de Abril pré-vídeo. O IR trouxe inscritos que continuam voltando.",
-        "Vídeo de transporte teve pico de 3–4 views/dia em 13–17 de junho, anômalo para vídeo de 2023 — provável busca ligada a planejamento de viagens de verão europeu.",
-        "Sem novo vídeo, junho tende a retornar ao patamar de Abril. Publicar antes de 25 de junho sustenta julho."
-      ],
-      "acoes_proximo_ciclo": [
-        "Publicar vídeo antes de 25 de junho para sustentar o tráfego de julho — tema: férias/verão na França ou burocracia pré-férias",
-        "Exportar Instagram Insights real do app → preencher os campos nulos destes ciclos",
-        "Atualizar descrição do vídeo de transporte com link para o IR → capitalizar no tráfego de junho"
-      ],
-      "decisao_editorial": "Junho é a última janela antes do verão europeu — publicar conteúdo de utilidade para imigrantes navegando o sistema francês nas férias (CAF, serviços em agosto, transporte fora do horário)."
-    {
-  "ciclos": [
-    {
-      "id": "2026-06",
-      "periodo": "Junho 2026",
-      "adicionado_em": "2026-07-01",
-      "youtube": {
-        "views": 0,
-        "views_variacao_pct": 0,
-        "watchtime_horas": 0,
-        "retencao_media_pct": 0,
-        "ctr_medio_pct": 0,
-        "inscritos_ganhos": 0,
-        "inscritos_total": 0,
-        "impressoes": 0,
-        "top_video_titulo": "",
-        "top_video_views": 0,
-        "principal_fonte_trafego": "",
-        "principal_fonte_pct": 0,
-        "status_retencao": "",
-        "status_ctr": ""
-      },
-      "instagram": {
-        "alcance": 16563,
-        "alcance_variacao_pct": 0,
-        "impressoes": 31500,
-        "seguidores_ganhos": 314,
-        "seguidores_total": 0,
-        "salvamentos": 0,
-        "compartilhamentos": 0,
         "visitas_perfil": 670,
         "engajamento_medio_pct": 15.06,
         "interacoes": 2494,
@@ -220,19 +174,18 @@
         "temas_audiencia": []
       },
       "insights": [
-        "EFEITO PICO DOMINANTE: 2 eventos (17/Jun + 29–30/Jun) representaram 31% do alcance total e 70% dos seguidores novos do mês. O crescimento não é linear — é orientado por publicações de alto impacto.",
+        "EFEITO PICO DOMINANTE: 2 eventos (17/Jun + 29–30/Jun) representaram 31% do alcance total do Instagram e 70% dos seguidores novos do mês. O crescimento não é linear — é orientado por publicações de alto impacto.",
         "TAXA DE CONVERSÃO EXCEPCIONAL: 46,9% das pessoas que visitam o perfil seguem a conta. O gargalo não é convicção, é descoberta — quem chega, fica.",
-        "SEMANAS MORTAS: Semanas 2 (8–14/Jun) e 4 (22–28/Jun) tiveram alcance médio de 359/dia — 65% abaixo das semanas com pico. Cadência irregular de publicação deixou lacunas de visibilidade."
+        "SEMANAS MORTAS: Semanas 2 (8–14/Jun) e 4 (22–28/Jun) tiveram alcance médio de 359/dia — 65% abaixo das semanas com pico. Cadência irregular de publicação deixou lacunas de visibilidade.",
+        "QUEDA PÓS-PICO NO YOUTUBE: -28% de views vs. Maio — queda natural após o pico do IR, mas baseline de 7,3 views/dia está acima dos 6,1/dia de Abril pré-vídeo. Os inscritos conquistados continuam voltando."
       ],
       "acoes_proximo_ciclo": [
-        "Publicar 2× por semana sem exceções — a ausência nas semanas 2 e 4 custou ~450 seguidores potenciais.",
+        "Publicar 2× por semana no Instagram sem exceções → a ausência nas semanas 2 e 4 custou ~450 seguidores potenciais.",
         "Identificar e replicar o formato do post de 17/Jun (16,8% de engajamento) → criar 2 vídeos no mesmo estilo em Julho.",
         "Adicionar CTA verbal 'visita meu perfil' nos Reels de alto alcance → com 46,9% de conv. visita→seguidor, cada visita vale."
       ],
-      "decisao_editorial": "Julho deve ter publicação sistemática (2× semana) com foco em replicar o padrão dos picos de Junho — urgência prática + grande escala de afetados.",
+      "decisao_editorial": "Julho deve ter publicação sistemática (2× semana no Instagram) com foco em replicar o padrão dos picos de Junho — urgência prática + grande escala de afetados.",
       "pergunta_editorial": "Se 2 publicações geraram 70% do crescimento de Junho, qual é o padrão que define esse tipo de conteúdo — tema, formato, gancho ou dia — e como transformar isso em sistema replicável para Julho?"
     }
-  ]
-}
   ]
 }
