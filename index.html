@@ -451,6 +451,11 @@ footer{background:var(--marrom);padding:20px 32px;text-align:center;font-family:
         </div>
       </div>
     </details>
+
+    <details class="detalhe-grupo" id="det-bilan-audiencia">
+      <summary>Bilan Qualitativo de Audiência (DMs &amp; Comentários) <span class="summary-plus">+</span></summary>
+      <div class="detalhe-body" id="bilan-audiencia-body"></div>
+    </details>
   </div>
 </div>
 
@@ -464,7 +469,7 @@ const fmt=n=>Number(n).toLocaleString('pt-BR');
 function corInt(v,m){const t=m>0?v/m:0;return`rgb(${Math.round(232+(131-232)*t)},${Math.round(213+(58-213)*t)},${Math.round(245+(180-245)*t)})`;}
 let dadosGlobais=null;
 const chartsInit={geral:false,semanal:false,editorial:false};
-const detalheInit={series:false,padroes:false,audiencia:false};
+const detalheInit={series:false,padroes:false,audiencia:false,bilanAudiencia:false};
 
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -481,13 +486,14 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-['det-series','det-padroes','det-audiencia'].forEach(id=>{
+['det-series','det-padroes','det-audiencia','det-bilan-audiencia'].forEach(id=>{
   const el=document.getElementById(id);
   el.addEventListener('toggle',()=>{
     if(!el.open||!dadosGlobais)return;
     if(id==='det-series'&&!detalheInit.series){initDetSeries(dadosGlobais);detalheInit.series=true;}
     if(id==='det-padroes'&&!detalheInit.padroes){initDetPadroes(dadosGlobais);detalheInit.padroes=true;}
     if(id==='det-audiencia'&&!detalheInit.audiencia){initDetAudiencia(dadosGlobais);detalheInit.audiencia=true;}
+    if(id==='det-bilan-audiencia'&&!detalheInit.bilanAudiencia){initDetBilanAudiencia(dadosGlobais);detalheInit.bilanAudiencia=true;}
   });
 });
 
@@ -498,7 +504,7 @@ async function iniciarDashboard(){
     const data=await r.json();
     const ciclos=data.ciclos||[];
     if(!ciclos.length)throw new Error('Nenhum ciclo');
-    dadosGlobais={ultimoCiclo:ciclos[ciclos.length-1],ciclos,metas:data.metas,semanas:data.semanas||[]};
+    dadosGlobais={ultimoCiclo:ciclos[ciclos.length-1],ciclos,metas:data.metas,semanas:data.semanas||[],bilansAudiencia:data.bilans_audiencia||[]};
     const ciclo=dadosGlobais.ultimoCiclo;
     const metasSeg=computeMetaSeguidores(dadosGlobais.metas,dadosGlobais.semanas);
     document.getElementById('header-periodo').textContent=ciclo.periodo+' · Meta: '+fmt(dadosGlobais.metas.seguidores.baseline)+' → '+fmt(dadosGlobais.metas.seguidores.meta)+' · '+metasSeg.diasRestantes+' dias restantes';
@@ -848,6 +854,60 @@ function initDetAudiencia(dados){
   new Chart(document.getElementById('c-aud-dia-semana'),{type:'bar',data:{labels:mD.map(d=>d.dia),datasets:[{label:'Interações médias',data:mD.map(d=>d.int_medio),backgroundColor:'rgba(225,48,108,.55)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:TP},scales:{x:{...SB,grid:{display:false}},y:{...SB}}}});
 
   new Chart(document.getElementById('c-aud-visitas-seg'),{type:'line',data:{labels:lbs,datasets:[{label:'Visitas ao perfil',data:daily.visitas_perfil,borderColor:COR.azul,backgroundColor:'rgba(143,165,184,.1)',fill:true,tension:.3,pointRadius:2,borderWidth:2},{label:'Seguidores convertidos',data:daily.seguidores_ganhos,borderColor:COR.seguidores,backgroundColor:'transparent',fill:false,tension:.3,pointRadius:2,borderWidth:2,borderDash:[4,3]}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB}}}});
+}
+
+function initDetBilanAudiencia(dados){
+  const lista=dados.bilansAudiencia||[];
+  const container=document.getElementById('bilan-audiencia-body');
+  if(!lista.length){
+    container.innerHTML=`<div class="semana-vazio" style="margin-top:8px"><h3>Nenhum bilan de audiência ainda</h3><p>Assim que o script <code>analyze_audiencia.py</code> rodar (toda sexta, 07h de Paris) e houver entradas <code>AUDIÊNCIA + NOVO</code> na base do Instagram, o bilan qualitativo da semana aparece aqui automaticamente.</p></div>`;
+    return;
+  }
+  const atual=lista[lista.length-1];
+  const seg=atual.segmentos||{};
+  const totalSeg=(seg.brasil||0)+(seg.processo||0)+(seg.franca||0)||1;
+  const segPct=k=>Math.round((seg[k]||0)/totalSeg*100);
+
+  const bloco=(titulo,itens)=>`
+    <div class="chart-card" style="margin-bottom:14px">
+      <div class="chart-titulo">${titulo}</div>
+      ${(itens&&itens.length)?`<ul style="margin:8px 0 0 18px;font-size:.8rem;color:#4A3A2A;line-height:1.8">${itens.map(i=>`<li>${i}</li>`).join('')}</ul>`:'<p style="font-size:.78rem;color:var(--cinza);margin-top:6px">— nenhum registro nesta rodada —</p>'}
+    </div>`;
+
+  container.innerHTML=`
+    <div class="secao-desc" style="margin:12px 0 16px">${atual.periodo_label||atual.id} · ${atual.total_entradas_analisadas||0} conversa(s) analisada(s)</div>
+    <div class="grid-2">
+      <div class="chart-card">
+        <div class="chart-titulo">Segmentação da Audiência</div>
+        <div class="funil-wrap" style="gap:8px">
+          <div class="funil-barra" style="background:${COR.alcance};width:${Math.max(segPct('brasil'),12)}%"><span class="f-label">No Brasil, pesquisando</span><span class="f-valor">${seg.brasil||0}</span></div>
+          <div class="funil-barra" style="background:${COR.frequencia};width:${Math.max(segPct('processo'),12)}%"><span class="f-label">Em processo de imigrar</span><span class="f-valor">${seg.processo||0}</span></div>
+          <div class="funil-barra" style="background:${COR.seguidores};width:${Math.max(segPct('franca'),12)}%"><span class="f-label">Já na França</span><span class="f-valor">${seg.franca||0}</span></div>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-titulo">Temas Recorrentes</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">${(atual.temas_audiencia||[]).map(t=>`<span class="pot-fator" style="font-size:.68rem;padding:4px 10px">${t}</span>`).join('')||'<span class="pot-motivo">— nenhum tema registrado —</span>'}</div>
+      </div>
+    </div>
+    ${bloco('Perguntas Mais Recorrentes',atual.perguntas_recorrentes)}
+    ${bloco('Dores Não Atendidas',atual.dores_nao_atendidas)}
+    ${bloco('Pedidos Explícitos de Conteúdo',atual.pedidos_conteudo)}
+    <div class="chart-card" style="margin-bottom:14px">
+      <div class="chart-titulo">Perfil do Momento</div>
+      <p style="font-size:.8rem;color:#4A3A2A;margin-top:6px;line-height:1.7">${atual.perfil_momento||'—'}</p>
+    </div>
+    <div class="chart-card" style="margin-bottom:14px">
+      <div class="chart-titulo">Diferença Entre Plataformas</div>
+      <p style="font-size:.8rem;color:#4A3A2A;margin-top:6px;line-height:1.7">${atual.diferenca_plataformas||'—'}</p>
+    </div>
+    <div class="chart-card">
+      <div class="chart-titulo">Pautas Sugeridas pela Audiência</div>
+      ${(atual.pautas_sugeridas&&atual.pautas_sugeridas.length)?`<ul style="margin:8px 0 0 18px;font-size:.8rem;color:#4A3A2A;line-height:1.85">${atual.pautas_sugeridas.map(p=>`<li><strong>[${p.plataforma||''}]</strong> ${p.titulo||''} — <span style="color:var(--cinza)">${p.porque||''}</span></li>`).join('')}</ul>`:'<p style="font-size:.78rem;color:var(--cinza);margin-top:6px">— nenhuma pauta sugerida nesta rodada —</p>'}
+    </div>
+    ${lista.length>1?`<div class="secao-titulo" style="border:none;margin:20px 0 10px;padding-bottom:0"><h2 style="font-size:.95rem">Rodadas <em>Anteriores</em></h2></div>
+    <div class="semana-grid">${lista.slice(0,-1).reverse().map(b=>`<div class="semana-card historica"><div class="semana-periodo">${b.periodo_label||b.id}</div><div class="semana-detalhe">${(b.perguntas_recorrentes||[]).length} pergunta(s) · ${(b.pautas_sugeridas||[]).length} pauta(s) sugerida(s) · ${b.total_entradas_analisadas||0} conversa(s)</div></div>`).join('')}</div>`:''}
+  `;
 }
 
 iniciarDashboard();
