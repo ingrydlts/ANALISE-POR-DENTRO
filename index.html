@@ -705,7 +705,7 @@ function initSemanal(dados){
   <div class="semana-card ${w.conta_para_meta?'ativa':'historica'}">
     <div class="semana-periodo">${w.periodo}${w.conta_para_meta?'':' · histórico'}</div>
     <div class="semana-seg">+${fmt(w.seguidores_ganhos)}</div>
-    <div class="semana-detalhe">${fmt(w.alcance)} alcance · ${w.engajamento_pct.toFixed(1)}% eng.</div>
+    <div class="semana-detalhe">${fmt(w.alcance)} alcance · ${w.engajamento_pct.toFixed(1)}% eng.${w.posts_notion?' · '+w.posts_notion.contagem+' post(s) no Notion':''}</div>
     ${w.nota?`<div class="semana-nota">${w.nota}</div>`:''}
   </div>`).join('');
 
