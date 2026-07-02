@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Por Dentro — Dashboard Analytics</title>
+<title>Por Dentro — Dashboard de Metas</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -20,12 +20,12 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{font-size:clamp(13px,1.3vw,15px);}
 body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--texto);line-height:1.65;}
-header{background:var(--marrom);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(0,0,0,.3);}
+header{background:var(--marrom);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(0,0,0,.3);flex-wrap:wrap;gap:6px;}
 .marca{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--off-white);letter-spacing:1px;}
 .marca em{color:var(--ocre);font-style:italic;}
-#header-periodo{font-family:'DM Mono',monospace;font-size:.62rem;color:rgba(242,237,228,.4);letter-spacing:2px;text-transform:uppercase;}
-.tab-nav{background:var(--off-white);border-bottom:1px solid var(--bege-escuro);display:flex;position:sticky;top:0;z-index:90;box-shadow:0 1px 8px rgba(61,43,31,.07);}
-.tab-btn{flex:1;max-width:180px;padding:14px 20px;border:none;background:none;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+#header-periodo{font-family:'DM Mono',monospace;font-size:.62rem;color:rgba(242,237,228,.55);letter-spacing:1.5px;text-transform:uppercase;text-align:right;}
+.tab-nav{background:var(--off-white);border-bottom:1px solid var(--bege-escuro);display:flex;position:sticky;top:0;z-index:90;box-shadow:0 1px 8px rgba(61,43,31,.07);overflow-x:auto;}
+.tab-btn{flex:1;min-width:110px;max-width:180px;padding:14px 20px;border:none;background:none;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--cinza);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
 .tab-btn:hover{color:var(--marrom);}
 .tab-btn.active{color:var(--marrom);border-bottom-color:var(--ocre);font-weight:600;}
 #estado-carregamento{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px;padding:40px;}
@@ -37,29 +37,35 @@ header{background:var(--marrom);padding:14px 32px;display:flex;align-items:cente
 .erro-box code{background:var(--bege-escuro);padding:2px 7px;border-radius:3px;font-family:'DM Mono',monospace;font-size:.8rem;}
 .tab-content{display:none;}
 .tab-content.active{display:block;}
-.secao{max-width:1140px;margin:0 auto;padding:36px 28px 0;}
-.secao-titulo{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;padding-bottom:10px;border-bottom:1px solid var(--bege-escuro);}
-.secao-titulo h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--marrom);}
+.secao{max-width:1140px;margin:0 auto;padding:32px 28px 0;}
+.secao-titulo{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--bege-escuro);flex-wrap:wrap;}
+.secao-titulo h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--marrom);}
 .secao-titulo h2 em{color:var(--ocre);font-style:italic;}
-.secao-tag{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);}
-/* BILAN TOPO */
-.bilan-topo-wrap{background:var(--marrom);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(61,43,31,.18);}
-.bilan-topo-head{padding:24px 32px 18px;border-bottom:1px solid rgba(255,255,255,.07);}
-.bilan-topo-tag{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--ocre);margin-bottom:8px;}
-.bilan-topo-headline{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--off-white);line-height:1.4;max-width:720px;}
-.bilan-topo-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-@media(max-width:768px){.bilan-topo-body{grid-template-columns:1fr;}}
-.bilan-topo-col{padding:20px 32px;}
-.bilan-topo-col:first-child{border-right:1px solid rgba(255,255,255,.07);}
-.bilan-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:4px;}
-@media(max-width:600px){.bilan-nums{grid-template-columns:repeat(2,1fr);}}
-.bn-valor{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--ocre);line-height:1;}
-.bn-label{font-size:.68rem;color:rgba(242,237,228,.45);margin-top:2px;}
-.bilan-topo-col-titulo{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(196,154,78,.6);margin-bottom:10px;}
-.bilan-decisao{font-size:.82rem;color:rgba(242,237,228,.75);line-height:1.7;}
-.bilan-acoes{list-style:none;display:flex;flex-direction:column;gap:6px;}
-.bilan-acoes li{font-size:.78rem;color:rgba(242,237,228,.65);line-height:1.6;padding-left:14px;position:relative;}
-.bilan-acoes li::before{content:'→';position:absolute;left:0;color:var(--ocre);}
+.secao-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);}
+.secao-desc{font-size:.8rem;color:var(--cinza);margin:-12px 0 18px;line-height:1.7;max-width:760px;}
+
+/* ===== HERO METAS ===== */
+.metas-hero{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px;}
+@media(max-width:768px){.metas-hero{grid-template-columns:1fr;}}
+.meta-card{background:var(--off-white);border-radius:14px;padding:22px 26px;border:1px solid rgba(61,43,31,.08);box-shadow:var(--sombra);}
+.meta-card-titulo{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);margin-bottom:12px;}
+.meta-progress-nums{display:flex;align-items:baseline;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.meta-atual{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--marrom);line-height:1;}
+.meta-alvo{font-size:.82rem;color:var(--cinza);}
+.progress-track{background:var(--bege-escuro);border-radius:20px;height:14px;overflow:hidden;margin-bottom:10px;}
+.progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--ocre),var(--ig-pink));transition:width .6s ease;}
+.meta-sub{font-size:.78rem;color:#5A4A3A;line-height:1.7;}
+.meta-sub strong{color:var(--marrom);}
+.status-pill{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;padding:4px 10px;border-radius:20px;font-family:'DM Mono',monospace;letter-spacing:.5px;margin-top:12px;}
+.status-pill.ok{background:rgba(107,143,106,.18);color:#2A5A28;}
+.status-pill.alerta{background:rgba(107,26,26,.12);color:#7A1A1A;}
+.gauge-wrap{margin:12px 0 8px;}
+.gauge-track{position:relative;background:var(--bege-escuro);border-radius:20px;height:14px;}
+.gauge-fill{position:absolute;left:0;top:0;height:100%;border-radius:20px;background:var(--verde);}
+.gauge-fill.baixo{background:var(--vinho);}
+.gauge-piso-marker{position:absolute;top:-4px;width:2px;height:22px;background:var(--marrom);}
+.gauge-labels{display:flex;justify-content:space-between;font-size:.64rem;color:var(--cinza);font-family:'DM Mono',monospace;margin-top:4px;}
+
 /* KPIs */
 .grid-kpi{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px;margin-bottom:8px;}
 .kpi-card{background:var(--off-white);border-radius:12px;padding:16px 18px;border:1px solid rgba(61,43,31,.08);box-shadow:var(--sombra);position:relative;overflow:hidden;}
@@ -71,6 +77,7 @@ header{background:var(--marrom);padding:14px 32px;display:flex;align-items:cente
 .kpi-card.destaque .kpi-valor{background:var(--ig-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .kpi-card.destaque .kpi-nota{color:rgba(242,237,228,.5);}
 .badge-top{position:absolute;top:8px;right:8px;background:rgba(225,48,108,.18);color:var(--ig-pink);font-family:'DM Mono',monospace;font-size:.52rem;font-weight:700;padding:2px 5px;border-radius:3px;letter-spacing:.5px;}
+
 /* INSIGHTS 2x2 */
 .grid-insights{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:4px;}
 @media(max-width:600px){.grid-insights{grid-template-columns:1fr;}}
@@ -82,6 +89,7 @@ header{background:var(--marrom);padding:14px 32px;display:flex;align-items:cente
 .insight-card.azul .insight-ic-tag{color:#4A7A9B;}
 .insight-card h4{font-family:'Playfair Display',serif;font-size:1rem;color:var(--marrom);margin-bottom:5px;line-height:1.25;}
 .insight-card p{font-size:.78rem;color:#4A3A2A;line-height:1.7;}
+
 /* CHARTS */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
 @media(max-width:768px){.grid-2{grid-template-columns:1fr;}}
@@ -89,8 +97,59 @@ header{background:var(--marrom);padding:14px 32px;display:flex;align-items:cente
 .chart-titulo{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--ig-purple);margin-bottom:3px;}
 .chart-subtitulo{font-size:.75rem;color:var(--cinza);margin-bottom:14px;}
 canvas{max-height:260px;}
-canvas.alto{max-height:310px;}
-/* FUNIL */
+canvas.alto{max-height:300px;}
+
+/* BILAN */
+.bilan-topo-wrap{background:var(--marrom);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(61,43,31,.18);}
+.bilan-topo-head{padding:22px 30px 16px;border-bottom:1px solid rgba(255,255,255,.07);}
+.bilan-topo-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--ocre);margin-bottom:8px;}
+.bilan-topo-headline{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--off-white);line-height:1.4;max-width:720px;}
+.bilan-topo-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media(max-width:768px){.bilan-topo-body{grid-template-columns:1fr;}}
+.bilan-topo-col{padding:18px 30px;}
+.bilan-topo-col:first-child{border-right:1px solid rgba(255,255,255,.07);}
+.bilan-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:4px;}
+@media(max-width:600px){.bilan-nums{grid-template-columns:repeat(2,1fr);}}
+.bn-valor{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--ocre);line-height:1;}
+.bn-label{font-size:.66rem;color:rgba(242,237,228,.45);margin-top:2px;}
+.bilan-topo-col-titulo{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:rgba(196,154,78,.6);margin-bottom:10px;}
+.bilan-decisao{font-size:.8rem;color:rgba(242,237,228,.75);line-height:1.7;}
+.bilan-acoes{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.bilan-acoes li{font-size:.76rem;color:rgba(242,237,228,.65);line-height:1.6;padding-left:14px;position:relative;}
+.bilan-acoes li::before{content:'→';position:absolute;left:0;color:var(--ocre);}
+
+/* SEMANAL */
+.semana-atual-card{background:var(--marrom);border-radius:14px;padding:24px 28px;margin-bottom:20px;color:var(--off-white);}
+.semana-atual-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);margin-bottom:10px;}
+.semana-atual-nums{display:flex;gap:26px;flex-wrap:wrap;margin:10px 0;}
+.sa-valor{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--off-white);font-weight:700;line-height:1;}
+.sa-label{font-size:.64rem;color:rgba(242,237,228,.5);margin-top:2px;font-family:'DM Mono',monospace;letter-spacing:1px;text-transform:uppercase;}
+.semana-vazio{background:var(--off-white);border:1px dashed var(--ocre);border-radius:14px;padding:28px 26px;margin-bottom:20px;text-align:center;}
+.semana-vazio h3{font-family:'Playfair Display',serif;color:var(--marrom);margin-bottom:8px;font-size:1.1rem;}
+.semana-vazio p{font-size:.82rem;color:#5A4A3A;max-width:520px;margin:0 auto;line-height:1.7;}
+.semana-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:20px;}
+.semana-card{background:var(--off-white);border-radius:10px;padding:14px 16px;border:1px solid rgba(61,43,31,.08);box-shadow:var(--sombra);border-left:3px solid var(--bege-escuro);}
+.semana-card.ativa{border-left-color:var(--ocre);}
+.semana-card.historica{opacity:.65;}
+.semana-periodo{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin-bottom:6px;}
+.semana-seg{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--marrom);font-weight:700;}
+.semana-detalhe{font-size:.68rem;color:var(--cinza);margin-top:4px;line-height:1.5;}
+.semana-nota{font-size:.7rem;color:#5A4A3A;margin-top:6px;line-height:1.55;padding-top:6px;border-top:1px solid var(--bege-escuro);}
+
+.guia-add{background:var(--bege);border-radius:10px;padding:18px 22px;border:1px dashed var(--ocre);margin-bottom:40px;}
+.guia-add h4{font-family:'Playfair Display',serif;color:var(--marrom);font-size:.95rem;margin-bottom:8px;}
+.guia-add p{font-size:.78rem;color:#5A4A3A;line-height:1.7;}
+.guia-add pre{background:var(--marrom);color:#C9E6C4;padding:14px 16px;border-radius:8px;font-family:'DM Mono',monospace;font-size:.68rem;overflow-x:auto;line-height:1.6;margin-top:10px;white-space:pre-wrap;}
+.guia-add code{background:var(--bege-escuro);padding:1px 6px;border-radius:3px;font-family:'DM Mono',monospace;font-size:.75rem;}
+
+/* DETALHES (accordion) */
+details.detalhe-grupo{background:var(--off-white);border-radius:12px;border:1px solid rgba(61,43,31,.07);box-shadow:var(--sombra);margin-bottom:14px;overflow:hidden;}
+details.detalhe-grupo summary{padding:16px 22px;cursor:pointer;font-family:'Playfair Display',serif;font-size:1rem;color:var(--marrom);list-style:none;display:flex;justify-content:space-between;align-items:center;}
+details.detalhe-grupo summary::-webkit-details-marker{display:none;}
+.summary-plus{font-family:'DM Mono',monospace;font-size:1.1rem;color:var(--ocre);}
+.detalhe-body{padding:4px 22px 22px;}
+
+/* AUDIÊNCIA (dentro de Detalhes) */
 .funil-wrap{display:flex;flex-direction:column;gap:0;padding:8px 0;}
 .funil-etapa{display:flex;flex-direction:column;align-items:center;}
 .funil-barra{border-radius:6px;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;color:#fff;font-weight:600;}
@@ -98,15 +157,9 @@ canvas.alto{max-height:310px;}
 .funil-barra .f-valor{font-family:'Playfair Display',serif;font-size:1.15rem;}
 .funil-seta{display:flex;align-items:center;gap:8px;padding:4px 0;font-family:'DM Mono',monospace;font-size:.68rem;color:var(--cinza);}
 .funil-taxa{background:var(--bege-escuro);padding:2px 10px;border-radius:10px;color:var(--marrom);font-weight:600;font-size:.72rem;}
-/* SCATTER */
 .scatter-note{background:var(--moss-light);border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:.78rem;color:#2A3E2A;line-height:1.7;border-left:3px solid var(--verde);}
 .scatter-note strong{color:#1C2E1C;}
-/* AUDIÊNCIA */
-.aud-destaque{background:var(--marrom);border-radius:12px;padding:22px 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:18px;}
-@media(max-width:600px){.aud-destaque{grid-template-columns:1fr;}}
-.aud-stat-titulo{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:rgba(196,154,78,.6);margin-bottom:4px;}
-.aud-stat-valor{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--ocre);line-height:1;}
-.aud-stat-nota{font-size:.72rem;color:rgba(242,237,228,.5);margin-top:3px;}
+
 /* EDITORIAL */
 .viral-formula{background:var(--off-white);border-radius:12px;padding:22px 28px;border:1px solid rgba(61,43,31,.07);box-shadow:var(--sombra);margin-bottom:18px;}
 .viral-formula-titulo{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);margin-bottom:14px;}
@@ -166,9 +219,10 @@ footer{background:var(--marrom);padding:20px 32px;text-align:center;font-family:
 </header>
 
 <nav class="tab-nav">
-  <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
-  <button class="tab-btn" data-tab="audiencia">Audiência</button>
+  <button class="tab-btn active" data-tab="geral">Visão Geral</button>
+  <button class="tab-btn" data-tab="semanal">Semanal</button>
   <button class="tab-btn" data-tab="editorial">Editorial</button>
+  <button class="tab-btn" data-tab="detalhes">Detalhes</button>
 </nav>
 
 <div id="estado-carregamento">
@@ -176,9 +230,16 @@ footer{background:var(--marrom);padding:20px 32px;text-align:center;font-family:
   <div class="msg-carregamento">Carregando insights.json…</div>
 </div>
 
-<!-- TAB 1: DASHBOARD -->
-<div id="tab-dashboard" class="tab-content">
+<!-- TAB 1: VISÃO GERAL -->
+<div id="tab-geral" class="tab-content">
   <div class="secao" style="padding-bottom:4px">
+    <div class="secao-titulo">
+      <h2>Metas <em>do Ciclo</em></h2>
+      <span class="secao-tag">Recalculado a cada visita</span>
+    </div>
+    <div class="metas-hero" id="metas-hero"></div>
+  </div>
+  <div class="secao" style="padding-bottom:4px;padding-top:8px">
     <div id="bilan-topo"></div>
   </div>
   <div class="secao">
@@ -195,122 +256,48 @@ footer{background:var(--marrom);padding:20px 32px;text-align:center;font-family:
     </div>
     <div class="grid-insights" id="grid-insights"></div>
   </div>
-  <div class="secao">
-    <div class="secao-titulo">
-      <h2>Séries <em>Temporais</em></h2>
-      <span class="secao-tag">Por dia</span>
-    </div>
-    <div class="grid-2">
-      <div class="chart-card">
-        <div class="chart-titulo">Timeline Duplo</div>
-        <div class="chart-subtitulo">Alcance (eixo esq.) + Interações (eixo dir.)</div>
-        <canvas id="c-timeline" class="alto"></canvas>
-      </div>
-      <div class="chart-card">
-        <div class="chart-titulo">Seguidores por Dia</div>
-        <div class="chart-subtitulo">Escala de cor por intensidade de ganho</div>
-        <canvas id="c-seguidores-dia" class="alto"></canvas>
-      </div>
-    </div>
-    <div class="grid-2">
-      <div class="chart-card">
-        <div class="chart-titulo">Taxa de Engajamento Diária</div>
-        <div class="chart-subtitulo">Interações ÷ Alcance × 100</div>
-        <canvas id="c-engajamento"></canvas>
-      </div>
-      <div class="chart-card">
-        <div class="chart-titulo">Frequência de Exposição Diária</div>
-        <div class="chart-subtitulo">Impressões ÷ Alcance — média: 1,90×</div>
-        <canvas id="c-frequencia"></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="secao">
-    <div class="secao-titulo">
-      <h2>Padrões de <em>Publicação</em></h2>
-      <span class="secao-tag">Semanal + Dia da semana</span>
-    </div>
-    <div class="grid-2">
-      <div class="chart-card">
-        <div class="chart-titulo">Análise Semanal</div>
-        <div class="chart-subtitulo">Alcance + Interações (barras) · Seguidores (linha)</div>
-        <canvas id="c-semanal"></canvas>
-      </div>
-      <div class="chart-card">
-        <div class="chart-titulo">Média por Dia da Semana</div>
-        <div class="chart-subtitulo">Segunda-feira tem o maior alcance médio</div>
-        <canvas id="c-dia-semana"></canvas>
-      </div>
-    </div>
-  </div>
   <div class="secao" style="padding-bottom:40px">
     <div class="secao-titulo">
-      <h2>Crescimento & <em>Projeção</em></h2>
-      <span class="secao-tag">Junho acumulado + Cenários Julho</span>
+      <h2>Os 2 <em>Gráficos que Importam</em></h2>
+      <span class="secao-tag">Tudo o resto está em "Detalhes"</span>
     </div>
     <div class="grid-2">
       <div class="chart-card">
-        <div class="chart-titulo">Crescimento Acumulado — Junho</div>
-        <div class="chart-subtitulo">Seguidores ganhos dia a dia</div>
-        <canvas id="c-acumulado"></canvas>
+        <div class="chart-titulo">Trajetória até 10.000</div>
+        <div class="chart-subtitulo">Linha necessária (constante) vs. seu real, semana a semana desde 02/Jul/2026</div>
+        <canvas id="c-trajetoria" class="alto"></canvas>
       </div>
       <div class="chart-card">
-        <div class="chart-titulo">Projeção Julho — 3 Cenários</div>
-        <div class="chart-subtitulo">Conservador 190 · Base 350 · Otimista 520</div>
-        <canvas id="c-projecao"></canvas>
+        <div class="chart-titulo">Engajamento vs. Piso</div>
+        <div class="chart-subtitulo">Por semana — abaixo da linha vermelha é sinal de alerta</div>
+        <canvas id="c-engaj-piso" class="alto"></canvas>
       </div>
     </div>
   </div>
 </div>
 
-<!-- TAB 2: AUDIÊNCIA -->
-<div id="tab-audiencia" class="tab-content">
+<!-- TAB 2: SEMANAL -->
+<div id="tab-semanal" class="tab-content">
   <div class="secao">
     <div class="secao-titulo">
-      <h2>Comportamento da <em>Audiência</em></h2>
-      <span class="secao-tag" id="aud-periodo-tag"></span>
+      <h2>Check-in <em>Semanal</em></h2>
+      <span class="secao-tag">Correção rápida de calendário</span>
     </div>
-    <div class="aud-destaque">
-      <div>
-        <div class="aud-stat-titulo">Taxa de Conversão</div>
-        <div class="aud-stat-valor" id="aud-conv">—</div>
-        <div class="aud-stat-nota">visita → seguidor</div>
-      </div>
-      <div>
-        <div class="aud-stat-titulo">Engajamento Médio</div>
-        <div class="aud-stat-valor" id="aud-eng">—</div>
-        <div class="aud-stat-nota">vs. 3–5% do setor</div>
-      </div>
-      <div>
-        <div class="aud-stat-titulo">Frequência Exposição</div>
-        <div class="aud-stat-valor" id="aud-freq">—</div>
-        <div class="aud-stat-nota">impressões por pessoa</div>
-      </div>
+    <div class="secao-desc">Registre alcance, interações, seguidores e engajamento toda semana. É esse ritmo — não o fechamento mensal — que permite ajustar o calendário editorial a tempo.</div>
+    <div id="semana-atual"></div>
+    <div class="chart-card" style="margin-bottom:20px">
+      <div class="chart-titulo">Ritmo Semanal de Seguidores vs. Meta</div>
+      <div class="chart-subtitulo">Barras cinzas = histórico de Junho (referência, não contam pra meta). Linha tracejada = ritmo necessário/semana.</div>
+      <canvas id="c-ritmo-semanal" class="alto"></canvas>
     </div>
-    <div class="chart-card" style="margin-bottom:18px">
-      <div class="chart-titulo">Como a Audiência Responde ao Volume</div>
-      <div class="chart-subtitulo">Cada ponto = 1 dia. X = alcance (pessoas alcançadas). Y = interações (curtidas + saves + comentários).</div>
-      <div class="scatter-note">
-        <strong>Como ler este gráfico:</strong> cada ponto é um dia de junho. Quanto mais à direita (X alto) = mais pessoas viram. Quanto mais acima (Y alto) = mais pessoas agiram. A correlação positiva confirma: quando o algoritmo distribui em escala, sua audiência responde. Os <strong>pontos isolados no canto superior direito</strong> são os dias de pico — dias normais formam o cluster à esquerda. A conclusão: o gargalo não é engajamento, é distribuição. Quando o conteúdo sai do cluster, a audiência converte muito bem.
-      </div>
-      <canvas id="c-scatter" style="max-height:280px"></canvas>
+    <div class="secao-titulo" style="border:none;margin-bottom:12px;padding-bottom:0">
+      <h2 style="font-size:1.1rem">Histórico de <em>Semanas</em></h2>
     </div>
-    <div class="grid-2" style="margin-bottom:18px">
-      <div class="chart-card">
-        <div class="chart-titulo">Funil de Conversão</div>
-        <div class="chart-subtitulo">Taxa de passagem em cada etapa</div>
-        <div id="funil-html" class="funil-wrap"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-titulo">Interações por Dia da Semana</div>
-        <div class="chart-subtitulo">Qual dia a audiência age mais</div>
-        <canvas id="c-aud-dia-semana"></canvas>
-      </div>
-    </div>
-    <div class="chart-card" style="margin-bottom:40px">
-      <div class="chart-titulo">Visitas ao Perfil vs. Seguidores Convertidos</div>
-      <div class="chart-subtitulo">Linha azul = visitas ao perfil. Linha roxa = seguidores convertidos. Quem chega ao perfil, fica: conversão de ~47%.</div>
-      <canvas id="c-aud-visitas-seg" style="max-height:240px"></canvas>
+    <div class="semana-grid" id="semana-grid"></div>
+    <div class="guia-add">
+      <h4>Como adicionar a próxima semana</h4>
+      <p>Copie o bloco abaixo, preencha os números reais e cole dentro do array <code>"semanas"</code> em <code>insights.json</code> — ou rode <code>python3 atualizar_semana.py</code> na mesma pasta e responda as perguntas no terminal.</p>
+      <pre id="guia-template"></pre>
     </div>
   </div>
 </div>
@@ -373,25 +360,111 @@ footer{background:var(--marrom);padding:20px 32px;text-align:center;font-family:
       Calendário <em>Julho</em>
       <span style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--cinza);margin-left:12px;">Baseado nos padrões de Junho</span>
     </div>
-    <div id="calendario-julho"></div>
-    <div class="chart-card" style="margin-bottom:40px;margin-top:8px">
-      <div class="chart-titulo">Projeção de Crescimento — Julho</div>
-      <div class="chart-subtitulo">Conservador 190 · Base 350 · Otimista 520. Depende da cadência editorial e dos picos de viralização.</div>
-      <canvas id="c-projecao-ed" style="max-height:260px"></canvas>
-    </div>
+    <div id="calendario-julho" style="margin-bottom:40px"></div>
   </div>
 </div>
 
-<footer id="footer-data">Por Dentro · Dashboard Analytics</footer>
+<!-- TAB 4: DETALHES -->
+<div id="tab-detalhes" class="tab-content">
+  <div class="secao" style="padding-bottom:40px">
+    <div class="secao-titulo">
+      <h2>Aprofundamento <em>por Gráfico</em></h2>
+      <span class="secao-tag">Junho 2026 · abra só o que precisar</span>
+    </div>
+    <div class="secao-desc">Tudo aqui já está refletido nos insights e nos 2 gráficos da Visão Geral. Esta seção é para quem quer investigar o dado bruto.</div>
+
+    <details class="detalhe-grupo" id="det-series">
+      <summary>Séries Temporais (Junho, dia a dia) <span class="summary-plus">+</span></summary>
+      <div class="detalhe-body">
+        <div class="grid-2">
+          <div class="chart-card">
+            <div class="chart-titulo">Timeline Duplo</div>
+            <div class="chart-subtitulo">Alcance (eixo esq.) + Interações (eixo dir.)</div>
+            <canvas id="c-timeline" class="alto"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-titulo">Seguidores por Dia</div>
+            <div class="chart-subtitulo">Escala de cor por intensidade de ganho</div>
+            <canvas id="c-seguidores-dia" class="alto"></canvas>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="chart-card">
+            <div class="chart-titulo">Taxa de Engajamento Diária</div>
+            <div class="chart-subtitulo">Interações ÷ Alcance × 100</div>
+            <canvas id="c-engajamento"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-titulo">Frequência de Exposição Diária</div>
+            <div class="chart-subtitulo">Impressões ÷ Alcance</div>
+            <canvas id="c-frequencia"></canvas>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="detalhe-grupo" id="det-padroes">
+      <summary>Padrões de Publicação <span class="summary-plus">+</span></summary>
+      <div class="detalhe-body">
+        <div class="grid-2">
+          <div class="chart-card">
+            <div class="chart-titulo">Análise Semanal</div>
+            <div class="chart-subtitulo">Alcance + Interações (barras) · Seguidores (linha)</div>
+            <canvas id="c-semanal"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-titulo">Média por Dia da Semana</div>
+            <div class="chart-subtitulo">Alcance médio + interações médias</div>
+            <canvas id="c-dia-semana"></canvas>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="detalhe-grupo" id="det-audiencia">
+      <summary>Comportamento da Audiência <span class="summary-plus">+</span></summary>
+      <div class="detalhe-body">
+        <div class="chart-card" style="margin-bottom:18px">
+          <div class="chart-titulo">Como a Audiência Responde ao Volume</div>
+          <div class="chart-subtitulo">Cada ponto = 1 dia. X = alcance. Y = interações.</div>
+          <div class="scatter-note">
+            <strong>Como ler:</strong> quanto mais à direita, mais gente viu. Quanto mais acima, mais gente agiu. Os pontos isolados no canto superior direito são os dias de pico — o gargalo não é engajamento, é distribuição.
+          </div>
+          <canvas id="c-scatter" style="max-height:260px"></canvas>
+        </div>
+        <div class="grid-2">
+          <div class="chart-card">
+            <div class="chart-titulo">Funil de Conversão</div>
+            <div class="chart-subtitulo">Taxa de passagem em cada etapa</div>
+            <div id="funil-html" class="funil-wrap"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-titulo">Interações por Dia da Semana</div>
+            <div class="chart-subtitulo">Qual dia a audiência age mais</div>
+            <canvas id="c-aud-dia-semana"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-titulo">Visitas ao Perfil vs. Seguidores Convertidos</div>
+          <div class="chart-subtitulo">Conversão de ~47% — quem chega ao perfil, fica.</div>
+          <canvas id="c-aud-visitas-seg" style="max-height:230px"></canvas>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<footer id="footer-data">Por Dentro · Dashboard de Metas</footer>
 
 <script>
-const COR={alcance:'#C49A4E',interacoes:'#E1306C',seguidores:'#833AB4',visitas:'#8FA5B8',impressoes:'#7A7D5A',engajamento:'#F77737',frequencia:'#405DE6',verde:'#6B8F6A',azul:'#8FA5B8'};
+const COR={alcance:'#C49A4E',interacoes:'#E1306C',seguidores:'#833AB4',visitas:'#8FA5B8',impressoes:'#7A7D5A',engajamento:'#F77737',frequencia:'#405DE6',verde:'#6B8F6A',azul:'#8FA5B8',vinho:'#6B2737'};
 const TP={backgroundColor:'#3D2B1F',titleColor:'#C49A4E',bodyColor:'#FAF8F4',padding:10,cornerRadius:6};
 const SB={ticks:{font:{family:'DM Mono',size:9},color:'#9E9E8E'},grid:{color:'rgba(0,0,0,.04)'}};
 const fmt=n=>Number(n).toLocaleString('pt-BR');
 function corInt(v,m){const t=m>0?v/m:0;return`rgb(${Math.round(232+(131-232)*t)},${Math.round(213+(58-213)*t)},${Math.round(245+(180-245)*t)})`;}
-let dadosCiclo=null;
-const chartsInit={dashboard:false,audiencia:false,editorial:false};
+let dadosGlobais=null;
+const chartsInit={geral:false,semanal:false,editorial:false};
+const detalheInit={series:false,padroes:false,audiencia:false};
 
 document.querySelectorAll('.tab-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
@@ -400,11 +473,21 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
     document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('tab-'+n).classList.add('active');
-    if(dadosCiclo&&!chartsInit[n]){
-      if(n==='audiencia')initAud(dadosCiclo);
-      if(n==='editorial')initEd(dadosCiclo);
+    if(dadosGlobais&&!chartsInit[n]){
+      if(n==='semanal')initSemanal(dadosGlobais);
+      if(n==='editorial')initEditorial(dadosGlobais);
       chartsInit[n]=true;
     }
+  });
+});
+
+['det-series','det-padroes','det-audiencia'].forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener('toggle',()=>{
+    if(!el.open||!dadosGlobais)return;
+    if(id==='det-series'&&!detalheInit.series){initDetSeries(dadosGlobais);detalheInit.series=true;}
+    if(id==='det-padroes'&&!detalheInit.padroes){initDetPadroes(dadosGlobais);detalheInit.padroes=true;}
+    if(id==='det-audiencia'&&!detalheInit.audiencia){initDetAudiencia(dadosGlobais);detalheInit.audiencia=true;}
   });
 });
 
@@ -415,24 +498,78 @@ async function iniciarDashboard(){
     const data=await r.json();
     const ciclos=data.ciclos||[];
     if(!ciclos.length)throw new Error('Nenhum ciclo');
-    const ciclo=ciclos[ciclos.length-1];
-    dadosCiclo=ciclo;
-    const ig=ciclo.instagram,calc=ig.metricas_calculadas,daily=ig.dados_diarios;
-    const n=daily.alcance.length;
-    const lbs=Array.from({length:n},(_,i)=>String(i+1).padStart(2,'0'));
-    document.getElementById('header-periodo').textContent=ciclo.periodo+' · Instagram';
+    dadosGlobais={ultimoCiclo:ciclos[ciclos.length-1],ciclos,metas:data.metas,semanas:data.semanas||[]};
+    const ciclo=dadosGlobais.ultimoCiclo;
+    const metasSeg=computeMetaSeguidores(dadosGlobais.metas,dadosGlobais.semanas);
+    document.getElementById('header-periodo').textContent=ciclo.periodo+' · Meta: '+fmt(dadosGlobais.metas.seguidores.baseline)+' → '+fmt(dadosGlobais.metas.seguidores.meta)+' · '+metasSeg.diasRestantes+' dias restantes';
     const ag=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});
     document.getElementById('footer-data').textContent='Por Dentro · Atualizado '+ag+' · fonte: insights.json';
+    renderMetasHero(dadosGlobais.metas,dadosGlobais.semanas);
     renderBilan(ciclo);
-    renderKPIs(ig);
+    renderKPIs(ciclo.instagram,dadosGlobais.metas);
     renderInsights(ciclo.insights);
-    initDash(ig,calc,daily,lbs);
-    chartsInit.dashboard=true;
+    initGeralCharts(dadosGlobais);
+    chartsInit.geral=true;
     document.getElementById('estado-carregamento').style.display='none';
-    document.getElementById('tab-dashboard').classList.add('active');
+    document.getElementById('tab-geral').classList.add('active');
   }catch(e){
     document.getElementById('estado-carregamento').innerHTML=`<div class="erro-box"><h3>Não foi possível carregar</h3><p>1. <code>insights.json</code> na mesma pasta.</p><p>2. Acesso via servidor HTTP (não file://).</p><p>Teste: <code>python -m http.server</code> → <code>http://localhost:8000</code></p><p style="color:#9E9E8E;font-size:.8rem;margin-top:12px">Erro: ${e.message}</p></div>`;
   }
+}
+
+/* ===== CÁLCULO DE METAS (dinâmico, recalcula a cada visita) ===== */
+function computeMetaSeguidores(metas,semanas){
+  const s=metas.seguidores;
+  const ganhosContados=semanas.filter(w=>w.conta_para_meta).reduce((a,w)=>a+(w.seguidores_ganhos||0),0);
+  const atual=s.baseline+ganhosContados;
+  const hoje=new Date();
+  const baselineData=new Date(s.baseline_data+'T00:00:00');
+  const metaData=new Date(s.meta_data+'T00:00:00');
+  const diasDecorridos=Math.max(0,Math.floor((hoje-baselineData)/86400000));
+  const diasRestantes=Math.max(1,Math.ceil((metaData-hoje)/86400000));
+  const faltam=Math.max(0,s.meta-atual);
+  const ritmoNecessarioDia=faltam/diasRestantes;
+  const pct=Math.min(100,atual/s.meta*100);
+  return{...s,atual,ganhosContados,diasDecorridos,diasRestantes,faltam,ritmoNecessarioDia,ritmoNecessarioSemana:ritmoNecessarioDia*7,pct};
+}
+function computeMetaEngajamento(metas,semanas){
+  const e=metas.engajamento;
+  const comDados=semanas.filter(w=>w.conta_para_meta&&typeof w.engajamento_pct==='number');
+  let mediaRecente=e.media_atual_pct;
+  if(comDados.length){
+    const ultimas=comDados.slice(-4);
+    mediaRecente=ultimas.reduce((a,w)=>a+w.engajamento_pct,0)/ultimas.length;
+  }
+  return{...e,mediaRecente,acimaDoPiso:mediaRecente>=e.piso_pct};
+}
+
+function renderMetasHero(metas,semanas){
+  const ms=computeMetaSeguidores(metas,semanas);
+  const me=computeMetaEngajamento(metas,semanas);
+  const scaleMax=Math.max(20,Math.ceil(Math.max(me.mediaRecente*1.25,me.piso_pct*1.6)/5)*5);
+  const pisoPos=Math.min(100,me.piso_pct/scaleMax*100);
+  const fillPos=Math.min(100,me.mediaRecente/scaleMax*100);
+  document.getElementById('metas-hero').innerHTML=`
+  <div class="meta-card">
+    <div class="meta-card-titulo">Caminho até 10.000 Seguidores</div>
+    <div class="meta-progress-nums"><div class="meta-atual">${fmt(ms.atual)}</div><div class="meta-alvo">de ${fmt(ms.meta)} · ${ms.pct.toFixed(1)}%</div></div>
+    <div class="progress-track"><div class="progress-fill" style="width:${ms.pct}%"></div></div>
+    <div class="meta-sub">Faltam <strong>${fmt(ms.faltam)}</strong> seguidores em <strong>${ms.diasRestantes}</strong> dias · ritmo necessário: <strong>${ms.ritmoNecessarioDia.toFixed(1)}/dia</strong> (≈${ms.ritmoNecessarioSemana.toFixed(0)}/semana).<br>Referência Junho/26: ${metas.seguidores.ritmo_referencia_dia_junho}/dia — nesse ritmo você chegaria a ~${fmt(metas.seguidores.projecao_365d_no_ritmo_junho)} em 1 ano.</div>
+    <span class="status-pill ${ms.ritmoNecessarioDia<=metas.seguidores.ritmo_referencia_dia_junho?'ok':'alerta'}">${ms.ritmoNecessarioDia<=metas.seguidores.ritmo_referencia_dia_junho?'✓ Ritmo de referência é suficiente':'⚠ Precisa acelerar o ritmo'}</span>
+  </div>
+  <div class="meta-card">
+    <div class="meta-card-titulo">Piso de Engajamento</div>
+    <div class="meta-progress-nums"><div class="meta-atual">${me.mediaRecente.toFixed(1)}%</div><div class="meta-alvo">piso: ${me.piso_pct.toFixed(1)}%</div></div>
+    <div class="gauge-wrap">
+      <div class="gauge-track">
+        <div class="gauge-fill ${me.acimaDoPiso?'':'baixo'}" style="width:${fillPos}%"></div>
+        <div class="gauge-piso-marker" style="left:${pisoPos}%"></div>
+      </div>
+      <div class="gauge-labels"><span>0%</span><span>escala até ${scaleMax}%</span></div>
+    </div>
+    <div class="meta-sub">Piso calculado pela sua própria média móvel (últimos ciclos com dado real), menos ${metas.engajamento.margem_tolerancia_pontos} pontos de tolerância. Não é o benchmark do setor (3–5%) — é o SEU patamar.</div>
+    <span class="status-pill ${me.acimaDoPiso?'ok':'alerta'}">${me.acimaDoPiso?'✓ Acima do piso':'⚠ Abaixo do piso — revisar calendário'}</span>
+  </div>`;
 }
 
 function renderBilan(ciclo){
@@ -451,7 +588,7 @@ function renderBilan(ciclo){
           <div><div class="bn-valor">+${fmt(ig.seguidores_ganhos)}</div><div class="bn-label">seguidores</div></div>
           <div><div class="bn-valor">${fmt(ig.alcance)}</div><div class="bn-label">alcance</div></div>
           <div><div class="bn-valor">${ig.engajamento_medio_pct.toFixed(1)}%</div><div class="bn-label">engajamento</div></div>
-          <div><div class="bn-valor">${conv}%</div><div class="bn-label">conv. visita</div></div>
+          <div><div class="bn-valor">${fmt(ig.seguidores_total||0)}</div><div class="bn-label">total atual</div></div>
         </div>
       </div>
       <div class="bilan-topo-col">
@@ -465,16 +602,16 @@ function renderBilan(ciclo){
   document.getElementById('kpi-periodo-tag').textContent='Instagram · '+ciclo.periodo;
 }
 
-function renderKPIs(ig){
+function renderKPIs(ig,metas){
   const conv=(ig.seguidores_ganhos/ig.visitas_perfil*100).toFixed(1);
+  const freq=(ig.impressoes/ig.alcance).toFixed(2);
   const ks=[
     {l:'Alcance',v:fmt(ig.alcance),n:'contas únicas'},
-    {l:'Impressões',v:fmt(ig.impressoes),n:'exposições totais'},
     {l:'Interações',v:fmt(ig.interacoes),n:'todas as ações'},
     {l:'Seguidores Novos',v:'+'+fmt(ig.seguidores_ganhos),n:'no mês'},
-    {l:'Visitas ao Perfil',v:fmt(ig.visitas_perfil),n:'acessos à bio'},
-    {l:'Engajamento',v:ig.engajamento_medio_pct.toFixed(1)+'%',n:'↑ acima do setor (3–5%)'},
+    {l:'Engajamento',v:ig.engajamento_medio_pct.toFixed(1)+'%',n:'piso: '+metas.engajamento.piso_pct.toFixed(1)+'%'},
     {l:'Conv. Visita→Seg.',v:conv+'%',n:'descoberta mais importante',d:true},
+    {l:'Freq. Exposição',v:freq+'×',n:'impressões por pessoa'},
   ];
   document.getElementById('grid-kpi').innerHTML=ks.map(k=>`
   <div class="kpi-card ${k.d?'destaque':''}">
@@ -495,68 +632,108 @@ function renderInsights(insights){
   }).join('');
 }
 
-function initDash(ig,calc,daily,lbs){
-  const tE=daily.alcance.map((a,i)=>a>0?+(daily.interacoes[i]/a*100).toFixed(2):0);
-  const fE=daily.alcance.map((a,i)=>a>0?+(daily.impressoes[i]/a).toFixed(3):0);
-  const acu=daily.seguidores_ganhos.reduce((a,v,i)=>{a.push((a[i-1]||0)+v);return a;},[]);
+/* ===== GRÁFICOS ESSENCIAIS (Visão Geral) ===== */
+function initGeralCharts(dados){
+  const metas=dados.metas,semanas=dados.semanas;
+  const ms=computeMetaSeguidores(metas,semanas);
 
-  new Chart(document.getElementById('c-timeline'),{
-    data:{labels:lbs,datasets:[
-      {type:'line',label:'Alcance',data:daily.alcance,yAxisID:'yA',borderColor:COR.alcance,backgroundColor:'rgba(196,154,78,.07)',fill:true,tension:.35,pointRadius:2,borderWidth:2},
-      {type:'line',label:'Interações',data:daily.interacoes,yAxisID:'yI',borderColor:COR.interacoes,fill:false,tension:.35,pointRadius:2,borderWidth:1.5,borderDash:[4,3]},
-    ]},
-    options:{responsive:true,maintainAspectRatio:true,interaction:{mode:'index',intersect:false},
-      plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},
-      scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},yA:{type:'linear',position:'left',...SB,title:{display:true,text:'Alcance',color:COR.alcance,font:{size:9}}},yI:{type:'linear',position:'right',...SB,grid:{display:false},title:{display:true,text:'Interações',color:COR.interacoes,font:{size:9}}}}},
+  // Trajetória até 10K: necessário (linear, 52 semanas) vs real (acumulado das semanas conta_para_meta=true)
+  const totalSemanasEixo=52;
+  const labelsTraj=Array.from({length:totalSemanasEixo+1},(_,i)=>'S'+i);
+  const necessario=labelsTraj.map((_,i)=>Math.min(metas.seguidores.meta,Math.round(metas.seguidores.baseline+metas.seguidores.ritmo_necessario_semana*i)));
+  const ativas=semanas.filter(w=>w.conta_para_meta);
+  let acumulado=metas.seguidores.baseline;
+  const realPontos=[acumulado,...ativas.map(w=>{acumulado+=(w.seguidores_ganhos||0);return acumulado;})];
+  const real=labelsTraj.map((_,i)=>i<realPontos.length?realPontos[i]:null);
+
+  new Chart(document.getElementById('c-trajetoria'),{type:'line',data:{labels:labelsTraj,datasets:[
+    {label:'Necessário',data:necessario,borderColor:COR.azul,backgroundColor:'transparent',borderDash:[5,4],borderWidth:2,pointRadius:0,tension:0},
+    {label:'Real',data:real,borderColor:COR.seguidores,backgroundColor:'rgba(131,58,180,.1)',fill:true,borderWidth:2.5,pointRadius:real.map(v=>v===null?0:3),spanGaps:false,tension:.2},
+  ]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB}}}});
+
+  // Engajamento vs Piso — semanal
+  const labelsSem=semanas.map(w=>w.periodo.split(' ')[0]);
+  const engaj=semanas.map(w=>w.engajamento_pct);
+  const piso=semanas.map(()=>metas.engajamento.piso_pct);
+  new Chart(document.getElementById('c-engaj-piso'),{type:'line',data:{labels:labelsSem,datasets:[
+    {label:'Engajamento %',data:engaj,borderColor:COR.engajamento,backgroundColor:'rgba(247,119,55,.08)',fill:true,tension:.3,pointRadius:3,borderWidth:2},
+    {label:'Piso',data:piso,borderColor:COR.vinho,backgroundColor:'transparent',borderDash:[4,3],borderWidth:1.5,pointRadius:0},
+  ]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:{...TP,callbacks:{label:c=>' '+c.dataset.label+': '+c.parsed.y.toFixed(1)+'%'}}},scales:{x:{...SB},y:{...SB,ticks:{...SB.ticks,callback:v=>v.toFixed(0)+'%'}}}}});
+}
+
+/* ===== SEMANAL ===== */
+function initSemanal(dados){
+  const metas=dados.metas,semanas=dados.semanas;
+  const ms=computeMetaSeguidores(metas,semanas);
+  const ativas=semanas.filter(w=>w.conta_para_meta);
+  const ultima=ativas[ativas.length-1];
+
+  if(ultima){
+    const onPace=ultima.seguidores_ganhos>=ms.ritmoNecessarioSemana;
+    document.getElementById('semana-atual').innerHTML=`
+    <div class="semana-atual-card">
+      <div class="semana-atual-tag">Última Semana Registrada · ${ultima.periodo}</div>
+      <div class="semana-atual-nums">
+        <div><div class="sa-valor">+${fmt(ultima.seguidores_ganhos)}</div><div class="sa-label">seguidores</div></div>
+        <div><div class="sa-valor">${fmt(ultima.alcance)}</div><div class="sa-label">alcance</div></div>
+        <div><div class="sa-valor">${ultima.engajamento_pct.toFixed(1)}%</div><div class="sa-label">engajamento</div></div>
+      </div>
+      <span class="status-pill ${onPace?'ok':'alerta'}">${onPace?'✓ No ritmo da meta':'⚠ Abaixo do ritmo necessário ('+ms.ritmoNecessarioSemana.toFixed(0)+'/semana)'}</span>
+      ${ultima.nota?`<div class="meta-sub" style="margin-top:12px;color:rgba(242,237,228,.7)">${ultima.nota}</div>`:''}
+    </div>`;
+  }else{
+    document.getElementById('semana-atual').innerHTML=`
+    <div class="semana-vazio">
+      <h3>Nenhum check-in semanal registrado ainda</h3>
+      <p>As 5 semanas de Junho abaixo são históricas — servem de referência, mas não contam para a meta (que começou em ${metas.seguidores.baseline_data}). Adicione sua primeira semana ativa usando o modelo no fim desta página.</p>
+    </div>`;
+  }
+
+  const labels=semanas.map(w=>w.periodo);
+  const valores=semanas.map(w=>w.seguidores_ganhos);
+  const cores=semanas.map(w=>{
+    if(!w.conta_para_meta)return'rgba(158,158,142,.35)';
+    return w.seguidores_ganhos>=ms.ritmoNecessarioSemana?'rgba(107,143,106,.75)':'rgba(196,154,78,.75)';
   });
+  const linhaMeta=semanas.map(()=>ms.ritmoNecessarioSemana);
+  new Chart(document.getElementById('c-ritmo-semanal'),{data:{labels,datasets:[
+    {type:'bar',label:'Seguidores ganhos',data:valores,backgroundColor:cores,borderRadius:5},
+    {type:'line',label:'Ritmo necessário',data:linhaMeta,borderColor:COR.vinho,borderDash:[5,4],borderWidth:2,pointRadius:0,tension:0},
+  ]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:12}},y:{...SB}}}});
 
-  const mS=Math.max(...daily.seguidores_ganhos);
-  new Chart(document.getElementById('c-seguidores-dia'),{type:'bar',data:{labels:lbs,datasets:[{label:'Seguidores',data:daily.seguidores_ganhos,backgroundColor:daily.seguidores_ganhos.map(v=>corInt(v,mS)),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10},grid:{display:false}},y:{...SB}}}});
+  document.getElementById('semana-grid').innerHTML=semanas.slice().reverse().map(w=>`
+  <div class="semana-card ${w.conta_para_meta?'ativa':'historica'}">
+    <div class="semana-periodo">${w.periodo}${w.conta_para_meta?'':' · histórico'}</div>
+    <div class="semana-seg">+${fmt(w.seguidores_ganhos)}</div>
+    <div class="semana-detalhe">${fmt(w.alcance)} alcance · ${w.engajamento_pct.toFixed(1)}% eng.</div>
+    ${w.nota?`<div class="semana-nota">${w.nota}</div>`:''}
+  </div>`).join('');
 
-  const mE=Math.max(...tE);
-  new Chart(document.getElementById('c-engajamento'),{type:'line',data:{labels:lbs,datasets:[{label:'Engajamento %',data:tE,borderColor:COR.engajamento,backgroundColor:'rgba(247,119,55,.07)',fill:true,tension:.3,pointRadius:2,borderWidth:2,pointBackgroundColor:tE.map(v=>v===mE?COR.engajamento:'transparent')}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{...TP,callbacks:{label:c=>' '+c.parsed.y.toFixed(1)+'%'}}},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB,ticks:{...SB.ticks,callback:v=>v.toFixed(0)+'%'}}}}});
-
-  new Chart(document.getElementById('c-frequencia'),{type:'line',data:{labels:lbs,datasets:[{label:'Impressões÷Alcance',data:fE,borderColor:COR.frequencia,backgroundColor:'rgba(64,93,230,.07)',fill:true,tension:.3,pointRadius:2,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{...TP,callbacks:{label:c=>' '+c.parsed.y.toFixed(2)+'×'}}},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB,ticks:{...SB.ticks,callback:v=>v.toFixed(1)+'×'}}}}});
-
-  const sem=calc.semanas;
-  new Chart(document.getElementById('c-semanal'),{data:{labels:sem.map(s=>s.semana.replace(/\(.*\)/,'').trim()),datasets:[{type:'bar',label:'Alcance',data:sem.map(s=>s.alcance),backgroundColor:'rgba(196,154,78,.55)',borderRadius:4,yAxisID:'yA',order:2},{type:'bar',label:'Interações',data:sem.map(s=>s.interacoes),backgroundColor:'rgba(225,48,108,.45)',borderRadius:4,yAxisID:'yA',order:2},{type:'line',label:'Seguidores',data:sem.map(s=>s.seguidores),borderColor:COR.seguidores,borderWidth:2,pointRadius:5,yAxisID:'ySeg',order:1}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,grid:{display:false}},yA:{type:'linear',position:'left',...SB},ySeg:{type:'linear',position:'right',...SB,grid:{display:false},ticks:{...SB.ticks,color:COR.seguidores}}}}});
-
-  const mD=calc.media_por_dia_da_semana,mA=Math.max(...mD.map(d=>d.alcance_medio));
-  new Chart(document.getElementById('c-dia-semana'),{type:'bar',data:{labels:mD.map(d=>d.dia),datasets:[{label:'Alcance médio',data:mD.map(d=>d.alcance_medio),backgroundColor:mD.map(d=>d.alcance_medio===mA?COR.alcance:'rgba(196,154,78,.35)'),borderRadius:5,yAxisID:'yA'},{label:'Interações médias',data:mD.map(d=>d.int_medio),backgroundColor:'rgba(225,48,108,.4)',borderRadius:5,yAxisID:'yI'}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,grid:{display:false}},yA:{type:'linear',position:'left',...SB},yI:{type:'linear',position:'right',...SB,grid:{display:false},ticks:{...SB.ticks,color:COR.interacoes}}}}});
-
-  new Chart(document.getElementById('c-acumulado'),{type:'line',data:{labels:lbs,datasets:[{label:'Seguidores acumulados',data:acu,borderColor:COR.seguidores,backgroundColor:'rgba(131,58,180,.1)',fill:true,tension:.3,pointRadius:2,borderWidth:2.5}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB}}}});
-
-  const d31=Array.from({length:31},(_,i)=>String(i+1).padStart(2,'0'));
-  const pr=m=>d31.map((_,i)=>Math.round(m/31*(i+1)));
-  new Chart(document.getElementById('c-projecao'),{type:'line',data:{labels:d31,datasets:[{label:'Otimista (520)',data:pr(520),borderColor:'#6B8F6A',backgroundColor:'rgba(107,143,106,.07)',fill:'+1',tension:.3,borderWidth:2,pointRadius:0,borderDash:[6,3]},{label:'Base (350)',data:pr(350),borderColor:COR.alcance,backgroundColor:'rgba(196,154,78,.1)',fill:true,tension:.3,borderWidth:2.5,pointRadius:0},{label:'Conservador (190)',data:pr(190),borderColor:COR.azul,backgroundColor:'transparent',fill:false,tension:.3,borderWidth:1.5,pointRadius:0,borderDash:[3,4]}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:8}},y:{...SB}}}});
+  const proximoId=inferirProximoId(semanas);
+  document.getElementById('guia-template').textContent=`{
+  "id": "${proximoId}",
+  "periodo": "1–7 Mês 2026",
+  "mes_ref": "2026-07",
+  "alcance": 0,
+  "interacoes": 0,
+  "seguidores_ganhos": 0,
+  "engajamento_pct": 0,
+  "conta_para_meta": true,
+  "origem": "check_in_semanal",
+  "nota": ""
+}`;
+}
+function inferirProximoId(semanas){
+  const mesAtual=new Date().toISOString().slice(0,7);
+  const doMes=semanas.filter(w=>w.mes_ref===mesAtual).length;
+  return mesAtual+'-S'+(doMes+1);
 }
 
-function initAud(ciclo){
-  const ig=ciclo.instagram,calc=ig.metricas_calculadas,daily=ig.dados_diarios;
+/* ===== EDITORIAL ===== */
+function initEditorial(dados){
+  const ciclo=dados.ultimoCiclo;
+  const ig=ciclo.instagram,daily=ig.dados_diarios;
   const n=daily.alcance.length;
-  const lbs=Array.from({length:n},(_,i)=>String(i+1).padStart(2,'0'));
-  const conv=(ig.seguidores_ganhos/ig.visitas_perfil*100).toFixed(1);
-  document.getElementById('aud-conv').textContent=conv+'%';
-  document.getElementById('aud-eng').textContent=ig.engajamento_medio_pct.toFixed(1)+'%';
-  document.getElementById('aud-freq').textContent=(calc.frequencia_exposicao||(ig.impressoes/ig.alcance)).toFixed(2)+'×';
-  document.getElementById('aud-periodo-tag').textContent='Instagram · '+ciclo.periodo;
-
-  new Chart(document.getElementById('c-scatter'),{type:'scatter',data:{datasets:[{label:'Dia',data:daily.alcance.map((a,i)=>({x:a,y:daily.interacoes[i],dia:lbs[i]})),backgroundColor:'rgba(225,48,108,.5)',pointRadius:5,pointHoverRadius:7}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{...TP,callbacks:{title:items=>'Dia '+items[0].raw.dia,label:item=>[`Alcance: ${fmt(item.raw.x)}`,`Interações: ${fmt(item.raw.y)}`]}}},scales:{x:{...SB,title:{display:true,text:'Alcance (pessoas alcançadas no dia)',font:{size:10,family:'DM Mono'},color:'#9E9E8E'}},y:{...SB,title:{display:true,text:'Interações (curtidas + saves + comentários)',font:{size:10,family:'DM Mono'},color:'#9E9E8E'}}}}});
-
-  const et=[{l:'Impressões',v:ig.impressoes,c:'#7A7D5A'},{l:'Alcance',v:ig.alcance,c:'#C49A4E',t:(ig.alcance/ig.impressoes*100).toFixed(1)+'% das impressões'},{l:'Visitas ao Perfil',v:ig.visitas_perfil,c:'#8FA5B8',t:(ig.visitas_perfil/ig.alcance*100).toFixed(1)+'% do alcance'},{l:'Seguidores',v:ig.seguidores_ganhos,c:'#833AB4',t:(ig.seguidores_ganhos/ig.visitas_perfil*100).toFixed(1)+'% das visitas ← ★'}];
-  const mV=et[0].v;
-  document.getElementById('funil-html').innerHTML=et.map((e,i)=>`<div class="funil-etapa">${i>0?`<div class="funil-seta"><span>↓</span><span class="funil-taxa">${e.t}</span></div>`:''}<div class="funil-barra" style="background:${e.c};width:${Math.round(e.v/mV*100)}%;min-width:65%;align-self:center"><span class="f-label">${e.l}</span><span class="f-valor">${fmt(e.v)}</span></div></div>`).join('');
-
-  const mD=calc.media_por_dia_da_semana;
-  new Chart(document.getElementById('c-aud-dia-semana'),{type:'bar',data:{labels:mD.map(d=>d.dia),datasets:[{label:'Interações médias',data:mD.map(d=>d.int_medio),backgroundColor:'rgba(225,48,108,.55)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:TP},scales:{x:{...SB,grid:{display:false}},y:{...SB}}}});
-
-  new Chart(document.getElementById('c-aud-visitas-seg'),{type:'line',data:{labels:lbs,datasets:[{label:'Visitas ao perfil',data:daily.visitas_perfil,borderColor:COR.azul,backgroundColor:'rgba(143,165,184,.1)',fill:true,tension:.3,pointRadius:2,borderWidth:2},{label:'Seguidores convertidos',data:daily.seguidores_ganhos,borderColor:COR.seguidores,backgroundColor:'transparent',fill:false,tension:.3,pointRadius:2,borderWidth:2,borderDash:[4,3]}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB}}}});
-}
-
-function initEd(ciclo){
-  const ig=ciclo.instagram,daily=ig.dados_diarios,calc=ig.metricas_calculadas;
-  const n=daily.alcance.length;
-  const lbs=Array.from({length:n},(_,i)=>String(i+1).padStart(2,'0'));
   const mA=Math.max(...daily.alcance),idxA=daily.alcance.indexOf(mA);
   const eng=daily.alcance.map((a,i)=>a>0?daily.interacoes[i]/a*100:0);
   const seg=daily.seguidores_ganhos,mS=Math.max(...seg),idxS=seg.indexOf(mS);
@@ -607,7 +784,7 @@ function initEd(ciclo){
     <div class="pot-fatores">${t.f.map(f=>`<span class="pot-fator">${f}</span>`).join('')}</div>
   </div>`).join('');
 
-  const mD=calc.media_por_dia_da_semana;
+  const mD=ig.metricas_calculadas.media_por_dia_da_semana;
   const top2=[...mD].sort((a,b)=>b.alcance_medio-a.alcance_medio).slice(0,2).map(d=>d.dia);
   document.getElementById('check-dias-detalhe').textContent=`${top2[0]} e ${top2[1]} têm o maior alcance médio. Para conteúdo de alto impacto, evite fim de semana — queda de até 72% no alcance médio.`;
 
@@ -623,10 +800,54 @@ function initEd(ciclo){
     <div class="cal-pub"><div class="cal-pub-n">${s.p1.n}</div><div class="cal-pub-tema">${s.p1.t}</div><div class="cal-pub-note">${s.p1.note}</div></div>
     <div class="cal-pub"><div class="cal-pub-n">${s.p2.n}</div><div class="cal-pub-tema">${s.p2.t}</div><div class="cal-pub-note">${s.p2.note}</div></div>
   </div>`).join('');
+}
 
-  const d31=Array.from({length:31},(_,i)=>String(i+1).padStart(2,'0'));
-  const pr=m=>d31.map((_,i)=>Math.round(m/31*(i+1)));
-  new Chart(document.getElementById('c-projecao-ed'),{type:'line',data:{labels:d31,datasets:[{label:'Otimista (520)',data:pr(520),borderColor:'#6B8F6A',backgroundColor:'rgba(107,143,106,.07)',fill:'+1',tension:.3,borderWidth:2,pointRadius:0,borderDash:[6,3]},{label:'Base (350)',data:pr(350),borderColor:COR.alcance,backgroundColor:'rgba(196,154,78,.1)',fill:true,tension:.3,borderWidth:2.5,pointRadius:0},{label:'Conservador (190)',data:pr(190),borderColor:COR.azul,backgroundColor:'transparent',fill:false,tension:.3,borderWidth:1.5,pointRadius:0,borderDash:[3,4]}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:8}},y:{...SB}}}});
+/* ===== DETALHES (lazy, um grupo por vez) ===== */
+function initDetSeries(dados){
+  const ciclo=dados.ultimoCiclo,ig=ciclo.instagram,daily=ig.dados_diarios;
+  const n=daily.alcance.length;
+  const lbs=Array.from({length:n},(_,i)=>String(i+1).padStart(2,'0'));
+  const tE=daily.alcance.map((a,i)=>a>0?+(daily.interacoes[i]/a*100).toFixed(2):0);
+  const fE=daily.alcance.map((a,i)=>a>0?+(daily.impressoes[i]/a).toFixed(3):0);
+
+  new Chart(document.getElementById('c-timeline'),{data:{labels:lbs,datasets:[
+    {type:'line',label:'Alcance',data:daily.alcance,yAxisID:'yA',borderColor:COR.alcance,backgroundColor:'rgba(196,154,78,.07)',fill:true,tension:.35,pointRadius:2,borderWidth:2},
+    {type:'line',label:'Interações',data:daily.interacoes,yAxisID:'yI',borderColor:COR.interacoes,fill:false,tension:.35,pointRadius:2,borderWidth:1.5,borderDash:[4,3]},
+  ]},options:{responsive:true,maintainAspectRatio:true,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},yA:{type:'linear',position:'left',...SB,title:{display:true,text:'Alcance',color:COR.alcance,font:{size:9}}},yI:{type:'linear',position:'right',...SB,grid:{display:false},title:{display:true,text:'Interações',color:COR.interacoes,font:{size:9}}}}}});
+
+  const mS=Math.max(...daily.seguidores_ganhos);
+  new Chart(document.getElementById('c-seguidores-dia'),{type:'bar',data:{labels:lbs,datasets:[{label:'Seguidores',data:daily.seguidores_ganhos,backgroundColor:daily.seguidores_ganhos.map(v=>corInt(v,mS)),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10},grid:{display:false}},y:{...SB}}}});
+
+  const mE=Math.max(...tE);
+  new Chart(document.getElementById('c-engajamento'),{type:'line',data:{labels:lbs,datasets:[{label:'Engajamento %',data:tE,borderColor:COR.engajamento,backgroundColor:'rgba(247,119,55,.07)',fill:true,tension:.3,pointRadius:2,borderWidth:2,pointBackgroundColor:tE.map(v=>v===mE?COR.engajamento:'transparent')}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{...TP,callbacks:{label:c=>' '+c.parsed.y.toFixed(1)+'%'}}},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB,ticks:{...SB.ticks,callback:v=>v.toFixed(0)+'%'}}}}});
+
+  new Chart(document.getElementById('c-frequencia'),{type:'line',data:{labels:lbs,datasets:[{label:'Impressões÷Alcance',data:fE,borderColor:COR.frequencia,backgroundColor:'rgba(64,93,230,.07)',fill:true,tension:.3,pointRadius:2,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{...TP,callbacks:{label:c=>' '+c.parsed.y.toFixed(2)+'×'}}},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB,ticks:{...SB.ticks,callback:v=>v.toFixed(1)+'×'}}}}});
+}
+
+function initDetPadroes(dados){
+  const ciclo=dados.ultimoCiclo,calc=ciclo.instagram.metricas_calculadas;
+  const sem=calc.semanas;
+  new Chart(document.getElementById('c-semanal'),{data:{labels:sem.map(s=>s.semana.replace(/\(.*\)/,'').trim()),datasets:[{type:'bar',label:'Alcance',data:sem.map(s=>s.alcance),backgroundColor:'rgba(196,154,78,.55)',borderRadius:4,yAxisID:'yA',order:2},{type:'bar',label:'Interações',data:sem.map(s=>s.interacoes),backgroundColor:'rgba(225,48,108,.45)',borderRadius:4,yAxisID:'yA',order:2},{type:'line',label:'Seguidores',data:sem.map(s=>s.seguidores),borderColor:COR.seguidores,borderWidth:2,pointRadius:5,yAxisID:'ySeg',order:1}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,grid:{display:false}},yA:{type:'linear',position:'left',...SB},ySeg:{type:'linear',position:'right',...SB,grid:{display:false},ticks:{...SB.ticks,color:COR.seguidores}}}}});
+
+  const mD=calc.media_por_dia_da_semana,mA=Math.max(...mD.map(d=>d.alcance_medio));
+  new Chart(document.getElementById('c-dia-semana'),{type:'bar',data:{labels:mD.map(d=>d.dia),datasets:[{label:'Alcance médio',data:mD.map(d=>d.alcance_medio),backgroundColor:mD.map(d=>d.alcance_medio===mA?COR.alcance:'rgba(196,154,78,.35)'),borderRadius:5,yAxisID:'yA'},{label:'Interações médias',data:mD.map(d=>d.int_medio),backgroundColor:'rgba(225,48,108,.4)',borderRadius:5,yAxisID:'yI'}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,grid:{display:false}},yA:{type:'linear',position:'left',...SB},yI:{type:'linear',position:'right',...SB,grid:{display:false},ticks:{...SB.ticks,color:COR.interacoes}}}}});
+}
+
+function initDetAudiencia(dados){
+  const ciclo=dados.ultimoCiclo,ig=ciclo.instagram,daily=ig.dados_diarios,calc=ig.metricas_calculadas;
+  const n=daily.alcance.length;
+  const lbs=Array.from({length:n},(_,i)=>String(i+1).padStart(2,'0'));
+
+  new Chart(document.getElementById('c-scatter'),{type:'scatter',data:{datasets:[{label:'Dia',data:daily.alcance.map((a,i)=>({x:a,y:daily.interacoes[i],dia:lbs[i]})),backgroundColor:'rgba(225,48,108,.5)',pointRadius:5,pointHoverRadius:7}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{...TP,callbacks:{title:items=>'Dia '+items[0].raw.dia,label:item=>[`Alcance: ${fmt(item.raw.x)}`,`Interações: ${fmt(item.raw.y)}`]}}},scales:{x:{...SB,title:{display:true,text:'Alcance',font:{size:10,family:'DM Mono'},color:'#9E9E8E'}},y:{...SB,title:{display:true,text:'Interações',font:{size:10,family:'DM Mono'},color:'#9E9E8E'}}}}});
+
+  const et=[{l:'Impressões',v:ig.impressoes,c:'#7A7D5A'},{l:'Alcance',v:ig.alcance,c:'#C49A4E',t:(ig.alcance/ig.impressoes*100).toFixed(1)+'% das impressões'},{l:'Visitas ao Perfil',v:ig.visitas_perfil,c:'#8FA5B8',t:(ig.visitas_perfil/ig.alcance*100).toFixed(1)+'% do alcance'},{l:'Seguidores',v:ig.seguidores_ganhos,c:'#833AB4',t:(ig.seguidores_ganhos/ig.visitas_perfil*100).toFixed(1)+'% das visitas ← ★'}];
+  const mV=et[0].v;
+  document.getElementById('funil-html').innerHTML=et.map((e,i)=>`<div class="funil-etapa">${i>0?`<div class="funil-seta"><span>↓</span><span class="funil-taxa">${e.t}</span></div>`:''}<div class="funil-barra" style="background:${e.c};width:${Math.round(e.v/mV*100)}%;min-width:65%;align-self:center"><span class="f-label">${e.l}</span><span class="f-valor">${fmt(e.v)}</span></div></div>`).join('');
+
+  const mD=calc.media_por_dia_da_semana;
+  new Chart(document.getElementById('c-aud-dia-semana'),{type:'bar',data:{labels:mD.map(d=>d.dia),datasets:[{label:'Interações médias',data:mD.map(d=>d.int_medio),backgroundColor:'rgba(225,48,108,.55)',borderRadius:5}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:TP},scales:{x:{...SB,grid:{display:false}},y:{...SB}}}});
+
+  new Chart(document.getElementById('c-aud-visitas-seg'),{type:'line',data:{labels:lbs,datasets:[{label:'Visitas ao perfil',data:daily.visitas_perfil,borderColor:COR.azul,backgroundColor:'rgba(143,165,184,.1)',fill:true,tension:.3,pointRadius:2,borderWidth:2},{label:'Seguidores convertidos',data:daily.seguidores_ganhos,borderColor:COR.seguidores,backgroundColor:'transparent',fill:false,tension:.3,pointRadius:2,borderWidth:2,borderDash:[4,3]}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{family:'DM Sans',size:11},color:'#5A4A3A'}},tooltip:TP},scales:{x:{...SB,ticks:{...SB.ticks,maxTicksLimit:10}},y:{...SB}}}});
 }
 
 iniciarDashboard();
