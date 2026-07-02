@@ -28,6 +28,14 @@
       "nota": "Piso = média dos últimos até 3 ciclos mensais com dados reais de Instagram, menos a margem de tolerância. Recalcula sozinho a cada novo ciclo adicionado. Abaixo do piso = sinal de alerta para revisar o calendário editorial."
     }
   },
+  "notion_sync": {
+    "conectado": true,
+    "database": "INSTA TO POR DENTRO",
+    "data_source_url": "collection://f46d0f3c-fb73-4c78-a5eb-5bfda8e3c376",
+    "sinal_de_publicacao": "posting_date_preenchida",
+    "motivo": "Campo 'Stage' não é atualizado de forma confiável após publicar (cards com data passada continuam em Design/Idea/Backlog) — Ingryd optou por contar qualquer card com Posting Date preenchida, mesmo sem Stage=Done, sabendo que isso pode superestimar posts que nunca foram ao ar de fato.",
+    "verificado_em": "2026-07-02"
+  },
   "semanas": [
     {
       "id": "2026-06-S1",
@@ -39,7 +47,8 @@
       "engajamento_pct": 15.3,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "nota": "Melhor semana do mês em ritmo de seguidores antes do sprint final."
+      "posts_notion": {"contagem": 2, "formatos": ["Reel", "Reel"], "titulos": ["Mudanças França 2026 imigrantes brasileiros (01/06)", "Reagrupamento familiar ficou menos burocrático (02/06)"]},
+      "nota": "Melhor semana do mês em ritmo de seguidores antes do sprint final. Notion indica 2 cards com data nessa semana, ambos Reel."
     },
     {
       "id": "2026-06-S2",
@@ -51,7 +60,8 @@
       "engajamento_pct": 11.5,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "nota": "Semana morta — sem pico, cadência irregular. Engajamento tocou o piso."
+      "posts_notion": {"contagem": 1, "formatos": ["Reel"], "titulos": ["Precisa falar francês na frança? (08/06)"]},
+      "nota": "Semana mais fraca em alcance. Notion indica só 1 card com data nessa semana — cadência baixa, não irregularidade de execução."
     },
     {
       "id": "2026-06-S3",
@@ -63,7 +73,8 @@
       "engajamento_pct": 15.0,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "nota": "Pico de alcance do mês (dia 17 — post viral)."
+      "posts_notion": {"contagem": 2, "formatos": ["Reel", "Reel"], "titulos": ["agir sob pressao (17/06)", "APL 2026 congelamento estudantes estrangeiros CAF (19/06, Done)"]},
+      "nota": "Pico de alcance do mês (dia 17 — post viral). O card com data 17/06 ('agir sob pressao') está com Stage=Idea, não Done — provável que o post viral real seja este, mas o status não foi atualizado no Notion."
     },
     {
       "id": "2026-06-S4",
@@ -75,7 +86,8 @@
       "engajamento_pct": 16.8,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "nota": "Semana morta — menor alcance do mês, mas engajamento alto entre quem viu."
+      "posts_notion": {"contagem": 4, "formatos": ["Carrousel", "Carrousel", "Reel", "Carrousel"], "titulos": ["O Fim das Facilidades... (24/06)", "Campus France na sua universidade (26/06)", "regras aluguel frança (26/06)", "Bouge Ta Préf (28/06)"]},
+      "nota": "Menor alcance do mês apesar de ser a semana com MAIS cards datados (4) no Notion — nenhum com Stage Done/Scheduled (Design/Backlog). Sinal forte de que planejamento não virou publicação de fato nessa semana."
     },
     {
       "id": "2026-06-S5",
@@ -87,7 +99,8 @@
       "engajamento_pct": 16.6,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "nota": "Sprint final — 2 dias, ~70% dos seguidores do mês inteiro."
+      "posts_notion": {"contagem": 1, "formatos": ["Reel"], "titulos": ["INTRO SIST EDUCACIONAL (29/06, Scheduled)"]},
+      "nota": "Sprint final — 2 dias, ~70% dos seguidores do mês inteiro, a partir de só 1 post agendado."
     }
   ],
   "ciclos": [
@@ -265,13 +278,15 @@
         "TAXA DE CONVERSÃO EXCEPCIONAL: 46,9% das pessoas que visitam o perfil seguem a conta. O gargalo não é convicção, é descoberta — quem chega, fica.",
         "SEMANAS MORTAS: Semanas 2 (8–14/Jun) e 4 (22–28/Jun) tiveram alcance médio de 359/dia — 65% abaixo das semanas com pico. Cadência irregular de publicação deixou lacunas de visibilidade.",
         "QUEDA PÓS-PICO NO YOUTUBE: -28% de views vs. Maio — queda natural após o pico do IR, mas baseline de 7,3 views/dia está acima dos 6,1/dia de Abril pré-vídeo. Os inscritos conquistados continuam voltando.",
-        "RITMO ABAIXO DA META: no ritmo médio de Junho (10,5 seguidores/dia), a projeção em 365 dias fica em ~4.800 seguidores — menos da metade dos 10.000 necessários. Fechar essa lacuna exige mais que manter o padrão: exige aumentar a frequência de posts de alto impacto."
+        "RITMO ABAIXO DA META: no ritmo médio de Junho (10,5 seguidores/dia), a projeção em 365 dias fica em ~4.800 seguidores — menos da metade dos 10.000 necessários. Fechar essa lacuna exige mais que manter o padrão: exige aumentar a frequência de posts de alto impacto.",
+        "CRUZAMENTO COM NOTION (novo): a cadência real de Junho foi ~1 post/semana (4-5 cards com data, quase todos Reel), não 2×/semana como o calendário original sugeria — a lacuna não é irregularidade, é volume baixo. A semana de menor alcance (S4, 22–28/Jun) foi a que teve MAIS cards planejados (4) e ZERO confirmados como publicados — sinal de que o gargalo pode estar entre 'planejado' e 'no ar', não só na estratégia de tema."
       ],
       "acoes_proximo_ciclo": [
-        "Publicar 2× por semana no Instagram sem exceções → a ausência nas semanas 2 e 4 custou ~450 seguidores potenciais.",
+        "Publicar 2× por semana no Instagram sem exceções → Junho real rodou a ~1×/semana; dobrar a cadência é a alavanca mais direta pro ritmo de seguidores necessário.",
         "Identificar e replicar o formato do post de 17/Jun (16,8% de engajamento) → criar 2 vídeos no mesmo estilo em Julho.",
         "Adicionar CTA verbal 'visita meu perfil' nos Reels de alto alcance → com 46,9% de conv. visita→seguidor, cada visita vale.",
-        "Iniciar check-in semanal (novo) → registrar seguidores/alcance/engajamento toda semana para corrigir o calendário editorial em tempo real, não só no fechamento do mês."
+        "Iniciar check-in semanal (novo) → registrar seguidores/alcance/engajamento toda semana para corrigir o calendário editorial em tempo real, não só no fechamento do mês.",
+        "Fechar o loop Notion→publicado (novo) → cards em Design/Idea com data passada (ex: 24, 26, 28/Jun) somem sem confirmação de que foram ao ar; revisar semanalmente o board evita perder rastro do que realmente foi publicado."
       ],
       "decisao_editorial": "Julho deve ter publicação sistemática (2× semana no Instagram) com foco em replicar o padrão dos picos de Junho — urgência prática + grande escala de afetados. A partir de julho, o acompanhamento passa a ser semanal, com o bilan mensal mantido para a leitura estratégica.",
       "pergunta_editorial": "Se 2 publicações geraram 70% do crescimento de Junho, qual é o padrão que define esse tipo de conteúdo — tema, formato, gancho ou dia — e como transformar isso em sistema replicável para Julho?"
