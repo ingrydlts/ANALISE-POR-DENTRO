@@ -3,6 +3,93 @@
   "canal_youtube": "@ingrydlotierzo",
   "instagram": "@ingrydinparis",
   "criado_em": "2026-06-19",
+  "metas": {
+    "seguidores": {
+      "baseline": 985,
+      "baseline_data": "2026-07-02",
+      "meta": 10000,
+      "prazo_dias": 365,
+      "meta_data": "2027-07-02",
+      "seguidores_necessarios": 9015,
+      "ritmo_necessario_dia": 24.7,
+      "ritmo_necessario_semana": 172.9,
+      "ritmo_referencia_dia_junho": 10.5,
+      "ritmo_referencia_semana_junho": 73.5,
+      "projecao_365d_no_ritmo_junho": 4818,
+      "gap_ritmo_pct": -57.5,
+      "nota": "Ritmo necessário assume crescimento linear constante até a meta_data. Ritmo de referência é a média diária de Junho/2026 (único ciclo com dados completos de Instagram) — serve de comparação, não é a meta em si. No ritmo de Junho, a projeção em 365 dias fica bem abaixo de 10.000 — por isso a cadência de publicação precisa aumentar, não só manter."
+    },
+    "engajamento": {
+      "metodo": "media_movel_propria",
+      "ciclos_considerados": ["2026-06"],
+      "media_atual_pct": 15.06,
+      "margem_tolerancia_pontos": 4,
+      "piso_pct": 11.1,
+      "nota": "Piso = média dos últimos até 3 ciclos mensais com dados reais de Instagram, menos a margem de tolerância. Recalcula sozinho a cada novo ciclo adicionado. Abaixo do piso = sinal de alerta para revisar o calendário editorial."
+    }
+  },
+  "semanas": [
+    {
+      "id": "2026-06-S1",
+      "periodo": "1–7 Jun 2026",
+      "mes_ref": "2026-06",
+      "alcance": 3490,
+      "interacoes": 535,
+      "seguidores_ganhos": 61,
+      "engajamento_pct": 15.3,
+      "conta_para_meta": false,
+      "origem": "migrado_do_ciclo_mensal",
+      "nota": "Melhor semana do mês em ritmo de seguidores antes do sprint final."
+    },
+    {
+      "id": "2026-06-S2",
+      "periodo": "8–14 Jun 2026",
+      "mes_ref": "2026-06",
+      "alcance": 2518,
+      "interacoes": 289,
+      "seguidores_ganhos": 43,
+      "engajamento_pct": 11.5,
+      "conta_para_meta": false,
+      "origem": "migrado_do_ciclo_mensal",
+      "nota": "Semana morta — sem pico, cadência irregular. Engajamento tocou o piso."
+    },
+    {
+      "id": "2026-06-S3",
+      "periodo": "15–21 Jun 2026",
+      "mes_ref": "2026-06",
+      "alcance": 5273,
+      "interacoes": 791,
+      "seguidores_ganhos": 43,
+      "engajamento_pct": 15.0,
+      "conta_para_meta": false,
+      "origem": "migrado_do_ciclo_mensal",
+      "nota": "Pico de alcance do mês (dia 17 — post viral)."
+    },
+    {
+      "id": "2026-06-S4",
+      "periodo": "22–28 Jun 2026",
+      "mes_ref": "2026-06",
+      "alcance": 2110,
+      "interacoes": 354,
+      "seguidores_ganhos": 22,
+      "engajamento_pct": 16.8,
+      "conta_para_meta": false,
+      "origem": "migrado_do_ciclo_mensal",
+      "nota": "Semana morta — menor alcance do mês, mas engajamento alto entre quem viu."
+    },
+    {
+      "id": "2026-06-S5",
+      "periodo": "29–30 Jun 2026",
+      "mes_ref": "2026-06",
+      "alcance": 3172,
+      "interacoes": 525,
+      "seguidores_ganhos": 145,
+      "engajamento_pct": 16.6,
+      "conta_para_meta": false,
+      "origem": "migrado_do_ciclo_mensal",
+      "nota": "Sprint final — 2 dias, ~70% dos seguidores do mês inteiro."
+    }
+  ],
   "ciclos": [
     {
       "id": "2026-04",
@@ -121,7 +208,7 @@
         "alcance_variacao_pct": null,
         "impressoes": 31500,
         "seguidores_ganhos": 314,
-        "seguidores_total": null,
+        "seguidores_total": 985,
         "salvamentos": null,
         "compartilhamentos": null,
         "cliques_bio": null,
@@ -177,14 +264,16 @@
         "EFEITO PICO DOMINANTE: 2 eventos (17/Jun + 29–30/Jun) representaram 31% do alcance total do Instagram e 70% dos seguidores novos do mês. O crescimento não é linear — é orientado por publicações de alto impacto.",
         "TAXA DE CONVERSÃO EXCEPCIONAL: 46,9% das pessoas que visitam o perfil seguem a conta. O gargalo não é convicção, é descoberta — quem chega, fica.",
         "SEMANAS MORTAS: Semanas 2 (8–14/Jun) e 4 (22–28/Jun) tiveram alcance médio de 359/dia — 65% abaixo das semanas com pico. Cadência irregular de publicação deixou lacunas de visibilidade.",
-        "QUEDA PÓS-PICO NO YOUTUBE: -28% de views vs. Maio — queda natural após o pico do IR, mas baseline de 7,3 views/dia está acima dos 6,1/dia de Abril pré-vídeo. Os inscritos conquistados continuam voltando."
+        "QUEDA PÓS-PICO NO YOUTUBE: -28% de views vs. Maio — queda natural após o pico do IR, mas baseline de 7,3 views/dia está acima dos 6,1/dia de Abril pré-vídeo. Os inscritos conquistados continuam voltando.",
+        "RITMO ABAIXO DA META: no ritmo médio de Junho (10,5 seguidores/dia), a projeção em 365 dias fica em ~4.800 seguidores — menos da metade dos 10.000 necessários. Fechar essa lacuna exige mais que manter o padrão: exige aumentar a frequência de posts de alto impacto."
       ],
       "acoes_proximo_ciclo": [
         "Publicar 2× por semana no Instagram sem exceções → a ausência nas semanas 2 e 4 custou ~450 seguidores potenciais.",
         "Identificar e replicar o formato do post de 17/Jun (16,8% de engajamento) → criar 2 vídeos no mesmo estilo em Julho.",
-        "Adicionar CTA verbal 'visita meu perfil' nos Reels de alto alcance → com 46,9% de conv. visita→seguidor, cada visita vale."
+        "Adicionar CTA verbal 'visita meu perfil' nos Reels de alto alcance → com 46,9% de conv. visita→seguidor, cada visita vale.",
+        "Iniciar check-in semanal (novo) → registrar seguidores/alcance/engajamento toda semana para corrigir o calendário editorial em tempo real, não só no fechamento do mês."
       ],
-      "decisao_editorial": "Julho deve ter publicação sistemática (2× semana no Instagram) com foco em replicar o padrão dos picos de Junho — urgência prática + grande escala de afetados.",
+      "decisao_editorial": "Julho deve ter publicação sistemática (2× semana no Instagram) com foco em replicar o padrão dos picos de Junho — urgência prática + grande escala de afetados. A partir de julho, o acompanhamento passa a ser semanal, com o bilan mensal mantido para a leitura estratégica.",
       "pergunta_editorial": "Se 2 publicações geraram 70% do crescimento de Junho, qual é o padrão que define esse tipo de conteúdo — tema, formato, gancho ou dia — e como transformar isso em sistema replicável para Julho?"
     }
   ]
