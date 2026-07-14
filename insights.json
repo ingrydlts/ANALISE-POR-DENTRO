@@ -21,7 +21,9 @@
     },
     "engajamento": {
       "metodo": "media_movel_propria",
-      "ciclos_considerados": ["2026-06"],
+      "ciclos_considerados": [
+        "2026-06"
+      ],
       "media_atual_pct": 15.06,
       "margem_tolerancia_pontos": 4,
       "piso_pct": 11.1,
@@ -47,7 +49,17 @@
       "engajamento_pct": 15.3,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "posts_notion": {"contagem": 2, "formatos": ["Reel", "Reel"], "titulos": ["Mudanças França 2026 imigrantes brasileiros (01/06)", "Reagrupamento familiar ficou menos burocrático (02/06)"]},
+      "posts_notion": {
+        "contagem": 2,
+        "formatos": [
+          "Reel",
+          "Reel"
+        ],
+        "titulos": [
+          "Mudanças França 2026 imigrantes brasileiros (01/06)",
+          "Reagrupamento familiar ficou menos burocrático (02/06)"
+        ]
+      },
       "nota": "Melhor semana do mês em ritmo de seguidores antes do sprint final. Notion indica 2 cards com data nessa semana, ambos Reel."
     },
     {
@@ -60,7 +72,15 @@
       "engajamento_pct": 11.5,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "posts_notion": {"contagem": 1, "formatos": ["Reel"], "titulos": ["Precisa falar francês na frança? (08/06)"]},
+      "posts_notion": {
+        "contagem": 1,
+        "formatos": [
+          "Reel"
+        ],
+        "titulos": [
+          "Precisa falar francês na frança? (08/06)"
+        ]
+      },
       "nota": "Semana mais fraca em alcance. Notion indica só 1 card com data nessa semana — cadência baixa, não irregularidade de execução."
     },
     {
@@ -73,7 +93,17 @@
       "engajamento_pct": 15.0,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "posts_notion": {"contagem": 2, "formatos": ["Reel", "Reel"], "titulos": ["agir sob pressao (17/06)", "APL 2026 congelamento estudantes estrangeiros CAF (19/06, Done)"]},
+      "posts_notion": {
+        "contagem": 2,
+        "formatos": [
+          "Reel",
+          "Reel"
+        ],
+        "titulos": [
+          "agir sob pressao (17/06)",
+          "APL 2026 congelamento estudantes estrangeiros CAF (19/06, Done)"
+        ]
+      },
       "nota": "Pico de alcance do mês (dia 17 — post viral). O card com data 17/06 ('agir sob pressao') está com Stage=Idea, não Done — provável que o post viral real seja este, mas o status não foi atualizado no Notion."
     },
     {
@@ -86,7 +116,21 @@
       "engajamento_pct": 16.8,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "posts_notion": {"contagem": 4, "formatos": ["Carrousel", "Carrousel", "Reel", "Carrousel"], "titulos": ["O Fim das Facilidades... (24/06)", "Campus France na sua universidade (26/06)", "regras aluguel frança (26/06)", "Bouge Ta Préf (28/06)"]},
+      "posts_notion": {
+        "contagem": 4,
+        "formatos": [
+          "Carrousel",
+          "Carrousel",
+          "Reel",
+          "Carrousel"
+        ],
+        "titulos": [
+          "O Fim das Facilidades... (24/06)",
+          "Campus France na sua universidade (26/06)",
+          "regras aluguel frança (26/06)",
+          "Bouge Ta Préf (28/06)"
+        ]
+      },
       "nota": "Menor alcance do mês apesar de ser a semana com MAIS cards datados (4) no Notion — nenhum com Stage Done/Scheduled (Design/Backlog). Sinal forte de que planejamento não virou publicação de fato nessa semana."
     },
     {
@@ -99,11 +143,124 @@
       "engajamento_pct": 16.6,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
-      "posts_notion": {"contagem": 1, "formatos": ["Reel"], "titulos": ["INTRO SIST EDUCACIONAL (29/06, Scheduled)"]},
+      "posts_notion": {
+        "contagem": 1,
+        "formatos": [
+          "Reel"
+        ],
+        "titulos": [
+          "INTRO SIST EDUCACIONAL (29/06, Scheduled)"
+        ]
+      },
       "nota": "Sprint final — 2 dias, ~70% dos seguidores do mês inteiro, a partir de só 1 post agendado."
     }
   ],
-  "bilans_audiencia": [],
+  "bilans_audiencia": [
+    {
+      "id": "2026-W27",
+      "data": "2026-07-03",
+      "periodo_label": "Semana de 03/07/2026",
+      "total_entradas_analisadas": 4,
+      "perguntas_recorrentes": [
+        "Vale a pena fazer CAP/mestrado na França se o objetivo é conseguir visto e depois pivotar para outra área?",
+        "Como conseguir alternância com 30+ anos na França?",
+        "Qual é a diferença real entre os tipos de visto de estudante e alternância?"
+      ],
+      "dores_nao_atendidas": [
+        "Orientação sobre viabilidade realista de CAP Petite Enfance para estrangeira rejeitada por escolas",
+        "Comparação detalhada entre escolas de alternância e critérios de seleção RSE",
+        "Guia sobre alternância em M2 e como ganhar em euros durante mestrado",
+        "Análise custo-benefício de investir em testes de língua presenciais vs. risco de rejeição",
+        "Explicação sobre diferenças práticas entre VLS Long Duration e visto de intercâmbio universitário"
+      ],
+      "pedidos_conteudo": [
+        "Tem sido muito difícil achar alternância com 30 anos — preciso entender se é possível",
+        "Existe alternância no M2? Como ganhar em euros durante mestrado?",
+        "Vale a pena investir em visto temporário, passagem, alojamento para fazer teste de francês?"
+      ],
+      "perfil_momento": "Maioria em transição para a França (planejando estudar em setembro, buscando alternância há 1,5 ano em Paris) ou tentando pivotar dentro do sistema francês. Faixa etária concentrada em 30 anos — mais velhos que o estudante típico, com urgência de viabilidade econômica e realismo sobre oportunidades. Já estão engajados com o projeto (um já mora em Paris), não são curiosos passivos.",
+      "diferenca_plataformas": "Dados vêm apenas do Instagram. Padrão sugere que a audiência busca respostas curtas, diretas e realistas sobre viabilidade prática — o tipo de conteúdo que cabe em carousel, story com enquete ou vídeo curto que desmente mitos.",
+      "pautas_sugeridas": [
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "CAP Petite Enfance com 30 anos: é armadilha ou porta de entrada real? (Desvendando a verdade sobre recusas de escola)",
+          "porque": "Pergunta direta de quem foi rejeitado; audiência precisa entender se compensa fazer CAP inicial só para viabilizar visto ou se há caminho melhor. Ângulo: debuncar mito de que CAP é 'fácil' para estrangeiro."
+        },
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "Alternância com 30+: por que é difícil e o que as 4 escolas RSE realmente diferenciam",
+          "porque": "Dor recorrente e específica. Audiência aceita em 4 programas mas não sabe escolher nem por que está tão duro achar alternância nessa idade. Ângulo: realismo + estratégia de seleção."
+        },
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "VLS Long Duration vs Visto de Intercâmbio Universitário: qual escolher antes de pagar passagem?",
+          "porque": "Dany está gastando tempo e dinheiro em teste de DALF presencial sem saber se consegue visto. Conteúdo responde: qual visto encaixa melhor em cada situação, quanto custa cada um, risco real de rejeição."
+        }
+      ],
+      "temas_audiencia": [
+        "alternância",
+        "visto de estudante",
+        "CAP",
+        "mestrado",
+        "viabilidade econômica",
+        "idade 30+"
+      ],
+      "segmentos": {
+        "brasil": 0,
+        "processo": 3,
+        "franca": 1
+      }
+    },
+    {
+      "id": "2026-W29",
+      "data": "2026-07-14",
+      "periodo_label": "Semana de 14/07/2026",
+      "total_entradas_analisadas": 2,
+      "perguntas_recorrentes": [],
+      "dores_nao_atendidas": [
+        "Falta de feedback em processos seletivos na França",
+        "Insegurança e desânimo durante candidaturas para mestrado em alternância",
+        "Orientação sobre entrevistas em francês"
+      ],
+      "pedidos_conteudo": [
+        "Vídeo sobre experiência em processo seletivo para mestrado em alternância",
+        "Conteúdo sobre entrevistas em francês",
+        "Histórias de integração e criação de conteúdo na França (perspectivas de artistas, lifestyle creators e viajantes)"
+      ],
+      "perfil_momento": "Audiência heterogênea em diferentes estágios: já estabelecidas na França criando conteúdo (artista audiovisual, lifestyle creator, viajante) e candidatas em processo de seleção que buscam validação e orientação (como Juliana, completamente desanimada com falta de retorno).",
+      "diferenca_plataformas": "Dados insuficientes para comparação entre plataformas — coleta concentrada em Instagram, sem dados paralelos do YouTube",
+      "pautas_sugeridas": [
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "Por que você não recebe feedback em processos seletivos na França? (e como lidar com isso)",
+          "porque": "Juliana está completamente desanimada com falta de retorno em mestrado em alternância — dor identificada e pedido direto para conteúdo sobre isso"
+        },
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "Entrevista em francês para mestrado: dicas práticas de quem passou (ou não passou)",
+          "porque": "Complementa a dor de Juliana — formato curto, prático, direto no Stories/Reels com dicas de pronúncia, estrutura de resposta e mindset"
+        },
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "3 brasileiras na França: como elas criam conteúdo e ganham dinheiro (artista, lifestyle, viajante)",
+          "porque": "Já existe comunidade heterogênea conectada por experiência de imigração — formato Carrossel ou série de Stories mostrando diferentes caminhos de integração e sustentabilidade criativa"
+        }
+      ],
+      "temas_audiencia": [
+        "processos seletivos",
+        "mestrado em alternância",
+        "feedback e burocracia",
+        "integração criativa",
+        "entrevista em francês",
+        "imigração feminina"
+      ],
+      "segmentos": {
+        "brasil": 0,
+        "processo": 1,
+        "franca": 2
+      }
+    }
+  ],
   "ciclos": [
     {
       "id": "2026-04",
@@ -233,36 +390,250 @@
         "top_post_metrica": "+314 seguidores no mês | 15,1% taxa de engajamento",
         "formato_destaque": "Reel",
         "dados_diarios": {
-          "alcance":    [1238,475,515,340,476,194,252,937,393,344,276,133,127,308,347,346,2219,840,852,483,186,337,190,308,384,329,272,290,1967,1205],
-          "impressoes": [2063,771,725,534,913,251,344,1675,483,489,1120,207,183,415,729,487,3782,1795,1249,758,252,493,262,625,727,1901,638,1023,3558,3048],
-          "interacoes": [117,89,92,67,76,57,37,104,34,47,36,21,23,24,34,47,373,174,88,53,22,48,54,43,46,100,24,39,273,252],
-          "seguidores_ganhos": [11,9,8,9,12,5,7,14,6,8,8,1,4,2,7,3,4,6,9,13,1,7,3,2,2,4,2,2,76,69],
-          "visitas_perfil": [37,21,13,19,35,4,13,32,10,13,12,8,5,9,17,7,30,16,21,24,6,6,6,14,19,26,13,16,117,101]
+          "alcance": [
+            1238,
+            475,
+            515,
+            340,
+            476,
+            194,
+            252,
+            937,
+            393,
+            344,
+            276,
+            133,
+            127,
+            308,
+            347,
+            346,
+            2219,
+            840,
+            852,
+            483,
+            186,
+            337,
+            190,
+            308,
+            384,
+            329,
+            272,
+            290,
+            1967,
+            1205
+          ],
+          "impressoes": [
+            2063,
+            771,
+            725,
+            534,
+            913,
+            251,
+            344,
+            1675,
+            483,
+            489,
+            1120,
+            207,
+            183,
+            415,
+            729,
+            487,
+            3782,
+            1795,
+            1249,
+            758,
+            252,
+            493,
+            262,
+            625,
+            727,
+            1901,
+            638,
+            1023,
+            3558,
+            3048
+          ],
+          "interacoes": [
+            117,
+            89,
+            92,
+            67,
+            76,
+            57,
+            37,
+            104,
+            34,
+            47,
+            36,
+            21,
+            23,
+            24,
+            34,
+            47,
+            373,
+            174,
+            88,
+            53,
+            22,
+            48,
+            54,
+            43,
+            46,
+            100,
+            24,
+            39,
+            273,
+            252
+          ],
+          "seguidores_ganhos": [
+            11,
+            9,
+            8,
+            9,
+            12,
+            5,
+            7,
+            14,
+            6,
+            8,
+            8,
+            1,
+            4,
+            2,
+            7,
+            3,
+            4,
+            6,
+            9,
+            13,
+            1,
+            7,
+            3,
+            2,
+            2,
+            4,
+            2,
+            2,
+            76,
+            69
+          ],
+          "visitas_perfil": [
+            37,
+            21,
+            13,
+            19,
+            35,
+            4,
+            13,
+            32,
+            10,
+            13,
+            12,
+            8,
+            5,
+            9,
+            17,
+            7,
+            30,
+            16,
+            21,
+            24,
+            6,
+            6,
+            6,
+            14,
+            19,
+            26,
+            13,
+            16,
+            117,
+            101
+          ]
         },
         "metricas_calculadas": {
-          "frequencia_exposicao": 1.90,
+          "frequencia_exposicao": 1.9,
           "conv_visita_seguidor_pct": 46.9,
           "conv_alcance_seguidor_pct": 1.9,
           "interacoes_por_mil_impressoes": 79.2,
-          "pico_alcance_dia": { "dia": 17, "valor": 2219 },
-          "pico_seguidores_dia": { "dia": 29, "valor": 76 },
+          "pico_alcance_dia": {
+            "dia": 17,
+            "valor": 2219
+          },
+          "pico_seguidores_dia": {
+            "dia": 29,
+            "valor": 76
+          },
           "media_alcance_dia": 552,
           "media_seguidores_dia": 10.5,
           "semanas": [
-            { "semana": "S1 (1–7/Jun)",   "alcance": 3490, "interacoes": 535, "seguidores": 61 },
-            { "semana": "S2 (8–14/Jun)",  "alcance": 2518, "interacoes": 289, "seguidores": 43 },
-            { "semana": "S3 (15–21/Jun)", "alcance": 5273, "interacoes": 791, "seguidores": 43 },
-            { "semana": "S4 (22–28/Jun)", "alcance": 2110, "interacoes": 354, "seguidores": 22 },
-            { "semana": "S5 (29–30/Jun)", "alcance": 3172, "interacoes": 525, "seguidores": 145 }
+            {
+              "semana": "S1 (1–7/Jun)",
+              "alcance": 3490,
+              "interacoes": 535,
+              "seguidores": 61
+            },
+            {
+              "semana": "S2 (8–14/Jun)",
+              "alcance": 2518,
+              "interacoes": 289,
+              "seguidores": 43
+            },
+            {
+              "semana": "S3 (15–21/Jun)",
+              "alcance": 5273,
+              "interacoes": 791,
+              "seguidores": 43
+            },
+            {
+              "semana": "S4 (22–28/Jun)",
+              "alcance": 2110,
+              "interacoes": 354,
+              "seguidores": 22
+            },
+            {
+              "semana": "S5 (29–30/Jun)",
+              "alcance": 3172,
+              "interacoes": 525,
+              "seguidores": 145
+            }
           ],
           "media_por_dia_da_semana": [
-            { "dia": "Seg", "alcance_medio": 965, "int_medio": 127 },
-            { "dia": "Ter", "alcance_medio": 522, "int_medio": 85 },
-            { "dia": "Qua", "alcance_medio": 867, "int_medio": 139 },
-            { "dia": "Qui", "alcance_medio": 460, "int_medio": 81 },
-            { "dia": "Sex", "alcance_medio": 448, "int_medio": 71 },
-            { "dia": "Sáb", "alcance_medio": 269, "int_medio": 51 },
-            { "dia": "Dom", "alcance_medio": 264, "int_medio": 31 }
+            {
+              "dia": "Seg",
+              "alcance_medio": 965,
+              "int_medio": 127
+            },
+            {
+              "dia": "Ter",
+              "alcance_medio": 522,
+              "int_medio": 85
+            },
+            {
+              "dia": "Qua",
+              "alcance_medio": 867,
+              "int_medio": 139
+            },
+            {
+              "dia": "Qui",
+              "alcance_medio": 460,
+              "int_medio": 81
+            },
+            {
+              "dia": "Sex",
+              "alcance_medio": 448,
+              "int_medio": 71
+            },
+            {
+              "dia": "Sáb",
+              "alcance_medio": 269,
+              "int_medio": 51
+            },
+            {
+              "dia": "Dom",
+              "alcance_medio": 264,
+              "int_medio": 31
+            }
           ]
         }
       },
@@ -313,17 +684,44 @@
         "leaves": "Sensacionalismo, promessas fáceis, linguagem de guru.",
         "emotion": "Curiosidade ansiosa → Alívio + orientação",
         "routine": "Trabalha das 9h às 19h em Pinheiros. Chega em casa cansada, janta vendo reels. Às 23h abre o YouTube para \"pesquisar\" sobre a França — e muitas vezes dorme com o celular na mão.",
-        "fears": ["Dar um passo errado e se arrepender", "Não ser boa o suficiente para o exterior", "Perder a estabilidade que construiu"],
-        "dreams": ["Trabalhar num lugar que respeite seu tempo", "Viver numa cidade onde se sinta segura sozinha", "Provar para si mesma que é capaz"],
+        "fears": [
+          "Dar um passo errado e se arrepender",
+          "Não ser boa o suficiente para o exterior",
+          "Perder a estabilidade que construiu"
+        ],
+        "dreams": [
+          "Trabalhar num lugar que respeite seu tempo",
+          "Viver numa cidade onde se sinta segura sozinha",
+          "Provar para si mesma que é capaz"
+        ],
         "youtube_behavior": "Assiste no celular, deitada, antes de dormir. Não comenta. Salva tudo. Maratona vídeos sem agir.",
         "instagram_behavior": "Segue Campus France Brasil há meses. Salva stories de \"quem quer vir não pode perder\". Nunca compartilha publicamente.",
         "insight": "Observada nos dados: seguidora do Campus France Brasil (story do ateliê pré-consular). Ainda não deu o primeiro passo real — o canal pode ser o gatilho.",
-        "kpis": ["CTR alto", "Impressões", "Novos inscritos", "Alcance frio"],
-        "gatilhos_titulo": ["\"Vale a pena se mudar pra França?\"", "\"O que ninguém te conta antes de sair do Brasil\"", "\"Quanto custa realmente viver em Paris?\"", "Comparações diretas BR × FR"],
-        "comentarios_tipicos": ["\"Estou pensando em ir pra França\"", "\"Quanto tempo levou pra conseguir visto?\"", "\"É difícil pra quem não fala francês?\""],
+        "kpis": [
+          "CTR alto",
+          "Impressões",
+          "Novos inscritos",
+          "Alcance frio"
+        ],
+        "gatilhos_titulo": [
+          "\"Vale a pena se mudar pra França?\"",
+          "\"O que ninguém te conta antes de sair do Brasil\"",
+          "\"Quanto custa realmente viver em Paris?\"",
+          "Comparações diretas BR × FR"
+        ],
+        "comentarios_tipicos": [
+          "\"Estou pensando em ir pra França\"",
+          "\"Quanto tempo levou pra conseguir visto?\"",
+          "\"É difícil pra quem não fala francês?\""
+        ],
         "estagio_jornada": "Descoberta",
         "representacao": "sub-representada",
-        "pautas_sugeridas": ["Vistos para trabalhar na França: quais existem e qual faz sentido pra você", "Quanto dinheiro preciso ter antes de sair do Brasil", "Francês: quanto você realmente precisa saber para começar", "O que muda no seu CPF/status tributário quando você emigra"]
+        "pautas_sugeridas": [
+          "Vistos para trabalhar na França: quais existem e qual faz sentido pra você",
+          "Quanto dinheiro preciso ter antes de sair do Brasil",
+          "Francês: quanto você realmente precisa saber para começar",
+          "O que muda no seu CPF/status tributário quando você emigra"
+        ]
       },
       {
         "id": "P02",
@@ -338,17 +736,45 @@
         "leaves": "Conteúdo muito reflexivo sem âncora prática. Análises abstratas sem utilidade imediata.",
         "emotion": "Ansiedade operacional → Segurança + clareza",
         "routine": "Acorda às 7h, vai de metrô para o estágio. Na hora do almoço pesquisa no celular dúvidas burocráticas. À noite executa passo a passo o que encontrou no YouTube — e manda DM quando trava.",
-        "fears": ["Cometer erro no dossiê e perder o visto", "Titre de séjour atrasado bloquear planos", "Não conseguir avançar profissionalmente na França"],
-        "dreams": ["Ter o título de séjour em mãos", "Estabilidade: moradia, emprego, saúde coberta", "Sentir que tem controle sobre sua própria vida"],
+        "fears": [
+          "Cometer erro no dossiê e perder o visto",
+          "Titre de séjour atrasado bloquear planos",
+          "Não conseguir avançar profissionalmente na França"
+        ],
+        "dreams": [
+          "Ter o título de séjour em mãos",
+          "Estabilidade: moradia, emprego, saúde coberta",
+          "Sentir que tem controle sobre sua própria vida"
+        ],
         "youtube_behavior": "Pesquisa no Google às 22h com problema prático, cai no YouTube. Assiste por etapas. Pausa, executa, volta.",
         "instagram_behavior": "Manda DM direto quando tem dúvida específica. Salva posts de passo a passo. Nunca salva conteúdo reflexivo.",
         "insight": "DM real de Francielli: \"To assistindo seu vídeo aqui por etapas kkkk. Resolver logo isso essa semana.\" DM da Giovanna: titre de séjour só em setembro, fazendo démarches desde fevereiro — \"as burocracias francesas travam MUITO o ritmo de vida por aqui.\"",
-        "kpis": ["Salvamentos", "Watchtime", "Compartilhamento direto", "Buscas orgânicas"],
-        "gatilhos_titulo": ["Como abrir conta bancária na França", "Numéro fiscal e primeira declaração", "Imposto de renda para imigrantes", "CAF, Sécu, titre de séjour — por onde começar"],
-        "comentarios_tipicos": ["\"Salvei esse vídeo\"", "\"Que bom que você falou isso, eu não sabia\"", "Perguntas técnicas específicas (numéro fiscal, CAF)", "\"Acabei de chegar e estava com essa dúvida exata\""],
+        "kpis": [
+          "Salvamentos",
+          "Watchtime",
+          "Compartilhamento direto",
+          "Buscas orgânicas"
+        ],
+        "gatilhos_titulo": [
+          "Como abrir conta bancária na França",
+          "Numéro fiscal e primeira declaração",
+          "Imposto de renda para imigrantes",
+          "CAF, Sécu, titre de séjour — por onde começar"
+        ],
+        "comentarios_tipicos": [
+          "\"Salvei esse vídeo\"",
+          "\"Que bom que você falou isso, eu não sabia\"",
+          "Perguntas técnicas específicas (numéro fiscal, CAF)",
+          "\"Acabei de chegar e estava com essa dúvida exata\""
+        ],
         "estagio_jornada": "Reconhecimento",
         "representacao": "bem atendida",
-        "pautas_sugeridas": ["IR na França para quem chegou este ano (sem papel, com emprego, autônomo)", "CEJU: aumento €200→€300, o que fazer", "CAF: como funciona, quem tem direito, quanto tempo demora", "Saúde: Sécu + mutuelle — o que você paga e o que cobre"]
+        "pautas_sugeridas": [
+          "IR na França para quem chegou este ano (sem papel, com emprego, autônomo)",
+          "CEJU: aumento €200→€300, o que fazer",
+          "CAF: como funciona, quem tem direito, quanto tempo demora",
+          "Saúde: Sécu + mutuelle — o que você paga e o que cobre"
+        ]
       },
       {
         "id": "P03",
@@ -363,17 +789,45 @@
         "leaves": "Conteúdo muito básico, didático demais. Ela já sabe tudo isso.",
         "emotion": "Vulnerabilidade identitária → Insight + pertencimento",
         "routine": "Vai de metrô para o trabalho, assiste conteúdo no trajeto. Comenta quando algo a toca profundamente. À noite reflete em voz alta — às vezes filma, outras vezes escreve na bio.",
-        "fears": ["Perder sua identidade brasileira sem se tornar francesa", "Nunca se sentir \"de lá\" nem \"de cá\"", "Ficar travada profissionalmente para sempre"],
-        "dreams": ["Integração que não apague quem ela é", "Reconhecer e nomear a pessoa que se tornou", "Subir na carreira francesa com o currículo brasileiro que tem"],
+        "fears": [
+          "Perder sua identidade brasileira sem se tornar francesa",
+          "Nunca se sentir \"de lá\" nem \"de cá\"",
+          "Ficar travada profissionalmente para sempre"
+        ],
+        "dreams": [
+          "Integração que não apague quem ela é",
+          "Reconhecer e nomear a pessoa que se tornou",
+          "Subir na carreira francesa com o currículo brasileiro que tem"
+        ],
         "youtube_behavior": "Assiste no metrô. Comenta com 3+ linhas quando um vídeo a toca. Manda para amigas no grupo do WhatsApp.",
         "instagram_behavior": "Bio revela tudo: \"Entre fronteiras e fases\" (Lis Aragão). Cria conteúdo sobre sua própria jornada. Segue psicólogas para imigrantes (Regiane, 6,9k).",
         "insight": "Perfis reais identificados: Lis Aragão (@araaagao, \"Entre fronteiras e fases, compartilho a realidade de uma mulher em evolução\"), Mariana Costa (@_mac0sta, Direito USP + Droit LYS), stefaniporai (1907 views no vídeo sobre dúvida de voltar). Giovanna: \"me sentindo travada profissionalmente há 4 anos.\"",
-        "kpis": ["Compartilhamentos", "Comentários longos", "Saves", "Indicações orgânicas"],
-        "gatilhos_titulo": ["\"2 anos morando na França: a realidade nua e crua\"", "\"O que morar fora faz com a sua identidade\"", "\"Classe social na França vs. no Brasil\"", "\"Solidão e pertencimento como imigrante\""],
-        "comentarios_tipicos": ["Comentários longos e emocionais (3+ linhas)", "\"Você verbalizou algo que eu não sabia nomear\"", "\"Manda pra qualquer brasileiro pensando em vir\"", "\"Faz 2 anos que moro aqui e ainda me pego assim...\""],
+        "kpis": [
+          "Compartilhamentos",
+          "Comentários longos",
+          "Saves",
+          "Indicações orgânicas"
+        ],
+        "gatilhos_titulo": [
+          "\"2 anos morando na França: a realidade nua e crua\"",
+          "\"O que morar fora faz com a sua identidade\"",
+          "\"Classe social na França vs. no Brasil\"",
+          "\"Solidão e pertencimento como imigrante\""
+        ],
+        "comentarios_tipicos": [
+          "Comentários longos e emocionais (3+ linhas)",
+          "\"Você verbalizou algo que eu não sabia nomear\"",
+          "\"Manda pra qualquer brasileiro pensando em vir\"",
+          "\"Faz 2 anos que moro aqui e ainda me pego assim...\""
+        ],
         "estagio_jornada": "Fidelização",
         "representacao": "sub-representada",
-        "pautas_sugeridas": ["O que a França ensina sobre trabalho que o Brasil não ensina", "Classe social: como ela funciona diferente aqui", "Identidade: o que sobra de você quando você sai do Brasil", "Por que brasileiros têm mais dificuldade com o sistema francês"]
+        "pautas_sugeridas": [
+          "O que a França ensina sobre trabalho que o Brasil não ensina",
+          "Classe social: como ela funciona diferente aqui",
+          "Identidade: o que sobra de você quando você sai do Brasil",
+          "Por que brasileiros têm mais dificuldade com o sistema francês"
+        ]
       },
       {
         "id": "P04",
@@ -388,24 +842,86 @@
         "leaves": "Conteúdo genérico que não reconhece sua realidade particular.",
         "emotion": "Invisibilidade → Reconhecimento + pertencimento",
         "routine": "Varia por sub-grupo. Felipe (22, alternance): pesquisa sobre dupla diplomação. Mariana (31, jurídico): Direito USP + Droit LYS, acompanha legislação. Guilherme (28, econômico): economista pela UFF, 1069 seguidores, precisa de inteligência de mercado. Lis (25, lusófona): não-brasileira, experiência diferente mas mesma língua.",
-        "fears": ["Não encontrar conteúdo que fale com sua situação específica", "Ter que adaptar tudo para o contexto geral", "Ser invisível no canal que deveria ajudá-la"],
-        "dreams": ["Um vídeo que seja exatamente sobre ela", "Sentir que o canal também foi feito para pessoas como ela", "Encontrar comunidade com quem compartilha a situação"],
+        "fears": [
+          "Não encontrar conteúdo que fale com sua situação específica",
+          "Ter que adaptar tudo para o contexto geral",
+          "Ser invisível no canal que deveria ajudá-la"
+        ],
+        "dreams": [
+          "Um vídeo que seja exatamente sobre ela",
+          "Sentir que o canal também foi feito para pessoas como ela",
+          "Encontrar comunidade com quem compartilha a situação"
+        ],
         "youtube_behavior": "Pesquisa com termos muito específicos que não retornam resultados em português. Manda DMs com situações complexas.",
         "instagram_behavior": "Perfis identificados: @tellesgui_ (Guilherme Telles, economista UFF, 1069 seguidores), @_mac0sta (Mariana Costa, Direito USP + Droit LYS), @araaagao (Lis Aragão, entre BR e FR).",
         "insight": "Perfis reais da pasta: Guilherme Telles segue o canal — economista pela UFF, nunca representado. Mariana Costa: Direito USP + Droit LYS — nicho jurídico não coberto. Campus France Brasil fez ateliê pré-consular sobre visto de estudante — P04A (Felipe) está aqui.",
-        "kpis": ["Impressões novas", "Alcance frio", "Novos inscritos", "Buscas sem resultado"],
-        "gatilhos_titulo": ["4A · Felipe: Dupla diplomação e alternância", "4B · Mariana: Contrato de trabalho e direito francês", "4C · Diego: Segunda tentativa após desistência", "4D · Lis: Imigração lusófona não-brasileira"],
-        "comentarios_tipicos": ["Buscas sem resposta em português", "Perguntas muito específicas fora do padrão", "DMs com situações ainda não cobertas pelo canal"],
+        "kpis": [
+          "Impressões novas",
+          "Alcance frio",
+          "Novos inscritos",
+          "Buscas sem resultado"
+        ],
+        "gatilhos_titulo": [
+          "4A · Felipe: Dupla diplomação e alternância",
+          "4B · Mariana: Contrato de trabalho e direito francês",
+          "4C · Diego: Segunda tentativa após desistência",
+          "4D · Lis: Imigração lusófona não-brasileira"
+        ],
+        "comentarios_tipicos": [
+          "Buscas sem resposta em português",
+          "Perguntas muito específicas fora do padrão",
+          "DMs com situações ainda não cobertas pelo canal"
+        ],
         "estagio_jornada": "Comunidade (potencial)",
         "representacao": "não atendida",
-        "pautas_sugeridas": ["Dupla diplomação e alternância: o sistema que paga o estudante", "Contrato de trabalho na França: o que saber antes de assinar", "Não deu certo na primeira tentativa: o que fazer", "Experiência de imigração não exclusivamente brasileira"]
+        "pautas_sugeridas": [
+          "Dupla diplomação e alternância: o sistema que paga o estudante",
+          "Contrato de trabalho na França: o que saber antes de assinar",
+          "Não deu certo na primeira tentativa: o que fazer",
+          "Experiência de imigração não exclusivamente brasileira"
+        ]
       }
     ],
     "jornada": [
-      {"etapa": "Descoberta", "persona": "Camila — P01", "emocao": "Curiosidade prática", "kpis": ["CTR", "Impressões", "Novos inscritos"]},
-      {"etapa": "Reconhecimento", "persona": "Larissa — P02", "emocao": "Utilidade imediata", "kpis": ["Salvamentos", "Watchtime", "Buscas orgânicas"]},
-      {"etapa": "Fidelização", "persona": "Renata — P03", "emocao": "Identificação profunda", "kpis": ["Compartilhamentos", "Comentários longos"]},
-      {"etapa": "Comunidade", "persona": "Todas", "emocao": "Pertencimento", "kpis": ["Participação", "Indicações", "Retorno"]}
+      {
+        "etapa": "Descoberta",
+        "persona": "Camila — P01",
+        "emocao": "Curiosidade prática",
+        "kpis": [
+          "CTR",
+          "Impressões",
+          "Novos inscritos"
+        ]
+      },
+      {
+        "etapa": "Reconhecimento",
+        "persona": "Larissa — P02",
+        "emocao": "Utilidade imediata",
+        "kpis": [
+          "Salvamentos",
+          "Watchtime",
+          "Buscas orgânicas"
+        ]
+      },
+      {
+        "etapa": "Fidelização",
+        "persona": "Renata — P03",
+        "emocao": "Identificação profunda",
+        "kpis": [
+          "Compartilhamentos",
+          "Comentários longos"
+        ]
+      },
+      {
+        "etapa": "Comunidade",
+        "persona": "Todas",
+        "emocao": "Pertencimento",
+        "kpis": [
+          "Participação",
+          "Indicações",
+          "Retorno"
+        ]
+      }
     ],
     "principio_editorial": "Comentários do público viram pautas. Dúvidas recorrentes nos comentários são pautas prioritárias. Revisar sistematicamente a cada 2 semanas."
   }

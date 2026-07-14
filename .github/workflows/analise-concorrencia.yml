@@ -16,6 +16,10 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
+    # Sem isso, o GITHUB_TOKEN padrão é só leitura e o passo de commit no fim
+    # falha com "Permission ... denied to github-actions[bot]" (403).
+    permissions:
+      contents: write
 
     steps:
       - name: Verificar se é a primeira segunda-feira do mês (ou disparo manual)

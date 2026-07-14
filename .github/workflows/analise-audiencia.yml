@@ -13,6 +13,10 @@ on:
 jobs:
   analise-audiencia:
     runs-on: ubuntu-latest
+    # Sem isso, o GITHUB_TOKEN padrão é só leitura e o passo de commit no fim
+    # falha com "Permission ... denied to github-actions[bot]" (403).
+    permissions:
+      contents: write
     steps:
       # IMPORTANTE: GitHub Actions não trata nenhum exit code como "neutro" —
       # qualquer saída != 0 marca o STEP e o JOB inteiro como FAILED (❌),
