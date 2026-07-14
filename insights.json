@@ -1029,7 +1029,362 @@
   },
   "calendario_posts": [
     {
-      "url": "https://app.notion.com/35dd602254ce806fbfa7c4c8fdd3c14b",
+      "url": "https://app.notion.com/p/Tbt-jan-2025-2f7d602254ce80d28631edc70b83233e",
+      "titulo": "Tbt jan 2025",
+      "data": "2026-01-29",
+      "formato": "Carrossel",
+      "estagio": "Done",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Imigrar-facil-2f4d602254ce804e8f80c56a10dceb90",
+      "titulo": "Imigrar é facil",
+      "data": "2026-02-02",
+      "formato": "Reel",
+      "estagio": "Done",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Meu-Visionboard-2024-2f7d602254ce80a78067d6803074e628",
+      "titulo": "Meu Visionboard 2024",
+      "data": "2026-02-10",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/A-es-simples-que-me-ajudaram-a-sair-do-modo-sobreviv-ncia-2f7d602254ce807d94cce485ce31ce57",
+      "titulo": "Ações simples que me ajudaram a sair do modo sobrevivência",
+      "data": "2026-02-12",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Fragmentos-da-semana-que-ningu-m-postaria-2f7d602254ce801fb300d327fa458fbf",
+      "titulo": "Fragmentos da semana que ninguém postaria",
+      "data": "2026-02-13",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/CARTE-VITALE-2f4d602254ce80feac02c38ba8a155e8",
+      "titulo": "CARTE VITALE",
+      "data": "2026-02-19",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Checklist-real-306d602254ce809e8871ebf76cd3221a",
+      "titulo": "Checklist real",
+      "data": "2026-02-24",
+      "formato": "Carrossel",
+      "estagio": "Done",
+      "pilares": [],
+      "meta": [
+        "SAVE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Reels-306d602254ce804e88dfeb70fb836511",
+      "titulo": "Reels",
+      "data": "2026-02-25",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [
+        "FOLLOW"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Por-que-idealizar-um-pa-s-pode-atrasar-sua-adapta-o-2f7d602254ce8095841ad41c0f7f40aa",
+      "titulo": "Por que idealizar um país pode atrasar sua adaptação",
+      "data": "2026-02-27",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/valida-ao-do-diploma-2f7d602254ce80b58129d932aa559a3e",
+      "titulo": "validaçao do diploma",
+      "data": "2026-03-02",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Weekly-RECAP-baba-2f4d602254ce806da4fbde7c38082a10",
+      "titulo": "Weekly RECAP baba",
+      "data": "2026-03-23",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Certificado-de-Aptitude-Prof-2f7d602254ce80a5b8b2ceb39030bf89",
+      "titulo": "Certificado de Aptitude Prof",
+      "data": "2026-04-01",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Como-Declarar-Imposto-pela-primeira-vez-na-Fran-a-2f7d602254ce80ddb0e7f1ebb95ccb5d",
+      "titulo": "Como Declarar Imposto pela primeira vez na França?",
+      "data": "2026-05-01",
+      "formato": "Carrossel",
+      "estagio": "Backlog",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Aumento-valor-do-titre-de-sejour-352d602254ce80519110dbc0387a982c",
+      "titulo": "Aumento valor do titre de sejour",
+      "data": "2026-05-02",
+      "formato": "Reel",
+      "estagio": "Done",
+      "pilares": [],
+      "meta": [
+        "COMMENTS",
+        "SHARE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/DECLARA-AO-351d602254ce80d8ac11d5010db04302",
+      "titulo": "DECLARAÇAO",
+      "data": "2026-05-04",
+      "formato": "Reel",
+      "estagio": "Scheduled",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/R-c-piss-agora-vale-no-France-Travail-357d602254ce80cf8760ee88e88c5b7b",
+      "titulo": "Récépissé agora vale no France Travail",
+      "data": "2026-05-06",
+      "formato": "Reel",
+      "estagio": "Done",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [
+        "SHARE",
+        "SAVE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/roles-de-maio-358d602254ce80f9b842f14c0fb51efb",
+      "titulo": "roles de maio",
+      "data": "2026-05-08",
+      "formato": "Carrossel",
+      "estagio": "Scheduled",
+      "pilares": [
+        "Identidade"
+      ],
+      "meta": [
+        "SHARE",
+        "LIKES",
+        "SAVE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/TOP-5-FILMES-DE-TERROR-35cd602254ce80bca55ffdbbfc5eadfe",
+      "titulo": "TOP 5 FILMES DE TERROR",
+      "data": "2026-05-11",
+      "formato": "Reel",
+      "estagio": "Scheduled",
+      "pilares": [
+        "Identidade"
+      ],
+      "meta": [
+        "SHARE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/in-digest-maio-358d602254ce805b8152d1f0118b293e",
+      "titulo": "(in)digest maio",
+      "data": "2026-05-13",
+      "formato": "Carrossel",
+      "estagio": "Scheduled",
+      "pilares": [
+        "Sociedade"
+      ],
+      "meta": [
+        "LIKES",
+        "SHARE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/INGRYD-T-POR-DENTRO-358d602254ce80569248cc3c12d76a11",
+      "titulo": "INGRYD, TÔ POR DENTRO!",
+      "data": "2026-05-15",
+      "formato": "Carrossel",
+      "estagio": "Scheduled",
+      "pilares": [
+        "Identidade"
+      ],
+      "meta": [
+        "LIKES"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Credencialismo-na-Fran-a-35bd602254ce804d92b4df22cac7c32f",
+      "titulo": "Credencialismo na França",
+      "data": "2026-05-18",
+      "formato": "Reel",
+      "estagio": "Scheduled",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [
+        "SHARE",
+        "SAVE"
+      ],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/meu-cerebro-nao-sabe-a-diferen-a-35ed602254ce80cb9202cdafa29a428e",
+      "titulo": "meu cerebro nao sabe a diferença",
+      "data": "2026-05-20",
+      "formato": "Reel",
+      "estagio": "Done",
+      "pilares": [
+        "Identidade"
+      ],
+      "meta": [
+        "REACH"
+      ],
+      "publico": [],
+      "serie": [
+        "VIRAL"
+      ],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/eventos-para-voc-ir-se-esta-procurando-emprego-na-Fran-a-366d602254ce801cb355e6c06fafc554",
+      "titulo": "eventos para você ir se esta procurando emprego na França",
+      "data": "2026-05-22",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Pol-mica-da-ANEF-processada-pelo-Estado-365d602254ce803eb7f3e21dab9fba25",
+      "titulo": "Polêmica da ANEF processada pelo Estado",
+      "data": "2026-05-25",
+      "formato": "Reel",
+      "estagio": "Done",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [
+        "SHARE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Aumento-SMIC-junho-26-35ad602254ce80908327f5119a314bb9",
+      "titulo": "Aumento SMIC junho 26",
+      "data": "2026-05-27",
+      "formato": "Reel",
+      "estagio": "Done",
+      "pilares": [
+        "Sociedade",
+        "Sistema"
+      ],
+      "meta": [
+        "FOLLOW",
+        "LIKES"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Mudan-as-Fran-a-2026-imigrantes-brasileiros-35dd602254ce806fbfa7c4c8fdd3c14b",
       "titulo": "Mudanças França 2026 imigrantes brasileiros",
       "data": "2026-06-01",
       "formato": "Reel",
@@ -1047,7 +1402,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/379d602254ce815a8ad6e7518ef93646",
+      "url": "https://app.notion.com/p/Reagrupamento-familiar-ficou-menos-burocr-tico-se-voc-estava-esperando-agora-o-momento-de-reve-379d602254ce815a8ad6e7518ef93646",
       "titulo": "Reagrupamento familiar ficou menos burocrático — se você estava esperando, agora é o momento de rever essa decisão",
       "data": "2026-06-02",
       "formato": "Reel",
@@ -1059,8 +1414,8 @@
       "promessa": "Se você estava postergando o processo de reagrupamento familiar por causa da burocracia, agora é o momento de rever essa decisão. A circular ministerial eliminou 6 documentos — e eram justamente os mais difíceis de obter no Brasil. Janela de ação antes que o fluxo de candidaturas aumente."
     },
     {
-      "url": "https://app.notion.com/35dd602254ce80ec8073d137449377d8",
-      "titulo": "Precisa falar francês na frança?",
+      "url": "https://app.notion.com/p/Precisa-falar-franc-s-na-fran-a-35dd602254ce80ec8073d137449377d8",
+      "titulo": "Precisa falar francês na frança? ",
       "data": "2026-06-08",
       "formato": "Reel",
       "estagio": "Scheduled",
@@ -1080,7 +1435,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/36dd602254ce8081be52ec29f1586401",
+      "url": "https://app.notion.com/p/agir-sob-pressao-36dd602254ce8081be52ec29f1586401",
       "titulo": "agir sob pressao",
       "data": "2026-06-17",
       "formato": "Reel",
@@ -1098,7 +1453,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/35dd602254ce800283e4e20f03a44b82",
+      "url": "https://app.notion.com/p/APL-2026-congelamento-estudantes-estrangeiros-CAF-35dd602254ce800283e4e20f03a44b82",
       "titulo": "APL 2026 congelamento estudantes estrangeiros CAF",
       "data": "2026-06-19",
       "formato": "Reel",
@@ -1120,7 +1475,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/384d602254ce81508c0ce2b85ee2befe",
+      "url": "https://app.notion.com/p/O-Fim-das-Facilidades-para-Estudantes-Estrangeiros-na-Fran-a-em-2026-384d602254ce81508c0ce2b85ee2befe",
       "titulo": "O Fim das Facilidades para Estudantes Estrangeiros na França em 2026?",
       "data": "2026-06-24",
       "formato": "Carrossel",
@@ -1136,7 +1491,7 @@
       "promessa": "Se você está planejando estudar na França ou já está lá como estudante, 2026 pode mudar tudo. Novas regras, menos ajuda, mais caro. A gente explica o que muda e o que você precisa fazer agora."
     },
     {
-      "url": "https://app.notion.com/384d602254ce81f197a4ec29c72c73fd",
+      "url": "https://app.notion.com/p/Campus-France-na-sua-universidade-o-que-voc-precisa-saber-antes-de-ir-384d602254ce81f197a4ec29c72c73fd",
       "titulo": "Campus France na sua universidade: o que você precisa saber antes de ir",
       "data": "2026-06-26",
       "formato": "Carrossel",
@@ -1152,7 +1507,7 @@
       "promessa": "A Ufes trouxe Campus France Brasil pra conversar sobre estudar na França. Se você tá pesquisando isso à noite, esse evento é pra você."
     },
     {
-      "url": "https://app.notion.com/366d602254ce80dcb58bda2047efeda6",
+      "url": "https://app.notion.com/p/regras-aluguel-fran-a-366d602254ce80dcb58bda2047efeda6",
       "titulo": "regras aluguel frança",
       "data": "2026-06-26",
       "formato": "Reel",
@@ -1166,8 +1521,8 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/384d602254ce81bc8317d17d5339d667",
-      "titulo": "Bouge Ta Préf: a manifestação contra o desmonte de direitos de pessoas estrangeiras.",
+      "url": "https://app.notion.com/p/Bouge-Ta-Pr-f-a-manifesta-o-contra-o-desmonte-de-direitos-de-pessoas-estrangeiras-384d602254ce81bc8317d17d5339d667",
+      "titulo": "Bouge Ta Préf: a manifestação contra o desmonte de direitos de pessoas estrangeiras. ",
       "data": "2026-06-28",
       "formato": "Carrossel",
       "estagio": "Design",
@@ -1182,7 +1537,7 @@
       "promessa": "Wednesday 10 de junho tem mobilização nacional pela defesa de direitos de estrangeiras na França. A gente explica o que é, por que importa pra você e como acompanhar."
     },
     {
-      "url": "https://app.notion.com/39bd602254ce815aac02c264b7e555b9",
+      "url": "https://app.notion.com/p/Diplomas-brasileiros-na-Fran-a-como-funciona-o-reconhecimento-39bd602254ce815aac02c264b7e555b9",
       "titulo": "Diplomas brasileiros na França: como funciona o reconhecimento",
       "data": "2026-06-29",
       "formato": "Reel",
@@ -1194,7 +1549,7 @@
       "promessa": "Seu diploma de bacharel não vira automaticamente um diplôme français. E tudo bem — aqui a gente explica como funciona de verdade."
     },
     {
-      "url": "https://app.notion.com/36ed602254ce807e99f4c6a0408d8f58",
+      "url": "https://app.notion.com/p/INTRO-SIST-EDUCACIONAL-36ed602254ce807e99f4c6a0408d8f58",
       "titulo": "INTRO SIST EDUCACIONAL",
       "data": "2026-06-29",
       "formato": "Reel",
@@ -1210,7 +1565,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38cd602254ce811699cbe217c8897a2f",
+      "url": "https://app.notion.com/p/As-3-ajudas-de-moradia-na-Fran-a-e-se-voc-tem-direito-a-uma-38cd602254ce811699cbe217c8897a2f",
       "titulo": "As 3 ajudas de moradia na França — e se você tem direito a uma",
       "data": "2026-07-01",
       "formato": "Carrossel",
@@ -1226,7 +1581,7 @@
       "promessa": "Você pode estar pagando aluguel sozinha quando tem direito a uma ajuda. Tem três tipos — e nem todas pedem que você seja cidadã francesa."
     },
     {
-      "url": "https://app.notion.com/38dd602254ce807f9e25da8706429b54",
+      "url": "https://app.notion.com/p/largar-tudo-e-morar-fora-38dd602254ce807f9e25da8706429b54",
       "titulo": "largar tudo e morar fora",
       "data": "2026-07-02",
       "formato": "Reel",
@@ -1240,7 +1595,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/394d602254ce80b1a8eaf58647a829cc",
+      "url": "https://app.notion.com/p/COMO-ENCONTRAR-ALTERNANCIA-pt1-394d602254ce80b1a8eaf58647a829cc",
       "titulo": "COMO ENCONTRAR ALTERNANCIA pt1",
       "data": "2026-07-06",
       "formato": "Reel",
@@ -1252,7 +1607,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/391d602254ce81a39c0ecad6afc72c39",
+      "url": "https://app.notion.com/p/O-valor-m-nimo-pro-visto-de-estudante-na-Fran-a-acabou-de-subir-quase-43-391d602254ce81a39c0ecad6afc72c39",
       "titulo": "O valor mínimo pro visto de estudante na França acabou de subir quase 43%",
       "data": "2026-07-08",
       "formato": "Reel",
@@ -1269,7 +1624,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38cd602254ce810aaf58e995518346b4",
+      "url": "https://app.notion.com/p/Reconhecimento-de-diplomas-na-Fran-a-o-guia-que-faltava-38cd602254ce810aaf58e995518346b4",
       "titulo": "Reconhecimento de diplomas na França: o guia que faltava",
       "data": "2026-07-09",
       "formato": "Carrossel",
@@ -1285,7 +1640,7 @@
       "promessa": "Seu diploma brasileiro vale na França? A resposta não é 'sim' ou 'não' — é mais complicado que isso. E existe um processo específico para descobrir."
     },
     {
-      "url": "https://app.notion.com/397d602254ce8186abaad3be34a32ccc",
+      "url": "https://app.notion.com/p/Cap-1-Le-Pen-pode-concorrer-em-2027-a-bomba-pol-tica-da-semana-397d602254ce8186abaad3be34a32ccc",
       "titulo": "Cap. 1 — Le Pen pode concorrer em 2027: a bomba política da semana",
       "data": "2026-07-12",
       "formato": "Reel",
@@ -1303,8 +1658,8 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/39bd602254ce80e4a9bec2d93f538592",
-      "titulo": "pt. 2 COMO ENCONTRAR ALTERNANCIA",
+      "url": "https://app.notion.com/p/pt-2-COMO-ENCONTRAR-ALTERNANCIA-39bd602254ce80e4a9bec2d93f538592",
+      "titulo": "pt. 2 COMO ENCONTRAR ALTERNANCIA ",
       "data": "2026-07-13",
       "formato": "Reel",
       "estagio": "Scheduled",
@@ -1318,11 +1673,11 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81658911e82f8abfb65a",
+      "url": "https://app.notion.com/p/Bolsas-de-estudo-para-Fran-a-2026-2027-Eiffel-BGF-Erasmus-e-alternativas-38cd602254ce81658911e82f8abfb65a",
       "titulo": "Bolsas de estudo para França 2026–2027: Eiffel, BGF, Erasmus+ e alternativas",
       "data": "2026-07-14",
       "formato": "Carrossel",
-      "estagio": "Design",
+      "estagio": "Scheduled",
       "pilares": [
         "Trajetória"
       ],
@@ -1334,7 +1689,7 @@
       "promessa": "Estudar na França pode sair de graça — se você souber onde procurar. Aqui estão as bolsas que abrem em 2026."
     },
     {
-      "url": "https://app.notion.com/36ed602254ce80e6b4d9cc78b25926b6",
+      "url": "https://app.notion.com/p/CURSOS-DE-FRANC-S-GRATUITOS-36ed602254ce80e6b4d9cc78b25926b6",
       "titulo": "CURSOS DE FRANCÊS GRATUITOS",
       "data": "2026-07-15",
       "formato": "Reel",
@@ -1346,7 +1701,7 @@
       "promessa": "A França oferece cursos de francês gratuitos — mas tem um detalhe que só quem viveu na pele sabe. E tem algo que você pode (e deve) começar antes de chegar."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81ec9c19e9dd1712e353",
+      "url": "https://app.notion.com/p/Cursos-intensivos-de-franc-s-em-Paris-quanto-custa-e-quando-come-ar-38cd602254ce81ec9c19e9dd1712e353",
       "titulo": "Cursos intensivos de francês em Paris: quanto custa e quando começar",
       "data": "2026-07-16",
       "formato": "Carrossel",
@@ -1362,7 +1717,7 @@
       "promessa": "Se você chegou na França e o francês ainda é uma barreira (real), precisa saber que existem cursos intensivos que servem para visto de estudante e certificação oficial."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81b18cc8d5f58b8fc922",
+      "url": "https://app.notion.com/p/VLS-TS-validar-em-3-meses-ou-ficar-irregular-e-o-que-a-OFII-exige-depois-CIR-2026-38cd602254ce81b18cc8d5f58b8fc922",
       "titulo": "VLS-TS: validar em 3 meses ou ficar irregular — e o que a OFII exige depois (CIR 2026)",
       "data": "2026-07-17",
       "formato": "Reel",
@@ -1378,7 +1733,7 @@
       "promessa": "Se você entrou na França com VLS-TS, tem um prazo que ninguém avisa e passa rápido demais."
     },
     {
-      "url": "https://app.notion.com/91fd602254ce83b6a5a9814d959406cc",
+      "url": "https://app.notion.com/p/pt-3-COMO-ENCONTRAR-ALTERNANCIA-91fd602254ce83b6a5a9814d959406cc",
       "titulo": "pt. 3 COMO ENCONTRAR ALTERNANCIA",
       "data": "2026-07-20",
       "formato": "Reel",
@@ -1393,7 +1748,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81fc880ffc439b7ed5ef",
+      "url": "https://app.notion.com/p/Franc-s-em-Estrasburgo-onde-estudar-sem-se-perder-na-burocracia-38cd602254ce81fc880ffc439b7ed5ef",
       "titulo": "Francês em Estrasburgo: onde estudar sem se perder na burocracia",
       "data": "2026-07-21",
       "formato": "Carrossel",
@@ -1409,7 +1764,7 @@
       "promessa": "Se você está em Estrasburgo (ou pensando em ir) e o francês ainda é uma barreira, a gente mostra onde estudar sem pagar blindado."
     },
     {
-      "url": "https://app.notion.com/448d602254ce8311a91c01aa951cbebd",
+      "url": "https://app.notion.com/p/CAP-E-TITRE-PROFESSIONNEL-1-448d602254ce8311a91c01aa951cbebd",
       "titulo": "CAP E TITRE PROFESSIONNEL (1)",
       "data": "2026-07-22",
       "formato": "Reel",
@@ -1421,7 +1776,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38cd602254ce818bba1fe83bd5151c6c",
+      "url": "https://app.notion.com/p/Forma-o-de-franc-s-financiada-pelo-CPF-como-passar-no-exame-em-2026-sem-gastar-do-seu-bolso-38cd602254ce818bba1fe83bd5151c6c",
       "titulo": "Formação de francês financiada pelo CPF: como passar no exame em 2026 sem gastar do seu bolso",
       "data": "2026-07-23",
       "formato": "Carrossel",
@@ -1437,7 +1792,7 @@
       "promessa": "Você sabe que pode fazer um curso de francês GRÁTIS com CPF e ainda garantir direitos na França? A maioria das brasileiras não usa isso."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce819abe25dbd7ea1cf849",
+      "url": "https://app.notion.com/p/Institut-Convergences-Migrations-quem-s-o-os-pesquisadores-que-moldam-a-pol-tica-de-imigra-o-na-Fr-38cd602254ce819abe25dbd7ea1cf849",
       "titulo": "Institut Convergences Migrations: quem são os pesquisadores que moldam a política de imigração na França",
       "data": "2026-07-24",
       "formato": "Reel",
@@ -1453,7 +1808,7 @@
       "promessa": "Você já parou pra pensar em quem estuda imigração na França? Por trás de cada lei, cada regra de visto, cada debate sobre brasileiras imigrantes, tem gente pesquisando. A gente te apresenta o instituto que está no meio dessa conversa há 9 anos."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81609f91f7e96fadc833",
+      "url": "https://app.notion.com/p/Prime-d-activit-para-auto-empreendedora-na-Fran-a-vale-a-pena-38cd602254ce81609f91f7e96fadc833",
       "titulo": "Prime d'activité para auto-empreendedora na França: vale a pena?",
       "data": "2026-07-25",
       "formato": "Carrossel",
@@ -1469,7 +1824,7 @@
       "promessa": "Se você é autônoma ou MEI na França, existe uma ajuda estatal que a maioria não sabe que pode pedir. Mas tem uma regra que muda tudo para brasileiras."
     },
     {
-      "url": "https://app.notion.com/36ed602254ce80eb8309c3794d775df8",
+      "url": "https://app.notion.com/p/TITRE-PROFESSIONNEL-36ed602254ce80eb8309c3794d775df8",
       "titulo": "TITRE PROFESSIONNEL",
       "data": "2026-07-27",
       "formato": "Reel",
@@ -1481,7 +1836,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/39dd602254ce8177a79bc010712e0c35",
+      "url": "https://app.notion.com/p/Os-5-passos-burocr-ticos-que-ningu-m-te-avisa-de-chegada-ao-CPF-franc-s-39dd602254ce8177a79bc010712e0c35",
       "titulo": "Os 5 passos burocráticos que ninguém te avisa: de chegada ao CPF francês",
       "data": "2026-07-28",
       "formato": "Carrossel",
@@ -1494,10 +1849,10 @@
         "Recém-chegado"
       ],
       "serie": [],
-      "promessa": "[Sugestão automática — 14/07/2026]: Roteiro passo a passo de burocracia francesa com prazos realistas — pedido direto e recorrente da audiência."
+      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W29] Roteiro passo a passo de burocracia francesa com prazos realistas — pedido direto e recorrente da audiência, tema que nenhum concorrente mapeado cobre com profundidade."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81e995dce8d1a6aab497",
+      "url": "https://app.notion.com/p/Estudante-auto-empreendedora-na-Fran-a-pode-mesmo-trabalhar-por-conta-pr-pria-38cd602254ce81e995dce8d1a6aab497",
       "titulo": "Estudante auto-empreendedora na França: pode mesmo trabalhar por conta própria?",
       "data": "2026-07-29",
       "formato": "Reel",
@@ -1513,7 +1868,7 @@
       "promessa": "Se você está com visto de estudante e pensa em abrir um negócio, precisa saber isto antes de registrar nada."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81eab95fef52411f2c23",
+      "url": "https://app.notion.com/p/Auto-entrepreneur-tranger-o-que-voc-precisa-saber-para-abrir-sua-microempresa-na-Fran-a-38cd602254ce81eab95fef52411f2c23",
       "titulo": "Auto-entrepreneur étranger: o que você precisa saber para abrir sua microempresa na França",
       "data": "2026-07-29",
       "formato": "Reel",
@@ -1529,7 +1884,7 @@
       "promessa": "Você pode ser auto-empreendedora na França sendo estrangeira? A resposta depende do seu titre de séjour — e tem regras bem específicas para 2026."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce8187a158f93206fc8a94",
+      "url": "https://app.notion.com/p/VLS-TS-O-que-voc-precisa-saber-antes-de-validar-seu-visto-38cd602254ce8187a158f93206fc8a94",
       "titulo": "VLS-TS: O que você precisa saber antes de validar seu visto",
       "data": "2026-07-30",
       "formato": "Carrossel",
@@ -1545,7 +1900,7 @@
       "promessa": "Você tem 3 meses para validar o VLS-TS na França — e muita gente não sabe disso."
     },
     {
-      "url": "https://app.notion.com/394d602254ce81659dd9fb4a73d9322e",
+      "url": "https://app.notion.com/p/CPF-na-Fran-a-nova-lei-obriga-inscri-o-em-forma-o-e-tem-multa-se-n-o-fizer-394d602254ce81659dd9fb4a73d9322e",
       "titulo": "CPF na França: nova lei obriga inscrição em formação (e tem multa se não fizer)",
       "data": "2026-07-31",
       "formato": "Carrossel",
@@ -1557,7 +1912,7 @@
       "promessa": "Se você tem CPF francês, tem uma obrigação nova a partir de 2026 — e ignorar isso pode te custar caro."
     },
     {
-      "url": "https://app.notion.com/394d602254ce8189baf3d37ea6d7163c",
+      "url": "https://app.notion.com/p/CTO-vs-PEA-qual-investimento-compensa-mesmo-para-brasileira-na-Fran-a-394d602254ce8189baf3d37ea6d7163c",
       "titulo": "CTO vs PEA: qual investimento compensa mesmo para brasileira na França",
       "data": "2026-08-02",
       "formato": "Carrossel",
@@ -1569,7 +1924,19 @@
       "promessa": "Se você tem grana parada ou investe em ações, esse cálculo muda tudo em 2026"
     },
     {
-      "url": "https://app.notion.com/38cd602254ce8133b482c1033db1a7c1",
+      "url": "https://app.notion.com/p/Mestrado-em-altern-ncia-38dd602254ce807cbd13f4ee477a95d9",
+      "titulo": "Mestrado em alternância",
+      "data": "2026-08-03",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/VAE-em-2026-como-validar-sua-experi-ncia-profissional-e-conseguir-um-diploma-franc-s-38cd602254ce8133b482c1033db1a7c1",
       "titulo": "VAE em 2026: como validar sua experiência profissional e conseguir um diploma francês",
       "data": "2026-08-03",
       "formato": "Reel",
@@ -1585,19 +1952,7 @@
       "promessa": "Você tem experiência de trabalho no Brasil, mas o diploma francês não sai? A VAE é a solução — e o CPF pode pagar tudo."
     },
     {
-      "url": "https://app.notion.com/38dd602254ce807cbd13f4ee477a95d9",
-      "titulo": "Mestrado em alternância",
-      "data": "2026-08-03",
-      "formato": "Reel",
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/39dd602254ce816eb073ea0fba6ab519",
+      "url": "https://app.notion.com/p/VLS-Long-Duration-vs-Visto-de-Interc-mbio-Universit-rio-qual-escolher-antes-de-pagar-passagem-39dd602254ce816eb073ea0fba6ab519",
       "titulo": "VLS Long Duration vs Visto de Intercâmbio Universitário: qual escolher antes de pagar passagem?",
       "data": "2026-08-04",
       "formato": "Carrossel",
@@ -1610,10 +1965,10 @@
         "Pré-chegada"
       ],
       "serie": [],
-      "promessa": "[Sugestão automática — 14/07/2026]: Dor real e específica de uma seguidora gastando tempo e dinheiro em teste de língua sem saber se consegue o visto."
+      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W27] Dor real e específica de uma seguidora gastando tempo e dinheiro em teste de língua presencial sem saber se consegue o visto — responde qual visto encaixa melhor em cada situação."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81868a5ff39d91ddbe14",
+      "url": "https://app.notion.com/p/SMIC-2026-contratos-e-imposto-o-que-voc-precisa-saber-agora-38cd602254ce81868a5ff39d91ddbe14",
       "titulo": "SMIC 2026, contratos e imposto: o que você precisa saber agora",
       "data": "2026-08-05",
       "formato": "Reel",
@@ -1629,7 +1984,7 @@
       "promessa": "Se você trabalha na França, esses três números vão definir quanto entra na sua conta todo mês — e quanto você deve declarar."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce8182921fd803462624d9",
+      "url": "https://app.notion.com/p/M-tiers-en-tension-sua-profiss-o-abre-porta-na-Fran-a-em-2026-38cd602254ce8182921fd803462624d9",
       "titulo": "Métiers en tension: sua profissão abre porta na França em 2026?",
       "data": "2026-08-07",
       "formato": "Carrossel",
@@ -1645,7 +2000,7 @@
       "promessa": "Tem 80 profissões com visto fast-track na França agora. Veja se a sua está na lista."
     },
     {
-      "url": "https://app.notion.com/38dd602254ce808cbb85f1af85c1eebf",
+      "url": "https://app.notion.com/p/Voc-entende-o-sistema-de-forma-o-Como-isso-muda-sua-posi-o-no-mercado-de-trabalho-38dd602254ce808cbb85f1af85c1eebf",
       "titulo": "Você entende o sistema de formação. Como isso muda sua posição no mercado de trabalho?\"",
       "data": "2026-08-10",
       "formato": null,
@@ -1657,7 +2012,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/392d602254ce80fc9300dfe850dfbd3a",
+      "url": "https://app.notion.com/p/Coisas-que-os-brasileiros-deveriam-aprender-com-os-franceses-392d602254ce80fc9300dfe850dfbd3a",
       "titulo": "Coisas que os brasileiros deveriam aprender com os franceses",
       "data": "2026-08-12",
       "formato": "Reel",
@@ -1669,7 +2024,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/384d602254ce81599bc1ccadd1463337",
+      "url": "https://app.notion.com/p/O-que-muda-para-estrangeiras-em-situa-o-irregular-na-Europa-e-por-que-voc-precisa-saber-384d602254ce81599bc1ccadd1463337",
       "titulo": "O que muda para estrangeiras em situação irregular na Europa (e por que você precisa saber)",
       "data": "2026-08-13",
       "formato": "Carrossel",
@@ -1685,7 +2040,7 @@
       "promessa": "A UE aprovou novas regras sobre expulsão de estrangeiras. Não é pânico, mas é informação que toda brasileira precisa ter clara."
     },
     {
-      "url": "https://app.notion.com/384d602254ce8167abb2f8f4aa9b578d",
+      "url": "https://app.notion.com/p/O-que-muda-para-imigrantes-na-Europa-em-junho-de-2026-e-por-que-voc-precisa-saber-agora-384d602254ce8167abb2f8f4aa9b578d",
       "titulo": "O que muda para imigrantes na Europa em junho de 2026 (e por que você precisa saber agora)",
       "data": "2026-08-13",
       "formato": "Carrossel",
@@ -1701,7 +2056,19 @@
       "promessa": "A UE acaba de apertar as regras para quem quer ficar na Europa. Isso afeta você — mesmo que esteja documentada."
     },
     {
-      "url": "https://app.notion.com/38cd602254ce818f8106f31b51152444",
+      "url": "https://app.notion.com/p/Receita-Federal-e-Brasileiros-no-Exterior-Seus-Direitos-e-Obriga-es-394d602254ce816f99d5dfb686a9ec91",
+      "titulo": "Receita Federal e Brasileiros no Exterior: Seus Direitos e Obrigações",
+      "data": "2026-08-14",
+      "formato": "Carrossel",
+      "estagio": "Design",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Você sabia que continuar invisível para a Receita Federal pode custar caro depois? A gente explica o que muda quando você sai do Brasil."
+    },
+    {
+      "url": "https://app.notion.com/p/CPF-sua-forma-o-ficou-mais-cara-a-partir-de-abril-38cd602254ce818f8106f31b51152444",
       "titulo": "CPF: sua formação ficou mais cara (a partir de abril)",
       "data": "2026-08-14",
       "formato": "Carrossel",
@@ -1717,19 +2084,7 @@
       "promessa": "Se você planejava usar o CPF para estudar francês, programação ou outro curso — prepare o bolso. O valor acaba de subir."
     },
     {
-      "url": "https://app.notion.com/394d602254ce816f99d5dfb686a9ec91",
-      "titulo": "Receita Federal e Brasileiros no Exterior: Seus Direitos e Obrigações",
-      "data": "2026-08-14",
-      "formato": "Carrossel",
-      "estagio": "Design",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": "Você sabia que continuar invisível para a Receita Federal pode custar caro depois? A gente explica o que muda quando você sai do Brasil."
-    },
-    {
-      "url": "https://app.notion.com/38cd602254ce81c6a6d0fda0315c5785",
+      "url": "https://app.notion.com/p/Infla-o-na-Fran-a-em-2026-o-que-subiu-no-seu-carrinho-de-compras-38cd602254ce81c6a6d0fda0315c5785",
       "titulo": "Inflação na França em 2026: o que subiu no seu carrinho de compras",
       "data": "2026-08-16",
       "formato": "Carrossel",
@@ -1745,7 +2100,7 @@
       "promessa": "A energia disparou, mas nem tudo ficou mais caro. Veja o que realmente impacta seu bolso este ano."
     },
     {
-      "url": "https://app.notion.com/38dd602254ce80bda36cc71938049fb0",
+      "url": "https://app.notion.com/p/Transfer-ncia-corporativa-38dd602254ce80bda36cc71938049fb0",
       "titulo": "Transferência corporativa",
       "data": "2026-08-17",
       "formato": null,
@@ -1757,7 +2112,19 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38cd602254ce81119dc6dcfdf6d0afae",
+      "url": "https://app.notion.com/p/Cursos-intensivos-de-franc-s-em-Paris-vale-a-pena-E-para-quem-394d602254ce81fa89e7c7bc5694405d",
+      "titulo": "Cursos intensivos de francês em Paris: vale a pena? (E para quem)",
+      "data": "2026-08-19",
+      "formato": "Carrossel",
+      "estagio": "Design",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Se você chegou na França e o francês ainda é uma barreira — ou quer acelerar a aprovação em DELF/DALF — existem cursos que realmente funcionam. Mas nem todos servem para o seu caso."
+    },
+    {
+      "url": "https://app.notion.com/p/Poupar-na-Fran-a-sendo-expatriada-al-m-da-conta-corrente-38cd602254ce81119dc6dcfdf6d0afae",
       "titulo": "Poupar na França sendo expatriada: além da conta corrente",
       "data": "2026-08-19",
       "formato": "Reel",
@@ -1773,19 +2140,7 @@
       "promessa": "Você está guardando dinheiro numa conta corrente comum enquanto poderia estar ganhando 3% ao ano sem risco? A gente explica os produtos que ninguém te conta."
     },
     {
-      "url": "https://app.notion.com/394d602254ce81fa89e7c7bc5694405d",
-      "titulo": "Cursos intensivos de francês em Paris: vale a pena? (E para quem)",
-      "data": "2026-08-19",
-      "formato": "Carrossel",
-      "estagio": "Design",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": "Se você chegou na França e o francês ainda é uma barreira — ou quer acelerar a aprovação em DELF/DALF — existem cursos que realmente funcionam. Mas nem todos servem para o seu caso."
-    },
-    {
-      "url": "https://app.notion.com/38dd602254ce8065a31fc1539b53b425",
+      "url": "https://app.notion.com/p/Checklist-do-pacote-expat-o-que-negociar-antes-de-embarcar-38dd602254ce8065a31fc1539b53b425",
       "titulo": "Checklist do pacote expat — o que negociar antes de embarcar\"",
       "data": "2026-08-21",
       "formato": "Carrossel",
@@ -1797,7 +2152,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38dd602254ce804380a4f7b75fc1daea",
+      "url": "https://app.notion.com/p/Como-se-preparar-para-a-rentr-e-38dd602254ce804380a4f7b75fc1daea",
       "titulo": "Como se preparar para a rentrée",
       "data": "2026-08-23",
       "formato": "Carrossel",
@@ -1809,7 +2164,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38dd602254ce804aa977e1c965dd27d5",
+      "url": "https://app.notion.com/p/Como-recome-ar-bem-na-Fran-a-38dd602254ce804aa977e1c965dd27d5",
       "titulo": "Como recomeçar bem na França",
       "data": "2026-08-24",
       "formato": null,
@@ -1821,7 +2176,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38dd602254ce80f983e4fa29b7ae0cbe",
+      "url": "https://app.notion.com/p/Direitos-trabalhistas-38dd602254ce80f983e4fa29b7ae0cbe",
       "titulo": "Direitos trabalhistas",
       "data": "2026-08-26",
       "formato": null,
@@ -1833,7 +2188,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38dd602254ce803f80c1db439d6d5c89",
+      "url": "https://app.notion.com/p/Como-matricular-filho-na-escola-p-blica-38dd602254ce803f80c1db439d6d5c89",
       "titulo": "Como matricular filho na escola pública",
       "data": "2026-08-31",
       "formato": "Reel",
@@ -1845,7 +2200,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/39dd602254ce818da4d9d07c851103bc",
+      "url": "https://app.notion.com/p/CAP-Petite-Enfance-com-30-anos-armadilha-ou-porta-de-entrada-real-39dd602254ce818da4d9d07c851103bc",
       "titulo": "CAP Petite Enfance com 30 anos: é armadilha ou porta de entrada real?",
       "data": "2026-09-02",
       "formato": "Reel",
@@ -1858,10 +2213,10 @@
         "Pré-chegada"
       ],
       "serie": [],
-      "promessa": "[Sugestão automática — 14/07/2026]: Pergunta direta de quem foi rejeitado por escola — audiência precisa entender se compensa fazer CAP inicial só pra viabilizar visto."
+      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W27] Pergunta direta de quem foi rejeitado por escola — audiência precisa entender se compensa fazer CAP inicial só para viabilizar visto ou se há caminho melhor."
     },
     {
-      "url": "https://app.notion.com/394d602254ce81338efbf9a17d2f2fdb",
+      "url": "https://app.notion.com/p/CPF-na-Fran-a-como-financiar-seu-curso-de-franc-s-e-n-o-pagar-do-bolso-394d602254ce81338efbf9a17d2f2fdb",
       "titulo": "CPF na França: como financiar seu curso de francês (e não pagar do bolso)",
       "data": "2026-09-03",
       "formato": "Carrossel",
@@ -1873,7 +2228,7 @@
       "promessa": "Você chegou na França e o francês ainda é uma barreira. Mas sabe o que poucos sabem? Tem grana parada esperando você usar para estudar."
     },
     {
-      "url": "https://app.notion.com/38dd602254ce8018b31de180c92ae8a2",
+      "url": "https://app.notion.com/p/Direitos-de-crian-a-sem-documenta-o-38dd602254ce8018b31de180c92ae8a2",
       "titulo": "Direitos de criança sem documentação",
       "data": "2026-09-07",
       "formato": null,
@@ -1885,7 +2240,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/39dd602254ce81b9bc4dedaf8329432d",
+      "url": "https://app.notion.com/p/Visto-vs-Visto-qual-escolher-se-voc-quer-estudar-trabalhar-ou-vir-com-c-njuge-39dd602254ce81b9bc4dedaf8329432d",
       "titulo": "Visto vs. Visto: qual escolher se você quer estudar, trabalhar ou vir com cônjuge?",
       "data": "2026-09-09",
       "formato": "Reel",
@@ -1899,10 +2254,10 @@
         "Recém-chegado"
       ],
       "serie": [],
-      "promessa": "[Sugestão automática — 14/07/2026]: Audiência segmentada por motivo de imigração precisa de comparação clara antes de decidir qual caminho de visto seguir."
+      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W29] Audiência segmentada por motivo de imigração (estudo/trabalho/cônjuge) precisa de comparação clara antes de decidir qual caminho de visto seguir."
     },
     {
-      "url": "https://app.notion.com/38dd602254ce80089c7ef3c964b0e5e2",
+      "url": "https://app.notion.com/p/Direitos-da-crian-a-na-Fran-a-guia-para-fam-lias-38dd602254ce80089c7ef3c964b0e5e2",
       "titulo": "Direitos da criança na França — guia para famílias",
       "data": "2026-09-10",
       "formato": null,
@@ -1914,7 +2269,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/38cd602254ce8136be9fc3c27245ca71",
+      "url": "https://app.notion.com/p/Como-pedir-sua-Carte-Vitale-os-3-documentos-que-voc-precisa-ter-agora-38cd602254ce8136be9fc3c27245ca71",
       "titulo": "Como pedir sua Carte Vitale: os 3 documentos que você precisa ter agora",
       "data": "2026-09-20",
       "formato": "Carrossel",
