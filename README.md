@@ -27,13 +27,15 @@ Os dois repositórios tinham, cada um, sua própria cópia de `insights.json`, d
 │   ├── analyze_concorrencia.py       ← Módulo 3: benchmark mensal de concorrência → Notion + insights.json
 │   ├── analyze_audiencia.py          ← Módulo 3: bilan semanal de audiência → Notion + insights.json
 │   ├── enriquecer_conversas_audiencia.py ← transcreve prints de DMs/comentários/concorrentes antes da análise
+│   ├── gerar_sugestoes_conteudo.py   ← Módulo 5: sugere posts novos (audiência + concorrência + calendário) → Notion + insights.json
 │   ├── create_tasks.py               ← Módulo 7: cria tarefas no Notion a partir do ciclo mais recente
 │   ├── requirements.txt
 │   └── env.example
 └── .github/workflows/
     ├── coleta-semanal.yml            ← sexta à noite
     ├── analise-audiencia.yml         ← sexta ~07h Paris
-    └── analise-concorrencia.yml      ← primeira segunda-feira do mês
+    ├── analise-concorrencia.yml      ← primeira segunda-feira do mês
+    └── sugestoes-conteudo.yml        ← segunda de manhã
 ```
 
 > ⚠️ **Pendência conhecida:** o repositório original tinha um `.github/workflows/create-tasks.yml` para o Módulo 7, mas o conteúdo desse arquivo, ao migrar, revelou-se ser código Python (uma versão v2 de `create_tasks.py` com dedup por ação, mais recente que a que estava em `scripts/create_tasks.py`) — não um YAML de workflow válido. Aproveitei a versão v2 (é a melhor lógica) como o novo `scripts/create_tasks.py`, mas **não recriei o workflow** porque não sei o gatilho pretendido (push? cron?) e não quis adivinhar algo que dispara automações na sua Notion. Se você quiser o Módulo 7 automatizado, me diga quando rodar e eu escrevo o `.yml`.
@@ -59,6 +61,7 @@ Depois acesse `http://localhost:8000`.
 | `concorrencia` | Benchmark mensal de concorrência (o que funciona, lacunas, recomendação) | `analyze_concorrencia.py` (automático, 1ª segunda do mês) |
 | `boas_praticas` | Síntese mensal — aplicar agora / testar / ignorar / padrões confirmados | manual, via painel |
 | `calendario` | Calendário editorial mensal (tema, 4 semanas, formatos, datas sazonais) | manual, via painel |
+| `calendario_posts` | Snapshot do calendário real do Notion (todo post com data marcada) — alimenta a grade "Calendário Real" no dashboard | `gerar_sugestoes_conteudo.py` (automático, segunda) |
 | `audiencia_personas` | Personas fixas (P01–P04), jornada, princípio editorial — muda raramente | manual, via painel |
 
 Regra inegociável (herdada do documento de arquitetura): **nada aqui é sobrescrito** — tudo é adicionado ao final do array correspondente, com upsert por `id` só quando é uma correção do mesmo período.
@@ -81,8 +84,11 @@ Gere o token em GitHub → Settings → Developer settings → Fine-grained toke
 - `scripts/collect.py`: toda sexta à noite, coleta métricas de canais concorrentes (lidos da base Notion **COLETAS YOUTUBE**) via YouTube Data API.
 - `scripts/analyze_audiencia.py`: toda sexta ~07h Paris, agrega DMs/comentários/stories enriquecidos da semana num bilan qualitativo — Notion + `insights.json`.
 - `scripts/analyze_concorrencia.py`: primeira segunda-feira do mês, cruza as coletas de canais + observações de Instagram num benchmark mensal — Notion + `insights.json`.
+- `scripts/gerar_sugestoes_conteudo.py`: toda segunda de manhã, cruza os bilans de audiência recentes + o benchmark de concorrência + o que já está no calendário (evita duplicata) e propõe até 4 posts novos via Claude. Cria uma página rascunho (Stage=Idea, sem data) por sugestão aceita em **INSTA TO POR DENTRO**, com a origem/justificativa registrada em "Promessa do conteudo". Depois recarrega `calendario_posts` inteiro a partir do Notion — qualquer sugestão nova (ou edição manual feita durante a semana) aparece sozinha no Calendário Real do dashboard, sem sincronização manual.
 
-Todos os três precisam dos secrets listados em `scripts/env.example` configurados em GitHub → Settings → Secrets and variables → Actions.
+  **Por que as sugestões nascem no Notion e não direto no site:** a API do Notion não libera CORS para chamadas vindas de um site diferente — não dá pra escrever nela direto do navegador (diferente do GitHub, que libera). Escrever a partir de um script (aqui, via GitHub Actions) é o único caminho direto; o dashboard só reflete o que já está no Notion.
+
+Todos precisam dos secrets listados em `scripts/env.example` configurados em GitHub → Settings → Secrets and variables → Actions.
 
 ### Manual — scripts locais
 
@@ -99,7 +105,7 @@ Três categorias (Módulo 3 do documento de arquitetura):
 - **Categoria B — Formato**: mesma lógica editorial (brasileiros em outros países europeus).
 - **Categoria C — Qualidade**: mesmo nível de produção (criadores educativos explicativos).
 
-Preenchido vazio nesta migração — os nomes reais dos concorrentes ficam para você adicionar (pelo painel, aba Canais Monitorados, ou editando o arquivo direto).
+Populado com os 8 canais reais mapeados manualmente (7 diretos + 1 de formato) — recuperados de notas que já existiam em FICHIERS INSTAGRAM no Notion mas nunca tinham sido sincronizadas pro dashboard.
 
 ## Metas atuais
 

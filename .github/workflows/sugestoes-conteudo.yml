@@ -1,0 +1,50 @@
+name: Sugestões de Conteúdo (Módulo 5)
+
+# Toda segunda de manhã — depois que a semana já está visível no calendário,
+# antes da criadora planejar os próximos posts.
+on:
+  schedule:
+    - cron: '0 7 * * 1'   # 07h UTC segunda-feira (~08-09h Paris, conforme horário de verão)
+  workflow_dispatch: {}    # permite rodar manualmente pelo GitHub para testar
+
+jobs:
+  sugestoes:
+    runs-on: ubuntu-latest
+    # Sem isso, o GITHUB_TOKEN padrão é só leitura e o passo de commit no fim
+    # falha com "Permission ... denied to github-actions[bot]" (403).
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install -r scripts/requirements.txt
+
+      - name: Gerar sugestões de conteúdo
+        run: python scripts/gerar_sugestoes_conteudo.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_ANALISES_DB_ID: ${{ secrets.NOTION_ANALISES_DB_ID }}
+          NOTION_BENCHMARKS_DB_ID: ${{ secrets.NOTION_BENCHMARKS_DB_ID }}
+          NOTION_CALENDARIO_DB_ID: ${{ secrets.NOTION_CALENDARIO_DB_ID }}
+          # Caminho do insights.json na raiz do repo (mesmo arquivo que o dashboard lê):
+          INSIGHTS_JSON_PATH: insights.json
+
+      - name: Commitar insights.json atualizado
+        run: |
+          git config user.name "por-dentro-bot"
+          git config user.email "bot@users.noreply.github.com"
+          if [ -f "insights.json" ]; then
+            git add insights.json
+            git diff --cached --quiet && echo "Nada novo para commitar." || { git commit -m "chore: sugestões de conteúdo + calendário atualizado (auto)"; git push; }
+          else
+            echo "⚠ 'insights.json' não existe no checkout — nada para commitar nesta rodada."
+          fi
