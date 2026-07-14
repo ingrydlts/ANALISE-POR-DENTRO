@@ -173,6 +173,7 @@ hr.sep{border:none;border-top:1px solid rgba(61,43,31,0.1);margin:18px 0;}
       <button data-m="boas" onclick="switchModule('boas')">Boas Práticas</button>
       <button data-m="calendario" onclick="switchModule('calendario')">Calendário</button>
       <button data-m="canais" onclick="switchModule('canais')">Canais Monitorados</button>
+      <button data-m="performance-ig" onclick="switchModule('performance-ig')">Performance Instagram</button>
     </div>
 
     <!-- Concorrência -->
@@ -244,6 +245,20 @@ hr.sep{border:none;border-top:1px solid rgba(61,43,31,0.1);margin:18px 0;}
   "categoria_c_qualidade": []
 }</textarea>
       <div style="margin-top:14px;"><button class="btn ocre" onclick="publishCanais()">Publicar canais.json</button></div>
+    </div>
+
+    <!-- Performance Instagram -->
+    <div class="module-pane" id="mod-performance-ig">
+      <div class="warn-box">
+        Exporte do Instagram (Configurações → Sua atividade → Estatísticas → Total → exportar cada gráfico): <b>Interações, Visitas ao perfil, Visualizações, Cliques em um link, Alcance, Novos seguidores</b> — 6 arquivos CSV. Suba quantos tiver de uma vez (não precisa ser os 6). O período pode se sobrepor com um upload anterior — cada dia é atualizado individualmente, nada se perde.
+      </div>
+      <label>Arquivos CSV</label>
+      <div class="filedrop" onclick="document.getElementById('perf-ig-input').click()">
+        📊 Clique para escolher os CSVs (pode selecionar vários de uma vez)
+        <input type="file" id="perf-ig-input" accept=".csv" multiple onchange="handlePerfIgFiles(event)">
+      </div>
+      <div id="perf-ig-preview"></div>
+      <div style="margin-top:14px;"><button class="btn ocre" id="perf-ig-publish-btn" onclick="publishPerfIgFiles()" disabled>Publicar e disparar automações</button></div>
     </div>
 
     <div id="module-log" class="log" style="display:none;"></div>
@@ -349,6 +364,16 @@ async function putJsonFile(path, dataObj, sha, message) {
     branch: getConfig().branch
   };
   if (sha) body.sha = sha;
+  const res = await ghRequest(`contents/${path}`, { method: 'PUT', body: JSON.stringify(body) });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message || ('HTTP ' + res.status));
+  return json;
+}
+
+async function putRawFileBase64(path, base64Content, message) {
+  // Sem `sha`: cada upload de performance vai numa pasta datada nova, nunca
+  // sobrescreve um arquivo existente — não precisa buscar o sha atual antes.
+  const body = { message, content: base64Content, branch: getConfig().branch };
   const res = await ghRequest(`contents/${path}`, { method: 'PUT', body: JSON.stringify(body) });
   const json = await res.json();
   if (!res.ok) throw new Error(json.message || ('HTTP ' + res.status));
@@ -889,6 +914,85 @@ async function publishCanais() {
     }
   } catch (e) {
     mlog('Erro ao publicar: ' + e.message, 'err');
+  }
+}
+
+/* ============ PERFORMANCE INSTAGRAM (CSVs) ============ */
+// Mesmo mapeamento de scripts/processar_performance_instagram.py — só pra
+// mostrar na prévia qual métrica cada arquivo vai virar. Quem decide de
+// verdade é o script Python, isso aqui é só feedback visual.
+const MAPA_ARQUIVOS_PERF = {
+  interactions: 'Interações', visites: 'Visitas ao perfil', vues: 'Visualizações',
+  clics: 'Cliques em link', couverture: 'Alcance', followers: 'Novos seguidores'
+};
+let perfIgFiles = [];
+
+function reconhecerMetricaArquivo(nomeArquivo) {
+  const nome = nomeArquivo.toLowerCase();
+  for (const [pista, label] of Object.entries(MAPA_ARQUIVOS_PERF)) {
+    if (nome.includes(pista)) return label;
+  }
+  return null;
+}
+
+function handlePerfIgFiles(event) {
+  perfIgFiles = Array.from(event.target.files).filter(f => f.name.toLowerCase().endsWith('.csv'));
+  const preview = document.getElementById('perf-ig-preview');
+  if (!perfIgFiles.length) {
+    preview.innerHTML = '';
+    document.getElementById('perf-ig-publish-btn').disabled = true;
+    return;
+  }
+  preview.innerHTML = perfIgFiles.map(f => {
+    const metrica = reconhecerMetricaArquivo(f.name);
+    return `<div class="small" style="margin-top:6px;">${metrica ? '✓' : '⚠'} <b>${f.name}</b> ${metrica ? '→ ' + metrica : '— não reconheci a métrica pelo nome, mas será enviado mesmo assim'}</div>`;
+  }).join('');
+  document.getElementById('perf-ig-publish-btn').disabled = false;
+}
+
+function _arrayBufferParaBase64(buffer) {
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const CHUNK = 0x8000;
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
+  }
+  return btoa(binary);
+}
+
+async function publishPerfIgFiles() {
+  const cfg = getConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) { mlog('Configuração do GitHub incompleta (Passo 1).', 'err'); return; }
+  if (!perfIgFiles.length) { mlog('Escolha pelo menos um arquivo CSV.', 'err'); return; }
+
+  const pasta = `dados/instagram/${new Date().toISOString().slice(0, 10)}`;
+  mlog(`Publicando ${perfIgFiles.length} arquivo(s) em ${pasta}/ — isso dispara o workflow "Performance Instagram" sozinho.`);
+
+  let enviados = 0;
+  for (const file of perfIgFiles) {
+    try {
+      const buffer = await file.arrayBuffer();
+      const base64 = _arrayBufferParaBase64(buffer);
+      const json = await putRawFileBase64(`${pasta}/${file.name}`, base64, `Performance Instagram — sobe ${file.name}`);
+      enviados++;
+      mlog(`  ✓ ${file.name} publicado.`, 'ok');
+      if (enviados === perfIgFiles.length && json.commit && json.commit.html_url) {
+        const a = document.createElement('a');
+        a.href = json.commit.html_url; a.target = '_blank'; a.textContent = 'Ver commit no GitHub →';
+        a.style.color = 'var(--marrom)';
+        document.getElementById('module-log').appendChild(a);
+      }
+    } catch (e) {
+      mlog(`  ✖ Erro ao publicar ${file.name}: ${e.message}`, 'err');
+    }
+  }
+
+  if (enviados > 0) {
+    mlog(`${enviados} arquivo(s) publicado(s). O workflow "Performance Instagram" vai rodar sozinho em instantes — ele processa os CSVs e depois já encadeia audiência, concorrência e sugestões de conteúdo.`, 'ok');
+    perfIgFiles = [];
+    document.getElementById('perf-ig-preview').innerHTML = '';
+    document.getElementById('perf-ig-input').value = '';
+    document.getElementById('perf-ig-publish-btn').disabled = true;
   }
 }
 

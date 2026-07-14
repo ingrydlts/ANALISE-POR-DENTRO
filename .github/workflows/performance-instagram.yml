@@ -1,0 +1,99 @@
+name: Performance Instagram (disparo por upload)
+
+# Gatilho por ARQUIVO, não por agenda: toda vez que a criadora sobe CSVs
+# novos em dados/instagram/ (pelo painel-atualizacao.html ou direto no
+# GitHub), este workflow roda sozinho — processa os CSVs e, em seguida,
+# encadeia as 3 automações que já existem (audiência, concorrência,
+# sugestões de conteúdo), agora usando os dados de performance frescos.
+on:
+  push:
+    paths:
+      - 'dados/instagram/**'
+  workflow_dispatch: {}
+
+jobs:
+  performance-e-cascata:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install -r scripts/requirements.txt
+
+      - name: Processar CSVs de performance Instagram
+        run: python scripts/processar_performance_instagram.py
+        env:
+          INSIGHTS_JSON_PATH: insights.json
+          DADOS_INSTAGRAM_DIR: dados/instagram
+
+      # ── Cascata: as 3 automações rodam em sequência, usando o mesmo
+      # checkout local (cada uma lê/escreve o insights.json já atualizado
+      # pela anterior) — só um commit no final, não um por etapa.
+      - name: Encadear — Enriquecer conversas de audiência
+        continue-on-error: true
+        run: python scripts/enriquecer_conversas_audiencia.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
+
+      - name: Encadear — Análise de audiência
+        continue-on-error: true
+        run: python scripts/analyze_audiencia.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
+          NOTION_ANALISES_DB_ID: ${{ secrets.NOTION_ANALISES_DB_ID }}
+          INSIGHTS_JSON_PATH: insights.json
+
+      - name: Encadear — Análise de concorrência
+        continue-on-error: true
+        run: python scripts/analyze_concorrencia.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
+          NOTION_COLETAS_DB_ID: ${{ secrets.NOTION_COLETAS_DB_ID }}
+          NOTION_BENCHMARKS_DB_ID: ${{ secrets.NOTION_BENCHMARKS_DB_ID }}
+          INSIGHTS_JSON_PATH: insights.json
+
+      - name: Encadear — Sugestões de conteúdo
+        continue-on-error: true
+        run: python scripts/gerar_sugestoes_conteudo.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_ANALISES_DB_ID: ${{ secrets.NOTION_ANALISES_DB_ID }}
+          NOTION_BENCHMARKS_DB_ID: ${{ secrets.NOTION_BENCHMARKS_DB_ID }}
+          NOTION_CALENDARIO_DB_ID: ${{ secrets.NOTION_CALENDARIO_DB_ID }}
+          INSIGHTS_JSON_PATH: insights.json
+
+      - name: Commitar tudo (performance + cascata)
+        run: |
+          git config user.name "por-dentro-bot"
+          git config user.email "bot@users.noreply.github.com"
+          if [ -f "insights.json" ]; then
+            git add insights.json
+            git diff --cached --quiet && echo "Nada novo para commitar." || { git commit -m "chore: performance Instagram + cascata de audiência/concorrência/sugestões (auto)"; git push; }
+          else
+            echo "⚠ 'insights.json' não existe no checkout — nada para commitar nesta rodada."
+          fi
+
+# ── Sobre os 'continue-on-error: true' nos passos encadeados ─────────────────
+# Cada automação encadeada já lida com "nada pra processar" internamente
+# (ex.: sem bilan novo, sem canal de concorrência) e retorna sem erro nesses
+# casos. O continue-on-error aqui é só uma rede de segurança: se uma etapa
+# falhar de verdade (ex.: API fora do ar), as outras ainda rodam e o que
+# já foi processado (inclusive os CSVs de performance) ainda é commitado —
+# uma falha isolada não trava a cadeia inteira.

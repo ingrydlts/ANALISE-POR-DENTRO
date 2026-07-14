@@ -362,10 +362,30 @@ function renderMetas() {
 /* ══════════════════════ SEMANAL ══════════════════════ */
 function renderSemanal() {
   const semanas = DATA.semanas || [];
+  const diario = DATA.instagram_diario || [];
   const pane = document.getElementById('pane-semanal');
-  if (!semanas.length) {
+  if (!semanas.length && !diario.length) {
     pane.innerHTML = `<div class="empty-tab">Nenhum check-in semanal registrado ainda.<br>Use <code>python3 scripts/atualizar_semana.py</code> ou o painel-atualizacao.html.</div>`;
     return;
+  }
+
+  let htmlDiario = '';
+  if (diario.length) {
+    const soma = campo => diario.reduce((s, d) => s + (d[campo] || 0), 0);
+    const media = campo => Math.round(soma(campo) / diario.length);
+    htmlDiario = `
+      <div class="sec-hd"><h2>Instagram <em>Diário</em></h2><span class="sub">${diario.length} dia(s) · ${esc(diario[0].data)} a ${esc(diario[diario.length-1].data)} · sobe pelo painel-atualizacao.html</span></div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kl">Alcance médio/dia</div><div class="kv">${fmtNum(media('alcance'))}</div><div class="kn">${fmtNum(soma('alcance'))} no período</div></div>
+        <div class="kpi"><div class="kl">Interações totais</div><div class="kv">${fmtNum(soma('interacoes'))}</div><div class="kn">${fmtNum(media('interacoes'))}/dia em média</div></div>
+        <div class="kpi"><div class="kl">Seguidores ganhos</div><div class="kv">+${fmtNum(soma('seguidores_ganhos'))}</div><div class="kn">no período</div></div>
+        <div class="kpi"><div class="kl">Cliques em link</div><div class="kv">${fmtNum(soma('cliques_link'))}</div><div class="kn">${fmtNum(soma('visitas_perfil'))} visitas ao perfil</div></div>
+      </div>
+      <div class="charts-grid">
+        <div class="chart-card"><h3>Alcance diário</h3><canvas id="chart-diario-alcance" height="180"></canvas></div>
+        <div class="chart-card"><h3>Interações diárias</h3><canvas id="chart-diario-interacoes" height="180"></canvas></div>
+      </div>
+    `;
   }
 
   const rows = semanas.map(s => `
@@ -379,7 +399,7 @@ function renderSemanal() {
       <td style="max-width:260px;">${esc(s.nota)}</td>
     </tr>`).join('');
 
-  pane.innerHTML = `
+  const htmlSemanal = semanas.length ? `
     <div class="sec-hd"><h2>Check-ins <em>Semanais</em></h2><span class="sub">${semanas.length} semana(s) registrada(s)</span></div>
     <div class="charts-grid">
       <div class="chart-card"><h3>Alcance por semana</h3><canvas id="chart-semanal-alcance" height="180"></canvas></div>
@@ -391,7 +411,25 @@ function renderSemanal() {
         <tbody>${rows}</tbody>
       </table>
     </div>
-  `;
+  ` : '';
+
+  pane.innerHTML = htmlDiario + htmlSemanal;
+
+  if (diario.length) {
+    const labelsDiario = diario.map(d => d.data.slice(5)); // MM-DD, mais legível numa série longa
+    new Chart(document.getElementById('chart-diario-alcance'), {
+      type:'line',
+      data:{labels:labelsDiario, datasets:[{label:'Alcance', data:diario.map(d=>d.alcance ?? null), borderColor:'#C49A4E', backgroundColor:'rgba(196,154,78,0.12)', fill:true, tension:0.25, pointRadius:0}]},
+      options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}, x:{ticks:{maxTicksLimit:10}}}}
+    });
+    new Chart(document.getElementById('chart-diario-interacoes'), {
+      type:'line',
+      data:{labels:labelsDiario, datasets:[{label:'Interações', data:diario.map(d=>d.interacoes ?? null), borderColor:'#6B2737', backgroundColor:'rgba(107,39,55,0.1)', fill:true, tension:0.25, pointRadius:0}]},
+      options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}, x:{ticks:{maxTicksLimit:10}}}}
+    });
+  }
+
+  if (!semanas.length) return;
 
   const labels = semanas.map(s => s.periodo);
   new Chart(document.getElementById('chart-semanal-alcance'), {
