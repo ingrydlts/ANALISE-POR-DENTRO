@@ -21,6 +21,7 @@ Os dois repositórios tinham, cada um, sua própria cópia de `insights.json`, d
 ├── painel-atualizacao.html       ← publica no GitHub sem terminal (cola um token, revisa, clica em Publicar)
 ├── insights.json                 ← memória acumulada: metas + semanas + ciclos + bilans_audiencia + concorrencia + boas_praticas + calendario + audiencia_personas
 ├── canais.json                   ← concorrentes monitorados (categorias A/B/C), exibido na aba Concorrência
+├── dados/instagram/<data>/       ← CSVs de performance que a criadora sobe (gatilho por upload, não por agenda)
 ├── scripts/
 │   ├── atualizar_semana.py           ← adiciona um check-in semanal (terminal)
 │   ├── collect.py                    ← Módulo 3: coleta semanal de canais concorrentes via YouTube API → Notion
@@ -28,6 +29,7 @@ Os dois repositórios tinham, cada um, sua própria cópia de `insights.json`, d
 │   ├── analyze_audiencia.py          ← Módulo 3: bilan semanal de audiência → Notion + insights.json
 │   ├── enriquecer_conversas_audiencia.py ← transcreve prints de DMs/comentários/concorrentes antes da análise
 │   ├── gerar_sugestoes_conteudo.py   ← Módulo 5: sugere posts novos (audiência + concorrência + calendário) → Notion + insights.json
+│   ├── processar_performance_instagram.py ← lê os CSVs de dados/instagram/ → insights.json["instagram_diario"]
 │   ├── create_tasks.py               ← Módulo 7: cria tarefas no Notion a partir do ciclo mais recente
 │   ├── requirements.txt
 │   └── env.example
@@ -35,7 +37,9 @@ Os dois repositórios tinham, cada um, sua própria cópia de `insights.json`, d
     ├── coleta-semanal.yml            ← sexta à noite
     ├── analise-audiencia.yml         ← sexta ~07h Paris
     ├── analise-concorrencia.yml      ← primeira segunda-feira do mês
-    └── sugestoes-conteudo.yml        ← segunda de manhã
+    ├── sugestoes-conteudo.yml        ← segunda de manhã
+    └── performance-instagram.yml     ← dispara quando dados/instagram/** muda (upload), não por agenda —
+                                          processa os CSVs e encadeia audiência + concorrência + sugestões
 ```
 
 > ⚠️ **Pendência conhecida:** o repositório original tinha um `.github/workflows/create-tasks.yml` para o Módulo 7, mas o conteúdo desse arquivo, ao migrar, revelou-se ser código Python (uma versão v2 de `create_tasks.py` com dedup por ação, mais recente que a que estava em `scripts/create_tasks.py`) — não um YAML de workflow válido. Aproveitei a versão v2 (é a melhor lógica) como o novo `scripts/create_tasks.py`, mas **não recriei o workflow** porque não sei o gatilho pretendido (push? cron?) e não quis adivinhar algo que dispara automações na sua Notion. Se você quiser o Módulo 7 automatizado, me diga quando rodar e eu escrevo o `.yml`.
@@ -62,6 +66,7 @@ Depois acesse `http://localhost:8000`.
 | `boas_praticas` | Síntese mensal — aplicar agora / testar / ignorar / padrões confirmados | manual, via painel |
 | `calendario` | Calendário editorial mensal (tema, 4 semanas, formatos, datas sazonais) | manual, via painel |
 | `calendario_posts` | Snapshot do calendário real do Notion (todo post com data marcada) — alimenta a grade "Calendário Real" no dashboard | `gerar_sugestoes_conteudo.py` (automático, segunda) |
+| `instagram_diario` | Série diária real (alcance, interações, visitas, cliques, seguidores ganhos) — alimenta "Instagram Diário" na aba Semanal | `processar_performance_instagram.py` (automático, ao subir CSV) |
 | `audiencia_personas` | Personas fixas (P01–P04), jornada, princípio editorial — muda raramente | manual, via painel |
 
 Regra inegociável (herdada do documento de arquitetura): **nada aqui é sobrescrito** — tudo é adicionado ao final do array correspondente, com upsert por `id` só quando é uma correção do mesmo período.
@@ -88,7 +93,11 @@ Gere o token em GitHub → Settings → Developer settings → Fine-grained toke
 
   **Por que as sugestões nascem no Notion e não direto no site:** a API do Notion não libera CORS para chamadas vindas de um site diferente — não dá pra escrever nela direto do navegador (diferente do GitHub, que libera). Escrever a partir de um script (aqui, via GitHub Actions) é o único caminho direto; o dashboard só reflete o que já está no Notion.
 
+- `scripts/processar_performance_instagram.py`: **gatilho por upload, não por agenda.** Roda toda vez que um CSV novo é adicionado em `dados/instagram/**` (pelo painel, aba "Performance Instagram", ou direto no GitHub). Processa os 6 CSVs que o Instagram exporta (Interações, Visitas, Visualizações, Cliques em link, Alcance, Novos seguidores — formato nativo da Meta, UTF-16), atualiza `instagram_diario` por data, e **encadeia na mesma execução** `enriquecer_conversas_audiencia.py` → `analyze_audiencia.py` → `analyze_concorrencia.py` → `gerar_sugestoes_conteudo.py`, com um único commit no final. Isso não substitui os agendamentos semanais/mensais das outras 3 automações — os dois gatilhos convivem: cron continua rodando sozinho, e cada upload de performance dispara uma rodada extra.
+
 Todos precisam dos secrets listados em `scripts/env.example` configurados em GitHub → Settings → Secrets and variables → Actions.
+
+**Como exportar os CSVs do Instagram:** app do Instagram → seu perfil → menu → **Configurações e atividade → Sua atividade → Estatísticas → Total → Exportar dados** (ou pelo gráfico de cada métrica na aba Insights, ícone de exportar). Repita para as 6 métricas: Interações, Visitas ao perfil, Visualizações, Cliques em um link, Alcance, Novos seguidores. Suba pelo painel quantas tiver — não precisa ser as 6 de uma vez, e o período pode se sobrepor com um upload anterior sem risco de duplicar.
 
 ### Manual — scripts locais
 
