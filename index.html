@@ -181,18 +181,24 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
 .real-cal-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
 .real-cal-tabs button{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.5px;padding:7px 16px;border-radius:20px;border:1px solid rgba(61,43,31,0.18);background:var(--off-white);color:var(--marrom);cursor:pointer;}
 .real-cal-tabs button.on{background:var(--marrom);color:var(--off-white);border-color:var(--marrom);}
-.real-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:rgba(61,43,31,0.1);border-radius:10px;overflow:hidden;border:1px solid rgba(61,43,31,0.1);margin-bottom:16px;}
-.real-cal-dow{background:var(--marrom);color:var(--ocre);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;text-align:center;padding:8px 4px;}
-.real-cal-cell{background:var(--off-white);min-height:86px;padding:6px;display:flex;flex-direction:column;gap:3px;}
+.real-cal-scroll{overflow-x:auto;margin-bottom:16px;-webkit-overflow-scrolling:touch;}
+.real-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(112px,1fr));gap:1px;background:rgba(61,43,31,0.1);border-radius:10px;overflow:hidden;border:1px solid rgba(61,43,31,0.1);min-width:784px;}
+.real-cal-dow{background:var(--marrom);color:var(--ocre);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;text-align:center;padding:8px 4px;position:sticky;top:0;}
+.real-cal-cell{background:var(--off-white);min-height:86px;min-width:0;padding:6px;display:flex;flex-direction:column;gap:3px;}
 .real-cal-cell.empty{background:rgba(61,43,31,0.02);}
 .real-cal-cell.today{box-shadow:inset 0 0 0 2px var(--ocre);}
-.real-cal-daynum{font-family:'DM Mono',monospace;font-size:10px;color:var(--cinza);margin-bottom:2px;}
-.real-cal-chip{font-size:10px;line-height:1.3;padding:3px 6px;border-radius:5px;cursor:pointer;border-left:3px solid var(--cinza);background:var(--bege-escuro);color:var(--marrom);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.real-cal-daynum{font-family:'DM Mono',monospace;font-size:10px;color:var(--cinza);margin-bottom:2px;font-variant-numeric:tabular-nums;}
+.real-cal-chip{font-size:10px;line-height:1.3;padding:3px 6px;border-radius:5px;cursor:pointer;border-left:3px solid var(--cinza);background:var(--bege-escuro);color:var(--marrom);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;}
 .real-cal-chip:hover{filter:brightness(0.96);}
 .real-cal-chip.on{outline:2px solid var(--marrom);}
 .real-cal-chip.stage-done{border-left-color:var(--verde);}
 .real-cal-chip.stage-progress{border-left-color:var(--ocre);}
 .real-cal-chip.stage-todo{border-left-color:var(--cinza);}
+.real-cal-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:var(--marrom);border-radius:10px;padding:16px 18px;margin-bottom:16px;}
+@media(max-width:700px){.real-cal-stats{grid-template-columns:1fr 1fr;}}
+.real-cal-stats .cs-item{text-align:center;}
+.real-cal-stats .cs-num{font-family:'Playfair Display',serif;font-size:22px;color:var(--off-white);font-variant-numeric:tabular-nums;}
+.real-cal-stats .cs-lbl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--ocre);margin-top:2px;}
 .real-cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;font-size:11px;color:var(--oliva);}
 .real-cal-legend span{display:inline-flex;align-items:center;gap:5px;}
 .real-cal-legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
@@ -715,12 +721,13 @@ function renderCalendario() {
 
     <div class="sec-hd"><h2>Calendário <em>Real</em></h2><span class="sub">replicado do Notion — clique num post pra ver os detalhes</span></div>
     <div id="real-cal-tabs" class="real-cal-tabs"></div>
+    <div id="real-cal-stats" class="real-cal-stats"></div>
     <div class="real-cal-legend">
       <span><i style="background:var(--verde)"></i> Pronto (Scheduled/Done)</span>
       <span><i style="background:var(--ocre)"></i> Em produção (Design/Research/to film/to edit)</span>
       <span><i style="background:var(--cinza)"></i> Ainda ideia (Idea/Backlog)</span>
     </div>
-    <div id="real-cal-grid" class="real-cal-grid"></div>
+    <div class="real-cal-scroll"><div id="real-cal-grid" class="real-cal-grid"></div></div>
     <div id="real-cal-detail"></div>
 
     <div class="sec-hd"><h2>Calendário <em>Editorial</em></h2><span class="sub">${cal.length} análise(s) publicada(s)</span></div>
@@ -752,17 +759,15 @@ function renderCalendario() {
                   <div class="wp"><b>News</b> ${esc(w.newsletter) || '—'}</div>
                 </div>`).join('')}
             </div>
-            ${c.resumo_formatos ? `
-            <div class="cal-summary">
-              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.youtube ?? 0}</div><div class="cs-lbl">YouTube</div></div>
-              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.reels ?? 0}</div><div class="cs-lbl">Reels</div></div>
-              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.carrosseis ?? 0}</div><div class="cs-lbl">Carrosséis</div></div>
-              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.stories_semana ?? 0}</div><div class="cs-lbl">Stories/semana</div></div>
-            </div>` : ''}
             ${(c.datas_sazonais||[]).length ? `<div class="bench-block" style="margin-top:14px;"><div class="lbl">Datas sazonais a não perder</div><ul class="insight-list">${c.datas_sazonais.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-            ${(c.alertas_producao||[]).length ? `<div class="bench-block"><div class="lbl">Alertas de produção</div><ul class="insight-list">${c.alertas_producao.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-            ${(c.acoes_aplicadas||[]).length ? `<div class="quadrant aplicar" style="margin-top:14px;"><div class="qh">Ações já aplicadas</div><ul>${c.acoes_aplicadas.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-            ${(c.decisoes_pendentes||[]).length ? `<div class="quadrant testar" style="margin-top:14px;"><div class="qh">Decisões pendentes</div><ul>${c.decisoes_pendentes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+            ${(c.posts_analisados||[]).length ? `
+            <div class="sec-hd" style="margin:24px 0 14px;"><h2 style="font-size:16px;">Posts já publicados <em>este mês</em></h2></div>
+            <div class="tbl-wrap" style="margin-bottom:16px;">
+              <table class="data-tbl"><thead><tr><th>Data</th><th>Post</th><th>Formato</th><th>Nota</th></tr></thead>
+              <tbody>${c.posts_analisados.map(p => `<tr><td>${esc(p.data)}</td><td>${esc(p.titulo)}</td><td>${esc(p.formato)}</td><td>${esc(p.observacao)}</td></tr>`).join('')}</tbody></table>
+            </div>` : ''}
+            ${(c.pode_continuar||[]).length ? `<div class="quadrant aplicar"><div class="qh">O que pode continuar funcionando</div><ul>${c.pode_continuar.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+            ${(c.campo_melhora||[]).length ? `<div class="quadrant testar" style="margin-top:14px;"><div class="qh">O que tem campo para melhora</div><ul>${c.campo_melhora.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
           </div>
         </div>`;
     });
@@ -796,7 +801,22 @@ function renderRealCalendar() {
     return `<button class="${m === realCalMonth ? 'on' : ''}" onclick="goRealCalMonth('${m}')">${MES_NOMES[mo-1]} ${y}</button>`;
   }).join('');
 
+  drawRealCalStats();
   drawRealCalGrid();
+}
+
+function drawRealCalStats() {
+  const statsEl = document.getElementById('real-cal-stats');
+  if (!statsEl) return;
+  const posts = (DATA.calendario_posts || []).filter(p => p.data.slice(0,7) === realCalMonth);
+  const count = fmt => posts.filter(p => p.formato === fmt).length;
+  const total = posts.length;
+  statsEl.innerHTML = `
+    <div class="cs-item"><div class="cs-num">${total}</div><div class="cs-lbl">Posts no mês</div></div>
+    <div class="cs-item"><div class="cs-num">${count('Reel')}</div><div class="cs-lbl">Reels</div></div>
+    <div class="cs-item"><div class="cs-num">${count('Carrossel')}</div><div class="cs-lbl">Carrosséis</div></div>
+    <div class="cs-item"><div class="cs-num">${posts.filter(p => (p.serie||[]).length).length}</div><div class="cs-lbl">De série</div></div>
+  `;
 }
 
 function goRealCalMonth(m) {
