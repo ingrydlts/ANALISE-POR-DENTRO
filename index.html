@@ -1118,8 +1118,11 @@ const GH_CFG_KEY = 'pordentro_gh_config_v2';
 function ghLoadConfig() {
   const raw = localStorage.getItem(GH_CFG_KEY);
   const cfg = raw ? JSON.parse(raw) : {};
-  $('ghOwner').value = cfg.owner || '';
-  $('ghRepo').value = cfg.repo || '';
+  // Owner/repo vêm com valor real por padrão (não só placeholder) — este site é
+  // de uso pessoal único, e um campo "preenchido visualmente" mas vazio de verdade
+  // gera URL quebrada (/repos//) que falha de um jeito difícil de diagnosticar.
+  $('ghOwner').value = cfg.owner || 'ingrydlts';
+  $('ghRepo').value = cfg.repo || 'ANALISE-POR-DENTRO';
   $('ghBranch').value = cfg.branch || 'main';
   $('ghToken').value = cfg.token || '';
   ghPill(cfg.owner && cfg.repo && cfg.token ? 'warn' : 'warn',
