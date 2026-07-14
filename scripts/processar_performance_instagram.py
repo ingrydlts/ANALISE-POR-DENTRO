@@ -114,17 +114,10 @@ def processar_arquivos_csv() -> dict:
     return agregado
 
 
-def atualizar_instagram_diario(agregado: dict) -> int:
-    """Upsert por data em insights.json['instagram_diario']. Um novo upload
-    substitui só os campos/dias que ele traz — não apaga métricas de dias
-    que só vieram num upload anterior."""
-    path = Path(INSIGHTS_JSON_PATH)
-    if not path.exists():
-        print(f"  ⚠ {INSIGHTS_JSON_PATH} não existe — criando esqueleto mínimo.")
-        data = {}
-    else:
-        data = json.loads(path.read_text(encoding="utf-8"))
-
+def atualizar_instagram_diario(agregado: dict, data: dict) -> int:
+    """Upsert por data em data['instagram_diario'] (dict já carregado do
+    insights.json). Um novo upload substitui só os campos/dias que ele traz
+    — não apaga métricas de dias que só vieram num upload anterior."""
     diario = {d["data"]: d for d in data.get("instagram_diario", [])}
     atualizados = 0
     for data_str, metricas in agregado.items():
@@ -135,8 +128,68 @@ def atualizar_instagram_diario(agregado: dict) -> int:
 
     data["instagram_diario"] = sorted(diario.values(), key=lambda e: e["data"])
     data["instagram_diario_atualizado_em"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     return atualizados
+
+
+# ── Gera check-ins semanais automáticos a partir do diário ──────────────────
+# A tabela "semanas" (aba Semanal do dashboard) era só preenchida à mão
+# (atualizar_semana.py). Agora que há dado diário real, geramos as semanas
+# que ainda não existem — SEM tocar nas que já existem (as de junho têm
+# anotação escrita à mão, cruzada com o Notion; nunca sobrescrever).
+# Mesmo esquema de "semana" já usado nos ciclos migrados: blocos de 7 dias
+# dentro do mês (1–7, 8–14, 15–21, 22–28, 29–fim), id "AAAA-MM-Sn".
+MES_ABREV_PT = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"]
+
+
+def gerar_semanas_automaticas(data: dict) -> int:
+    diario = sorted(data.get("instagram_diario", []), key=lambda e: e["data"])
+    if not diario:
+        return 0
+
+    por_mes: dict[str, list[dict]] = {}
+    for e in diario:
+        por_mes.setdefault(e["data"][:7], []).append(e)
+
+    semanas_existentes = {s["id"]: s for s in data.get("semanas", [])}
+    novas = 0
+
+    for mes_ref, dias in por_mes.items():
+        ano, mes = int(mes_ref[:4]), int(mes_ref[5:7])
+        blocos = [(1, 7), (8, 14), (15, 21), (22, 28), (29, 31)]
+        for i, (ini, fim) in enumerate(blocos, start=1):
+            bloco_dias = [d for d in dias if ini <= int(d["data"][8:10]) <= fim]
+            if not bloco_dias:
+                continue
+            id_semana = f"{mes_ref}-S{i}"
+            if id_semana in semanas_existentes:
+                continue  # já existe (manual ou gerado antes) — não sobrescreve
+
+            alcance = sum(d.get("alcance") or 0 for d in bloco_dias)
+            interacoes = sum(d.get("interacoes") or 0 for d in bloco_dias)
+            seguidores = sum(d.get("seguidores_ganhos") or 0 for d in bloco_dias)
+            engajamento_pct = round(interacoes / alcance * 100, 1) if alcance else 0.0
+
+            dia_fim_real = int(bloco_dias[-1]["data"][8:10])
+            periodo = f"{ini}–{dia_fim_real} {MES_ABREV_PT[mes-1]} {ano}"
+
+            data.setdefault("semanas", []).append({
+                "id": id_semana,
+                "periodo": periodo,
+                "mes_ref": mes_ref,
+                "alcance": alcance,
+                "interacoes": interacoes,
+                "seguidores_ganhos": seguidores,
+                "engajamento_pct": engajamento_pct,
+                "conta_para_meta": True,
+                "origem": "instagram_diario_auto",
+                "nota": f"Gerado automaticamente a partir de {len(bloco_dias)} dia(s) de dados reais (instagram_diario)."
+            })
+            semanas_existentes[id_semana] = True
+            novas += 1
+
+    if novas:
+        data["semanas"] = sorted(data["semanas"], key=lambda s: s["id"])
+    return novas
 
 
 def main():
@@ -145,8 +198,16 @@ def main():
     if not agregado:
         print("Nenhum dado novo pra processar.")
         return
-    atualizados = atualizar_instagram_diario(agregado)
-    print(f"\n✓ {atualizados} dia(s) atualizado(s) em instagram_diario ({len(agregado)} dia(s) no total dos arquivos lidos).")
+
+    path = Path(INSIGHTS_JSON_PATH)
+    data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    atualizados = atualizar_instagram_diario(agregado, data)
+    print(f"✓ {atualizados} dia(s) atualizado(s) em instagram_diario ({len(agregado)} dia(s) no total dos arquivos lidos).")
+
+    novas_semanas = gerar_semanas_automaticas(data)
+    print(f"✓ {novas_semanas} semana(s) nova(s) gerada(s) automaticamente em 'semanas' (as já existentes não foram tocadas).")
+
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
     print("\n=== Concluído ===")
 
 

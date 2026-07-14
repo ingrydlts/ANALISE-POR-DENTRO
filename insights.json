@@ -40,6 +40,66 @@
   },
   "semanas": [
     {
+      "id": "2026-05-S1",
+      "periodo": "1–7 Mai 2026",
+      "mes_ref": "2026-05",
+      "alcance": 1073,
+      "interacoes": 142,
+      "seguidores_ganhos": 16,
+      "engajamento_pct": 13.2,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 7 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-05-S2",
+      "periodo": "8–14 Mai 2026",
+      "mes_ref": "2026-05",
+      "alcance": 4331,
+      "interacoes": 675,
+      "seguidores_ganhos": 30,
+      "engajamento_pct": 15.6,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 7 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-05-S3",
+      "periodo": "15–21 Mai 2026",
+      "mes_ref": "2026-05",
+      "alcance": 8650,
+      "interacoes": 1234,
+      "seguidores_ganhos": 146,
+      "engajamento_pct": 14.3,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 7 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-05-S4",
+      "periodo": "22–28 Mai 2026",
+      "mes_ref": "2026-05",
+      "alcance": 14402,
+      "interacoes": 2972,
+      "seguidores_ganhos": 397,
+      "engajamento_pct": 20.6,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 7 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-05-S5",
+      "periodo": "29–31 Mai 2026",
+      "mes_ref": "2026-05",
+      "alcance": 2827,
+      "interacoes": 519,
+      "seguidores_ganhos": 54,
+      "engajamento_pct": 18.4,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 3 dia(s) de dados reais (instagram_diario)."
+    },
+    {
       "id": "2026-06-S1",
       "periodo": "1–7 Jun 2026",
       "mes_ref": "2026-06",
@@ -153,6 +213,30 @@
         ]
       },
       "nota": "Sprint final — 2 dias, ~70% dos seguidores do mês inteiro, a partir de só 1 post agendado."
+    },
+    {
+      "id": "2026-07-S1",
+      "periodo": "1–7 Jul 2026",
+      "mes_ref": "2026-07",
+      "alcance": 9226,
+      "interacoes": 1417,
+      "seguidores_ganhos": 100,
+      "engajamento_pct": 15.4,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 7 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-07-S2",
+      "periodo": "8–13 Jul 2026",
+      "mes_ref": "2026-07",
+      "alcance": 8359,
+      "interacoes": 1460,
+      "seguidores_ganhos": 97,
+      "engajamento_pct": 17.5,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 6 dia(s) de dados reais (instagram_diario)."
     }
   ],
   "bilans_audiencia": [
