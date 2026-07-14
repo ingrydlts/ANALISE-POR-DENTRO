@@ -1,7 +1,49 @@
 {
   "atualizado_em": "2026-07-14",
   "nota": "Preencher com os concorrentes reais monitorados. collect.py lê a base COLETAS YOUTUBE do Notion (não este arquivo) para a coleta automática — este arquivo é a lista de referência exibida no dashboard, categorizada conforme o Módulo 3 do documento de arquitetura.",
-  "categoria_a_diretos": [],
-  "categoria_b_formato": [],
+  "categoria_a_diretos": [
+    {
+      "nome": "Max Petterson — Em Paris desde 2014",
+      "plataforma": "YOUTUBE",
+      "nota": "Mais de 33M de views acumulados. Mais voltado a entretenimento e vida parisiense do que educação sobre imigração."
+    },
+    {
+      "nome": "Bruna — Au Pair na França desde 2018",
+      "plataforma": "YOUTUBE",
+      "nota": "Nicho dentro do nicho: foco específico no programa Au Pair. Útil para quem quer esse caminho, mas escopo limitado."
+    },
+    {
+      "nome": "Conexão Paris",
+      "plataforma": "YOUTUBE",
+      "nota": "Projeto guarda-chuva (site + YouTube + redes). Foco em turismo e dicas para visitantes. Fala com turista, não com imigrante. Lacuna: nenhum conteúdo sobre sistema francês para quem mora lá."
+    },
+    {
+      "nome": "Vivendo em Paris — Moema Rodriguez",
+      "plataforma": "YOUTUBE",
+      "nota": "Guia brasileira em Paris há 10+ anos. Foco em turismo e lifestyle. Lacuna: pouco conteúdo sobre sistema francês (trabalho, saúde, burocracia)."
+    },
+    {
+      "nome": "Um Brasileiro na França",
+      "plataforma": "YOUTUBE",
+      "nota": "Foco em aventuras e paisagens. Mais vlog de viagem do que imigração prática. Lacuna: quase não aborda processos reais de quem mora lá."
+    },
+    {
+      "nome": "Ingrid — Morando na França desde 2012",
+      "plataforma": "YOUTUBE",
+      "nota": "Histórias e perrengues da imigração. Tom narrativo/emocional. Lacuna: pouca análise de sistemas e estrutura didática."
+    },
+    {
+      "nome": "Carina Maccari na França",
+      "plataforma": "YOUTUBE",
+      "nota": "Engenheira civil, fez pós na França. Vlogs sobre povo francês e rotina. Tom pessoal e casual. Lacuna: falta estrutura analítica e profundidade em temas de sistema."
+    }
+  ],
+  "categoria_b_formato": [
+    {
+      "nome": "Euro Dicas",
+      "plataforma": "YOUTUBE",
+      "nota": "Referência de formato — brasileiro explicando vida na Europa de forma prática, tom informativo, boa curadoria, tem escala. Monitorar como benchmark de formato."
+    }
+  ],
   "categoria_c_qualidade": []
 }

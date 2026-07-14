@@ -666,7 +666,22 @@
       "pergunta_editorial": "Se 2 publicações geraram 70% do crescimento de Junho, qual é o padrão que define esse tipo de conteúdo — tema, formato, gancho ou dia — e como transformar isso em sistema replicável para Julho?"
     }
   ],
-  "concorrencia": [],
+  "concorrencia": [
+    {
+      "id": "2026-07-manual",
+      "periodo": "Julho 2026 (síntese manual — benchmark automático ainda não rodou)",
+      "gerado_em": "2026-07-14",
+      "canais_analisados": {
+        "youtube": 8,
+        "instagram": 0
+      },
+      "o_que_funciona": "Euro Dicas se destaca como a única referência de formato com escala real: tom informativo, boa curadoria, produção consistente. Os demais 7 canais (Categoria A, concorrência direta) competem sobretudo em lifestyle/vlog de imigração — histórias pessoais, turismo, rotina — não em profundidade de sistema.",
+      "sinais_algoritmo": "Canais com mais tração (Max Petterson, Vivendo em Paris) têm anos de consistência e volume alto de vídeos de entretenimento/lifestyle — sugerindo que o algoritmo do nicho recompensa produção constante mesmo em formato mais leve, mas isso não significa que é o único caminho: nenhum desses canais compete diretamente no território de 'sistema' que o Por Dentro ocupa.",
+      "lacunas_oportunidades": "Padrão claríssimo nos 7 canais de Categoria A: TODOS têm a mesma lacuna — pouco ou nenhum conteúdo estruturado sobre como o sistema francês funciona de fato (trabalho, saúde, burocracia). Eles fazem vlog de vida/turismo/perrengue emocional; nenhum faz análise de sistema com rigor didático. Essa é a maior oportunidade aberta do nicho, e é exatamente o posicionamento que o Por Dentro já reivindica.",
+      "o_que_nao_fazer": "Não competir no território de tom narrativo/emocional puro (como faz 'Ingrid — Morando na França') nem em vlog de viagem/paisagem (como 'Um Brasileiro na França') — são formatos saturados no nicho e não é onde o Por Dentro tem vantagem.",
+      "recomendacao_editorial": "Dobrar a aposta em conteúdo de 'sistema' com rigor analítico — é a lacuna que nenhum dos 8 concorrentes mapeados ocupa bem. Usar Euro Dicas como referência de FORMATO (curadoria, consistência), não de conteúdo (eles não competem no nicho de imigração para França especificamente)."
+    }
+  ],
   "boas_praticas": [],
   "calendario": [
     {

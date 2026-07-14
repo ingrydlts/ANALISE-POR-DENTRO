@@ -522,7 +522,11 @@ function renderConcorrencia() {
   const chipGroup = (label, arr) => `
     <div class="chip-group">
       <div class="chip-group-label">${label}</div>
-      <div class="chip-row">${(arr && arr.length) ? arr.map(c => `<span class="chip">${esc(typeof c === 'string' ? c : (c.nome || c.handle || JSON.stringify(c)))}</span>`).join('') : '<span class="chip" style="opacity:.5;">nenhum canal cadastrado ainda</span>'}</div>
+      <div class="chip-row">${(arr && arr.length) ? arr.map(c => {
+        const nome = typeof c === 'string' ? c : (c.nome || c.handle || JSON.stringify(c));
+        const nota = (typeof c === 'object' && c.nota) ? c.nota : '';
+        return `<span class="chip" ${nota ? `title="${esc(nota)}"` : ''}>${esc(nome)}</span>`;
+      }).join('') : '<span class="chip" style="opacity:.5;">nenhum canal cadastrado ainda</span>'}</div>
     </div>`;
 
   let html = `
