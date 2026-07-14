@@ -215,49 +215,51 @@
       "id": "2026-W29",
       "data": "2026-07-14",
       "periodo_label": "Semana de 14/07/2026",
-      "total_entradas_analisadas": 2,
-      "perguntas_recorrentes": [],
+      "total_entradas_analisadas": 1,
+      "perguntas_recorrentes": [
+        "Como funciona o processo de visto para França?",
+        "Como abrir conta bancária na França?",
+        "Como acessar a SECU (seguro saúde) na França?",
+        "Quais são os primeiros passos burocráticos ao chegar na França?"
+      ],
       "dores_nao_atendidas": [
-        "Falta de feedback em processos seletivos na França",
-        "Insegurança e desânimo durante candidaturas para mestrado em alternância",
-        "Orientação sobre entrevistas em francês"
+        "Roteiros passo a passo de burocracia francesa com prazos realistas",
+        "Comparação entre tipos de visto (student, work, spouse) e qual escolher",
+        "Documentos específicos que cada instituição (banco, SECU, prefeitura) realmente pede",
+        "Timeline realista: quanto tempo cada processo leva na prática"
       ],
-      "pedidos_conteudo": [
-        "Vídeo sobre experiência em processo seletivo para mestrado em alternância",
-        "Conteúdo sobre entrevistas em francês",
-        "Histórias de integração e criação de conteúdo na França (perspectivas de artistas, lifestyle creators e viajantes)"
-      ],
-      "perfil_momento": "Audiência heterogênea em diferentes estágios: já estabelecidas na França criando conteúdo (artista audiovisual, lifestyle creator, viajante) e candidatas em processo de seleção que buscam validação e orientação (como Juliana, completamente desanimada com falta de retorno).",
-      "diferenca_plataformas": "Dados insuficientes para comparação entre plataformas — coleta concentrada em Instagram, sem dados paralelos do YouTube",
+      "pedidos_conteudo": [],
+      "perfil_momento": "Audiência em transição: 41% estudantes planejando ou em processo de ida, 37% profissionais buscando oportunidades de trabalho, percentual significativo com conjugue. Maioria ainda no Brasil ou em estágio inicial de visto aprovado. Principal foco: desvendar burocracia francesa como porta de entrada real para a imigração.",
+      "diferenca_plataformas": "Não há dados de YouTube para comparação. Instagram concentra 100% do engajamento analisado — formato stories e comentários diretos indicam preferência por respostas rápidas, visuais e em tom conversacional.",
       "pautas_sugeridas": [
         {
           "plataforma": "INSTAGRAM",
-          "titulo": "Por que você não recebe feedback em processos seletivos na França? (e como lidar com isso)",
-          "porque": "Juliana está completamente desanimada com falta de retorno em mestrado em alternância — dor identificada e pedido direto para conteúdo sobre isso"
+          "titulo": "Visto vs. Visto: qual escolher se você quer estudar, trabalhar ou vir com conjugue?",
+          "porque": "41% + 37% + % conjugue = maioria segmentada por motivo. Precisam de comparação clara antes de decidir qual caminho."
         },
         {
           "plataforma": "INSTAGRAM",
-          "titulo": "Entrevista em francês para mestrado: dicas práticas de quem passou (ou não passou)",
-          "porque": "Complementa a dor de Juliana — formato curto, prático, direto no Stories/Reels com dicas de pronúncia, estrutura de resposta e mindset"
+          "titulo": "Os 5 passos burocráticos que ninguém te avisa: de chegada ao CPF francês",
+          "porque": "Burocracia é urgência #1. Conteúdo visual (carousel ou reels) com checklist resolveria dúvida mais recorrente."
         },
         {
-          "plataforma": "INSTAGRAM",
-          "titulo": "3 brasileiras na França: como elas criam conteúdo e ganham dinheiro (artista, lifestyle, viajante)",
-          "porque": "Já existe comunidade heterogênea conectada por experiência de imigração — formato Carrossel ou série de Stories mostrando diferentes caminhos de integração e sustentabilidade criativa"
+          "plataforma": "YOUTUBE",
+          "titulo": "Abrindo conta bancária na França: como fiz, documentos que usei, quanto tempo levou",
+          "porque": "YouTube permite formato longo, tutorial prático e real. Audiência em processo precisa de guia detalhado — formato ideal para monetização futura."
         }
       ],
       "temas_audiencia": [
-        "processos seletivos",
-        "mestrado em alternância",
-        "feedback e burocracia",
-        "integração criativa",
-        "entrevista em francês",
-        "imigração feminina"
+        "visto",
+        "burocracia",
+        "SECU",
+        "banco",
+        "imigração",
+        "processo"
       ],
       "segmentos": {
-        "brasil": 0,
-        "processo": 1,
-        "franca": 2
+        "brasil": 65,
+        "processo": 30,
+        "franca": 5
       }
     }
   ],
