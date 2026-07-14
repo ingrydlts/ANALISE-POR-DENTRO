@@ -15,7 +15,9 @@ Por que este script existe:
 Fluxo deste script:
 1. Busca entradas STATUS=NOVO + "Enviar para Claude"=✓, com CATEGORIA=AUDIÊNCIA ou
    CATEGORIA=CONCORRÊNCIA
-2. Para cada entrada, baixa o(s) screenshot(s) (via URL assinada da API do Notion) e
+2. Para cada entrada, baixa o(s) screenshot(s) — tanto os anexados na propriedade
+   "Screenshot" quanto imagens coladas direto no corpo da página (bloco de imagem;
+   cobre quem cola o print direto na página em vez de anexar na propriedade) — e
    manda para a Claude com visão:
    - AUDIÊNCIA: transcrição + dor/necessidade, insight, ideia de conteúdo, pilar,
      prioridade, palavras-chave, persona
@@ -92,7 +94,8 @@ def buscar_entradas_para_enriquecer() -> list:
     return resp.get("results", [])
 
 
-def _extrair_urls_screenshot(page: dict) -> list:
+def _extrair_urls_screenshot_propriedade(page: dict) -> list:
+    """Imagens anexadas na propriedade 'Screenshot' (arquivo)."""
     arquivos = page["properties"].get("Screenshot", {}).get("files", [])
     urls = []
     for f in arquivos:
@@ -100,6 +103,58 @@ def _extrair_urls_screenshot(page: dict) -> list:
             urls.append(f["file"]["url"])
         elif f.get("type") == "external" and f.get("external", {}).get("url"):
             urls.append(f["external"]["url"])
+    return urls
+
+
+def _listar_blocos_recursivo(block_id: str, profundidade: int = 2) -> list:
+    """
+    Lista todos os blocos filhos de um bloco/página, descendo até `profundidade`
+    níveis — cobre imagens dentro de toggles, colunas etc., não só as coladas
+    direto no nível raiz da página.
+    """
+    todos = []
+    cursor = None
+    while True:
+        resp = notion.blocks.children.list(block_id=block_id, start_cursor=cursor, page_size=100) \
+            if cursor else notion.blocks.children.list(block_id=block_id, page_size=100)
+        filhos = resp.get("results", [])
+        todos.extend(filhos)
+        if profundidade > 0:
+            for filho in filhos:
+                if filho.get("has_children"):
+                    todos.extend(_listar_blocos_recursivo(filho["id"], profundidade - 1))
+        if not resp.get("has_more"):
+            break
+        cursor = resp.get("next_cursor")
+    return todos
+
+
+def _extrair_urls_imagens_do_conteudo(page_id: str) -> list:
+    """Imagens coladas direto no corpo da página (bloco tipo 'image'), fora da
+    propriedade Screenshot — cobre quem cola o print direto na página."""
+    urls = []
+    try:
+        blocos = _listar_blocos_recursivo(page_id)
+    except Exception as e:
+        print(f"    ⚠ Falha ao ler o conteúdo da página em busca de imagens: {e}")
+        return urls
+    for bloco in blocos:
+        if bloco.get("type") == "image":
+            img = bloco["image"]
+            if img.get("type") == "file" and img.get("file", {}).get("url"):
+                urls.append(img["file"]["url"])
+            elif img.get("type") == "external" and img.get("external", {}).get("url"):
+                urls.append(img["external"]["url"])
+    return urls
+
+
+def _extrair_urls_imagens(page: dict) -> list:
+    """Junta imagens da propriedade Screenshot com imagens coladas direto no
+    corpo da página — cobre os dois jeitos de colar um print, sem duplicar."""
+    urls = list(_extrair_urls_screenshot_propriedade(page))
+    for url in _extrair_urls_imagens_do_conteudo(page["id"]):
+        if url not in urls:
+            urls.append(url)
     return urls
 
 
@@ -312,11 +367,11 @@ def main():
         categoria = (page["properties"].get("CATEGORIA", {}).get("select") or {}).get("name", "AUDIÊNCIA")
         tipo = (page["properties"].get("Tipo", {}).get("select") or {}).get("name", "DM")
         plataforma = (page["properties"].get("PLATAFORMA", {}).get("select") or {}).get("name", "INSTAGRAM")
-        urls = _extrair_urls_screenshot(page)
+        urls = _extrair_urls_imagens(page)
 
         print(f"  → {page_id} [{categoria}] — {len(urls)} imagem(ns) encontrada(s)...")
         if not urls:
-            print("    ⚠ Sem screenshot anexado — pulando (mantém NOVO).")
+            print("    ⚠ Sem imagem encontrada (nem na propriedade Screenshot, nem no corpo da página) — pulando (mantém NOVO).")
             continue
 
         if categoria == "CONCORRÊNCIA":
