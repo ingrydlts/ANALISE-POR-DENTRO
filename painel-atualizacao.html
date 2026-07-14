@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Atualização — Por Dentro</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bege:#F2EDE4;--marrom:#3D2B1F;--ocre:#C49A4E;--off-white:#FAF8F4;--cinza:#9E9E8E;
+  --text:#2A1F18;--verde:#6B8F6A;--vinho:#6B2737;--bege-escuro:#E8E0D2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);font-size:14px;line-height:1.6;}
+.masthead{background:var(--marrom);padding:18px 40px;}
+.brand{font-family:'Playfair Display',serif;font-size:20px;color:var(--off-white);}
+.brand span{color:var(--ocre);font-style:italic;}
+.masthead-sub{font-family:'DM Mono',monospace;font-size:10px;color:rgba(242,237,228,0.5);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+.wrap{max-width:900px;margin:0 auto;padding:36px 40px 100px;}
+.step{background:var(--off-white);border-radius:12px;border:1px solid rgba(61,43,31,0.1);padding:24px 28px;margin-bottom:22px;}
+.step h2{font-family:'Playfair Display',serif;font-size:19px;color:var(--marrom);margin-bottom:6px;}
+.step .sub{font-size:12px;color:var(--cinza);margin-bottom:18px;}
+label{display:block;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--cinza);margin-bottom:5px;margin-top:14px;}
+label:first-child{margin-top:0;}
+input[type=text],input[type=password],input[type=number],textarea,select{
+  width:100%;padding:9px 11px;border:1px solid rgba(61,43,31,0.2);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;background:#fff;color:var(--text);
+}
+textarea{resize:vertical;font-family:'DM Mono',monospace;font-size:12px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:700px){.row2,.row3{grid-template-columns:1fr;}}
+.btn{display:inline-block;background:var(--marrom);color:var(--off-white);border:none;padding:11px 22px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn:hover{background:#4d3626;}
+.btn.secondary{background:none;border:1px solid var(--marrom);color:var(--marrom);}
+.btn.ocre{background:var(--ocre);color:var(--marrom);}
+.btn:disabled{opacity:0.5;cursor:not-allowed;}
+.filedrop{border:2px dashed rgba(61,43,31,0.25);border-radius:10px;padding:30px;text-align:center;color:var(--cinza);cursor:pointer;transition:0.2s;}
+.filedrop:hover{border-color:var(--ocre);color:var(--marrom);}
+.filedrop input{display:none;}
+.pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:3px 9px;border-radius:12px;letter-spacing:1px;text-transform:uppercase;margin-left:8px;}
+.pill-ok{background:rgba(107,143,106,0.2);color:#3E5C3E;}
+.pill-warn{background:rgba(196,154,78,0.25);color:#7A5A20;}
+.pill-err{background:rgba(107,39,55,0.15);color:var(--vinho);}
+.log{font-family:'DM Mono',monospace;font-size:11px;background:#fff;border:1px solid rgba(61,43,31,0.1);border-radius:8px;padding:12px 14px;margin-top:14px;max-height:220px;overflow:auto;white-space:pre-wrap;}
+.log .l-ok{color:#3E5C3E;}
+.log .l-err{color:var(--vinho);}
+.log .l-info{color:var(--cinza);}
+details{margin-top:16px;}
+summary{cursor:pointer;font-size:12px;color:var(--marrom);font-weight:500;}
+.small{font-size:11px;color:var(--cinza);}
+hr.sep{border:none;border-top:1px solid rgba(61,43,31,0.1);margin:18px 0;}
+.warn-box{background:rgba(196,154,78,0.12);border-left:3px solid var(--ocre);padding:12px 16px;border-radius:0 6px 6px 0;font-size:12px;color:#5A4A3A;margin-bottom:14px;}
+.tag-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.tag-nav button{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:7px 14px;border-radius:20px;border:1px solid rgba(61,43,31,0.2);background:var(--off-white);color:var(--marrom);cursor:pointer;}
+.tag-nav button.on{background:var(--marrom);color:var(--off-white);border-color:var(--marrom);}
+.module-pane{display:none;}
+.module-pane.on{display:block;}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="brand">Por <span>Dentro</span></div>
+  <div class="masthead-sub">Painel de Atualização de Métricas → GitHub</div>
+</div>
+
+<div class="wrap">
+
+  <!-- STEP 1: GitHub config -->
+  <div class="step">
+    <h2>1. Conexão com o GitHub <span id="conn-pill" class="pill pill-warn">não configurado</span></h2>
+    <div class="sub">Preencha uma vez — fica salvo só neste navegador (localStorage), nunca é enviado a lugar nenhum além da API do GitHub.</div>
+    <div class="row2">
+      <div><label>Usuário/organização (owner)</label><input type="text" id="cfg-owner" placeholder="ex: ingrydlts"></div>
+      <div><label>Repositório</label><input type="text" id="cfg-repo" placeholder="ex: ANALISE-POR-DENTRO"></div>
+    </div>
+    <div class="row2">
+      <div><label>Branch</label><input type="text" id="cfg-branch" placeholder="main" value="main"></div>
+      <div><label>Caminho do insights.json no repositório</label><input type="text" id="cfg-path" placeholder="insights.json" value="insights.json"></div>
+    </div>
+    <label>Caminho do canais.json no repositório</label>
+    <input type="text" id="cfg-canais-path" placeholder="canais.json" value="canais.json">
+    <label>Personal Access Token (GitHub → Settings → Developer settings → Fine-grained tokens, com permissão "Contents: Read and write" nesse repositório)</label>
+    <input type="password" id="cfg-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <div style="margin-top:14px;">
+      <button class="btn" onclick="saveConfig()">Salvar configuração</button>
+      <button class="btn secondary" onclick="testConnection()">Testar conexão</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Upload de ciclo mensal -->
+  <div class="step">
+    <h2>2. Upload das métricas do mês (ciclo de performance)</h2>
+    <div class="sub">Aceita: export CSV do YouTube Studio / Instagram Insights, um JSON já pronto (um ciclo ou o insights.json completo), ou um HTML salvo de uma página de métricas.</div>
+    <div class="filedrop" onclick="document.getElementById('file-input').click()">
+      📂 Clique para escolher um arquivo (.json, .csv, .html)
+      <input type="file" id="file-input" accept=".json,.csv,.html,.htm" onchange="handleFile(event)">
+    </div>
+    <div id="parse-log" class="log" style="display:none;"></div>
+  </div>
+
+  <!-- STEP 3: Review form (ciclo) -->
+  <div class="step" id="review-step" style="display:none;">
+    <h2>3. Revisar antes de publicar</h2>
+    <div class="sub">Tudo pré-preenchido pelo upload pode ser corrigido aqui. Nada é publicado sem você conferir.</div>
+
+    <div class="row3">
+      <div><label>ID do ciclo (AAAA-MM)</label><input type="text" id="f-id"></div>
+      <div><label>Período (texto)</label><input type="text" id="f-periodo"></div>
+      <div><label>Decisão editorial</label><input type="text" id="f-decisao"></div>
+    </div>
+
+    <hr class="sep">
+    <strong style="color:var(--marrom);">▶ YouTube</strong>
+    <div class="row3">
+      <div><label>Views</label><input type="number" id="f-yt-views"></div>
+      <div><label>Variação de views (%)</label><input type="number" step="0.1" id="f-yt-views-var"></div>
+      <div><label>Watchtime (horas)</label><input type="number" step="0.1" id="f-yt-watchtime"></div>
+    </div>
+    <div class="row3">
+      <div><label>Retenção média (%)</label><input type="number" step="0.1" id="f-yt-retencao"></div>
+      <div><label>CTR médio (%)</label><input type="number" step="0.1" id="f-yt-ctr"></div>
+      <div><label>Impressões</label><input type="number" id="f-yt-impressoes"></div>
+    </div>
+    <div class="row3">
+      <div><label>Inscritos ganhos</label><input type="number" id="f-yt-inscritos-ganhos"></div>
+      <div><label>Top vídeo (título)</label><input type="text" id="f-yt-top-titulo"></div>
+      <div><label>Top vídeo (views)</label><input type="number" id="f-yt-top-views"></div>
+    </div>
+
+    <hr class="sep">
+    <strong style="color:var(--marrom);">◎ Instagram</strong>
+    <div class="row3">
+      <div><label>Alcance</label><input type="number" id="f-ig-alcance"></div>
+      <div><label>Seguidores ganhos</label><input type="number" id="f-ig-seguidores-ganhos"></div>
+      <div><label>Seguidores total</label><input type="number" id="f-ig-seguidores-total"></div>
+    </div>
+    <div class="row3">
+      <div><label>Engajamento médio (%)</label><input type="number" step="0.1" id="f-ig-engajamento"></div>
+      <div><label>Visitas ao perfil</label><input type="number" id="f-ig-visitas-perfil"></div>
+      <div><label>Interações totais</label><input type="number" id="f-ig-interacoes"></div>
+    </div>
+    <label>Destaque do ciclo (descrição do top post)</label>
+    <input type="text" id="f-ig-top-post">
+
+    <hr class="sep">
+    <label>Insights do ciclo (um por linha)</label>
+    <textarea id="f-insights" rows="4"></textarea>
+
+    <label>Ações do próximo ciclo (uma por linha)</label>
+    <textarea id="f-acoes" rows="4"></textarea>
+
+    <details>
+      <summary>Avançado — dados diários, métricas calculadas, campos extras (JSON bruto)</summary>
+      <div class="small" style="margin-top:8px;">Preserva campos que não têm formulário dedicado (ex: dados_diarios, metricas_calculadas, audiencia). O que não for tocado aqui é herdado do ciclo anterior/upload.</div>
+      <textarea id="f-advanced-json" rows="10" style="margin-top:8px;"></textarea>
+    </details>
+
+    <div style="margin-top:20px;">
+      <button class="btn ocre" onclick="publishCiclo()">Publicar ciclo no GitHub</button>
+      <button class="btn secondary" onclick="hideReview()">Cancelar</button>
+    </div>
+    <div id="publish-log" class="log" style="display:none;"></div>
+  </div>
+
+  <!-- STEP 4: Módulos novos (Concorrência / Boas Práticas / Calendário / Canais) -->
+  <div class="step">
+    <h2>4. Outros módulos</h2>
+    <div class="sub">Concorrência e Audiência normalmente chegam sozinhos via GitHub Actions (scripts/analyze_concorrencia.py e analyze_audiencia.py). Use aqui para publicar manualmente, ou para Boas Práticas / Calendário / Canais monitorados, que ainda não têm automação.</div>
+
+    <div class="tag-nav">
+      <button class="on" data-m="concorrencia" onclick="switchModule('concorrencia')">Concorrência</button>
+      <button data-m="boas" onclick="switchModule('boas')">Boas Práticas</button>
+      <button data-m="calendario" onclick="switchModule('calendario')">Calendário</button>
+      <button data-m="canais" onclick="switchModule('canais')">Canais Monitorados</button>
+    </div>
+
+    <!-- Concorrência -->
+    <div class="module-pane on" id="mod-concorrencia">
+      <div class="warn-box">Cole um objeto JSON de um ciclo de <code>concorrencia</code>. Se já existir uma entrada com o mesmo <code>id</code>, ela é substituída (upsert) — não duplica.</div>
+      <label>ID do ciclo (AAAA-MM)</label>
+      <input type="text" id="mc-id" placeholder="2026-07">
+      <label>JSON da entrada</label>
+      <textarea id="mc-json" rows="12">{
+  "periodo": "Julho 2026",
+  "canais_analisados": {"youtube": 0, "instagram": 0},
+  "o_que_funciona": "",
+  "sinais_algoritmo": "",
+  "lacunas_oportunidades": "",
+  "o_que_nao_fazer": "",
+  "recomendacao_editorial": ""
+}</textarea>
+      <div style="margin-top:14px;"><button class="btn ocre" onclick="publishArrayEntry('concorrencia','mc-id','mc-json')">Publicar em Concorrência</button></div>
+    </div>
+
+    <!-- Boas Praticas -->
+    <div class="module-pane" id="mod-boas">
+      <div class="warn-box">Cole um objeto JSON de um ciclo de <code>boas_praticas</code>. Upsert por <code>id</code>.</div>
+      <label>ID do ciclo (AAAA-MM)</label>
+      <input type="text" id="mb-id" placeholder="2026-07">
+      <label>JSON da entrada</label>
+      <textarea id="mb-json" rows="12">{
+  "periodo": "Julho 2026",
+  "aplicar_agora": [{"insight": "", "acao": ""}],
+  "testar_proximo_mes": [{"hipotese": "", "formato_teste": ""}],
+  "ignorar": [{"tendencia": "", "motivo": ""}],
+  "padroes_confirmados": [""]
+}</textarea>
+      <div style="margin-top:14px;"><button class="btn ocre" onclick="publishArrayEntry('boas_praticas','mb-id','mb-json')">Publicar em Boas Práticas</button></div>
+    </div>
+
+    <!-- Calendario -->
+    <div class="module-pane" id="mod-calendario">
+      <div class="warn-box">Cole um objeto JSON de um mês de <code>calendario</code>. Upsert por <code>id</code>.</div>
+      <label>ID do mês (AAAA-MM)</label>
+      <input type="text" id="mcal-id" placeholder="2026-07">
+      <label>JSON da entrada</label>
+      <textarea id="mcal-json" rows="14">{
+  "periodo": "Julho 2026",
+  "tema_central": "",
+  "objetivo_mes": "",
+  "semanas": [
+    {"numero": 1, "tipo": "Evergreen estratégico", "youtube": "", "instagram": "", "newsletter": ""},
+    {"numero": 2, "tipo": "Sazonal ou Trending", "youtube": "", "instagram": "", "newsletter": ""},
+    {"numero": 3, "tipo": "Episódio de série", "youtube": "", "instagram": "", "newsletter": ""},
+    {"numero": 4, "tipo": "Reflexivo ou análise profunda", "youtube": "", "instagram": "", "newsletter": ""}
+  ],
+  "resumo_formatos": {"youtube": 0, "reels": 0, "carrosseis": 0, "stories_semana": 0},
+  "datas_sazonais": [],
+  "alertas_producao": []
+}</textarea>
+      <div style="margin-top:14px;"><button class="btn ocre" onclick="publishArrayEntry('calendario','mcal-id','mcal-json')">Publicar em Calendário</button></div>
+    </div>
+
+    <!-- Canais -->
+    <div class="module-pane" id="mod-canais">
+      <div class="warn-box">Substitui o conteúdo inteiro de <code>canais.json</code> (arquivo separado do insights.json). Busca a versão atual do repositório antes de publicar — carregue primeiro para não perder o que já existe.</div>
+      <button class="btn secondary" onclick="loadCanais()">Carregar canais.json atual</button>
+      <label style="margin-top:14px;">JSON completo de canais.json</label>
+      <textarea id="mcanais-json" rows="12">{
+  "atualizado_em": "",
+  "categoria_a_diretos": [],
+  "categoria_b_formato": [],
+  "categoria_c_qualidade": []
+}</textarea>
+      <div style="margin-top:14px;"><button class="btn ocre" onclick="publishCanais()">Publicar canais.json</button></div>
+    </div>
+
+    <div id="module-log" class="log" style="display:none;"></div>
+  </div>
+
+</div>
+
+<script>
+/* ============ CONFIG (localStorage) ============ */
+const CFG_KEY = 'pordentro_gh_config_v2';
+
+function loadConfig() {
+  const raw = localStorage.getItem(CFG_KEY);
+  const cfg = raw ? JSON.parse(raw) : {};
+  document.getElementById('cfg-owner').value = cfg.owner || '';
+  document.getElementById('cfg-repo').value = cfg.repo || '';
+  document.getElementById('cfg-branch').value = cfg.branch || 'main';
+  document.getElementById('cfg-path').value = cfg.path || 'insights.json';
+  document.getElementById('cfg-canais-path').value = cfg.canaisPath || 'canais.json';
+  document.getElementById('cfg-token').value = cfg.token || '';
+  updateConnPill('warn', cfg.owner && cfg.repo && cfg.token ? 'configurado (não testado)' : 'não configurado');
+}
+
+function getConfig() {
+  return {
+    owner: document.getElementById('cfg-owner').value.trim(),
+    repo: document.getElementById('cfg-repo').value.trim(),
+    branch: document.getElementById('cfg-branch').value.trim() || 'main',
+    path: document.getElementById('cfg-path').value.trim() || 'insights.json',
+    canaisPath: document.getElementById('cfg-canais-path').value.trim() || 'canais.json',
+    token: document.getElementById('cfg-token').value.trim()
+  };
+}
+
+function saveConfig() {
+  const cfg = getConfig();
+  localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+  updateConnPill('warn', 'salvo — clique em "Testar conexão"');
+}
+
+function updateConnPill(kind, text) {
+  const el = document.getElementById('conn-pill');
+  el.className = 'pill ' + (kind === 'ok' ? 'pill-ok' : kind === 'err' ? 'pill-err' : 'pill-warn');
+  el.textContent = text;
+}
+
+async function ghRequest(path, opts = {}) {
+  const cfg = getConfig();
+  const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}` + (path ? `/${path}` : '');
+  const res = await fetch(url, {
+    ...opts,
+    headers: {
+      'Authorization': `Bearer ${cfg.token}`,
+      'Accept': 'application/vnd.github+json',
+      ...(opts.headers || {})
+    }
+  });
+  return res;
+}
+
+async function testConnection() {
+  saveConfig();
+  updateConnPill('warn', 'testando...');
+  try {
+    const res = await ghRequest('');
+    if (res.status === 401) { updateConnPill('err', 'token inválido'); return; }
+    if (res.status === 404) { updateConnPill('err', 'repositório não encontrado'); return; }
+    if (!res.ok) { updateConnPill('err', 'erro HTTP ' + res.status); return; }
+    updateConnPill('ok', 'conectado ✓');
+  } catch (e) {
+    updateConnPill('err', 'falha de rede');
+  }
+}
+
+/* ============ UNICODE-SAFE BASE64 ============ */
+function b64encode(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+function b64decode(str) {
+  const binary = atob(str);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+/* ============ GENERIC: buscar/publicar um arquivo JSON no repo ============ */
+async function fetchJsonFile(path) {
+  const res = await ghRequest(`contents/${path}?ref=${getConfig().branch}`);
+  if (res.status === 404) return { data: null, sha: null };
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const json = await res.json();
+  const content = b64decode(json.content.replace(/\n/g, ''));
+  return { data: JSON.parse(content), sha: json.sha };
+}
+
+async function putJsonFile(path, dataObj, sha, message) {
+  const body = {
+    message,
+    content: b64encode(JSON.stringify(dataObj, null, 2)),
+    branch: getConfig().branch
+  };
+  if (sha) body.sha = sha;
+  const res = await ghRequest(`contents/${path}`, { method: 'PUT', body: JSON.stringify(body) });
+  const json = await res.json();
+  if (!res.ok) throw new Error(json.message || ('HTTP ' + res.status));
+  return json;
+}
+
+/* ============ FILE HANDLING & PARSING (ciclo) ============ */
+let currentCiclo = null;
+let previousCiclo = null;
+let remoteFileSha = null;
+let remoteData = null;
+
+function log(msg, kind = 'info') {
+  const box = document.getElementById('parse-log');
+  box.style.display = 'block';
+  const line = document.createElement('div');
+  line.className = 'l-' + kind;
+  line.textContent = msg;
+  box.appendChild(line);
+  box.scrollTop = box.scrollHeight;
+}
+
+function plog(msg, kind = 'info') {
+  const box = document.getElementById('publish-log');
+  box.style.display = 'block';
+  const line = document.createElement('div');
+  line.className = 'l-' + kind;
+  line.textContent = msg;
+  box.appendChild(line);
+  box.scrollTop = box.scrollHeight;
+}
+
+function mlog(msg, kind = 'info') {
+  const box = document.getElementById('module-log');
+  box.style.display = 'block';
+  const line = document.createElement('div');
+  line.className = 'l-' + kind;
+  line.textContent = msg;
+  box.appendChild(line);
+  box.scrollTop = box.scrollHeight;
+}
+
+async function handleFile(evt) {
+  const file = evt.target.files[0];
+  if (!file) return;
+  document.getElementById('parse-log').innerHTML = '';
+  document.getElementById('parse-log').style.display = 'block';
+  log(`Lendo ${file.name}...`);
+
+  const text = await file.text();
+  const ext = file.name.split('.').pop().toLowerCase();
+
+  await tryFetchRemote();
+
+  let candidate = {};
+  if (ext === 'json') {
+    candidate = parseJsonFile(text);
+  } else if (ext === 'csv') {
+    candidate = parseCsvFile(text);
+  } else if (ext === 'html' || ext === 'htm') {
+    candidate = parseHtmlFile(text);
+  } else {
+    log('Extensão não reconhecida, tentando como texto genérico.', 'err');
+    candidate = parseHtmlFile(text);
+  }
+
+  currentCiclo = mergeWithPrevious(candidate);
+  log('Pronto. Revise os campos abaixo antes de publicar.', 'ok');
+  fillReviewForm(currentCiclo);
+  document.getElementById('review-step').style.display = 'block';
+  document.getElementById('review-step').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function tryFetchRemote() {
+  const cfg = getConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    log('Configuração do GitHub incompleta — não deu para buscar o ciclo anterior. Preencha o Passo 1 primeiro.', 'err');
+    return;
+  }
+  try {
+    const { data, sha } = await fetchJsonFile(cfg.path);
+    if (!data) {
+      log('insights.json ainda não existe no repositório — será criado do zero ao publicar.', 'info');
+      remoteData = { ciclos: [] };
+      remoteFileSha = null;
+      previousCiclo = null;
+      return;
+    }
+    remoteFileSha = sha;
+    remoteData = data;
+    const ciclos = remoteData.ciclos || [];
+    previousCiclo = ciclos.length ? ciclos[ciclos.length - 1] : null;
+    log('Ciclo anterior carregado: ' + (previousCiclo ? previousCiclo.periodo : 'nenhum'), 'ok');
+  } catch (e) {
+    log('Erro ao buscar dados remotos: ' + e.message, 'err');
+  }
+}
+
+function mergeWithPrevious(candidate) {
+  const base = previousCiclo ? JSON.parse(JSON.stringify(previousCiclo)) : {
+    youtube: {}, instagram: {}, insights: [], acoes_proximo_ciclo: []
+  };
+  base.id = candidate.id || guessCurrentId();
+  base.periodo = candidate.periodo || guessCurrentPeriodo();
+  base.adicionado_em = new Date().toISOString().slice(0, 10);
+  base.youtube = { ...(base.youtube || {}), ...(candidate.youtube || {}) };
+  base.instagram = { ...(base.instagram || {}), ...(candidate.instagram || {}) };
+  if (candidate.insights) base.insights = candidate.insights;
+  if (candidate.acoes_proximo_ciclo) base.acoes_proximo_ciclo = candidate.acoes_proximo_ciclo;
+  if (candidate.decisao_editorial) base.decisao_editorial = candidate.decisao_editorial;
+  return base;
+}
+
+function guessCurrentId() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+function guessCurrentPeriodo() {
+  const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const d = new Date();
+  return `${meses[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+/* ---------- JSON parser ---------- */
+function parseJsonFile(text) {
+  try {
+    const data = JSON.parse(text);
+    if (data.ciclos && Array.isArray(data.ciclos)) {
+      log('JSON reconhecido como insights.json completo — usando o último ciclo do arquivo.', 'ok');
+      return data.ciclos[data.ciclos.length - 1];
+    }
+    if (data.youtube || data.instagram) {
+      log('JSON reconhecido como um ciclo único.', 'ok');
+      return data;
+    }
+    log('JSON não segue o formato esperado — tentando usar como está.', 'err');
+    return data;
+  } catch (e) {
+    log('Erro ao ler JSON: ' + e.message, 'err');
+    return {};
+  }
+}
+
+/* ---------- CSV parser (heurístico) ---------- */
+function parseCsv(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim().length);
+  return lines.map(line => {
+    const cells = [];
+    let cur = '', inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { inQuotes = !inQuotes; continue; }
+      if (ch === ',' && !inQuotes) { cells.push(cur); cur = ''; continue; }
+      cur += ch;
+    }
+    cells.push(cur);
+    return cells.map(c => c.trim());
+  });
+}
+
+function toNumber(v) {
+  if (v == null) return null;
+  let s = String(v).trim();
+  if (!s) return null;
+  let mult = 1;
+  if (/k$/i.test(s)) { mult = 1000; s = s.slice(0, -1); }
+  else if (/m$/i.test(s)) { mult = 1000000; s = s.slice(0, -1); }
+  s = s.replace('%', '').trim();
+
+  const hasComma = s.includes(',');
+  const hasDot = s.includes('.');
+  if (hasComma && hasDot) {
+    if (s.lastIndexOf(',') > s.lastIndexOf('.')) {
+      s = s.replace(/\./g, '').replace(',', '.');
+    } else {
+      s = s.replace(/,/g, '');
+    }
+  } else if (hasComma) {
+    const after = s.split(',').pop();
+    s = after.length <= 2 ? s.replace(',', '.') : s.replace(/,/g, '');
+  } else if (hasDot) {
+    const parts = s.split('.');
+    const after = parts[parts.length - 1];
+    if (!(parts.length === 2 && after.length <= 2)) s = s.replace(/\./g, '');
+  }
+  const n = parseFloat(s) * mult;
+  return isNaN(n) ? null : n;
+}
+
+function parseCsvFile(text) {
+  const rows = parseCsv(text);
+  if (!rows.length) return {};
+  const header = rows[0].map(h => h.toLowerCase());
+  const body = rows.slice(1);
+  const candidate = { youtube: {}, instagram: {} };
+
+  const idx = (name) => header.findIndex(h => h.includes(name));
+
+  const iSource = idx('traffic source');
+  const iViews = idx('views');
+  const iWatch = idx('watch time');
+  const iAvgPct = idx('average percentage viewed');
+  const iVideoTitle = idx('video title') >= 0 ? idx('video title') : idx('content');
+  const iSubs = idx('subscriber');
+  const iImpressions = idx('impressions');
+  const iFollowers = idx('followers') >= 0 ? idx('followers') : idx('seguidores');
+  const iReach = idx('reach') >= 0 ? idx('reach') : idx('alcance');
+  const iEngagement = idx('engagement');
+
+  if (iSource >= 0 && iViews >= 0) {
+    log('CSV reconhecido como export de "Traffic source" do YouTube Studio.', 'ok');
+    const totalViews = body.reduce((s, r) => s + (toNumber(r[iViews]) || 0), 0);
+    candidate.youtube.views = totalViews;
+    log(`Total de views somado do CSV: ${totalViews}`, 'info');
+  } else if (iVideoTitle >= 0 && iViews >= 0) {
+    log('CSV reconhecido como lista de vídeos (top content).', 'ok');
+    const sorted = body
+      .map(r => ({ titulo: r[iVideoTitle], views: toNumber(r[iViews]) || 0 }))
+      .sort((a, b) => b.views - a.views);
+    if (sorted[0]) {
+      candidate.youtube.top_video_titulo = sorted[0].titulo;
+      candidate.youtube.top_video_views = sorted[0].views;
+    }
+  } else {
+    log('Não reconheci um formato padrão de CSV (YouTube/Instagram). Confira e complete manualmente na revisão.', 'err');
+  }
+
+  if (iWatch >= 0) candidate.youtube.watchtime_horas = body.reduce((s, r) => s + (toNumber(r[iWatch]) || 0), 0);
+  if (iAvgPct >= 0) {
+    const vals = body.map(r => toNumber(r[iAvgPct])).filter(v => v != null);
+    if (vals.length) candidate.youtube.retencao_media_pct = +(vals.reduce((a, b) => a + b, 0) / vals.length).toFixed(1);
+  }
+  if (iSubs >= 0) candidate.youtube.inscritos_ganhos = body.reduce((s, r) => s + (toNumber(r[iSubs]) || 0), 0);
+  if (iImpressions >= 0) candidate.youtube.impressoes = body.reduce((s, r) => s + (toNumber(r[iImpressions]) || 0), 0);
+
+  if (iFollowers >= 0) candidate.instagram.seguidores_total = toNumber(body[body.length - 1]?.[iFollowers]);
+  if (iReach >= 0) candidate.instagram.alcance = body.reduce((s, r) => s + (toNumber(r[iReach]) || 0), 0);
+  if (iEngagement >= 0) {
+    const vals = body.map(r => toNumber(r[iEngagement])).filter(v => v != null);
+    if (vals.length) candidate.instagram.engajamento_medio_pct = +(vals.reduce((a, b) => a + b, 0) / vals.length).toFixed(1);
+  }
+
+  return candidate;
+}
+
+/* ---------- HTML / texto bruto parser (heurístico) ---------- */
+function parseHtmlFile(text) {
+  const plain = text.replace(/<script[\s\S]*?<\/script>/gi, '')
+                     .replace(/<style[\s\S]*?<\/style>/gi, '')
+                     .replace(/<[^>]+>/g, ' ')
+                     .replace(/&nbsp;/g, ' ')
+                     .replace(/\s+/g, ' ');
+  const candidate = { youtube: {}, instagram: {} };
+
+  const grab = (keywords) => {
+    for (const kw of keywords) {
+      const re = new RegExp(kw + '\\D{0,15}([\\d.,]+\\s?%?[km]?)', 'i');
+      const m = plain.match(re);
+      if (m) return m[1];
+    }
+    return null;
+  };
+
+  const views = grab(['views totais', 'visualiza\\w+ totais']);
+  const retencao = grab(['reten[cç][aã]o']);
+  const alcance = grab(['alcance', 'reach']);
+  const engajamento = grab(['engajamento', 'engagement']);
+
+  if (views) candidate.youtube.views = toNumber(views);
+  if (retencao) candidate.youtube.retencao_media_pct = toNumber(retencao);
+  if (alcance) candidate.instagram.alcance = toNumber(alcance);
+  if (engajamento) candidate.instagram.engajamento_medio_pct = toNumber(engajamento);
+
+  log('Extração por texto: ' + JSON.stringify({ views, retencao, alcance, engajamento }), 'info');
+  log('Esse formato é o mais impreciso — confira todos os campos com atenção na revisão.', 'err');
+
+  return candidate;
+}
+
+/* ============ REVIEW FORM (ciclo) ============ */
+function fillReviewForm(c) {
+  const yt = c.youtube || {};
+  const ig = c.instagram || {};
+  document.getElementById('f-id').value = c.id || '';
+  document.getElementById('f-periodo').value = c.periodo || '';
+  document.getElementById('f-decisao').value = c.decisao_editorial || '';
+
+  document.getElementById('f-yt-views').value = yt.views ?? '';
+  document.getElementById('f-yt-views-var').value = yt.views_variacao_pct ?? '';
+  document.getElementById('f-yt-watchtime').value = yt.watchtime_horas ?? '';
+  document.getElementById('f-yt-retencao').value = yt.retencao_media_pct ?? '';
+  document.getElementById('f-yt-ctr').value = yt.ctr_medio_pct ?? '';
+  document.getElementById('f-yt-impressoes').value = yt.impressoes ?? '';
+  document.getElementById('f-yt-inscritos-ganhos').value = yt.inscritos_ganhos ?? '';
+  document.getElementById('f-yt-top-titulo').value = yt.top_video_titulo || '';
+  document.getElementById('f-yt-top-views').value = yt.top_video_views ?? '';
+
+  document.getElementById('f-ig-alcance').value = ig.alcance ?? '';
+  document.getElementById('f-ig-seguidores-ganhos').value = ig.seguidores_ganhos ?? '';
+  document.getElementById('f-ig-seguidores-total').value = ig.seguidores_total ?? '';
+  document.getElementById('f-ig-engajamento').value = ig.engajamento_medio_pct ?? '';
+  document.getElementById('f-ig-visitas-perfil').value = ig.visitas_perfil ?? '';
+  document.getElementById('f-ig-interacoes').value = ig.interacoes ?? '';
+  document.getElementById('f-ig-top-post').value = ig.top_post_descricao || '';
+
+  document.getElementById('f-insights').value = (c.insights || []).join('\n');
+  document.getElementById('f-acoes').value = (c.acoes_proximo_ciclo || []).join('\n');
+
+  const advanced = {
+    principal_fonte_trafego: yt.principal_fonte_trafego, principal_fonte_pct: yt.principal_fonte_pct,
+    status_retencao: yt.status_retencao, status_ctr: yt.status_ctr, inscritos_total: yt.inscritos_total,
+    top_post_metrica: ig.top_post_metrica, formato_destaque: ig.formato_destaque,
+    compartilhamentos: ig.compartilhamentos, cliques_bio: ig.cliques_bio, salvamentos: ig.salvamentos,
+    dados_diarios: ig.dados_diarios, metricas_calculadas: ig.metricas_calculadas,
+    audiencia: c.audiencia, pergunta_editorial: c.pergunta_editorial
+  };
+  document.getElementById('f-advanced-json').value = JSON.stringify(advanced, null, 2);
+}
+
+function readReviewForm() {
+  const num = (id) => {
+    const v = document.getElementById(id).value;
+    return v === '' ? null : parseFloat(v);
+  };
+  const str = (id) => document.getElementById(id).value.trim();
+
+  let advanced = {};
+  try { advanced = JSON.parse(document.getElementById('f-advanced-json').value || '{}'); }
+  catch (e) { plog('JSON avançado inválido — ignorando esse bloco: ' + e.message, 'err'); }
+
+  const ciclo = {
+    id: str('f-id'),
+    periodo: str('f-periodo'),
+    adicionado_em: new Date().toISOString().slice(0, 10),
+    decisao_editorial: str('f-decisao'),
+    youtube: {
+      views: num('f-yt-views'),
+      views_variacao_pct: num('f-yt-views-var'),
+      watchtime_horas: num('f-yt-watchtime'),
+      retencao_media_pct: num('f-yt-retencao'),
+      ctr_medio_pct: num('f-yt-ctr'),
+      impressoes: num('f-yt-impressoes'),
+      inscritos_ganhos: num('f-yt-inscritos-ganhos'),
+      top_video_titulo: str('f-yt-top-titulo'),
+      top_video_views: num('f-yt-top-views'),
+      principal_fonte_trafego: advanced.principal_fonte_trafego, principal_fonte_pct: advanced.principal_fonte_pct,
+      status_retencao: advanced.status_retencao, status_ctr: advanced.status_ctr, inscritos_total: advanced.inscritos_total
+    },
+    instagram: {
+      alcance: num('f-ig-alcance'),
+      seguidores_ganhos: num('f-ig-seguidores-ganhos'),
+      seguidores_total: num('f-ig-seguidores-total'),
+      engajamento_medio_pct: num('f-ig-engajamento'),
+      visitas_perfil: num('f-ig-visitas-perfil'),
+      interacoes: num('f-ig-interacoes'),
+      top_post_descricao: str('f-ig-top-post'),
+      top_post_metrica: advanced.top_post_metrica, formato_destaque: advanced.formato_destaque,
+      compartilhamentos: advanced.compartilhamentos, cliques_bio: advanced.cliques_bio, salvamentos: advanced.salvamentos,
+      dados_diarios: advanced.dados_diarios, metricas_calculadas: advanced.metricas_calculadas
+    },
+    audiencia: advanced.audiencia,
+    pergunta_editorial: advanced.pergunta_editorial,
+    insights: str('f-insights').split('\n').map(s => s.trim()).filter(Boolean),
+    acoes_proximo_ciclo: str('f-acoes').split('\n').map(s => s.trim()).filter(Boolean)
+  };
+  return ciclo;
+}
+
+function hideReview() {
+  document.getElementById('review-step').style.display = 'none';
+}
+
+/* ============ PUBLISH: ciclo ============ */
+async function publishCiclo() {
+  const cfg = getConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) {
+    plog('Configuração do GitHub incompleta (Passo 1).', 'err');
+    return;
+  }
+  const ciclo = readReviewForm();
+  if (!ciclo.id) { plog('Preencha o ID do ciclo (AAAA-MM).', 'err'); return; }
+
+  plog('Buscando insights.json atual no GitHub...');
+  let data, sha;
+  try {
+    const fetched = await fetchJsonFile(cfg.path);
+    data = fetched.data || { ciclos: [] };
+    sha = fetched.sha;
+  } catch (e) {
+    plog('Erro ao buscar arquivo atual: ' + e.message, 'err');
+    return;
+  }
+
+  if (!data.ciclos) data.ciclos = [];
+  const existingIdx = data.ciclos.findIndex(c => c.id === ciclo.id);
+  if (existingIdx >= 0) {
+    if (!confirm(`Já existe um ciclo com id "${ciclo.id}" (${data.ciclos[existingIdx].periodo}). Sobrescrever apenas esse ciclo (correção)?`)) {
+      plog('Publicação cancelada pelo usuário.', 'err');
+      return;
+    }
+    data.ciclos[existingIdx] = ciclo;
+    plog(`Ciclo "${ciclo.id}" corrigido (substituído).`, 'ok');
+  } else {
+    data.ciclos.push(ciclo);
+    plog(`Novo ciclo "${ciclo.id}" adicionado ao final. Total de ciclos: ${data.ciclos.length}`, 'ok');
+  }
+
+  plog('Publicando no GitHub...');
+  try {
+    const json = await putJsonFile(cfg.path, data, sha, `Atualiza métricas — ${ciclo.periodo || ciclo.id}`);
+    plog('Publicado com sucesso ✓', 'ok');
+    if (json.commit && json.commit.html_url) {
+      const a = document.createElement('a');
+      a.href = json.commit.html_url; a.target = '_blank'; a.textContent = 'Ver commit no GitHub →';
+      a.style.color = 'var(--marrom)';
+      document.getElementById('publish-log').appendChild(a);
+    }
+    remoteFileSha = json.content ? json.content.sha : null;
+  } catch (e) {
+    plog('Erro ao publicar: ' + e.message, 'err');
+  }
+}
+
+/* ============ MÓDULOS NOVOS: Concorrência / Boas Práticas / Calendário ============ */
+function switchModule(name) {
+  document.querySelectorAll('.tag-nav button').forEach(b => b.classList.toggle('on', b.dataset.m === name));
+  document.querySelectorAll('.module-pane').forEach(p => p.classList.toggle('on', p.id === 'mod-' + name));
+}
+
+async function publishArrayEntry(arrayKey, idFieldId, jsonFieldId) {
+  const cfg = getConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) { mlog('Configuração do GitHub incompleta (Passo 1).', 'err'); return; }
+
+  const id = document.getElementById(idFieldId).value.trim();
+  if (!id) { mlog('Preencha o ID (AAAA-MM).', 'err'); return; }
+
+  let entry;
+  try {
+    entry = JSON.parse(document.getElementById(jsonFieldId).value);
+  } catch (e) {
+    mlog('JSON inválido: ' + e.message, 'err');
+    return;
+  }
+  entry.id = id;
+  if (!entry.periodo) entry.periodo = id;
+
+  mlog(`Buscando insights.json atual...`);
+  let data, sha;
+  try {
+    const fetched = await fetchJsonFile(cfg.path);
+    data = fetched.data || {};
+    sha = fetched.sha;
+  } catch (e) {
+    mlog('Erro ao buscar arquivo atual: ' + e.message, 'err');
+    return;
+  }
+
+  if (!Array.isArray(data[arrayKey])) data[arrayKey] = [];
+  const existingIdx = data[arrayKey].findIndex(x => x.id === id);
+  if (existingIdx >= 0) {
+    if (!confirm(`Já existe uma entrada "${id}" em "${arrayKey}". Substituir?`)) { mlog('Cancelado pelo usuário.', 'err'); return; }
+    data[arrayKey][existingIdx] = entry;
+    mlog(`Entrada "${id}" substituída em "${arrayKey}".`, 'ok');
+  } else {
+    data[arrayKey].push(entry);
+    mlog(`Nova entrada "${id}" adicionada em "${arrayKey}". Total: ${data[arrayKey].length}`, 'ok');
+  }
+
+  mlog('Publicando no GitHub...');
+  try {
+    const json = await putJsonFile(cfg.path, data, sha, `Atualiza ${arrayKey} — ${entry.periodo || id}`);
+    mlog('Publicado com sucesso ✓', 'ok');
+    if (json.commit && json.commit.html_url) {
+      const a = document.createElement('a');
+      a.href = json.commit.html_url; a.target = '_blank'; a.textContent = 'Ver commit no GitHub →';
+      a.style.color = 'var(--marrom)';
+      document.getElementById('module-log').appendChild(a);
+    }
+  } catch (e) {
+    mlog('Erro ao publicar: ' + e.message, 'err');
+  }
+}
+
+/* ============ CANAIS.JSON (arquivo separado) ============ */
+async function loadCanais() {
+  const cfg = getConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) { mlog('Configuração do GitHub incompleta (Passo 1).', 'err'); return; }
+  mlog('Buscando canais.json atual...');
+  try {
+    const { data, sha } = await fetchJsonFile(cfg.canaisPath);
+    if (!data) {
+      mlog('canais.json ainda não existe no repositório — publique para criá-lo.', 'info');
+      return;
+    }
+    document.getElementById('mcanais-json').value = JSON.stringify(data, null, 2);
+    window._canaisSha = sha;
+    mlog('canais.json carregado.', 'ok');
+  } catch (e) {
+    mlog('Erro ao buscar canais.json: ' + e.message, 'err');
+  }
+}
+
+async function publishCanais() {
+  const cfg = getConfig();
+  if (!cfg.owner || !cfg.repo || !cfg.token) { mlog('Configuração do GitHub incompleta (Passo 1).', 'err'); return; }
+
+  let data;
+  try {
+    data = JSON.parse(document.getElementById('mcanais-json').value);
+  } catch (e) {
+    mlog('JSON inválido: ' + e.message, 'err');
+    return;
+  }
+  data.atualizado_em = new Date().toISOString().slice(0, 10);
+
+  let sha = window._canaisSha;
+  if (sha === undefined) {
+    mlog('Conferindo se canais.json já existe (você não carregou antes de publicar)...');
+    try {
+      const fetched = await fetchJsonFile(cfg.canaisPath);
+      sha = fetched.sha;
+    } catch (e) {
+      mlog('Erro ao verificar arquivo existente: ' + e.message, 'err');
+      return;
+    }
+  }
+
+  mlog('Publicando canais.json no GitHub...');
+  try {
+    const json = await putJsonFile(cfg.canaisPath, data, sha, 'Atualiza canais monitorados');
+    mlog('Publicado com sucesso ✓', 'ok');
+    window._canaisSha = json.content ? json.content.sha : null;
+    if (json.commit && json.commit.html_url) {
+      const a = document.createElement('a');
+      a.href = json.commit.html_url; a.target = '_blank'; a.textContent = 'Ver commit no GitHub →';
+      a.style.color = 'var(--marrom)';
+      document.getElementById('module-log').appendChild(a);
+    }
+  } catch (e) {
+    mlog('Erro ao publicar: ' + e.message, 'err');
+  }
+}
+
+loadConfig();
+</script>
+</body>
+</html>

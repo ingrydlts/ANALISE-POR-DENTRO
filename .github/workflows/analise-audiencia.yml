@@ -1,0 +1,90 @@
+name: Análise de Audiência (Módulo 3)
+
+# GitHub Actions só agenda em UTC — Paris alterna entre UTC+1 (CET, inverno)
+# e UTC+2 (CEST, verão). Por isso disparamos em DOIS horários UTC e o
+# primeiro passo do job verifica a hora local de Paris e aborta se não
+# forem ~07:00 — assim só uma das duas execuções realmente roda.
+on:
+  schedule:
+    - cron: '0 5 * * 5'   # 07:00 em Paris durante o horário de verão (CEST, ~fim mar. a fim out.)
+    - cron: '0 6 * * 5'   # 07:00 em Paris durante o horário de inverno (CET, ~fim out. a fim mar.)
+  workflow_dispatch: {}    # permite rodar manualmente pelo GitHub para testar
+
+jobs:
+  analise-audiencia:
+    runs-on: ubuntu-latest
+    steps:
+      # IMPORTANTE: GitHub Actions não trata nenhum exit code como "neutro" —
+      # qualquer saída != 0 marca o STEP e o JOB inteiro como FAILED (❌),
+      # mesmo quando o objetivo é só pular a execução de propósito. Por isso
+      # este guard nunca usa "exit N": ele grava um output (run=true/false) e
+      # cada step seguinte só executa "if" esse output for true. Assim, fora
+      # do horário certo o job termina com sucesso (✓) e os demais steps
+      # aparecem como "skipped" — sem alerta falso de falha toda sexta.
+      - name: Verificar se é ~07h em Paris (ou disparo manual)
+        id: guard
+        run: |
+          HORA_PARIS=$(TZ='Europe/Paris' date +%H)
+          echo "Hora atual em Paris: ${HORA_PARIS}h · evento: ${{ github.event_name }}"
+          if [ "$HORA_PARIS" = "07" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Fora do horário de disparo real (fuso duplo) — pulando esta execução (isso é esperado, não é falha)."
+          fi
+
+      - name: Checkout do repositório
+        if: steps.guard.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        if: steps.guard.outputs.run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        if: steps.guard.outputs.run == 'true'
+        # Unificado com os demais workflows (concorrência, coleta): todos instalam
+        # do mesmo scripts/requirements.txt, que já traz as faixas seguras de
+        # anthropic/httpx (evita o bug conhecido "Client.__init__() got an
+        # unexpected keyword argument 'proxies'") e notion-client>=2.7.0 (API de
+        # data sources).
+        run: pip install -r scripts/requirements.txt
+
+      - name: Enriquecer conversas de audiência (lê os prints, por entrada)
+        if: steps.guard.outputs.run == 'true'
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
+        run: python scripts/enriquecer_conversas_audiencia.py
+
+      - name: Rodar análise de audiência (bilan agregado da semana)
+        if: steps.guard.outputs.run == 'true'
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
+          NOTION_ANALISES_DB_ID: ${{ secrets.NOTION_ANALISES_DB_ID }}
+          # Caminho do insights.json na raiz do repo (mesmo arquivo que o dashboard lê):
+          INSIGHTS_JSON_PATH: insights.json
+        run: python scripts/analyze_audiencia.py
+
+      - name: Commitar insights.json atualizado
+        if: steps.guard.outputs.run == 'true'
+        run: |
+          git config user.name "por-dentro-bot"
+          git config user.email "bot@users.noreply.github.com"
+          if [ -f "insights.json" ]; then
+            git add insights.json
+            git diff --cached --quiet && echo "Nada novo para commitar." || { git commit -m "chore: bilan de audiência da semana (auto)"; git push; }
+          else
+            echo "⚠ 'insights.json' não existe no checkout — nada para commitar nesta rodada."
+          fi
+
+# ── Sequenciamento com o script de busca de fontes ───────────────────────────
+# Este job termina por volta de 07:02–07:05 (Paris) na maioria das rodadas.
+# Se o workflow do "busca de fontes" também roda às sextas, agende-o um
+# pouco depois (ex.: 07:15 ou 07:30 Paris) para garantir que ele encontre
+# o insights.json e as entradas já marcadas como PROCESSADO desta rodada.

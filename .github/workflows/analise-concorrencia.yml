@@ -1,0 +1,72 @@
+name: Análise de Concorrência
+
+# Cron não tem uma sintaxe nativa para "primeira segunda-feira do mês": misturar
+# dia-do-mês e dia-da-semana no mesmo cron (como '0 9 1-7 * 1') é tratado como OU
+# pela maioria dos agendadores, incluindo o GitHub Actions — isso disparava o job
+# em TODO dia de 1 a 7 do mês, MAIS toda segunda-feira, sem nenhuma proteção contra
+# duplicar. Por isso: o cron dispara toda segunda-feira às 09h UTC, e o primeiro
+# passo do job verifica se é a primeira segunda do mês (dia do mês <= 7) e pula
+# (sem falhar) nas demais segundas — mesmo padrão de "guard" usado em
+# analise-audiencia.yml.
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch: {}   # permite rodar manualmente pelo GitHub para testar
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar se é a primeira segunda-feira do mês (ou disparo manual)
+        id: guard
+        run: |
+          DIA_DO_MES=$(date -u +%d)
+          echo "Dia do mês (UTC): ${DIA_DO_MES} · evento: ${{ github.event_name }}"
+          # "10#" força base decimal — sem isso, dias como "08"/"09" quebram o
+          # teste aritmético do bash (interpretados como literal octal inválido).
+          if [ "$((10#$DIA_DO_MES))" -le 7 ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Não é a primeira segunda-feira do mês — pulando (isso é esperado, não é falha)."
+          fi
+
+      - name: Checkout repositório
+        if: steps.guard.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        if: steps.guard.outputs.run == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        if: steps.guard.outputs.run == 'true'
+        run: pip install -r scripts/requirements.txt
+
+      - name: Executar análise de concorrência
+        if: steps.guard.outputs.run == 'true'
+        run: python scripts/analyze_concorrencia.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
+          NOTION_COLETAS_DB_ID: ${{ secrets.NOTION_COLETAS_DB_ID }}
+          NOTION_BENCHMARKS_DB_ID: ${{ secrets.NOTION_BENCHMARKS_DB_ID }}
+          # Caminho do insights.json na raiz do repo (mesmo arquivo que o dashboard lê):
+          INSIGHTS_JSON_PATH: insights.json
+
+      - name: Commitar insights.json atualizado
+        if: steps.guard.outputs.run == 'true'
+        run: |
+          git config user.name "por-dentro-bot"
+          git config user.email "bot@users.noreply.github.com"
+          if [ -f "insights.json" ]; then
+            git add insights.json
+            git diff --cached --quiet && echo "Nada novo para commitar." || { git commit -m "chore: benchmark de concorrência do mês (auto)"; git push; }
+          else
+            echo "⚠ 'insights.json' não existe no checkout — nada para commitar nesta rodada."
+          fi

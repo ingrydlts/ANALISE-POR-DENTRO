@@ -6,6 +6,13 @@ Lê o ciclo mais recente do insights.json e cria tarefas no Notion com:
 - Corpo da tarefa com contexto completo: insight de origem, impacto esperado e passos de execução
 - Links para o bilan e para outras bases relevantes
 
+v2 (2026-07): dedup por AÇÃO, não por ciclo inteiro.
+  Antes: se o ciclo_id já tinha QUALQUER tarefa criada, o script pulava o ciclo inteiro —
+  então editar/adicionar ações num ciclo já processado (ex: novos insights do cruzamento
+  com o calendário do Notion) nunca virava tarefa nova. Agora cada ação é checada
+  individualmente: só cria o que ainda não existe no Notion, então o script pode rodar
+  a cada push sem duplicar o que já foi criado.
+
 Configuração necessária (GitHub Secrets):
   NOTION_TOKEN  — token da integration do Notion
   NOTION_DB_ID  — ID do database "Major Tasks Database"
@@ -210,20 +217,28 @@ def calcular_do_date(prio: str, base: date) -> str:
     return (base + timedelta(days=offsets.get(prio, 2))).isoformat()
 
 
-# ─── Verificação de duplicatas ───────────────────────────────────────────────
+# ─── Verificação de duplicatas (v2: por AÇÃO, não por ciclo) ─────────────────
 
-def ciclo_ja_processado(ciclo_id: str) -> bool:
+def acao_ja_existe(ciclo_id: str, acao: str) -> bool:
+    """
+    Checa se já existe uma tarefa no Notion para esta ação específica deste ciclo.
+    O 'AI summary' é sempre gerado como f"[Ciclo: {ciclo_id}] {acao}"[:2000] —
+    então um match exato nesse texto é um match exato de ação já criada.
+    Isso permite que o script rode a cada push: ações repetidas não duplicam,
+    ações novas (mesmo em um ciclo já processado antes) são criadas normalmente.
+    """
+    ai_summary = f"[Ciclo: {ciclo_id}] {acao}"[:2000]
     url = f"https://api.notion.com/v1/databases/{NOTION_DB_ID}/query"
     payload = {
         "filter": {
             "property": "AI summary",
-            "rich_text": {"contains": f"[Ciclo: {ciclo_id}]"}
+            "rich_text": {"equals": ai_summary}
         },
         "page_size": 1
     }
     resp = requests.post(url, headers=HEADERS, json=payload)
     if not resp.ok:
-        print(f"ERRO ao checar duplicatas: {resp.status_code} — {resp.text}")
+        print(f"ERRO ao checar duplicata de ação: {resp.status_code} — {resp.text}")
         resp.raise_for_status()
     return len(resp.json().get("results", [])) > 0
 
@@ -404,16 +419,26 @@ def main():
         sys.exit(0)
 
     print(f"\n📋 Ciclo: {periodo} ({ciclo_id})")
-    print(f"   {len(acoes)} ação(ões) | {len(insights)} insight(s)\n")
+    print(f"   {len(acoes)} ação(ões) no ciclo | {len(insights)} insight(s)\n")
 
-    # 3. Verifica duplicatas
-    if ciclo_ja_processado(ciclo_id):
-        print(f"⏭️  Ciclo {ciclo_id} já processado. Pulando.")
+    # 3. Filtra só as ações que ainda não têm tarefa no Notion (dedup por ação, não por ciclo)
+    novas = []
+    puladas = 0
+    for acao in acoes:
+        if acao_ja_existe(ciclo_id, acao):
+            puladas += 1
+            continue
+        novas.append(acao)
+
+    print(f"   {len(novas)} ação(ões) nova(s) · {puladas} já existiam no Notion\n")
+
+    if not novas:
+        print(f"⏭️  Todas as ações do ciclo {ciclo_id} já têm tarefa correspondente. Nada novo a criar.")
         sys.exit(0)
 
     # 4. Classifica e limita
     acoes_classificadas = []
-    for acao in acoes:
+    for acao in novas:
         prio = classificar_prio(acao)
         executor = determinar_executor(acao)
         acoes_classificadas.append((prio, executor, acao))
@@ -455,7 +480,7 @@ def main():
         })
 
     # 7. Resumo
-    print(f"\n🎯 {len(criadas)} tarefa(s) criada(s) no Notion — ciclo {ciclo_id}")
+    print(f"\n🎯 {len(criadas)} tarefa(s) nova(s) criada(s) no Notion — ciclo {ciclo_id}")
     for t in criadas:
         dia = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"][
             date.fromisoformat(t["do_date"]).weekday()

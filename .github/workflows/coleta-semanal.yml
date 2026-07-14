@@ -1,0 +1,31 @@
+name: Coleta Semanal YouTube
+
+on:
+  schedule:
+    # Toda sexta às 21h UTC (23h Paris no horário de verão)
+    - cron: '0 21 * * 5'
+  workflow_dispatch: # Permite rodar manualmente pelo GitHub
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install -r scripts/requirements.txt
+
+      - name: Executar coleta YouTube
+        run: python scripts/collect.py
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+          NOTION_COLETAS_DB_ID: ${{ secrets.NOTION_COLETAS_DB_ID }}

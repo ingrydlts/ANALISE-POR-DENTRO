@@ -1,0 +1,7 @@
+{
+  "atualizado_em": "2026-07-14",
+  "nota": "Preencher com os concorrentes reais monitorados. collect.py lê a base COLETAS YOUTUBE do Notion (não este arquivo) para a coleta automática — este arquivo é a lista de referência exibida no dashboard, categorizada conforme o Módulo 3 do documento de arquitetura.",
+  "categoria_a_diretos": [],
+  "categoria_b_formato": [],
+  "categoria_c_qualidade": []
+}
