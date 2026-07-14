@@ -125,10 +125,17 @@ def buscar_benchmark_concorrencia_recente() -> dict | None:
     }
 
 
-# ── 3. Calendário atual (dedup) ──────────────────────────────────────────────
+# ── 3. Calendário atual (dedup + datas ocupadas) ─────────────────────────────
 
-def buscar_titulos_calendario() -> tuple[list, list]:
-    """Retorna (agendados_proximos_60_dias, ja_em_idea_backlog) — só título e contexto mínimo."""
+# Cadência semanal definida pela criadora (sessão de 14/07/2026): Domingo é
+# reservado pra série "(in)digest" (notícia/política) — sugestão automática
+# nunca ocupa domingo. Segunda/Quarta = Reel, Terça/Quinta = Carrossel.
+# Python weekday(): Segunda=0 ... Domingo=6.
+DIAS_POR_FORMATO = {"Reel": {0, 2}, "Carrossel": {1, 3}}
+
+
+def buscar_titulos_calendario() -> tuple[list, list, set]:
+    """Retorna (agendados_proximos_60_dias, ja_em_idea_backlog, datas_ocupadas)."""
     data_source_id = resolver_data_source_id(NOTION_CALENDARIO_DB_ID)
 
     daqui_60 = (AGORA + timedelta(days=60)).strftime("%Y-%m-%d")
@@ -141,7 +148,15 @@ def buscar_titulos_calendario() -> tuple[list, list]:
         ]},
         page_size=100,
     )
-    agendados = [_title(pg["properties"], "Nom") for pg in resp_agendados.get("results", []) if _title(pg["properties"], "Nom")]
+    agendados = []
+    ocupadas = set()
+    for pg in resp_agendados.get("results", []):
+        titulo = _title(pg["properties"], "Nom")
+        if titulo:
+            agendados.append(titulo)
+        data_val = (pg["properties"].get("Posting Date", {}).get("date") or {}).get("start")
+        if data_val:
+            ocupadas.add(data_val[:10])
 
     resp_ideas = notion.data_sources.query(
         data_source_id=data_source_id,
@@ -150,7 +165,25 @@ def buscar_titulos_calendario() -> tuple[list, list]:
     )
     ideas = [_title(pg["properties"], "Nom") for pg in resp_ideas.get("results", []) if _title(pg["properties"], "Nom")]
 
-    return agendados, ideas
+    return agendados, ideas, ocupadas
+
+
+def proxima_data_livre(formato: str, ocupadas: set, a_partir_de: datetime) -> str:
+    """Primeiro dia, a partir de amanhã, cujo dia da semana bate com o formato
+    (Reel = seg/qua, Carrossel = ter/qui) e ainda não está ocupado. Se não
+    achar em 90 dias (não deveria acontecer), cai pro dia seguinte livre,
+    de qualquer dia da semana, pra nunca deixar uma sugestão sem data."""
+    dias_validos = DIAS_POR_FORMATO.get(formato, {0, 1, 2, 3})
+    d = a_partir_de + timedelta(days=1)
+    for _ in range(90):
+        d_str = d.strftime("%Y-%m-%d")
+        if d.weekday() in dias_validos and d_str not in ocupadas:
+            return d_str
+        d += timedelta(days=1)
+    d = a_partir_de + timedelta(days=1)
+    while d.strftime("%Y-%m-%d") in ocupadas:
+        d += timedelta(days=1)
+    return d.strftime("%Y-%m-%d")
 
 
 # ── 4. Geração via Claude ────────────────────────────────────────────────────
@@ -226,8 +259,12 @@ Responda APENAS com um JSON válido (sem markdown, sem cercas de código, sem te
 
 
 # ── 5. Criar páginas rascunho no calendário ──────────────────────────────────
+# IMPORTANTE: toda sugestão SEMPRE ganha uma "Posting Date" (mesmo sendo só uma
+# proposta, Stage continua "Idea"). Sem data, a página não aparece na grade do
+# Calendário Real do dashboard — fica invisível pra criadora decidir. A data é
+# só um slot sugerido; mover ou apagar fica a critério de quem revisa.
 
-def criar_pagina_sugestao(sugestao: dict) -> bool:
+def criar_pagina_sugestao(sugestao: dict, ocupadas: set) -> bool:
     titulo = (sugestao.get("titulo") or "").strip()
     if not titulo:
         return False
@@ -236,13 +273,16 @@ def criar_pagina_sugestao(sugestao: dict) -> bool:
     pilar = sugestao.get("pilar")
     pilares = [pilar] if pilar in PILARES_VALIDOS else []
     publico = [p for p in (sugestao.get("publico") or []) if p in PUBLICO_VALIDOS]
-    promessa = f"[Sugestão automática — {HOJE_STR}]: {sugestao.get('justificativa', '')} — {sugestao.get('promessa', '')}"[:2000]
+    data_sugerida = proxima_data_livre(formato, ocupadas, AGORA)
+    ocupadas.add(data_sugerida)  # próxima sugestão desta rodada não cai no mesmo dia
+    promessa = f"[Sugestão automática — {HOJE_STR}, data é um slot proposto]: {sugestao.get('justificativa', '')} — {sugestao.get('promessa', '')}"[:2000]
 
     properties = {
         "Nom": titulo,
         "Formato": formato,
         "Stage": "Idea",
         "Promessa do conteudo": promessa,
+        "date:Posting Date:start": data_sugerida,
     }
     if pilares:
         properties["Pilars"] = json.dumps(pilares, ensure_ascii=False)
@@ -252,6 +292,7 @@ def criar_pagina_sugestao(sugestao: dict) -> bool:
     try:
         data_source_id = resolver_data_source_id(NOTION_CALENDARIO_DB_ID)
         notion.pages.create(parent={"data_source_id": data_source_id}, properties=properties)
+        print(f"    data sugerida: {data_sugerida}")
         return True
     except APIResponseError as e:
         print(f"  ✖ Erro ao criar página para '{titulo}': {e}")
@@ -323,9 +364,9 @@ def main():
     benchmark = buscar_benchmark_concorrencia_recente()
     print("  encontrado." if benchmark else "  nenhum ainda — seguindo sem esse insumo.")
 
-    print("Lendo calendário atual (dedup)...")
-    agendados, ideas = buscar_titulos_calendario()
-    print(f"  {len(agendados)} agendado(s)/em produção · {len(ideas)} já em Idea/Backlog.")
+    print("Lendo calendário atual (dedup + datas ocupadas)...")
+    agendados, ideas, ocupadas = buscar_titulos_calendario()
+    print(f"  {len(agendados)} agendado(s)/em produção · {len(ideas)} já em Idea/Backlog · {len(ocupadas)} data(s) ocupada(s).")
 
     if not bilans and not benchmark:
         print("Sem insumos suficientes (nem audiência nem concorrência) — pulando geração desta rodada.")
@@ -336,10 +377,11 @@ def main():
 
         criadas = 0
         for s in sugestoes:
-            if criar_pagina_sugestao(s):
+            print(f"  → {s.get('titulo')}")
+            if criar_pagina_sugestao(s, ocupadas):
                 criadas += 1
-                print(f"  ✓ Página criada: {s.get('titulo')}")
-        print(f"{criadas} página(s) nova(s) criada(s) em INSTA TO POR DENTRO.")
+                print(f"    ✓ página criada.")
+        print(f"{criadas} página(s) nova(s) criada(s) em INSTA TO POR DENTRO, cada uma já com data sugerida.")
 
     print("Atualizando calendario_posts no insights.json...")
     refrescar_calendario_posts()

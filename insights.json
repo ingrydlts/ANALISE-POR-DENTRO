@@ -700,15 +700,6 @@
         "Saturação temática: CPF aparece em 4 peças distintas entre 23/jul e 03/set.",
         "Só 2 de 22 posts de julho têm persona (campo Público) definida; 0 têm meta REACH/FOLLOW/COMMENTS (12 SAVE, 10 sem meta) — calendário configurado quase inteiramente para retenção, não para alcance."
       ],
-      "acoes_aplicadas": [
-        "PEA ('o plano de investimento que só funciona...') arquivado — Stage: Backlog, data removida.",
-        "CTO vs PEA — pendente de confirmação explícita da criadora antes de arquivar (bloqueado por classificador de segurança, precisa de instrução nomeando o item)."
-      ],
-      "decisoes_pendentes": [
-        "VLS-TS (Reel, 17/jul, sexta): deveria mover para dia de Reel (segunda/quarta) sob a nova regra de cadência, mas todos os slots próximos já estão ocupados — criadora optou por deixar na sexta por enquanto.",
-        "Duplicata de 29/jul (2 Reels sobre auto-empreendedorismo): mantidas as duas de propósito — serão unificadas por Claude no momento de produção do post, não antes.",
-        "Reagendar ao menos 1 newsletter de julho, ainda sem data definida."
-      ],
       "resumo_formatos": {
         "youtube": 0,
         "reels": 12,
@@ -721,6 +712,60 @@
       "alertas_producao": [
         "Peça de 14/jul ('Bolsas Eiffel/BGF/Erasmus+') ainda em estágio Design no dia da publicação.",
         "'TITRE PROFESSIONNEL' (27/jul) em estágio Research a 13 dias da data — sem roteiro ainda."
+      ],
+      "posts_analisados": [
+        {
+          "data": "01/jul",
+          "titulo": "As 3 ajudas de moradia na França",
+          "formato": "Carrossel",
+          "observacao": "Publicou com o card ainda em Design — produção não fechou a tempo."
+        },
+        {
+          "data": "02/jul",
+          "titulo": "largar tudo e morar fora",
+          "formato": "Reel",
+          "observacao": "Pilar viral, sem Público definido."
+        },
+        {
+          "data": "06/jul",
+          "titulo": "Como Encontrar Alternância pt.1",
+          "formato": "Reel",
+          "observacao": "Abre a mini-série substituta do EP A.04, decisão consciente da criadora."
+        },
+        {
+          "data": "08/jul",
+          "titulo": "O valor mínimo pro visto de estudante subiu 43%",
+          "formato": "Reel",
+          "observacao": "Único post do mês com Público definido (Pré-chegada + Recém-chegado) e alinhado à lacuna real de concorrência."
+        },
+        {
+          "data": "09/jul",
+          "titulo": "Reconhecimento de diplomas na França",
+          "formato": "Carrossel",
+          "observacao": "Retoma o tema do Reel de diplomas de 29/jun em formato diferente — reforço D0→D+3."
+        },
+        {
+          "data": "12/jul",
+          "titulo": "Cap.1 — Le Pen pode concorrer em 2027",
+          "formato": "Reel",
+          "observacao": "Conteúdo de notícia (série (in)digest), pilar Sociedade — fora do pilar Sistema que é a lacuna real de concorrência."
+        },
+        {
+          "data": "13/jul",
+          "titulo": "pt.2 Como Encontrar Alternância",
+          "formato": "Reel",
+          "observacao": "Mantém a cadência semanal da série."
+        }
+      ],
+      "pode_continuar": [
+        "\"O valor mínimo pro visto de estudante subiu 43%\" (08/jul) é o padrão a replicar: é o único post do mês com persona (Público) definida E cobre exatamente a lacuna que nenhum dos 8 concorrentes mapeados ocupa (conteúdo de sistema com profundidade).",
+        "A série \"Como Encontrar Alternância\" está sendo publicada com cadência semanal real (pt.1 em 06/jul, pt.2 em 13/jul) — resolve o problema identificado em Junho, quando o calendário rodou a ~1×/semana mesmo prevendo 2×.",
+        "\"Reconhecimento de diplomas\" (09/jul) reforça o Reel de diplomas de 29/jun em formato diferente — está seguindo o protocolo de sequência D0→D+3 que o planejamento pede."
+      ],
+      "campo_melhora": [
+        "\"As 3 ajudas de moradia\" (01/jul) publicou com o roteiro ainda em Design — antecipar a produção em pelo menos 3 dias evitaria isso de novo.",
+        "Só 1 dos 7 posts publicados até 13/jul tem o campo Público preenchido — sem isso, fica impossível medir depois se as personas certas estão sendo atingidas.",
+        "\"Cap.1 — Le Pen pode concorrer em 2027\" (12/jul, domingo) é conteúdo de notícia, pilar Sociedade — legítimo para engajamento, mas se dominar os domingos, desloca o pilar Sistema (a lacuna real de concorrência) para segundo plano."
       ]
     }
   ],
@@ -1436,6 +1481,22 @@
       "promessa": ""
     },
     {
+      "url": "https://app.notion.com/39dd602254ce8177a79bc010712e0c35",
+      "titulo": "Os 5 passos burocráticos que ninguém te avisa: de chegada ao CPF francês",
+      "data": "2026-07-28",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 14/07/2026]: Roteiro passo a passo de burocracia francesa com prazos realistas — pedido direto e recorrente da audiência."
+    },
+    {
       "url": "https://app.notion.com/38cd602254ce81e995dce8d1a6aab497",
       "titulo": "Estudante auto-empreendedora na França: pode mesmo trabalhar por conta própria?",
       "data": "2026-07-29",
@@ -1534,6 +1595,22 @@
       "publico": [],
       "serie": [],
       "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/39dd602254ce816eb073ea0fba6ab519",
+      "titulo": "VLS Long Duration vs Visto de Intercâmbio Universitário: qual escolher antes de pagar passagem?",
+      "data": "2026-08-04",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 14/07/2026]: Dor real e específica de uma seguidora gastando tempo e dinheiro em teste de língua sem saber se consegue o visto."
     },
     {
       "url": "https://app.notion.com/38cd602254ce81868a5ff39d91ddbe14",
@@ -1768,6 +1845,22 @@
       "promessa": ""
     },
     {
+      "url": "https://app.notion.com/39dd602254ce818da4d9d07c851103bc",
+      "titulo": "CAP Petite Enfance com 30 anos: é armadilha ou porta de entrada real?",
+      "data": "2026-09-02",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Trajetória"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 14/07/2026]: Pergunta direta de quem foi rejeitado por escola — audiência precisa entender se compensa fazer CAP inicial só pra viabilizar visto."
+    },
+    {
       "url": "https://app.notion.com/394d602254ce81338efbf9a17d2f2fdb",
       "titulo": "CPF na França: como financiar seu curso de francês (e não pagar do bolso)",
       "data": "2026-09-03",
@@ -1790,6 +1883,23 @@
       "publico": [],
       "serie": [],
       "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/39dd602254ce81b9bc4dedaf8329432d",
+      "titulo": "Visto vs. Visto: qual escolher se você quer estudar, trabalhar ou vir com cônjuge?",
+      "data": "2026-09-09",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 14/07/2026]: Audiência segmentada por motivo de imigração precisa de comparação clara antes de decidir qual caminho de visto seguir."
     },
     {
       "url": "https://app.notion.com/38dd602254ce80089c7ef3c964b0e5e2",
