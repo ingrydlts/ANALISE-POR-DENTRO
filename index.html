@@ -176,6 +176,41 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
 .cal-summary .cs-item{text-align:center;}
 .cal-summary .cs-num{font-family:'Playfair Display',serif;font-size:22px;color:var(--off-white);}
 .cal-summary .cs-lbl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--ocre);margin-top:2px;}
+
+/* CALENDARIO REAL — grade mensal (replica o calendário do Notion) */
+.real-cal-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.real-cal-tabs button{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.5px;padding:7px 16px;border-radius:20px;border:1px solid rgba(61,43,31,0.18);background:var(--off-white);color:var(--marrom);cursor:pointer;}
+.real-cal-tabs button.on{background:var(--marrom);color:var(--off-white);border-color:var(--marrom);}
+.real-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:rgba(61,43,31,0.1);border-radius:10px;overflow:hidden;border:1px solid rgba(61,43,31,0.1);margin-bottom:16px;}
+.real-cal-dow{background:var(--marrom);color:var(--ocre);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;text-align:center;padding:8px 4px;}
+.real-cal-cell{background:var(--off-white);min-height:86px;padding:6px;display:flex;flex-direction:column;gap:3px;}
+.real-cal-cell.empty{background:rgba(61,43,31,0.02);}
+.real-cal-cell.today{box-shadow:inset 0 0 0 2px var(--ocre);}
+.real-cal-daynum{font-family:'DM Mono',monospace;font-size:10px;color:var(--cinza);margin-bottom:2px;}
+.real-cal-chip{font-size:10px;line-height:1.3;padding:3px 6px;border-radius:5px;cursor:pointer;border-left:3px solid var(--cinza);background:var(--bege-escuro);color:var(--marrom);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.real-cal-chip:hover{filter:brightness(0.96);}
+.real-cal-chip.on{outline:2px solid var(--marrom);}
+.real-cal-chip.stage-done{border-left-color:var(--verde);}
+.real-cal-chip.stage-progress{border-left-color:var(--ocre);}
+.real-cal-chip.stage-todo{border-left-color:var(--cinza);}
+.real-cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;font-size:11px;color:var(--oliva);}
+.real-cal-legend span{display:inline-flex;align-items:center;gap:5px;}
+.real-cal-legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.real-cal-detail{background:var(--off-white);border-radius:10px;border:1px solid rgba(61,43,31,0.08);padding:18px 20px;margin-bottom:28px;}
+.real-cal-detail .rd-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--marrom);margin-bottom:8px;}
+.real-cal-detail .rd-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.real-cal-detail .rd-promessa{font-size:12px;color:#5A4A3A;line-height:1.6;margin-bottom:10px;}
+.real-cal-detail a{font-size:11px;color:var(--ocre);text-decoration:none;}
+.real-cal-detail a:hover{text-decoration:underline;}
+
+/* Dropdown / accordion */
+.dd-card{background:var(--off-white);border-radius:10px;border:1px solid rgba(61,43,31,0.08);margin-bottom:14px;overflow:hidden;}
+.dd-header{padding:20px 22px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.dd-header:hover{background:rgba(61,43,31,0.02);}
+.dd-caret{font-family:'DM Mono',monospace;color:var(--ocre);font-size:12px;flex-shrink:0;transition:transform .15s;}
+.dd-card.open .dd-caret{transform:rotate(90deg);}
+.dd-body{display:none;padding:0 22px 22px;}
+.dd-card.open .dd-body{display:block;}
 </style>
 </head>
 <body>
@@ -650,6 +685,18 @@ const CALENDARIO_SAZONAL = [
   {mes:'Dezembro', tema:'Natal, réveillon, o que muda em janeiro'},
 ];
 
+const DOW_LABELS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+const MES_NOMES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+let realCalMonth = null;
+let realCalSelectedUrl = null;
+
+function stageClass(estagio) {
+  const s = (estagio || '').toLowerCase();
+  if (s === 'done' || s === 'scheduled') return 'stage-done';
+  if (s === 'idea' || s === 'backlog' || s === 'draft') return 'stage-todo';
+  return 'stage-progress'; // design, research, to film, to edit
+}
+
 function renderCalendario() {
   const pane = document.getElementById('pane-calendario');
   const cal = DATA.calendario || [];
@@ -661,45 +708,153 @@ function renderCalendario() {
     <div class="tbl-wrap season-tbl-wrap">
       <table class="data-tbl"><thead><tr><th>Período</th><th>Tema prioritário</th></tr></thead><tbody>${seasonRows}</tbody></table>
     </div>
-    <div class="sec-hd"><h2>Calendário <em>Editorial</em></h2><span class="sub">${cal.length} mês(es) planejado(s)</span></div>
+
+    <div class="sec-hd"><h2>Calendário <em>Real</em></h2><span class="sub">replicado do Notion — clique num post pra ver os detalhes</span></div>
+    <div id="real-cal-tabs" class="real-cal-tabs"></div>
+    <div class="real-cal-legend">
+      <span><i style="background:var(--verde)"></i> Pronto (Scheduled/Done)</span>
+      <span><i style="background:var(--ocre)"></i> Em produção (Design/Research/to film/to edit)</span>
+      <span><i style="background:var(--cinza)"></i> Ainda ideia (Idea/Backlog)</span>
+    </div>
+    <div id="real-cal-grid" class="real-cal-grid"></div>
+    <div id="real-cal-detail"></div>
+
+    <div class="sec-hd"><h2>Calendário <em>Editorial</em></h2><span class="sub">${cal.length} análise(s) publicada(s)</span></div>
   `;
 
   if (!cal.length) {
     html += `<div class="empty-tab">Nenhum calendário editorial mensal publicado ainda.<br>Módulo 5 — combina o bilan do mês anterior + benchmark de concorrência + boas práticas. Publique pelo painel-atualizacao.html.</div>`;
   } else {
-    [...cal].reverse().forEach(c => {
+    [...cal].reverse().forEach((c, idx) => {
       html += `
-        <div class="insight-card">
-          <div class="meta">${esc(c.periodo || c.id)}</div>
-          <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--marrom);margin-bottom:6px;">${esc(c.tema_central)}</div>
-          <div style="font-size:12px;color:var(--oliva);margin-bottom:10px;">${esc(c.objetivo_mes)}</div>
-          ${(c.achados_macro||[]).length ? `<div class="bench-block"><div class="lbl">Achados macro</div><ul class="insight-list">${c.achados_macro.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-          <div class="week-grid">
-            ${(c.semanas||[]).map(w => `
-              <div class="week-card">
-                <div class="wn">Semana ${w.numero}</div>
-                <div class="wt">${esc(w.tipo)}</div>
-                <div class="wp"><b>YT</b> ${esc(w.youtube) || '—'}</div>
-                <div class="wp"><b>IG</b> ${esc(w.instagram) || '—'}</div>
-                <div class="wp"><b>News</b> ${esc(w.newsletter) || '—'}</div>
-              </div>`).join('')}
+        <div class="dd-card${idx === 0 ? ' open' : ''}" id="dd-cal-${c.id}">
+          <div class="dd-header" onclick="document.getElementById('dd-cal-${c.id}').classList.toggle('open')">
+            <div>
+              <div class="meta" style="margin-bottom:6px;">${esc(c.periodo || c.id)}</div>
+              <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--marrom);">${esc(c.tema_central)}</div>
+              <div style="font-size:12px;color:var(--oliva);margin-top:4px;">${esc(c.objetivo_mes)}</div>
+            </div>
+            <div class="dd-caret">▶</div>
           </div>
-          ${c.resumo_formatos ? `
-          <div class="cal-summary">
-            <div class="cs-item"><div class="cs-num">${c.resumo_formatos.youtube ?? 0}</div><div class="cs-lbl">YouTube</div></div>
-            <div class="cs-item"><div class="cs-num">${c.resumo_formatos.reels ?? 0}</div><div class="cs-lbl">Reels</div></div>
-            <div class="cs-item"><div class="cs-num">${c.resumo_formatos.carrosseis ?? 0}</div><div class="cs-lbl">Carrosséis</div></div>
-            <div class="cs-item"><div class="cs-num">${c.resumo_formatos.stories_semana ?? 0}</div><div class="cs-lbl">Stories/semana</div></div>
-          </div>` : ''}
-          ${(c.datas_sazonais||[]).length ? `<div class="bench-block" style="margin-top:14px;"><div class="lbl">Datas sazonais a não perder</div><ul class="insight-list">${c.datas_sazonais.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-          ${(c.alertas_producao||[]).length ? `<div class="bench-block"><div class="lbl">Alertas de produção</div><ul class="insight-list">${c.alertas_producao.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-          ${(c.acoes_aplicadas||[]).length ? `<div class="quadrant aplicar" style="margin-top:14px;"><div class="qh">Ações já aplicadas</div><ul>${c.acoes_aplicadas.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-          ${(c.decisoes_pendentes||[]).length ? `<div class="quadrant testar" style="margin-top:14px;"><div class="qh">Decisões pendentes</div><ul>${c.decisoes_pendentes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+          <div class="dd-body">
+            ${(c.achados_macro||[]).length ? `<div class="bench-block"><div class="lbl">Achados macro</div><ul class="insight-list">${c.achados_macro.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+            <div class="week-grid">
+              ${(c.semanas||[]).map(w => `
+                <div class="week-card">
+                  <div class="wn">Semana ${w.numero}</div>
+                  <div class="wt">${esc(w.tipo)}</div>
+                  <div class="wp"><b>YT</b> ${esc(w.youtube) || '—'}</div>
+                  <div class="wp"><b>IG</b> ${esc(w.instagram) || '—'}</div>
+                  <div class="wp"><b>News</b> ${esc(w.newsletter) || '—'}</div>
+                </div>`).join('')}
+            </div>
+            ${c.resumo_formatos ? `
+            <div class="cal-summary">
+              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.youtube ?? 0}</div><div class="cs-lbl">YouTube</div></div>
+              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.reels ?? 0}</div><div class="cs-lbl">Reels</div></div>
+              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.carrosseis ?? 0}</div><div class="cs-lbl">Carrosséis</div></div>
+              <div class="cs-item"><div class="cs-num">${c.resumo_formatos.stories_semana ?? 0}</div><div class="cs-lbl">Stories/semana</div></div>
+            </div>` : ''}
+            ${(c.datas_sazonais||[]).length ? `<div class="bench-block" style="margin-top:14px;"><div class="lbl">Datas sazonais a não perder</div><ul class="insight-list">${c.datas_sazonais.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+            ${(c.alertas_producao||[]).length ? `<div class="bench-block"><div class="lbl">Alertas de produção</div><ul class="insight-list">${c.alertas_producao.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+            ${(c.acoes_aplicadas||[]).length ? `<div class="quadrant aplicar" style="margin-top:14px;"><div class="qh">Ações já aplicadas</div><ul>${c.acoes_aplicadas.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+            ${(c.decisoes_pendentes||[]).length ? `<div class="quadrant testar" style="margin-top:14px;"><div class="qh">Decisões pendentes</div><ul>${c.decisoes_pendentes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+          </div>
         </div>`;
     });
   }
 
   pane.innerHTML = html;
+  renderRealCalendar();
+}
+
+/* ══════════════════════ CALENDARIO REAL (grade replicando o Notion) ══════════════════════ */
+function renderRealCalendar() {
+  const posts = DATA.calendario_posts || [];
+  const tabsEl = document.getElementById('real-cal-tabs');
+  const gridEl = document.getElementById('real-cal-grid');
+  if (!tabsEl || !gridEl) return;
+
+  if (!posts.length) {
+    tabsEl.innerHTML = '';
+    gridEl.innerHTML = `<div class="empty-tab" style="grid-column:1/-1;">Nenhum post sincronizado do Notion ainda.</div>`;
+    return;
+  }
+
+  const meses = [...new Set(posts.map(p => p.data.slice(0,7)))].sort();
+  const hojeMes = new Date().toISOString().slice(0,7);
+  if (!realCalMonth || !meses.includes(realCalMonth)) {
+    realCalMonth = meses.includes(hojeMes) ? hojeMes : meses[0];
+  }
+
+  tabsEl.innerHTML = meses.map(m => {
+    const [y, mo] = m.split('-').map(Number);
+    return `<button class="${m === realCalMonth ? 'on' : ''}" onclick="goRealCalMonth('${m}')">${MES_NOMES[mo-1]} ${y}</button>`;
+  }).join('');
+
+  drawRealCalGrid();
+}
+
+function goRealCalMonth(m) {
+  realCalMonth = m;
+  realCalSelectedUrl = null;
+  document.getElementById('real-cal-detail').innerHTML = '';
+  renderRealCalendar();
+}
+
+function drawRealCalGrid() {
+  const gridEl = document.getElementById('real-cal-grid');
+  const posts = (DATA.calendario_posts || []).filter(p => p.data.slice(0,7) === realCalMonth);
+  const [y, mo] = realCalMonth.split('-').map(Number);
+
+  const porDia = {};
+  posts.forEach(p => {
+    const dia = parseInt(p.data.slice(8,10), 10);
+    (porDia[dia] = porDia[dia] || []).push(p);
+  });
+
+  const primeiroDow = new Date(y, mo-1, 1).getDay();
+  const diasNoMes = new Date(y, mo, 0).getDate();
+  const hojeStr = new Date().toISOString().slice(0,10);
+
+  let cells = DOW_LABELS.map(d => `<div class="real-cal-dow">${d}</div>`).join('');
+  for (let i = 0; i < primeiroDow; i++) cells += `<div class="real-cal-cell empty"></div>`;
+  for (let d = 1; d <= diasNoMes; d++) {
+    const dataStr = `${realCalMonth}-${String(d).padStart(2,'0')}`;
+    const isToday = dataStr === hojeStr;
+    const chips = (porDia[d] || []).map(p => `
+      <div class="real-cal-chip ${stageClass(p.estagio)}${p.url === realCalSelectedUrl ? ' on' : ''}" title="${esc(p.titulo)}" onclick="showRealCalPost('${p.url}')">
+        ${p.formato === 'Reel' ? '▶' : p.formato === 'Carrossel' ? '▦' : '●'} ${esc(p.titulo)}
+      </div>`).join('');
+    cells += `<div class="real-cal-cell${isToday ? ' today' : ''}"><div class="real-cal-daynum">${d}</div>${chips}</div>`;
+  }
+  gridEl.innerHTML = cells;
+}
+
+function showRealCalPost(url) {
+  realCalSelectedUrl = url;
+  drawRealCalGrid();
+  const p = (DATA.calendario_posts || []).find(x => x.url === url);
+  const detailEl = document.getElementById('real-cal-detail');
+  if (!p) { detailEl.innerHTML = ''; return; }
+
+  const chipsRow = (arr, cls) => (arr||[]).map(x => `<span class="badge ${cls}">${esc(x)}</span>`).join(' ');
+
+  detailEl.innerHTML = `
+    <div class="real-cal-detail">
+      <div class="rd-title">${esc(p.titulo)}</div>
+      <div class="rd-meta">
+        <span class="badge badge-off">${esc(p.data)}</span>
+        <span class="badge badge-off">${esc(p.formato || '—')}</span>
+        <span class="badge ${stageClass(p.estagio) === 'stage-done' ? 'badge-on' : 'badge-off'}">${esc(p.estagio || '—')}</span>
+        ${chipsRow(p.pilares, 'badge-off')}
+        ${chipsRow(p.meta, 'badge-off')}
+        ${chipsRow(p.publico, 'badge-off')}
+        ${chipsRow(p.serie, 'badge-off')}
+      </div>
+      ${p.promessa ? `<div class="rd-promessa">${esc(p.promessa)}</div>` : ''}
+      <a href="${esc(p.url)}" target="_blank" rel="noopener">Abrir no Notion →</a>
+    </div>`;
 }
 
 loadData();
