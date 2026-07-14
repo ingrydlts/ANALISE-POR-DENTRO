@@ -668,7 +668,47 @@
   ],
   "concorrencia": [],
   "boas_praticas": [],
-  "calendario": [],
+  "calendario": [
+    {
+      "id": "2026-07",
+      "periodo": "Julho 2026 (análise a partir de 14/07)",
+      "tema_central": "Conclusão da Série A (Alternância Sênior + VAE) — segundo o Planejamento Estratégico Q3/Q4",
+      "objetivo_mes": "Converter audiência fria em seguidores · Capturar leads VAE",
+      "achados_macro": [
+        "Erro estrutural de dia da semana: toda âncora marcada 'domingo' no documento estratégico (13/jul, 27/jul, 03/ago, 10/ago) cai, na verdade, numa segunda-feira em 2026 — o plano nunca conseguiu usar o dia de maior alcance para conteúdo estratégico.",
+        "EP A.04 (Alternância Sênior) existe como ideia no backlog ('alternancia senior', sem data) — foi conscientemente substituído por uma mini-série 'Como Encontrar Alternância' pt.1/2/3, decisão confirmada pela criadora.",
+        "EP A.05 (VAE) existia agendado para 03/ago (segunda) em vez de 27/jul — sob a nova regra de cadência (ver decisão abaixo), segunda é dia de Reel, então a data em si já está correta.",
+        "Nova regra de cadência semanal definida pela criadora nesta sessão: Domingo = Reels da série '(in)digest' (notícia/política) · Segunda = Reels · Terça = Carrossel · Quarta = Reels · Quinta = Carrossel.",
+        "Sextas de julho (17, 24, 31) concentravam conteúdo pesado (VLS-TS, Institut Convergences Migrations, CPF) em vez da 'camada de atração leve' que o documento estratégico pede para capturar P01.",
+        "Domingo 02/ago tinha dois carrosséis de investimento (PEA + CTO vs PEA) — avaliado como fora do estágio atual da audiência (73,7% ainda no Brasil, P02 ainda resolvendo conta bancária/CAF) e arquivado.",
+        "Zero newsletters publicadas ou em rascunho em julho, apesar de 2 previstas no planejamento (07/jul e 27/jul).",
+        "Saturação temática: CPF aparece em 4 peças distintas entre 23/jul e 03/set.",
+        "Só 2 de 22 posts de julho têm persona (campo Público) definida; 0 têm meta REACH/FOLLOW/COMMENTS (12 SAVE, 10 sem meta) — calendário configurado quase inteiramente para retenção, não para alcance."
+      ],
+      "acoes_aplicadas": [
+        "PEA ('o plano de investimento que só funciona...') arquivado — Stage: Backlog, data removida.",
+        "CTO vs PEA — pendente de confirmação explícita da criadora antes de arquivar (bloqueado por classificador de segurança, precisa de instrução nomeando o item)."
+      ],
+      "decisoes_pendentes": [
+        "VLS-TS (Reel, 17/jul, sexta): deveria mover para dia de Reel (segunda/quarta) sob a nova regra de cadência, mas todos os slots próximos já estão ocupados — criadora optou por deixar na sexta por enquanto.",
+        "Duplicata de 29/jul (2 Reels sobre auto-empreendedorismo): mantidas as duas de propósito — serão unificadas por Claude no momento de produção do post, não antes.",
+        "Reagendar ao menos 1 newsletter de julho, ainda sem data definida."
+      ],
+      "resumo_formatos": {
+        "youtube": 0,
+        "reels": 12,
+        "carrosseis": 10,
+        "stories_semana": 0
+      },
+      "datas_sazonais": [
+        "14/jul Fête Nationale — sem cobertura no calendário no momento da análise"
+      ],
+      "alertas_producao": [
+        "Peça de 14/jul ('Bolsas Eiffel/BGF/Erasmus+') ainda em estágio Design no dia da publicação.",
+        "'TITRE PROFESSIONNEL' (27/jul) em estágio Research a 13 dias da data — sem roteiro ainda."
+      ]
+    }
+  ],
   "audiencia_personas": {
     "atualizado_em": "2026-05-25",
     "fonte": "Extraído do artefato 'Inteligência de Audiência' (23 arquivos da pasta Público-Alvo analisados) — migrado para o insights.json unificado.",

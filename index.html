@@ -673,6 +673,7 @@ function renderCalendario() {
           <div class="meta">${esc(c.periodo || c.id)}</div>
           <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--marrom);margin-bottom:6px;">${esc(c.tema_central)}</div>
           <div style="font-size:12px;color:var(--oliva);margin-bottom:10px;">${esc(c.objetivo_mes)}</div>
+          ${(c.achados_macro||[]).length ? `<div class="bench-block"><div class="lbl">Achados macro</div><ul class="insight-list">${c.achados_macro.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
           <div class="week-grid">
             ${(c.semanas||[]).map(w => `
               <div class="week-card">
@@ -692,6 +693,8 @@ function renderCalendario() {
           </div>` : ''}
           ${(c.datas_sazonais||[]).length ? `<div class="bench-block" style="margin-top:14px;"><div class="lbl">Datas sazonais a não perder</div><ul class="insight-list">${c.datas_sazonais.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
           ${(c.alertas_producao||[]).length ? `<div class="bench-block"><div class="lbl">Alertas de produção</div><ul class="insight-list">${c.alertas_producao.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+          ${(c.acoes_aplicadas||[]).length ? `<div class="quadrant aplicar" style="margin-top:14px;"><div class="qh">Ações já aplicadas</div><ul>${c.acoes_aplicadas.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
+          ${(c.decisoes_pendentes||[]).length ? `<div class="quadrant testar" style="margin-top:14px;"><div class="qh">Decisões pendentes</div><ul>${c.decisoes_pendentes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
         </div>`;
     });
   }
