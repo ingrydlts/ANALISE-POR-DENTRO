@@ -741,16 +741,24 @@ function renderBoasPraticas() {
 }
 
 /* ══════════════════════ CALENDARIO ══════════════════════ */
+// Reescrito em 2026-07-23: a versão anterior era um calendário cultural
+// francês genérico (Voeux, Black Friday, feriados) — não falava de emprego,
+// alternance, titre de séjour nem imposto, os temas que a audiência (personas
+// P01–P04, ver aba Audiência) realmente está resolvendo. Datas/janelas abaixo
+// checadas via busca (fontes no commit): calendário de alternance (IGENSIA,
+// Meteojob, EMD, Parcoursup), declaração de imposto (impots.gouv.fr,
+// economie.gouv.fr), renovação de titre de séjour (service-public/préfectures),
+// sazonalidade de recrutamento (France Travail, Hellowork).
 const CALENDARIO_SAZONAL = [
-  {mes:'Janeiro', tema:'Voeux, CAF atualização, início de ano'},
-  {mes:'Fev–Abr', tema:'Imposto de renda francês'},
-  {mes:'Maio', tema:'Feriados franceses (mês mais feriado)'},
-  {mes:'Junho', tema:'Fim do ano letivo, verão europeu'},
-  {mes:'Jul–Ago', tema:'Vida no verão, o que fecha/abre'},
-  {mes:'Setembro', tema:'Rentrée — volta às aulas e à rotina'},
-  {mes:'Outubro', tema:'Mudança de estação, custos de energia'},
-  {mes:'Novembro', tema:'Black Friday na França vs. Brasil'},
-  {mes:'Dezembro', tema:'Natal, réveillon, o que muda em janeiro'},
+  {mes:'Janeiro', tema:'Comece a pesquisar alternance da rentrée de setembro (ideal 6–12 meses antes) — e revise se algum título de séjour vence este ano'},
+  {mes:'Fev–Mar', tema:'Abre a temporada de candidaturas de alternance: currículo, lettre de motivation, primeiras inscrições'},
+  {mes:'Mar–Mai', tema:'Pico de recrutamento de alternance do ano — mais concorrido, mas também mais vagas abertas'},
+  {mes:'Abr–Mai', tema:'Déclaration de revenus: primeira declaração é obrigatória mesmo pra quem chegou no meio do ano anterior — prazo ~21 de maio'},
+  {mes:'Junho', tema:'Fim do ano letivo: quem terminou alternance/curso decide o próximo passo — CDI, renovar contrato ou mudar de rumo'},
+  {mes:'Jul–Ago', tema:'Verão não é "parada" no recrutamento: empresas montam equipe pra rentrée de setembro — continue candidatando'},
+  {mes:'Setembro', tema:'Rentrée: pico real de contratação (serviços, construção, transporte) + prazo final Parcoursup para vagas de alternance'},
+  {mes:'Outubro', tema:'Última leva de admissões de alternance do ano — e comece a renovar titre de séjour que vence no fim do ano (janela: 120 a 60 dias antes)'},
+  {mes:'Nov–Dez', tema:'Bilan do ano: carreira, processo de imigração, moradia — e planejamento do próximo ciclo'},
 ];
 
 const DOW_LABELS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
