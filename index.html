@@ -436,7 +436,7 @@ const readText = file => readTextSmart(file);
 
 // ── Categorize ────────────────────────────────────────
 // Meta Instagram export CSVs (one metric per file, UTF-16 LE)
-const META_IG_CSV_NAMES = ['couverture','vues','interactions','followers','visites'];
+const META_IG_CSV_NAMES = ['couverture','vues','interactions','followers','visites','clics'];
 
 function categorize(files) {
   const c = { dms: [], comments: [], csvs: [], metaIgCsvs: [], jsons: [] };
@@ -499,11 +499,12 @@ function detectCSVType(text, fname) {
 // ── Meta Instagram CSV parsing (one metric per file, UTF-16 LE) ──
 // Format: line1=sep=, | line2="MetricName" | line3="Date","Primary" | lines4+=daily data
 const META_IG_FIELD_MAP = {
-  'couverture':                    'alcance',
-  'vues':                          'impressoes',
-  'interactions avec le contenu':  'interacoes',
-  'followers sur instagram':       'seguidores_ganhos',
-  'visites du profil instagram':   'visitas_perfil',
+  'couverture':                        'alcance',
+  'vues':                              'impressoes',
+  'interactions avec le contenu':      'interacoes',
+  'followers sur instagram':           'seguidores_ganhos',
+  'visites du profil instagram':       'visitas_perfil',
+  'clics sur un lien sur instagram':   'cliques_link',
 };
 
 function parseMetaInstagramCSV(text) {
@@ -858,6 +859,7 @@ function buildJSON(mes, ano, yt, ig, ai) {
       salvamentos:          ig?.salvamentos||0,
       compartilhamentos:    ig?.compartilhamentos||0,
       visitas_perfil:       ig?.visitas_perfil||0,
+      cliques_link:         ig?.cliques_link||0,
       engajamento_medio_pct:ig?.engajamento_medio_pct||0,
       top_post_descricao:   ai?.top_post_descricao||'',
       top_post_metrica:     ai?.top_post_metrica||`${G.dmCount} DMs no período`,
@@ -944,6 +946,7 @@ async function startProcessing(files) {
       salvamentos:          igMetrics.salvamentos       || 0,
       compartilhamentos:    igMetrics.compartilhamentos || 0,
       visitas_perfil:       igMetrics.visitas_perfil    || 0,
+      cliques_link:         igMetrics.cliques_link      || 0,
       engajamento_medio_pct: parseFloat((interacoes / alcance * 100).toFixed(2)),
       interacoes,
     };
@@ -951,6 +954,7 @@ async function startProcessing(files) {
       'Alcance':'alcance','Impressões':'impressoes',
       'Seguidores ganhos':'seguidores_ganhos',
       'Interações':'interacoes','Visitas ao perfil':'visitas_perfil',
+      'Cliques em link':'cliques_link',
     });
   }
 
