@@ -17,3 +17,7 @@ google-api-python-client==2.126.0
 
 # create_tasks.py (Módulo 7 — Execução de Insights) fala com a API do Notion via HTTP direto.
 requests>=2.31,<3.0
+
+# enriquecer_conversas_audiencia.py: redimensiona screenshots antes de mandar
+# pra Claude, pra evitar 413 "Request Too Large" com imagens em alta resolução.
+Pillow>=10.0,<12.0

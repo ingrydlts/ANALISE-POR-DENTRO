@@ -37,6 +37,7 @@ Variáveis de ambiente esperadas: NOTION_TOKEN, ANTHROPIC_API_KEY, NOTION_DB_IG
 """
 
 import os
+import io
 import json
 import base64
 from datetime import datetime, timezone
@@ -44,6 +45,7 @@ import httpx
 from dotenv import load_dotenv
 from notion_client import Client as NotionClient
 from notion_client.errors import APIResponseError
+from PIL import Image
 import anthropic
 
 load_dotenv()
@@ -59,6 +61,15 @@ PILARES_VALIDOS     = {"Sistema", "Trajetória", "Identidade", "Sociedade", "vir
 PRIORIDADES_VALIDAS = {"Alta", "Média", "Baixa"}
 PERSONAS_VALIDAS    = {"P01 - Sonhadora", "P02 - Recém-chegada", "P03 - Adaptada", "P04 - Potencial"}
 FORMATOS_VALIDOS    = {"Reels", "Carrossel", "Stories", "Post Estático"}
+
+# Teto de dimensão e de contagem de imagens por entrada — sem isso, uma entrada
+# com screenshots em resolução alta (ou várias imagens juntas) pode estourar o
+# limite de tamanho de request da API da Anthropic (erro 413 "Request Too
+# Large"). 1568px é o mesmo teto que a Claude já aplica internamente do lado
+# dela — redimensionar antes só evita gastar banda/tempo com pixels que seriam
+# reduzidos de qualquer forma.
+MAX_DIMENSAO_PX          = 1568
+MAX_IMAGENS_POR_ENTRADA  = 6
 
 _data_source_cache = {}
 
@@ -167,7 +178,46 @@ def _baixar_imagem(url: str):
     return resp.content, media_type
 
 
+def _preparar_imagem_para_claude(conteudo: bytes, media_type: str) -> tuple:
+    """Redimensiona para no máximo MAX_DIMENSAO_PX no lado maior e recomprime,
+    pra manter o tamanho do request dentro do limite da API da Anthropic.
+    Mantém PNG se a imagem tiver transparência (evita fundo preto em prints
+    com canal alpha); recomprime como JPEG qualidade 85 caso contrário."""
+    try:
+        img = Image.open(io.BytesIO(conteudo))
+        img.load()
+    except Exception as e:
+        # Não é uma imagem que o Pillow reconhece — manda como veio, sem
+        # redimensionar (melhor tentar do que descartar a entrada).
+        print(f"    ⚠ Não foi possível abrir a imagem para redimensionar ({e}) — enviando original.")
+        return conteudo, media_type
+
+    largura, altura = img.size
+    maior_lado = max(largura, altura)
+    if maior_lado > MAX_DIMENSAO_PX:
+        fator = MAX_DIMENSAO_PX / maior_lado
+        img = img.resize((max(1, round(largura * fator)), max(1, round(altura * fator))), Image.LANCZOS)
+
+    tem_transparencia = img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info)
+    buffer = io.BytesIO()
+    if tem_transparencia:
+        img.save(buffer, format="PNG", optimize=True)
+        novo_media_type = "image/png"
+    else:
+        if img.mode not in ("RGB", "L"):
+            img = img.convert("RGB")
+        img.save(buffer, format="JPEG", quality=85, optimize=True)
+        novo_media_type = "image/jpeg"
+
+    return buffer.getvalue(), novo_media_type
+
+
 def _montar_blocos_imagem(urls: list) -> list:
+    if len(urls) > MAX_IMAGENS_POR_ENTRADA:
+        print(f"    ⚠ {len(urls)} imagens nesta entrada, acima do teto de {MAX_IMAGENS_POR_ENTRADA} "
+              f"— usando só as {MAX_IMAGENS_POR_ENTRADA} primeiras.")
+        urls = urls[:MAX_IMAGENS_POR_ENTRADA]
+
     blocos = []
     for url in urls:
         try:
@@ -175,6 +225,7 @@ def _montar_blocos_imagem(urls: list) -> list:
         except Exception as e:
             print(f"    ⚠ Falha ao baixar um screenshot: {e}")
             continue
+        conteudo, media_type = _preparar_imagem_para_claude(conteudo, media_type)
         blocos.append({
             "type": "image",
             "source": {
@@ -266,11 +317,20 @@ Onde:
 def _chamar_claude_com_imagens(blocos_imagem: list, prompt_texto: str) -> dict:
     content = blocos_imagem + [{"type": "text", "text": prompt_texto}]
 
-    resp = claude.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=1200,
-        messages=[{"role": "user", "content": content}]
-    )
+    try:
+        resp = claude.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=1200,
+            messages=[{"role": "user", "content": content}]
+        )
+    except anthropic.APIStatusError as e:
+        # Ex.: 413 Request Too Large se ainda assim (mesmo redimensionadas) as
+        # imagens desta entrada específica somarem demais. Isola o erro nesta
+        # entrada só — main() mantém STATUS=NOVO pra tentar de novo na próxima
+        # rodada, em vez de derrubar o job inteiro e travar as outras entradas.
+        print(f"    ✖ Erro ao chamar Claude: {e}")
+        return {"erro_parse": True, "texto_bruto": f"Erro de API: {e}"}
+
     texto = resp.content[0].text.strip()
 
     if texto.startswith("```"):
@@ -367,30 +427,37 @@ def main():
         categoria = (page["properties"].get("CATEGORIA", {}).get("select") or {}).get("name", "AUDIÊNCIA")
         tipo = (page["properties"].get("Tipo", {}).get("select") or {}).get("name", "DM")
         plataforma = (page["properties"].get("PLATAFORMA", {}).get("select") or {}).get("name", "INSTAGRAM")
-        urls = _extrair_urls_imagens(page)
-
-        print(f"  → {page_id} [{categoria}] — {len(urls)} imagem(ns) encontrada(s)...")
-        if not urls:
-            print("    ⚠ Sem imagem encontrada (nem na propriedade Screenshot, nem no corpo da página) — pulando (mantém NOVO).")
-            continue
-
-        if categoria == "CONCORRÊNCIA":
-            analise = analisar_print_concorrencia_com_claude(urls, plataforma)
-            props = montar_properties_concorrencia(analise, page)
-        else:
-            analise = analisar_print_audiencia_com_claude(urls, tipo, plataforma)
-            props = montar_properties_audiencia(analise, page)
-
-        if props is None:
-            print(f"    ⚠ Claude não retornou JSON válido — mantendo NOVO para nova tentativa. "
-                  f"Bruto: {str(analise.get('texto_bruto', ''))[:200]}")
-            continue
 
         try:
-            notion.pages.update(page_id=page_id, properties=props)
-            print("    ✓ Enriquecida e marcada como Analisado.")
-        except APIResponseError as e:
-            print(f"    ✖ Erro ao atualizar {page_id}: {e}")
+            urls = _extrair_urls_imagens(page)
+
+            print(f"  → {page_id} [{categoria}] — {len(urls)} imagem(ns) encontrada(s)...")
+            if not urls:
+                print("    ⚠ Sem imagem encontrada (nem na propriedade Screenshot, nem no corpo da página) — pulando (mantém NOVO).")
+                continue
+
+            if categoria == "CONCORRÊNCIA":
+                analise = analisar_print_concorrencia_com_claude(urls, plataforma)
+                props = montar_properties_concorrencia(analise, page)
+            else:
+                analise = analisar_print_audiencia_com_claude(urls, tipo, plataforma)
+                props = montar_properties_audiencia(analise, page)
+
+            if props is None:
+                print(f"    ⚠ Claude não retornou JSON válido — mantendo NOVO para nova tentativa. "
+                      f"Bruto: {str(analise.get('texto_bruto', ''))[:200]}")
+                continue
+
+            try:
+                notion.pages.update(page_id=page_id, properties=props)
+                print("    ✓ Enriquecida e marcada como Analisado.")
+            except APIResponseError as e:
+                print(f"    ✖ Erro ao atualizar {page_id}: {e}")
+        except Exception as e:
+            # Segunda camada de proteção: qualquer erro inesperado nesta entrada
+            # específica (não só falha de API/parse já tratadas acima) não deve
+            # derrubar o job inteiro — mantém NOVO e segue pras outras entradas.
+            print(f"    ✖ Erro inesperado processando {page_id}: {e} — mantendo NOVO para nova tentativa.")
 
     print("\n=== Enriquecimento concluído ===")
 

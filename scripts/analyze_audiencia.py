@@ -160,6 +160,12 @@ def formatar_entradas(entradas: list) -> str:
 
 # ── Análise Claude ────────────────────────────────────────────────────────────
 
+# Teto de segurança no texto agregado enviado à Claude: se um backlog grande de
+# entradas acumular texto demais numa única rodada, trunca em vez de arriscar
+# um request desproporcional (mesma classe de problema que já causou 413 em
+# enriquecer_conversas_audiencia.py, ali por causa de imagens, aqui por texto).
+LIMITE_CARACTERES_DADOS = 100_000
+
 SCHEMA_JSON = """{
   "perguntas_recorrentes": ["string"],
   "dores_nao_atendidas": ["string"],
@@ -173,6 +179,11 @@ SCHEMA_JSON = """{
 
 
 def analisar_com_claude(dados_audiencia: str, total_entradas: int) -> dict:
+    if len(dados_audiencia) > LIMITE_CARACTERES_DADOS:
+        print(f"  ⚠ Dados de audiência ({len(dados_audiencia)} caracteres) excedem o teto de "
+              f"{LIMITE_CARACTERES_DADOS} — truncando para caber num único request à Claude.")
+        dados_audiencia = dados_audiencia[:LIMITE_CARACTERES_DADOS] + "\n\n[...truncado — excedeu o limite de tamanho...]"
+
     prompt = f"""Você é o sistema editorial do canal Por Dentro — canal de uma imigrante brasileira na França que explica como a França realmente funciona: trabalho, saúde, burocracia, moradia, cultura.
 
 Posicionamento: observador, lúcido, educativo. O canal é 75% Instagram hoje e tem crescimento forte nessa plataforma.
@@ -198,11 +209,20 @@ Onde:
 - temas_audiencia: até 6 palavras/temas-chave recorrentes nos dados (vira tag no dashboard)
 - segmentos: contagem aproximada de quantas entradas vêm de cada estágio — brasil (ainda no Brasil, pesquisando), processo (em processo de imigração/burocracia), franca (já vivendo na França)"""
 
-    resp = claude.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=2500,
-        messages=[{"role": "user", "content": prompt}]
-    )
+    try:
+        resp = claude.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=2500,
+            messages=[{"role": "user", "content": prompt}]
+        )
+    except anthropic.APIStatusError as e:
+        # Ex.: 413 Request Too Large num backlog grande, rate limit, API fora do
+        # ar. Não derruba o job — cai no mesmo fallback usado para JSON inválido,
+        # e main() evita marcar as entradas como PROCESSADO nesse caso, então
+        # elas voltam a ser tentadas na próxima rodada.
+        print(f"  ✖ Erro ao chamar Claude: {e}")
+        return {"erro_parse": True, "texto_bruto": f"Erro de API: {e}"}
+
     texto = resp.content[0].text.strip()
 
     # Blindagem: se o modelo insistir em cercar o JSON com ```, remove.
@@ -418,9 +438,13 @@ def main():
     print("Atualizando insights.json (dashboard)...")
     salvar_bilan_no_insights_json(bilan, len(entradas))
 
-    print("Marcando entradas como processadas...")
-    for e in entradas:
-        marcar_processado(e["id"])
+    if bilan.get("erro_parse"):
+        print("  ⚠ Análise desta rodada falhou (ver acima) — mantendo entradas como 'Analisado' "
+              "para nova tentativa na próxima rodada, em vez de marcar PROCESSADO.")
+    else:
+        print("Marcando entradas como processadas...")
+        for e in entradas:
+            marcar_processado(e["id"])
 
     print("\n=== Análise de audiência concluída ===")
 
