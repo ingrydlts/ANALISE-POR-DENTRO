@@ -345,6 +345,55 @@
         "processo": 30,
         "franca": 5
       }
+    },
+    {
+      "id": "2026-W30",
+      "data": "2026-07-23",
+      "periodo_label": "Semana de 23/07/2026",
+      "total_entradas_analisadas": 1,
+      "perguntas_recorrentes": [
+        "Realmente existe alternância em janeiro/fevereiro ou é mais arriscado?"
+      ],
+      "dores_nao_atendidas": [
+        "Timing estratégico de candidatura para alternância na França",
+        "Viabilidade de alternância em períodos fora do ciclo tradicional (janeiro/fevereiro vs. setembro)",
+        "Como a alternância funciona para estrangeiros já na Europa"
+      ],
+      "pedidos_conteudo": [
+        "Guia sobre melhor época para candidatar a alternância na França"
+      ],
+      "perfil_momento": "Profissional em transição internacional (29 anos, espanhola em Barcelona com B1 de francês), já em mobilidade europeia, buscando entrada estratégica no mercado francês via alternância, com cautela sobre timing e risco",
+      "diferenca_plataformas": "Única entrada é Instagram Stories/DMs — não há dados suficientes para comparação entre plataformas nesta rodada",
+      "pautas_sugeridas": [
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "Alternância na França: setembro vs. janeiro — qual timing funciona mesmo?",
+          "porque": "Audiência está questionando especificamente a viabilidade de períodos alternativos e precisa de clareza sobre risco vs. oportunidade"
+        },
+        {
+          "plataforma": "YOUTUBE",
+          "titulo": "Alternância para estrangeiros da UE: como candidatar de outro país (B1 de francês é suficiente?)",
+          "porque": "Perfil específico (europeu fora da França com B1) merece conteúdo longo que cubra burocracia, nível de língua exigido e estratégia de candidatura"
+        },
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "Alternância na França: riscos de começar fora do ciclo tradicional (carrossel/story)",
+          "porque": "Formato curto responde a dúvida imediata com lógica prática — ideal para Stories com call-to-action para vídeo longo no YouTube"
+        }
+      ],
+      "temas_audiencia": [
+        "alternância",
+        "timing de candidatura",
+        "mobilidade europeia",
+        "nível de francês",
+        "estratégia de imigração",
+        "viabilidade"
+      ],
+      "segmentos": {
+        "brasil": 0,
+        "processo": 1,
+        "franca": 0
+      }
     }
   ],
   "ciclos": [
