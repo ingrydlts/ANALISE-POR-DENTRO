@@ -269,25 +269,29 @@ def criar_pagina_sugestao(sugestao: dict, ocupadas: set) -> bool:
     if not titulo:
         return False
 
-    formato = FORMATOS_SAIDA.get(sugestao.get("formato"), "Reel")
+    formato_pt = sugestao.get("formato") if sugestao.get("formato") in FORMATOS_SAIDA else "Reel"
+    formato = FORMATOS_SAIDA[formato_pt]  # valor exato do select no Notion
     pilar = sugestao.get("pilar")
     pilares = [pilar] if pilar in PILARES_VALIDOS else []
     publico = [p for p in (sugestao.get("publico") or []) if p in PUBLICO_VALIDOS]
-    data_sugerida = proxima_data_livre(formato, ocupadas, AGORA)
+    # proxima_data_livre espera a chave em português (DIAS_POR_FORMATO), não o
+    # valor traduzido do select do Notion — usar "formato" aqui sempre cai no
+    # default {0,1,2,3} e quebra a cadência Reel=seg/qua, Carrossel=ter/qui.
+    data_sugerida = proxima_data_livre(formato_pt, ocupadas, AGORA)
     ocupadas.add(data_sugerida)  # próxima sugestão desta rodada não cai no mesmo dia
     promessa = f"[Sugestão automática — {HOJE_STR}, data é um slot proposto]: {sugestao.get('justificativa', '')} — {sugestao.get('promessa', '')}"[:2000]
 
     properties = {
-        "Nom": titulo,
-        "Formato": formato,
-        "Stage": "Idea",
-        "Promessa do conteudo": promessa,
-        "date:Posting Date:start": data_sugerida,
+        "Nom": {"title": [{"text": {"content": titulo}}]},
+        "Formato": {"select": {"name": formato}},
+        "Stage": {"status": {"name": "Idea"}},
+        "Promessa do conteudo": {"rich_text": [{"text": {"content": promessa}}]},
+        "Posting Date": {"date": {"start": data_sugerida}},
     }
     if pilares:
-        properties["Pilars"] = json.dumps(pilares, ensure_ascii=False)
+        properties["Pilars"] = {"multi_select": [{"name": p} for p in pilares]}
     if publico:
-        properties["Público"] = json.dumps(publico, ensure_ascii=False)
+        properties["Público"] = {"multi_select": [{"name": p} for p in publico]}
 
     try:
         data_source_id = resolver_data_source_id(NOTION_CALENDARIO_DB_ID)

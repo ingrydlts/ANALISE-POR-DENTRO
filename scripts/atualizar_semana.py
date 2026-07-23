@@ -2,18 +2,19 @@
 """
 Adiciona um novo check-in semanal ao insights.json do Por Dentro.
 
-Uso:
-    python3 atualizar_semana.py
+Uso (a partir da raiz do repositório):
+    python3 scripts/atualizar_semana.py
 
-Roda na mesma pasta do insights.json. Faz perguntas simples no terminal,
-calcula o engajamento automaticamente e grava o novo bloco dentro do
-array "semanas" — sem risco de quebrar o JSON à mão.
+Localiza o insights.json na raiz do repositório (um nível acima deste
+script), não na pasta onde o comando é executado. Faz perguntas simples
+no terminal, calcula o engajamento automaticamente e grava o novo bloco
+dentro do array "semanas" — sem risco de quebrar o JSON à mão.
 """
 import json
 from pathlib import Path
 from datetime import date
 
-CAMINHO = Path(__file__).parent / "insights.json"
+CAMINHO = Path(__file__).parent.parent / "insights.json"
 
 
 def perguntar_numero(pergunta, permitir_vazio=True):

@@ -14,9 +14,12 @@ v2 (2026-07): dedup por AÇÃO, não por ciclo inteiro.
   a cada push sem duplicar o que já foi criado.
 
 Configuração necessária (GitHub Secrets):
-  NOTION_TOKEN  — token da integration do Notion
-  NOTION_DB_ID  — ID do database "Major Tasks Database"
-                  valor padrão: 1abd6022-54ce-8137-b4d0-dca737cc669d
+  NOTION_TOKEN       — token da integration do Notion
+  NOTION_DB_ID_TASKS — ID do database "Major Tasks Database"
+                        valor padrão: 1abd6022-54ce-8137-b4d0-dca737cc669d
+                        (nome distinto de NOTION_DB_ID de propósito — esse já é usado por
+                        collect.py/analyze_concorrencia.py para a base FICHIERS INSTAGRAM,
+                        que não tem nada a ver com tarefas)
 """
 
 import json
@@ -29,13 +32,13 @@ from datetime import date, timedelta
 # ─── Configuração ─────────────────────────────────────────────────────────────
 
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN")
-NOTION_DB_ID = os.environ.get("NOTION_DB_ID", "1abd6022-54ce-8137-b4d0-dca737cc669d")
+NOTION_DB_ID = os.environ.get("NOTION_DB_ID_TASKS", "1abd6022-54ce-8137-b4d0-dca737cc669d")
 
 if not NOTION_TOKEN:
     print("ERRO: NOTION_TOKEN não encontrado. Configure em GitHub → Settings → Secrets.")
     sys.exit(1)
 if not NOTION_DB_ID:
-    print("ERRO: NOTION_DB_ID não encontrado. Configure em GitHub → Settings → Secrets.")
+    print("ERRO: NOTION_DB_ID_TASKS não encontrado. Configure em GitHub → Settings → Secrets.")
     sys.exit(1)
 
 HEADERS = {
