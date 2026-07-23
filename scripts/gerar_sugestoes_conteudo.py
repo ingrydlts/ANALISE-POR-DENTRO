@@ -44,6 +44,7 @@ Variáveis de ambiente esperadas:
 
 import os
 import json
+import re
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from dotenv import load_dotenv
@@ -272,6 +273,37 @@ def _extrair_texto_resposta(resp) -> str:
     return "".join(b.text for b in resp.content if getattr(b, "type", None) == "text").strip()
 
 
+def _extrair_json_sugestoes(texto: str) -> dict | None:
+    """Com busca na web ativada, o Claude costuma narrar o raciocínio (o que
+    pesquisou, o que concluiu) antes do JSON final, mesmo pedindo pra
+    responder só com JSON — testado ao vivo: a resposta real veio como
+    "Vou analisar os dados... identifiquei 3 lacunas reais... {json}". Por
+    isso não basta json.loads(texto_inteiro); localiza o objeto JSON embutido
+    (a partir de '{"sugestoes"') e faz parsing só dessa parte."""
+    try:
+        return json.loads(texto)
+    except json.JSONDecodeError:
+        pass
+
+    m = re.search(r'\{\s*"sugestoes"\s*:', texto)
+    if not m:
+        return None
+    inicio = m.start()
+    profundidade = 0
+    for i in range(inicio, len(texto)):
+        ch = texto[i]
+        if ch == '{':
+            profundidade += 1
+        elif ch == '}':
+            profundidade -= 1
+            if profundidade == 0:
+                try:
+                    return json.loads(texto[inicio:i + 1])
+                except json.JSONDecodeError:
+                    return None
+    return None
+
+
 def gerar_sugestoes(bilans: list, ideias_brutas: list, benchmark: dict | None, agendados: list, ideas: list) -> list:
     bilans_txt = "\n\n".join(
         f"### {b['semana']}\nDores não atendidas: {b['dores_nao_atendidas']}\n"
@@ -328,18 +360,11 @@ Responda com um JSON válido (sem markdown, sem cercas de código, sem texto for
         messages=[{"role": "user", "content": prompt}]
     )
     texto = _extrair_texto_resposta(resp)
-    if texto.startswith("```"):
-        texto = texto.strip("`")
-        if texto.lower().startswith("json"):
-            texto = texto[4:]
-        texto = texto.strip()
-
-    try:
-        data = json.loads(texto)
-        return data.get("sugestoes", [])
-    except json.JSONDecodeError:
-        print(f"  ⚠ Claude não retornou JSON válido. Bruto: {texto[:300]}")
+    data = _extrair_json_sugestoes(texto)
+    if data is None:
+        print(f"  ⚠ Claude não retornou JSON válido (nem embutido em texto). Bruto: {texto[:300]}")
         return []
+    return data.get("sugestoes", [])
 
 
 # ── 5. Criar páginas rascunho no calendário ──────────────────────────────────
