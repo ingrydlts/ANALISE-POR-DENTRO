@@ -74,6 +74,7 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
           NOTION_ANALISES_DB_ID: ${{ secrets.NOTION_ANALISES_DB_ID }}
           NOTION_BENCHMARKS_DB_ID: ${{ secrets.NOTION_BENCHMARKS_DB_ID }}
           NOTION_CALENDARIO_DB_ID: ${{ secrets.NOTION_CALENDARIO_DB_ID }}

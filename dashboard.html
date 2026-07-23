@@ -773,6 +773,48 @@ function stageClass(estagio) {
   return 'stage-progress'; // design, research, to film, to edit
 }
 
+/* ══════════ Sugestões de Conteúdo (Notion "Ideia de Conteúdo" + busca web) ══════════
+   Alimentado por gerar_sugestoes_conteudo.py — cruza audiência/concorrência/calendário,
+   propõe posts no tom/formato da marca e pesquisa fontes reais quando o tema é
+   verificável (burocracia, visto, imposto etc). Mostrado aqui pra revisão manual —
+   o mesmo script já cria o rascunho em Stage=Idea no Notion, isso aqui é só espelho. */
+function renderSugestoesConteudo() {
+  const sugestoes = [...(DATA.sugestoes_conteudo || [])]
+    .sort((a, b) => (b.gerado_em || '').localeCompare(a.gerado_em || '') || (b.id || '').localeCompare(a.id || ''));
+
+  let corpo;
+  if (!sugestoes.length) {
+    corpo = `<div class="empty-tab">Nenhuma sugestão gerada ainda. Roda toda segunda-feira (Módulo 5) e também a cada upload de performance Instagram — cruza audiência + concorrência + calendário e propõe posts novos, com fontes quando o tema exige.</div>`;
+  } else {
+    corpo = sugestoes.map((s, idx) => `
+      <div class="dd-card${idx === 0 ? ' open' : ''}" id="dd-sug-${esc(s.id)}">
+        <div class="dd-header" onclick="document.getElementById('dd-sug-${esc(s.id)}').classList.toggle('open')">
+          <div>
+            <div class="meta" style="margin-bottom:6px;">${esc(s.formato || '')}${s.pilar ? ' · ' + esc(s.pilar) : ''} · sugerido pra ${esc(s.data_sugerida || '—')}</div>
+            <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--marrom);">${esc(s.titulo)}</div>
+          </div>
+          <div class="dd-caret">▶</div>
+        </div>
+        <div class="dd-body">
+          ${s.promessa ? `<div class="bench-block"><div class="lbl">Promessa</div><div>${esc(s.promessa)}</div></div>` : ''}
+          ${s.justificativa ? `<div class="bench-block" style="margin-top:10px;"><div class="lbl">Por que agora</div><div>${esc(s.justificativa)}</div></div>` : ''}
+          ${(s.publico || []).length ? `<div class="meta" style="margin-top:10px;">Público: ${s.publico.map(esc).join(', ')}</div>` : ''}
+          ${(s.fontes || []).length ? `
+            <div class="bench-block" style="margin-top:10px;">
+              <div class="lbl">Fontes pesquisadas — confira antes de publicar</div>
+              <ul class="insight-list">${s.fontes.map(f => `<li><a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">${esc(f.titulo || f.url)}</a></li>`).join('')}</ul>
+            </div>` : `<div class="meta" style="margin-top:10px;">Sem fontes externas — sugestão de storytelling/trajetória pessoal.</div>`}
+          <div class="meta" style="margin-top:10px;">${s.notion_criada ? '✓ rascunho já criado no Notion (Stage = Idea)' : '⚠ não foi possível criar o rascunho no Notion — adicione manualmente se quiser usar'}</div>
+        </div>
+      </div>`).join('');
+  }
+
+  return `
+    <div class="sec-hd"><h2>Sugestões de <em>Conteúdo</em></h2><span class="sub">${sugestoes.length} sugestão(ões) · gerado a partir da audiência + concorrência, com fontes pesquisadas na web</span></div>
+    ${corpo}
+  `;
+}
+
 function renderCalendario() {
   const pane = document.getElementById('pane-calendario');
   const cal = DATA.calendario || [];
@@ -784,6 +826,8 @@ function renderCalendario() {
     <div class="tbl-wrap season-tbl-wrap">
       <table class="data-tbl"><thead><tr><th>Período</th><th>Tema prioritário</th></tr></thead><tbody>${seasonRows}</tbody></table>
     </div>
+
+    ${renderSugestoesConteudo()}
 
     <div class="sec-hd"><h2>Calendário <em>Real</em></h2><span class="sub">replicado do Notion — clique num post pra ver os detalhes</span></div>
     <div id="real-cal-tabs" class="real-cal-tabs"></div>
