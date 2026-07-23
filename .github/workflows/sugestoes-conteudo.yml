@@ -40,12 +40,27 @@ jobs:
           INSIGHTS_JSON_PATH: insights.json
 
       - name: Commitar insights.json atualizado
+        # git push sozinho falha com "Updates were rejected because the remote
+        # contains work that you do not have locally" sempre que outro workflow
+        # (ex.: Análise de Audiência disparada manualmente na mesma janela)
+        # commita no insights.json entre o checkout e este push — confirmado em
+        # produção em 2026-07-23. O retry com pull --rebase resolve puxando o
+        # commit concorrente e tentando de novo, em vez de perder esta rodada.
         run: |
           git config user.name "por-dentro-bot"
           git config user.email "bot@users.noreply.github.com"
           if [ -f "insights.json" ]; then
             git add insights.json
-            git diff --cached --quiet && echo "Nada novo para commitar." || { git commit -m "chore: sugestões de conteúdo + calendário atualizado (auto)"; git push; }
+            if git diff --cached --quiet; then
+              echo "Nada novo para commitar."
+            else
+              git commit -m "chore: sugestões de conteúdo + calendário atualizado (auto)"
+              for i in 1 2 3 4 5; do
+                git push && break
+                echo "  ⚠ Push rejeitado (outra automação commitou antes) — puxando e tentando de novo (${i}/5)..."
+                git pull --rebase origin main
+              done
+            fi
           else
             echo "⚠ 'insights.json' não existe no checkout — nada para commitar nesta rodada."
           fi

@@ -70,7 +70,20 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           if [ -f "insights.json" ]; then
             git add insights.json
-            git diff --cached --quiet && echo "Nada novo para commitar." || { git commit -m "chore: benchmark de concorrência do mês (auto)"; git push; }
+            if git diff --cached --quiet; then
+              echo "Nada novo para commitar."
+            else
+              git commit -m "chore: benchmark de concorrência do mês (auto)"
+              # git push sozinho falha com "Updates were rejected..." se outro
+              # workflow commitou no insights.json entre o checkout e este push
+              # (confirmado em produção, 2026-07-23) — o retry com pull --rebase
+              # resolve puxando o commit concorrente e tentando de novo.
+              for i in 1 2 3 4 5; do
+                git push && break
+                echo "  ⚠ Push rejeitado (outra automação commitou antes) — puxando e tentando de novo (${i}/5)..."
+                git pull --rebase origin main
+              done
+            fi
           else
             echo "⚠ 'insights.json' não existe no checkout — nada para commitar nesta rodada."
           fi
