@@ -1850,22 +1850,6 @@
       "promessa": "Se você chegou na França e o francês ainda é uma barreira (real), precisa saber que existem cursos intensivos que servem para visto de estudante e certificação oficial."
     },
     {
-      "url": "https://app.notion.com/p/VLS-TS-validar-em-3-meses-ou-ficar-irregular-e-o-que-a-OFII-exige-depois-CIR-2026-38cd602254ce81b18cc8d5f58b8fc922",
-      "titulo": "VLS-TS: validar em 3 meses ou ficar irregular — e o que a OFII exige depois (CIR 2026)",
-      "data": "2026-07-17",
-      "formato": "Reel",
-      "estagio": "to edit",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [
-        "SAVE"
-      ],
-      "publico": [],
-      "serie": [],
-      "promessa": "Se você entrou na França com VLS-TS, tem um prazo que ninguém avisa e passa rápido demais."
-    },
-    {
       "url": "https://app.notion.com/p/Elei-es-2027-o-que-cada-candidato-prop-e-sobre-imigra-o-na-Fran-a-3a2d602254ce810e8c9fcca52c298d09",
       "titulo": "Eleições 2027: o que cada candidato propõe sobre imigração na França",
       "data": "2026-07-19",
@@ -1929,7 +1913,7 @@
       "titulo": "Formação de francês financiada pelo CPF: como passar no exame em 2026 sem gastar do seu bolso",
       "data": "2026-07-23",
       "formato": "Carrossel",
-      "estagio": "Design",
+      "estagio": "DRAFT",
       "pilares": [
         "Sistema"
       ],
@@ -1941,11 +1925,23 @@
       "promessa": "Você sabe que pode fazer um curso de francês GRÁTIS com CPF e ainda garantir direitos na França? A maioria das brasileiras não usa isso."
     },
     {
+      "url": "https://app.notion.com/p/PRE-REQUISITOS-CAF-3a6d602254ce80439bb7e6d7e24b26c9",
+      "titulo": "PRE REQUISITOS CAF",
+      "data": "2026-07-24",
+      "formato": "Carrossel",
+      "estagio": "Done",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
       "url": "https://app.notion.com/p/Institut-Convergences-Migrations-quem-s-o-os-pesquisadores-que-moldam-a-pol-tica-de-imigra-o-na-Fr-38cd602254ce819abe25dbd7ea1cf849",
       "titulo": "Institut Convergences Migrations: quem são os pesquisadores que moldam a política de imigração na França",
       "data": "2026-07-24",
       "formato": "Reel",
-      "estagio": "Design",
+      "estagio": "DRAFT",
       "pilares": [
         "Sociedade"
       ],
@@ -1973,37 +1969,9 @@
       "promessa": "Se você é autônoma ou MEI na França, existe uma ajuda estatal que a maioria não sabe que pode pedir. Mas tem uma regra que muda tudo para brasileiras."
     },
     {
-      "url": "https://app.notion.com/p/TITRE-PROFESSIONNEL-36ed602254ce80eb8309c3794d775df8",
-      "titulo": "TITRE PROFESSIONNEL",
-      "data": "2026-07-27",
-      "formato": "Reel",
-      "estagio": "Research",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/Os-5-passos-burocr-ticos-que-ningu-m-te-avisa-de-chegada-ao-CPF-franc-s-39dd602254ce8177a79bc010712e0c35",
-      "titulo": "Os 5 passos burocráticos que ninguém te avisa: de chegada ao CPF francês",
-      "data": "2026-07-28",
-      "formato": "Carrossel",
-      "estagio": "Idea",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [],
-      "publico": [
-        "Recém-chegado"
-      ],
-      "serie": [],
-      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W29] Roteiro passo a passo de burocracia francesa com prazos realistas — pedido direto e recorrente da audiência, tema que nenhum concorrente mapeado cobre com profundidade."
-    },
-    {
       "url": "https://app.notion.com/p/Estudante-auto-empreendedora-na-Fran-a-pode-mesmo-trabalhar-por-conta-pr-pria-38cd602254ce81e995dce8d1a6aab497",
       "titulo": "Estudante auto-empreendedora na França: pode mesmo trabalhar por conta própria?",
-      "data": "2026-07-29",
+      "data": "2026-07-26",
       "formato": "Reel",
       "estagio": "Design",
       "pilares": [
@@ -2017,25 +1985,38 @@
       "promessa": "Se você está com visto de estudante e pensa em abrir um negócio, precisa saber isto antes de registrar nada."
     },
     {
-      "url": "https://app.notion.com/p/Auto-entrepreneur-tranger-o-que-voc-precisa-saber-para-abrir-sua-microempresa-na-Fran-a-38cd602254ce81eab95fef52411f2c23",
-      "titulo": "Auto-entrepreneur étranger: o que você precisa saber para abrir sua microempresa na França",
-      "data": "2026-07-29",
+      "url": "https://app.notion.com/p/TITRE-PROFESSIONNEL-36ed602254ce80eb8309c3794d775df8",
+      "titulo": "TITRE PROFESSIONNEL",
+      "data": "2026-07-27",
       "formato": "Reel",
-      "estagio": "Design",
+      "estagio": "Research",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
+      "url": "https://app.notion.com/p/Altern-ncia-em-setembro-vs-janeiro-qual-timing-real-e-qual-armadilha-3a7d602254ce81cc8604ea8a98a31e5d",
+      "titulo": "Alternância em setembro vs. janeiro: qual timing é real e qual é armadilha",
+      "data": "2026-07-28",
+      "formato": "Carrossel",
+      "estagio": "Idea",
       "pilares": [
         "Sistema"
       ],
-      "meta": [
-        "SAVE"
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
       ],
-      "publico": [],
       "serie": [],
-      "promessa": "Você pode ser auto-empreendedora na França sendo estrangeira? A resposta depende do seu titre de séjour — e tem regras bem específicas para 2026."
+      "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Audiência (bilans 23/07) questiona especificamente viabilidade de alternância em janeiro/fevereiro vs. setembro — dor recorrente sem resposta. Tema não está no calendário. Formato carrossel atende salvamento/compartilhamento (dúvida imediata). — Descubra por que setembro é o ciclo real de alternância na França, quanto custa cada período e quando (sim/não) vale começar fora do ciclo."
     },
     {
       "url": "https://app.notion.com/p/VLS-TS-O-que-voc-precisa-saber-antes-de-validar-seu-visto-38cd602254ce8187a158f93206fc8a94",
       "titulo": "VLS-TS: O que você precisa saber antes de validar seu visto",
-      "data": "2026-07-30",
+      "data": "2026-07-29",
       "formato": "Carrossel",
       "estagio": "Design",
       "pilares": [
@@ -2049,6 +2030,22 @@
       "promessa": "Você tem 3 meses para validar o VLS-TS na França — e muita gente não sabe disso."
     },
     {
+      "url": "https://app.notion.com/p/Os-5-passos-burocr-ticos-que-ningu-m-te-avisa-de-chegada-ao-CPF-franc-s-39dd602254ce8177a79bc010712e0c35",
+      "titulo": "Os 5 passos burocráticos que ninguém te avisa: de chegada ao CPF francês",
+      "data": "2026-07-30",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W29] Roteiro passo a passo de burocracia francesa com prazos realistas — pedido direto e recorrente da audiência, tema que nenhum concorrente mapeado cobre com profundidade."
+    },
+    {
       "url": "https://app.notion.com/p/CPF-na-Fran-a-nova-lei-obriga-inscri-o-em-forma-o-e-tem-multa-se-n-o-fizer-394d602254ce81659dd9fb4a73d9322e",
       "titulo": "CPF na França: nova lei obriga inscrição em formação (e tem multa se não fizer)",
       "data": "2026-07-31",
@@ -2059,6 +2056,22 @@
       "publico": [],
       "serie": [],
       "promessa": "Se você tem CPF francês, tem uma obrigação nova a partir de 2026 — e ignorar isso pode te custar caro."
+    },
+    {
+      "url": "https://app.notion.com/p/Auto-entrepreneur-tranger-o-que-voc-precisa-saber-para-abrir-sua-microempresa-na-Fran-a-38cd602254ce81eab95fef52411f2c23",
+      "titulo": "Auto-entrepreneur étranger: o que você precisa saber para abrir sua microempresa na França",
+      "data": "2026-08-01",
+      "formato": "Reel",
+      "estagio": "Design",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [
+        "SAVE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": "Você pode ser auto-empreendedora na França sendo estrangeira? A resposta depende do seu titre de séjour — e tem regras bem específicas para 2026."
     },
     {
       "url": "https://app.notion.com/p/Extrema-direita-na-Europa-como-isso-te-afeta-como-imigrante-na-Fran-a-3a2d602254ce8135ba9ac2b8369c7885",
@@ -2089,32 +2102,20 @@
       "promessa": "Se você tem grana parada ou investe em ações, esse cálculo muda tudo em 2026"
     },
     {
-      "url": "https://app.notion.com/p/Mestrado-em-altern-ncia-38dd602254ce807cbd13f4ee477a95d9",
-      "titulo": "Mestrado em alternância",
+      "url": "https://app.notion.com/p/VLS-TS-validar-em-3-meses-ou-ficar-irregular-e-o-que-a-OFII-exige-depois-CIR-2026-38cd602254ce81b18cc8d5f58b8fc922",
+      "titulo": "VLS-TS: validar em 3 meses ou ficar irregular — e o que a OFII exige depois (CIR 2026)",
       "data": "2026-08-03",
       "formato": "Reel",
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/VAE-em-2026-como-validar-sua-experi-ncia-profissional-e-conseguir-um-diploma-franc-s-38cd602254ce8133b482c1033db1a7c1",
-      "titulo": "VAE em 2026: como validar sua experiência profissional e conseguir um diploma francês",
-      "data": "2026-08-03",
-      "formato": "Reel",
-      "estagio": "Design",
+      "estagio": "to edit",
       "pilares": [
-        "Trajetória"
+        "Sistema"
       ],
       "meta": [
         "SAVE"
       ],
       "publico": [],
       "serie": [],
-      "promessa": "Você tem experiência de trabalho no Brasil, mas o diploma francês não sai? A VAE é a solução — e o CPF pode pagar tudo."
+      "promessa": "Se você entrou na França com VLS-TS, tem um prazo que ninguém avisa e passa rápido demais."
     },
     {
       "url": "https://app.notion.com/p/VLS-Long-Duration-vs-Visto-de-Interc-mbio-Universit-rio-qual-escolher-antes-de-pagar-passagem-39dd602254ce816eb073ea0fba6ab519",
@@ -2149,6 +2150,18 @@
       "promessa": "Se você trabalha na França, esses três números vão definir quanto entra na sua conta todo mês — e quanto você deve declarar."
     },
     {
+      "url": "https://app.notion.com/p/Mestrado-em-altern-ncia-38dd602254ce807cbd13f4ee477a95d9",
+      "titulo": "Mestrado em alternância",
+      "data": "2026-08-06",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
       "url": "https://app.notion.com/p/M-tiers-en-tension-sua-profiss-o-abre-porta-na-Fran-a-em-2026-38cd602254ce8182921fd803462624d9",
       "titulo": "Métiers en tension: sua profissão abre porta na França em 2026?",
       "data": "2026-08-07",
@@ -2165,16 +2178,20 @@
       "promessa": "Tem 80 profissões com visto fast-track na França agora. Veja se a sua está na lista."
     },
     {
-      "url": "https://app.notion.com/p/Voc-entende-o-sistema-de-forma-o-Como-isso-muda-sua-posi-o-no-mercado-de-trabalho-38dd602254ce808cbb85f1af85c1eebf",
-      "titulo": "Você entende o sistema de formação. Como isso muda sua posição no mercado de trabalho?\"",
+      "url": "https://app.notion.com/p/VAE-em-2026-como-validar-sua-experi-ncia-profissional-e-conseguir-um-diploma-franc-s-38cd602254ce8133b482c1033db1a7c1",
+      "titulo": "VAE em 2026: como validar sua experiência profissional e conseguir um diploma francês",
       "data": "2026-08-10",
-      "formato": null,
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
+      "formato": "Reel",
+      "estagio": "Design",
+      "pilares": [
+        "Trajetória"
+      ],
+      "meta": [
+        "SAVE"
+      ],
       "publico": [],
       "serie": [],
-      "promessa": ""
+      "promessa": "Você tem experiência de trabalho no Brasil, mas o diploma francês não sai? A VAE é a solução — e o CPF pode pagar tudo."
     },
     {
       "url": "https://app.notion.com/p/Quanto-custa-viver-na-Fran-a-em-2026-N-meros-reais-por-cidade-3a2d602254ce81c38305f73be5f8a075",
@@ -2281,9 +2298,21 @@
       "promessa": "A energia disparou, mas nem tudo ficou mais caro. Veja o que realmente impacta seu bolso este ano."
     },
     {
+      "url": "https://app.notion.com/p/Voc-entende-o-sistema-de-forma-o-Como-isso-muda-sua-posi-o-no-mercado-de-trabalho-38dd602254ce808cbb85f1af85c1eebf",
+      "titulo": "Você entende o sistema de formação. Como isso muda sua posição no mercado de trabalho?\"",
+      "data": "2026-08-17",
+      "formato": null,
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
+    },
+    {
       "url": "https://app.notion.com/p/Transfer-ncia-corporativa-38dd602254ce80bda36cc71938049fb0",
       "titulo": "Transferência corporativa",
-      "data": "2026-08-17",
+      "data": "2026-08-18",
       "formato": null,
       "estagio": "Idea",
       "pilares": [],
@@ -2319,6 +2348,24 @@
       "publico": [],
       "serie": [],
       "promessa": "Você está guardando dinheiro numa conta corrente comum enquanto poderia estar ganhando 3% ao ano sem risco? A gente explica os produtos que ninguém te conta."
+    },
+    {
+      "url": "https://app.notion.com/p/Altern-ncia-com-30-a-verdade-sobre-o-limite-de-idade-para-visto-de-estudante-3a7d602254ce81789ebde5c454053324",
+      "titulo": "Alternância com 30+: a verdade sobre o limite de idade para visto de estudante",
+      "data": "2026-08-20",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Dor recorrente (bilans 03/07): 'tem 30 anos, rejeitada em escolas, quer entender se alternância é viável'. Calendário tem post sobre 'CAP com 30 anos' mas não sobre restrição legal de idade (visto + alternância = até 30). Lacuna crítica para público acima de 30. — Entenda por que 30 anos é o limite para contratar alternância com visto de estudante, o que muda depois e por que algumas conseguem (mas fica mais difícil). Fontes: Mestrado em alternância: quem pode fazer? (https://carlanagringa.com/mestrado-em-alternancia-quem-pode-fazer/)"
     },
     {
       "url": "https://app.notion.com/p/Checklist-do-pacote-expat-o-que-negociar-antes-de-embarcar-38dd602254ce8065a31fc1539b53b425",
@@ -2466,6 +2513,40 @@
       "promessa": ""
     },
     {
+      "url": "https://app.notion.com/p/Mestrado-em-altern-ncia-2026-quanto-voc-realmente-ganha-vs-quanto-gasta-em-Paris-3a7d602254ce8182af6ad9002a8625a3",
+      "titulo": "Mestrado em alternância 2026: quanto você realmente ganha vs. quanto gasta em Paris",
+      "data": "2026-09-14",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Calendário tem conteúdo genérico sobre alternância e sobre custo de vida (separados), mas falta comparação prática que responda: 'ganho 1.000-1.867€/mês, gasto quanto?' Dor de segmentação: novo alternante em M1 precisa de realismo financeiro antes de deixar o Brasil. — Números reais: salário mensal de alternante em 2026 (por idade), custo de vida em Paris vs. cidades menores, e se sobra dinheiro ou você endivida. Fontes: Salário do alternante na França em 2026: quanto você vai receber no mestrado (https://carlanagringa.com/salario-alternante-franca-2026/); Salário mínimo França 2026: Custo de vida, salário de profissões e mais (https://www.nomadglobal.com/conteudos/salario-minimo-franca)"
+    },
+    {
+      "url": "https://app.notion.com/p/Acabo-de-chegar-na-Fran-a-M1-ou-M2-em-altern-ncia-qual-realmente-funciona-para-primeiro-ano-3a7d602254ce812e8bb0db79a4c9b1d0",
+      "titulo": "Acabo de chegar na França: M1 ou M2 em alternância — qual realmente funciona para primeiro ano?",
+      "data": "2026-09-16",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Dor específica (bilans 03/07): 'existe alternância no M2? Como ganhar em euros durante mestrado?' + dúvida sobre 'qual visto encaixa melhor'. Calendário tem conteúdo sobre M2 separado, mas falta clareza sobre M1 para primo-arrivant (descobri via pesquisa que decreto 2021-360 liberou, mas exige condições). Hook: mito de que M1 = só estágio desimunizado. — Descoberta: é possível fazer M1 em alternância logo de saída (sim, mesmo sendo primeiro ano na França), mas com 3 condições que ninguém te avisa. Fontes: Posso fazer mestrado em alternância a partir do 1 ano na França? (https://carlanagringa.com/posso-fazer-mestrado-em-alternancia-a-partir-do-1-ano-na-franca/); Mestrado em alternância na França: guia completo (https://partiuintercambio.org/mestrado-em-alternancia-na-franca/)"
+    },
+    {
       "url": "https://app.notion.com/p/Como-pedir-sua-Carte-Vitale-os-3-documentos-que-voc-precisa-ter-agora-38cd602254ce8136be9fc3c27245ca71",
       "titulo": "Como pedir sua Carte Vitale: os 3 documentos que você precisa ter agora",
       "data": "2026-09-20",
@@ -2482,7 +2563,7 @@
       "promessa": "Você acabou de assinar o contrato na França e agora? A Carte Vitale não sai sozinha. A gente mostra exatamente o que levar."
     }
   ],
-  "calendario_posts_atualizado_em": "2026-07-23",
+  "calendario_posts_atualizado_em": "2026-07-24",
   "instagram_diario": [
     {
       "data": "2026-05-01",
@@ -3146,5 +3227,95 @@
       "cliques_link": 0
     }
   ],
-  "instagram_diario_atualizado_em": "2026-07-14"
+  "instagram_diario_atualizado_em": "2026-07-14",
+  "sugestoes_conteudo": [
+    {
+      "id": "2026-07-24-Alternância em setembro vs. janeiro: qua",
+      "titulo": "Alternância em setembro vs. janeiro: qual timing é real e qual é armadilha",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Descubra por que setembro é o ciclo real de alternância na França, quanto custa cada período e quando (sim/não) vale começar fora do ciclo.",
+      "justificativa": "Audiência (bilans 23/07) questiona especificamente viabilidade de alternância em janeiro/fevereiro vs. setembro — dor recorrente sem resposta. Tema não está no calendário. Formato carrossel atende salvamento/compartilhamento (dúvida imediata).",
+      "fontes": [],
+      "data_sugerida": "2026-07-28",
+      "notion_criada": true,
+      "gerado_em": "2026-07-24"
+    },
+    {
+      "id": "2026-07-24-Mestrado em alternância 2026: quanto voc",
+      "titulo": "Mestrado em alternância 2026: quanto você realmente ganha vs. quanto gasta em Paris",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Números reais: salário mensal de alternante em 2026 (por idade), custo de vida em Paris vs. cidades menores, e se sobra dinheiro ou você endivida.",
+      "justificativa": "Calendário tem conteúdo genérico sobre alternância e sobre custo de vida (separados), mas falta comparação prática que responda: 'ganho 1.000-1.867€/mês, gasto quanto?' Dor de segmentação: novo alternante em M1 precisa de realismo financeiro antes de deixar o Brasil.",
+      "fontes": [
+        {
+          "titulo": "Salário do alternante na França em 2026: quanto você vai receber no mestrado",
+          "url": "https://carlanagringa.com/salario-alternante-franca-2026/"
+        },
+        {
+          "titulo": "Salário mínimo França 2026: Custo de vida, salário de profissões e mais",
+          "url": "https://www.nomadglobal.com/conteudos/salario-minimo-franca"
+        }
+      ],
+      "data_sugerida": "2026-09-14",
+      "notion_criada": true,
+      "gerado_em": "2026-07-24"
+    },
+    {
+      "id": "2026-07-24-Alternância com 30+: a verdade sobre o l",
+      "titulo": "Alternância com 30+: a verdade sobre o limite de idade para visto de estudante",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "promessa": "Entenda por que 30 anos é o limite para contratar alternância com visto de estudante, o que muda depois e por que algumas conseguem (mas fica mais difícil).",
+      "justificativa": "Dor recorrente (bilans 03/07): 'tem 30 anos, rejeitada em escolas, quer entender se alternância é viável'. Calendário tem post sobre 'CAP com 30 anos' mas não sobre restrição legal de idade (visto + alternância = até 30). Lacuna crítica para público acima de 30.",
+      "fontes": [
+        {
+          "titulo": "Mestrado em alternância: quem pode fazer?",
+          "url": "https://carlanagringa.com/mestrado-em-alternancia-quem-pode-fazer/"
+        }
+      ],
+      "data_sugerida": "2026-08-20",
+      "notion_criada": true,
+      "gerado_em": "2026-07-24"
+    },
+    {
+      "id": "2026-07-24-Acabo de chegar na França: M1 ou M2 em a",
+      "titulo": "Acabo de chegar na França: M1 ou M2 em alternância — qual realmente funciona para primeiro ano?",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Descoberta: é possível fazer M1 em alternância logo de saída (sim, mesmo sendo primeiro ano na França), mas com 3 condições que ninguém te avisa.",
+      "justificativa": "Dor específica (bilans 03/07): 'existe alternância no M2? Como ganhar em euros durante mestrado?' + dúvida sobre 'qual visto encaixa melhor'. Calendário tem conteúdo sobre M2 separado, mas falta clareza sobre M1 para primo-arrivant (descobri via pesquisa que decreto 2021-360 liberou, mas exige condições). Hook: mito de que M1 = só estágio desimunizado.",
+      "fontes": [
+        {
+          "titulo": "Posso fazer mestrado em alternância a partir do 1 ano na França?",
+          "url": "https://carlanagringa.com/posso-fazer-mestrado-em-alternancia-a-partir-do-1-ano-na-franca/"
+        },
+        {
+          "titulo": "Mestrado em alternância na França: guia completo",
+          "url": "https://partiuintercambio.org/mestrado-em-alternancia-na-franca/"
+        }
+      ],
+      "data_sugerida": "2026-09-16",
+      "notion_criada": true,
+      "gerado_em": "2026-07-24"
+    }
+  ]
 }
