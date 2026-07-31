@@ -13,9 +13,14 @@ Fluxo:
    o bilan semanal já é um resumo do Claude, então a ideia concreta de cada
    conversa individual se perde na agregação. Isso complementa o bilan com o
    material bruto.
-2. Lê o benchmark de concorrência mais recente (lacunas_oportunidades +
-   recomendacao_editorial + o_que_nao_fazer) da base "Benchmarks de
-   Concorrência (Mensal)" — segue mesmo sem nenhuma linha ainda.
+2. Lê o benchmark de concorrência mais recente (lacunas + insights por
+   concorrente específico + sugestões de conteúdo já levantadas pela análise
+   de concorrência + recomendação editorial + o que não fazer) da base
+   "Benchmarks de Concorrência (Mensal)" — segue mesmo sem nenhuma linha
+   ainda. Os dois campos "insights por concorrente" e "sugestões de
+   conteúdo" foram adicionados em 31/07/2026 especificamente para que esta
+   camada gere ideias também a partir do que concorrentes específicos fazem,
+   não só do agregado por nicho.
 3. Lê o calendário atual (INSTA TO POR DENTRO): títulos já agendados/em
    produção nos próximos ~60 dias + títulos já parados em Idea/Backlog —
    evita sugerir duplicata do que já existe ou já foi sugerido antes.
@@ -167,6 +172,12 @@ def buscar_benchmark_concorrencia_recente() -> dict | None:
         "lacunas": _rt(p, "Lacunas"),
         "recomendacao": _rt(p, "Recomendação Editorial"),
         "o_que_nao_fazer": _rt(p, "O Que Não Fazer"),
+        # Campos adicionados em 31/07/2026 — antes disso, camada 5 só via
+        # "lacunas" (agregado por nicho) e nunca via o que cada concorrente
+        # específico faz, nem as ideias de conteúdo já elaboradas pelo módulo
+        # de concorrência a partir dessas lacunas.
+        "insights_por_concorrente": _rt(p, "Insights por Concorrente"),
+        "sugestoes_da_concorrencia": _rt(p, "Sugestões de Conteúdo"),
     }
 
 
@@ -320,6 +331,8 @@ def gerar_sugestoes(bilans: list, ideias_brutas: list, benchmark: dict | None, a
 
     benchmark_txt = (
         f"Mês: {benchmark['mes']}\nLacunas: {benchmark['lacunas']}\n"
+        f"Insights por concorrente específico: {benchmark['insights_por_concorrente']}\n"
+        f"Ideias de conteúdo já levantadas a partir da concorrência: {benchmark['sugestoes_da_concorrencia']}\n"
         f"Recomendação editorial: {benchmark['recomendacao']}\nO que não fazer: {benchmark['o_que_nao_fazer']}"
         if benchmark else "Nenhum benchmark de concorrência disponível ainda."
     )
@@ -345,7 +358,7 @@ def gerar_sugestoes(bilans: list, ideias_brutas: list, benchmark: dict | None, a
 
 ---
 
-Proponha até {MAX_SUGESTOES} posts novos que preencham lacunas reais — cruzando o que a audiência pediu (bilans + ideias por entrada), o que a concorrência não cobre, e o que ainda não está no calendário. Não invente dor que não apareceu nos dados acima. Se não houver base suficiente para {MAX_SUGESTOES} sugestões de qualidade, proponha menos.
+Proponha até {MAX_SUGESTOES} posts novos que preencham lacunas reais — cruzando o que a audiência pediu (bilans + ideias por entrada), o que a concorrência não cobre e o que concorrentes específicos fazem bem ou deixam passar (insights por concorrente + ideias de conteúdo já levantadas a partir da concorrência — pode adaptar/aprofundar essas ideias, nunca copiar o concorrente), e o que ainda não está no calendário. Não invente dor que não apareceu nos dados acima. Se não houver base suficiente para {MAX_SUGESTOES} sugestões de qualidade, proponha menos.
 
 Pra cada sugestão, se o tema envolver um fato verificável (prazo, regra, procedimento — ex.: burocracia, visto, imposto, mercado de trabalho francês), PESQUISE na web pra confirmar e cite fontes reais (título + URL) no campo "fontes". Nunca invente URL — se não pesquisou ou não achou nada confiável pra essa sugestão específica, deixe "fontes" como lista vazia. Sugestões puramente de storytelling/trajetória pessoal não precisam de fontes.
 
