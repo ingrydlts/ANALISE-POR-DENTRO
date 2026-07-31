@@ -2054,16 +2054,20 @@
       "promessa": "Se você está com visto de estudante e pensa em abrir um negócio, precisa saber isto antes de registrar nada."
     },
     {
-      "url": "https://app.notion.com/p/TITRE-PROFESSIONNEL-36ed602254ce80eb8309c3794d775df8",
-      "titulo": "TITRE PROFESSIONNEL",
+      "url": "https://app.notion.com/p/VLS-TS-validar-em-3-meses-ou-ficar-irregular-e-o-que-a-OFII-exige-depois-CIR-2026-38cd602254ce81b18cc8d5f58b8fc922",
+      "titulo": "VLS-TS: validar em 3 meses ou ficar irregular — e o que a OFII exige depois (CIR 2026)",
       "data": "2026-07-27",
       "formato": "Reel",
-      "estagio": "Research",
-      "pilares": [],
-      "meta": [],
+      "estagio": "to edit",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [
+        "SAVE"
+      ],
       "publico": [],
       "serie": [],
-      "promessa": ""
+      "promessa": "Se você entrou na França com VLS-TS, tem um prazo que ninguém avisa e passa rápido demais."
     },
     {
       "url": "https://app.notion.com/p/Altern-ncia-em-setembro-vs-janeiro-qual-timing-real-e-qual-armadilha-3a7d602254ce81cc8604ea8a98a31e5d",
@@ -2171,20 +2175,16 @@
       "promessa": "Se você tem grana parada ou investe em ações, esse cálculo muda tudo em 2026"
     },
     {
-      "url": "https://app.notion.com/p/VLS-TS-validar-em-3-meses-ou-ficar-irregular-e-o-que-a-OFII-exige-depois-CIR-2026-38cd602254ce81b18cc8d5f58b8fc922",
-      "titulo": "VLS-TS: validar em 3 meses ou ficar irregular — e o que a OFII exige depois (CIR 2026)",
+      "url": "https://app.notion.com/p/TITRE-PROFESSIONNEL-36ed602254ce80eb8309c3794d775df8",
+      "titulo": "TITRE PROFESSIONNEL",
       "data": "2026-08-03",
       "formato": "Reel",
-      "estagio": "to edit",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [
-        "SAVE"
-      ],
+      "estagio": "Research",
+      "pilares": [],
+      "meta": [],
       "publico": [],
       "serie": [],
-      "promessa": "Se você entrou na França com VLS-TS, tem um prazo que ninguém avisa e passa rápido demais."
+      "promessa": ""
     },
     {
       "url": "https://app.notion.com/p/VLS-Long-Duration-vs-Visto-de-Interc-mbio-Universit-rio-qual-escolher-antes-de-pagar-passagem-39dd602254ce816eb073ea0fba6ab519",
@@ -2201,6 +2201,18 @@
       ],
       "serie": [],
       "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W27] Dor real e específica de uma seguidora gastando tempo e dinheiro em teste de língua presencial sem saber se consegue o visto — responde qual visto encaixa melhor em cada situação."
+    },
+    {
+      "url": "https://app.notion.com/p/Arnaque-Bail-Fant-me-3acd602254ce80fd860aef7a67314080",
+      "titulo": "Arnaque Bail Fantôme",
+      "data": "2026-08-05",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": ""
     },
     {
       "url": "https://app.notion.com/p/SMIC-2026-contratos-e-imposto-o-que-voc-precisa-saber-agora-38cd602254ce81868a5ff39d91ddbe14",
@@ -2603,6 +2615,23 @@
       "promessa": ""
     },
     {
+      "url": "https://app.notion.com/p/Altern-ncia-em-janeiro-vs-setembro-qual-timing-funciona-mesmo-em-2026-e-qual-armadilha-3aed602254ce8117b13deb14da866079",
+      "titulo": "Alternância em janeiro vs. setembro: qual timing funciona mesmo em 2026 (e qual é armadilha)",
+      "data": "2026-09-08",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor recorrente confirmada em 3 bilans (23/07, 03/07). Audiência pergunta especificamente sobre viabilidade de janeiro/fevereiro vs. setembro. Calendário já tem post sobre timing, mas este tem ângulo diferente: não é 'qual é o melhor', é 'qual timing realmente existe e qual é armadilha'. Carrossel permite checklist prático e salvamento. — Destrói o mito de que alternância só começa em setembro: explica timing real, risco de rejeição fora do ciclo e como contornar. Fontes: Calendário de candidaturas 2025-2026 - Campus France Brasil (https://www.bresil.campusfrance.org/calendario-candidaturas-2025-2026); Calendário Campus France 2026-2027 (https://www.bresil.campusfrance.org/10-dias-para-as-candidaturas)"
+    },
+    {
       "url": "https://app.notion.com/p/Visto-vs-Visto-qual-escolher-se-voc-quer-estudar-trabalhar-ou-vir-com-c-njuge-39dd602254ce81b9bc4dedaf8329432d",
       "titulo": "Visto vs. Visto: qual escolher se você quer estudar, trabalhar ou vir com cônjuge?",
       "data": "2026-09-09",
@@ -2649,6 +2678,23 @@
       "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Calendário tem conteúdo genérico sobre alternância e sobre custo de vida (separados), mas falta comparação prática que responda: 'ganho 1.000-1.867€/mês, gasto quanto?' Dor de segmentação: novo alternante em M1 precisa de realismo financeiro antes de deixar o Brasil. — Números reais: salário mensal de alternante em 2026 (por idade), custo de vida em Paris vs. cidades menores, e se sobra dinheiro ou você endivida. Fontes: Salário do alternante na França em 2026: quanto você vai receber no mestrado (https://carlanagringa.com/salario-alternante-franca-2026/); Salário mínimo França 2026: Custo de vida, salário de profissões e mais (https://www.nomadglobal.com/conteudos/salario-minimo-franca)"
     },
     {
+      "url": "https://app.notion.com/p/Altern-ncia-com-30-o-que-as-escolas-REALMENTE-procuram-e-por-que-idade-importa-menos-que-voc-pen-3aed602254ce8137b947d7341c805616",
+      "titulo": "Alternância com 30+: o que as escolas REALMENTE procuram (e por que idade importa menos que você pensa)",
+      "data": "2026-09-15",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Adaptado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor recorrente em bilan 03/07: audiência pergunta 'é possível alternância com 30+ anos?'. Pautas sugeridas indicam isso é dúvida massiva. Calendário tem post sobre 'por que é difícil', mas falta decodificar as REGRAS oficiais (limite de 29 anos com exceção até 34 anos) e como usar isso a favor. Conteúdo usa dado verificável (Campus France) + ângulo prático. — Explica limite de idade real para alternância, exceções legítimas (Campus France autoriza até 34 anos em casos), e estratégia de candidatura aos 30+. Fontes: Mestrado em alternância na França: guia completo - Partiu Intercâmbio (https://partiuintercambio.org/mestrado-em-alternancia-na-franca/)"
+    },
+    {
       "url": "https://app.notion.com/p/Acabo-de-chegar-na-Fran-a-M1-ou-M2-em-altern-ncia-qual-realmente-funciona-para-primeiro-ano-3a7d602254ce812e8bb0db79a4c9b1d0",
       "titulo": "Acabo de chegar na França: M1 ou M2 em alternância — qual realmente funciona para primeiro ano?",
       "data": "2026-09-16",
@@ -2664,42 +2710,9 @@
       ],
       "serie": [],
       "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Dor específica (bilans 03/07): 'existe alternância no M2? Como ganhar em euros durante mestrado?' + dúvida sobre 'qual visto encaixa melhor'. Calendário tem conteúdo sobre M2 separado, mas falta clareza sobre M1 para primo-arrivant (descobri via pesquisa que decreto 2021-360 liberou, mas exige condições). Hook: mito de que M1 = só estágio desimunizado. — Descoberta: é possível fazer M1 em alternância logo de saída (sim, mesmo sendo primeiro ano na França), mas com 3 condições que ninguém te avisa. Fontes: Posso fazer mestrado em alternância a partir do 1 ano na França? (https://carlanagringa.com/posso-fazer-mestrado-em-alternancia-a-partir-do-1-ano-na-franca/); Mestrado em alternância na França: guia completo (https://partiuintercambio.org/mestrado-em-alternancia-na-franca/)"
-    },
-    {
-      "url": "https://app.notion.com/p/Como-pedir-sua-Carte-Vitale-os-3-documentos-que-voc-precisa-ter-agora-38cd602254ce8136be9fc3c27245ca71",
-      "titulo": "Como pedir sua Carte Vitale: os 3 documentos que você precisa ter agora",
-      "data": "2026-09-20",
-      "formato": "Carrossel",
-      "estagio": "Design",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [
-        "SAVE"
-      ],
-      "publico": [],
-      "serie": [],
-      "promessa": "Você acabou de assinar o contrato na França e agora? A Carte Vitale não sai sozinha. A gente mostra exatamente o que levar."
-    },
-    {
-      "url": "https://app.notion.com/p/Altern-ncia-com-30-anos-por-que-as-escolas-querem-voc-e-como-aproveitar-3aad602254ce810292fcf31c57546566",
-      "titulo": "Alternância com 30+ anos: por que as escolas querem você (e como aproveitar)",
-      "data": "2026-09-21",
-      "formato": "Reel",
-      "estagio": "Idea",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [],
-      "publico": [
-        "Adaptado",
-        "Recém-chegado"
-      ],
-      "serie": [],
-      "promessa": "[Sugestão automática — 2026-07-27, data é um slot proposto]: Dor recorrente (semana 03/07 e 23/07): 'tem sido muito difícil achar alternância com 30 anos' e 'qual é realmente o limite de idade'. Posts agendados existem mas não cobrem o ângulo positivo de ser 30+: salário garantido desde ano 1, menos concorrência com jovens de 21-25, viabilidade legal clara. Lacuna: nenhum post explora o lado estratégico/positivo da idade. — Aos 26+, você entra em contrato com 100% do SMIC: saiba o que muda legalmente, por que você é mais atrativo, e como posicionar esse diferencial em candidaturas. Fontes: Salário do Alternante na França em 2026 – Carla na Gringa (https://carlanagringa.com/salario-alternante-franca-2026/); Alternance & Apprentissage na França para Estudantes Internacionais (2026) (https://studyartinfrance.com/pt/guides/alternance-apprentissage/)"
     }
   ],
-  "calendario_posts_atualizado_em": "2026-07-27",
+  "calendario_posts_atualizado_em": "2026-07-31",
   "instagram_diario": [
     {
       "data": "2026-05-01",
@@ -3547,6 +3560,109 @@
       "data_sugerida": "2026-09-01",
       "notion_criada": true,
       "gerado_em": "2026-07-27"
+    },
+    {
+      "id": "2026-07-31-Alternância em janeiro vs. setembro: qua",
+      "titulo": "Alternância em janeiro vs. setembro: qual timing funciona mesmo em 2026 (e qual é armadilha)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Destrói o mito de que alternância só começa em setembro: explica timing real, risco de rejeição fora do ciclo e como contornar.",
+      "justificativa": "Dor recorrente confirmada em 3 bilans (23/07, 03/07). Audiência pergunta especificamente sobre viabilidade de janeiro/fevereiro vs. setembro. Calendário já tem post sobre timing, mas este tem ângulo diferente: não é 'qual é o melhor', é 'qual timing realmente existe e qual é armadilha'. Carrossel permite checklist prático e salvamento.",
+      "fontes": [
+        {
+          "titulo": "Calendário de candidaturas 2025-2026 - Campus France Brasil",
+          "url": "https://www.bresil.campusfrance.org/calendario-candidaturas-2025-2026"
+        },
+        {
+          "titulo": "Calendário Campus France 2026-2027",
+          "url": "https://www.bresil.campusfrance.org/10-dias-para-as-candidaturas"
+        }
+      ],
+      "data_sugerida": "2026-09-08",
+      "notion_criada": true,
+      "gerado_em": "2026-07-31"
+    },
+    {
+      "id": "2026-07-31-VLS Long Duration vs. Visto de Intercâmb",
+      "titulo": "VLS Long Duration vs. Visto de Intercâmbio: qual escolher antes de gastar dinheiro",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada"
+      ],
+      "promessa": "Compara custo, tempo e direitos entre VLS-TS (sem instituição) e visto de intercâmbio. Responde: vale a pena investir em teste de francês presencial antes de confirmar visto?",
+      "justificativa": "Dor específica levantada em bilan 03/07 (Dany gastando tempo/dinheiro sem saber qual visto escolher). Nunca foi coberto no calendário. VLS-TS é categoria confusa para pré-chegada; falta clareza sobre diferença de direitos, custos reais e risco de rejeição. Reel como hook + carrossel detalha.",
+      "fontes": [
+        {
+          "titulo": "Intercâmbio na França: o guia para brasileiros em 2026 - SKEMA",
+          "url": "https://www.skema.edu/br/news/intercambio-franca"
+        },
+        {
+          "titulo": "Visto de estudante para França: guia completo 2026 - FrenchXpert",
+          "url": "https://frenchxpert.com/visto-de-estudante-para-franca/"
+        },
+        {
+          "titulo": "Como tirar visto de estudante para França - Euro Dicas",
+          "url": "https://www.eurodicas.com.br/visto-de-estudante-para-a-franca/"
+        }
+      ],
+      "data_sugerida": "2026-09-23",
+      "notion_criada": true,
+      "gerado_em": "2026-07-31"
+    },
+    {
+      "id": "2026-07-31-Alternância com 30+: o que as escolas RE",
+      "titulo": "Alternância com 30+: o que as escolas REALMENTE procuram (e por que idade importa menos que você pensa)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Adaptado"
+      ],
+      "promessa": "Explica limite de idade real para alternância, exceções legítimas (Campus France autoriza até 34 anos em casos), e estratégia de candidatura aos 30+.",
+      "justificativa": "Dor recorrente em bilan 03/07: audiência pergunta 'é possível alternância com 30+ anos?'. Pautas sugeridas indicam isso é dúvida massiva. Calendário tem post sobre 'por que é difícil', mas falta decodificar as REGRAS oficiais (limite de 29 anos com exceção até 34 anos) e como usar isso a favor. Conteúdo usa dado verificável (Campus France) + ângulo prático.",
+      "fontes": [
+        {
+          "titulo": "Mestrado em alternância na França: guia completo - Partiu Intercâmbio",
+          "url": "https://partiuintercambio.org/mestrado-em-alternancia-na-franca/"
+        }
+      ],
+      "data_sugerida": "2026-09-15",
+      "notion_criada": true,
+      "gerado_em": "2026-07-31"
+    },
+    {
+      "id": "2026-07-31-Alternante em 2026: os números reais (sa",
+      "titulo": "Alternante em 2026: os números reais (salário, descontos, se sobra dinheiro em Paris vs. interior)",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "promessa": "Mostra SMIC atualizado (junho 2026: €1.867,02), quanto alternante recebe por faixa etária, deduções reais e simulação de custo de vida Paris/Lyon/Toulouse.",
+      "justificativa": "Audiência em bilan 23/07 pergunta: 'quanto é o salário de alternância, impostos e deduções na prática, dúvida sobre custo de vida em Paris com salário de alternância'. Calendário tem 'Viver de alternância em Paris', mas falta especificar: valores reais pós-imposto por idade + tabela comparativa cidades. Reel como hook (números chamam atenção) + stories com calculadora/simulação satisfaz demanda por praticidade.",
+      "fontes": [
+        {
+          "titulo": "Salário do alternante na França em 2026 - Carla na Gringa",
+          "url": "https://carlanagringa.com/salario-alternante-franca-2026/"
+        },
+        {
+          "titulo": "Alternance & apprentissage na França para estudantes internacionais (2026)",
+          "url": "https://studyartinfrance.com/pt/guides/alternance-apprentissage/"
+        },
+        {
+          "titulo": "SMIC 2026: Net, Gross, Monthly and Annual Amounts - StaffMatch",
+          "url": "https://staffmatch.com/blog/en/smic-2025/"
+        }
+      ],
+      "data_sugerida": "2026-09-28",
+      "notion_criada": true,
+      "gerado_em": "2026-07-31"
     }
   ]
 }
