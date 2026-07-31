@@ -1,53 +1,45 @@
 """
 MÓDULO 3 — Análise de Concorrência
-Roda na primeira segunda-feira do mês via GitHub Actions (guard semanal — ver
-Analise_concorrencia.yml, que dispara toda segunda e pula quando não é a primeira).
+Roda na primeira segunda-feira do mês via GitHub Actions (guard mensal — ver
+analise-concorrencia.yml, que dispara toda segunda e pula quando não é a
+primeira).
 
-Fluxo:
-1. Busca linhas da base COLETAS YOUTUBE (CATEGORIA=CONCORRÊNCIA) do mês atual
-2. Busca observações de concorrência no Instagram, de DUAS fontes:
-   a) FICHIERS INSTAGRAM — notas manuais em texto (CATEGORIA=CONCORRÊNCIA + PLATAFORMA=
-      INSTAGRAM + STATUS=NOVO)
-   b) Inputs Benchmark Instagram — prints de posts/reels de concorrentes já transcritos
-      pela Claude em enriquecer_conversas_audiencia.py (CATEGORIA=CONCORRÊNCIA +
-      PLATAFORMA=INSTAGRAM + STATUS=Analisado)
-3. Envia tudo para Claude, que gera o BENCHMARK do mês em seções fixas (##)
-4. Salva/atualiza UMA LINHA na base "🎯 Benchmarks de Concorrência (Mensal)"
+Fluxo (mesma lógica de analyze_audiencia.py — só troca a tag AUDIÊNCIA por
+CONCORRÊNCIA, e a cadência de semanal pra mensal):
+1. Busca prints de concorrentes já transcritos pela Claude, em "Inputs
+   Benchmark Instagram" (CATEGORIA=CONCORRÊNCIA + STATUS=Analisado — já
+   enriquecidos por enriquecer_conversas_audiencia.py)
+2. Envia tudo para Claude, que gera o BENCHMARK do mês em seções fixas (##)
+3. Salva/atualiza UMA LINHA na base "🎯 Benchmarks de Concorrência (Mensal)"
    (chave "ID Mês" — reprocessar o mesmo mês atualiza a linha em vez de duplicar)
-5. Salva o mesmo benchmark em insights.json — bloco estruturado em "concorrencia",
-   para o dashboard (index.html) exibir na aba Concorrência. Antes desta versão,
-   este script só escrevia na Notion — a análise de concorrência nunca chegava ao
-   dashboard visual. Mesmo padrão de upsert por id usado em analyze_audiencia.py.
-6. Marca as entradas usadas (das duas fontes de Instagram) como PROCESSADO
+4. Salva o mesmo benchmark em insights.json — bloco estruturado em "concorrencia",
+   para o dashboard (index.html) exibir na aba Concorrência
+5. Marca as entradas usadas como PROCESSADO
 
 Variáveis de ambiente esperadas:
-  NOTION_TOKEN, ANTHROPIC_API_KEY, NOTION_DB_ID, NOTION_DB_IG, NOTION_COLETAS_DB_ID,
-  NOTION_BENCHMARKS_DB_ID
+  NOTION_TOKEN, ANTHROPIC_API_KEY, NOTION_DB_IG, NOTION_BENCHMARKS_DB_ID
   INSIGHTS_JSON_PATH (opcional — caminho do insights.json no repo, default "insights.json")
 
-Nota de correção (05/07/2026): antes desta versão, este script tentava ler "páginas COLETA YT"
-filhas de uma página Notion (NOTION_INTELIGENCIA_PAGE_ID) que estava deletada/em branco — nunca
-encontrava dados reais, porque o collect.py sempre gravou os canais como LINHAS na base COLETAS
-YOUTUBE, não como páginas-filhas. O resultado também era salvo como página solta em vez de linha
-estruturada, e o cron do workflow (`0 9 1-7 * 1`) disparava o job em todo dia 1–7 do mês MAIS toda
-segunda-feira — sem proteção contra duplicar. As três coisas foram corrigidas: leitura direta de
-COLETAS YOUTUBE, upsert por "ID Mês" na nova base estruturada, e cron consertado no workflow.
-
-Nota de atualização (05/07/2026): "🗨️ CONVERSAS AUDIÊNCIA (Instagram)" virou "Inputs Benchmark
-Instagram" e passou a aceitar CATEGORIA=CONCORRÊNCIA (prints de concorrentes), além de AUDIÊNCIA.
-Este script foi atualizado para também consultar essa base (NOTION_DB_IG) como segunda fonte de
-observações de Instagram, somando-se às notas manuais de FICHIERS INSTAGRAM.
-
-Nota de unificação (14/07/2026): migrado do repositório modulo3-Benchmark-Concorrencia-Audiencia
-para cá (junto com collect.py, analyze_audiencia.py e enriquecer_conversas_audiencia.py), para que
-INSIGHTS_JSON_PATH aponte para o MESMO insights.json que o dashboard lê — antes, cada repositório
-tinha sua própria cópia dessincronizada do arquivo.
+Nota de simplificação (31/07/2026): antes desta versão, este script juntava
+dados de TRÊS fontes — COLETAS YOUTUBE (canais concorrentes coletados por
+collect.py), notas manuais em FICHIERS INSTAGRAM (STATUS=NOVO) e prints em
+Inputs Benchmark Instagram (STATUS=Analisado) — usando 3 secrets adicionais
+(NOTION_DB_ID, NOTION_COLETAS_DB_ID). Isso quebrou em produção com "Could not
+find property with name or id: CATEGORIA" (uma dessas secrets apontava pro
+database ID errado) e era mais complexo do que o uso real no dia a dia: a
+única fonte de fato alimentada é "Inputs Benchmark Instagram" — a MESMA base
+que analyze_audiencia.py já lê, só filtrando CATEGORIA=CONCORRÊNCIA em vez de
+AUDIÊNCIA. Simplificado para espelhar exatamente essa lógica: uma fonte, um
+secret (NOTION_DB_IG). "Total Canais YouTube Analisados" fica fixo em 0 nesta
+versão — se a coleta de canais do YouTube (COLETAS YOUTUBE) voltar a ser
+necessária no benchmark, reintroduzir como fonte adicional aqui.
 """
 
 import os
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 from dotenv import load_dotenv
 from notion_client import Client as NotionClient
 from notion_client.errors import APIResponseError
@@ -58,9 +50,7 @@ load_dotenv()
 # ── Configuração ──────────────────────────────────────────────────────────────
 NOTION_TOKEN            = os.environ["NOTION_TOKEN"]
 ANTHROPIC_API_KEY       = os.environ["ANTHROPIC_API_KEY"]
-NOTION_DB_ID            = os.environ["NOTION_DB_ID"]              # FICHIERS INSTAGRAM
 NOTION_DB_IG            = os.environ["NOTION_DB_IG"]              # Inputs Benchmark Instagram
-NOTION_COLETAS_DB_ID    = os.environ["NOTION_COLETAS_DB_ID"]      # COLETAS YOUTUBE
 NOTION_BENCHMARKS_DB_ID = os.environ["NOTION_BENCHMARKS_DB_ID"]   # 🎯 Benchmarks de Concorrência (Mensal)
 INSIGHTS_JSON_PATH      = os.environ.get("INSIGHTS_JSON_PATH", "insights.json")
 
@@ -75,7 +65,7 @@ MESES_PT = {
 }
 
 AGORA        = datetime.now(timezone.utc)
-MES_ATUAL_PT = MESES_PT[AGORA.strftime("%B")]              # ex: "Julho" — bate com o select "Mês" de COLETAS YOUTUBE
+MES_ATUAL_PT = MESES_PT[AGORA.strftime("%B")]              # ex: "Julho" — usado só pro rótulo
 MES_ID       = AGORA.strftime("%Y-%m")                     # ex: "2026-07" — chave estável para upsert
 MES_LABEL    = f"{MES_ATUAL_PT} {AGORA.strftime('%Y')}"    # ex: "Julho 2026" — título da linha
 
@@ -99,14 +89,9 @@ def _query_com_diagnostico(data_source_id: str, filtro: dict, contexto: str):
     """
     Wrapper de notion.data_sources.query(): se a API rejeitar uma propriedade do
     filtro (erro 400 "Could not find property with name or id: X"), lista as
-    propriedades reais dessa base nos logs antes de relançar o erro.
-
-    Isso já aconteceu em produção (31/07/2026) com "CATEGORIA" — a base em si
-    tinha a propriedade certa, o problema era uma secret do GitHub
-    (NOTION_DB_ID / NOTION_COLETAS_DB_ID / NOTION_DB_IG) apontando para o
-    database ID errado. Sem esse diagnóstico, o log só mostra o 400 cru e não dá
-    pra saber, sem entrar no Notion, se a base é a errada ou se a propriedade
-    mudou de nome.
+    propriedades reais dessa base nos logs antes de relançar o erro — assim dá
+    pra ver na hora, sem entrar no Notion, se a secret aponta pro database
+    errado ou se a propriedade mudou de nome.
     """
     try:
         return notion.data_sources.query(data_source_id=data_source_id, filter=filtro)
@@ -129,107 +114,44 @@ def _query_com_diagnostico(data_source_id: str, filtro: dict, contexto: str):
 
 # ── Busca de dados ────────────────────────────────────────────────────────────
 
-def buscar_coletas_youtube() -> tuple[list, str]:
-    """Lê as linhas da base COLETAS YOUTUBE (CATEGORIA=CONCORRÊNCIA) do mês atual."""
-    data_source_id = resolver_data_source_id(NOTION_COLETAS_DB_ID)
-    resp = _query_com_diagnostico(
-        data_source_id,
-        {
-            "and": [
-                {"property": "CATEGORIA", "select": {"equals": "CONCORRÊNCIA"}},
-                {"property": "Mês",       "select": {"equals": MES_ATUAL_PT}},
-            ]
-        },
-        "COLETAS YOUTUBE (NOTION_COLETAS_DB_ID)"
-    )
-    linhas = resp.get("results", [])
-    textos = []
-    for page in linhas:
-        props = page["properties"]
-        canal_prop = props.get("Canal", {}).get("title", [])
-        nome = canal_prop[0]["text"]["content"] if canal_prop else "canal sem nome"
-
-        inscritos     = props.get("Inscritos", {}).get("number")
-        total_videos  = props.get("Total Vídeos", {}).get("number")
-        top_video_txt = "".join(
-            rt.get("text", {}).get("content", "")
-            for rt in props.get("Top Vídeo", {}).get("rich_text", [])
-        )
-        top_video_views = props.get("Top Vídeo Views", {}).get("number")
-
-        linha = f"**{nome}** — {inscritos if inscritos is not None else '?'} inscritos, {total_videos if total_videos is not None else '?'} vídeos totais"
-        if top_video_txt:
-            linha += f"\n  Top vídeo do mês: \"{top_video_txt}\" ({top_video_views if top_video_views is not None else '?'} views)"
-        textos.append(linha)
-
-    conteudo = "\n\n".join(textos) if textos else "Nenhuma coleta YouTube disponível este mês."
-    return linhas, conteudo
-
-
-def buscar_observacoes_instagram() -> tuple[list, str]:
-    """Notas manuais em texto sobre concorrência no Instagram, em FICHIERS INSTAGRAM."""
-    data_source_id = resolver_data_source_id(NOTION_DB_ID)
-    resp = _query_com_diagnostico(
-        data_source_id,
-        {
-            "and": [
-                {"property": "CATEGORIA",  "select": {"equals": "CONCORRÊNCIA"}},
-                {"property": "PLATAFORMA", "select": {"equals": "INSTAGRAM"}},
-                {"property": "STATUS",     "select": {"equals": "NOVO"}}
-            ]
-        },
-        "FICHIERS INSTAGRAM (NOTION_DB_ID)"
-    )
-
-    entradas = resp.get("results", [])
-    textos = []
-
-    for e in entradas:
-        nome_prop = e["properties"].get("Name", {}).get("title", [])
-        nome = nome_prop[0]["text"]["content"] if nome_prop else "sem título"
-
-        texto_prop = e["properties"].get("Texte", {}).get("rich_text", [])
-        texto = "".join(rt.get("text", {}).get("content", "") for rt in texto_prop)
-
-        textos.append(f"**{nome}**\n{texto}")
-
-    conteudo = "\n\n---\n\n".join(textos) if textos else "Nenhuma observação manual depositada."
-    return entradas, conteudo
-
-
 def _texto_rt(props: dict, campo: str) -> str:
     return "".join(rt.get("text", {}).get("content", "") for rt in props.get(campo, {}).get("rich_text", []))
 
 
-def buscar_prints_concorrencia_instagram() -> tuple[list, str]:
-    """Prints de concorrentes já transcritos pela Claude, em Inputs Benchmark Instagram."""
+def buscar_prints_concorrencia_instagram() -> list:
+    """
+    Busca prints de concorrentes já transcritos pela Claude em "Inputs
+    Benchmark Instagram" (CATEGORIA=CONCORRÊNCIA + STATUS=Analisado) — mesma
+    base e mesmo padrão de analyze_audiencia.buscar_entradas_audiencia, que
+    usa CATEGORIA=AUDIÊNCIA.
+    """
     data_source_id = resolver_data_source_id(NOTION_DB_IG)
     resp = _query_com_diagnostico(
         data_source_id,
         {
             "and": [
-                {"property": "CATEGORIA",  "select": {"equals": "CONCORRÊNCIA"}},
-                {"property": "PLATAFORMA", "select": {"equals": "INSTAGRAM"}},
-                {"property": "STATUS",     "select": {"equals": "Analisado"}}
+                {"property": "CATEGORIA", "select": {"equals": "CONCORRÊNCIA"}},
+                {"property": "STATUS",    "select": {"equals": "Analisado"}}
             ]
         },
         "Inputs Benchmark Instagram (NOTION_DB_IG)"
     )
 
-    entradas = resp.get("results", [])
-    textos = []
-
-    for e in entradas:
-        props = e["properties"]
+    entradas = []
+    for page in resp.get("results", []):
+        props = page["properties"]
         nome_prop = props.get("Name", {}).get("title", [])
         nome = nome_prop[0]["text"]["content"] if nome_prop else "sem título"
 
-        perfil = _texto_rt(props, "Perfil Concorrente")
+        plataforma_prop = props.get("PLATAFORMA", {}).get("select")
+        plataforma = plataforma_prop["name"] if plataforma_prop else "DESCONHECIDA"
+
+        perfil  = _texto_rt(props, "Perfil Concorrente")
         formato = (props.get("Formato do Post", {}).get("select") or {}).get("name", "")
-        tema = _texto_rt(props, "Tema do Concorrente")
-        gancho = _texto_rt(props, "Gancho")
+        tema    = _texto_rt(props, "Tema do Concorrente")
+        gancho  = _texto_rt(props, "Gancho")
         adaptar = _texto_rt(props, "O Que Dá Pra Adaptar")
-        texte = _texto_rt(props, "Texte")
+        texte   = _texto_rt(props, "Texte")
 
         linha = f"**{nome}**"
         if perfil:
@@ -244,10 +166,27 @@ def buscar_prints_concorrencia_instagram() -> tuple[list, str]:
             linha += f"\n  Resumo: {texte}"
         if adaptar:
             linha += f"\n  O que dá pra adaptar: {adaptar}"
-        textos.append(linha)
 
-    conteudo = "\n\n---\n\n".join(textos) if textos else "Nenhum print de concorrente analisado ainda."
-    return entradas, conteudo
+        entradas.append({"id": page["id"], "nome": nome, "texto": linha, "plataforma": plataforma})
+
+    return entradas
+
+
+def formatar_entradas(entradas: list) -> str:
+    """Organiza entradas por plataforma para o prompt (mesmo padrão de analyze_audiencia.py)."""
+    instagram = [e for e in entradas if e["plataforma"] == "INSTAGRAM"]
+    youtube   = [e for e in entradas if e["plataforma"] == "YOUTUBE"]
+    outro     = [e for e in entradas if e["plataforma"] not in ("INSTAGRAM", "YOUTUBE")]
+
+    partes = []
+    if instagram:
+        partes.append("### Instagram\n" + "\n\n".join(e["texto"] for e in instagram))
+    if youtube:
+        partes.append("### YouTube\n" + "\n\n".join(e["texto"] for e in youtube))
+    if outro:
+        partes.append("### Outros\n" + "\n\n".join(f"{e['texto']} [{e['plataforma']}]" for e in outro))
+
+    return "\n\n---\n\n".join(partes) if partes else "Nenhum print de concorrente analisado ainda."
 
 
 # ── Análise Claude ────────────────────────────────────────────────────────────
@@ -263,19 +202,25 @@ SECOES = [
     ("RECOMENDAÇÃO EDITORIAL DO MÊS",        "Recomendação Editorial",  "recomendacao_editorial"),
 ]
 
+# Teto de segurança no texto agregado enviado à Claude — mesmo padrão de
+# analyze_audiencia.py (ali evita um 413 "Request Too Large" num backlog grande).
+LIMITE_CARACTERES_DADOS = 100_000
 
-def analisar_com_claude(youtube_data: str, instagram_data: str) -> str:
+
+def analisar_com_claude(dados_concorrencia: str) -> Optional[str]:
+    if len(dados_concorrencia) > LIMITE_CARACTERES_DADOS:
+        print(f"  ⚠ Dados de concorrência ({len(dados_concorrencia)} caracteres) excedem o teto de "
+              f"{LIMITE_CARACTERES_DADOS} — truncando para caber num único request à Claude.")
+        dados_concorrencia = dados_concorrencia[:LIMITE_CARACTERES_DADOS] + "\n\n[...truncado — excedeu o limite de tamanho...]"
+
     prompt = f"""Você é o sistema editorial do canal Por Dentro — canal de uma imigrante brasileira na França que explica como a França realmente funciona: trabalho, saúde, burocracia, moradia, cultura.
 
 Posicionamento: observador, lúcido, educativo. Nunca romantiza nem catastrofiza. Nunca clickbait no corpo do conteúdo.
 
-Analise os dados de concorrência abaixo e gere o BENCHMARK CONCORRÊNCIA de {MES_LABEL}.
+Analise os dados de concorrência abaixo (prints de posts/reels de concorrentes, já transcritos e comentados) e gere o BENCHMARK CONCORRÊNCIA de {MES_LABEL}.
 
-## DADOS YOUTUBE (coletados automaticamente das últimas semanas)
-{youtube_data}
-
-## DADOS INSTAGRAM (notas manuais + prints de concorrentes analisados)
-{instagram_data}
+## DADOS DE CONCORRÊNCIA
+{dados_concorrencia}
 
 ---
 
@@ -296,11 +241,19 @@ Temas saturados ou formatos que não fazem sentido para o posicionamento do Por 
 ## RECOMENDAÇÃO EDITORIAL DO MÊS
 Uma decisão clara e acionável para o próximo calendário editorial."""
 
-    resp = claude.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=2000,
-        messages=[{"role": "user", "content": prompt}]
-    )
+    try:
+        resp = claude.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=2000,
+            messages=[{"role": "user", "content": prompt}]
+        )
+    except anthropic.APIStatusError as e:
+        # Ex.: rate limit, API fora do ar. Não derruba o job — main() evita
+        # marcar as entradas como PROCESSADO nesse caso, então elas voltam a
+        # ser tentadas na próxima rodada (mesmo padrão de analyze_audiencia.py).
+        print(f"  ✖ Erro ao chamar Claude: {e}")
+        return None
+
     return resp.content[0].text
 
 
@@ -332,14 +285,16 @@ def _title(texto: str) -> dict:
     return {"title": [{"text": {"content": texto}}]}
 
 
-def _montar_properties(secoes: dict, total_youtube: int, total_instagram: int) -> dict:
+def _montar_properties(secoes: dict, total_entradas: int) -> dict:
     properties = {
         "Mês":                              _title(MES_LABEL),
         "ID Mês":                           _rt(MES_ID),
         "Data da Rodada":                   {"date": {"start": AGORA.strftime("%Y-%m-%d")}},
         "Status":                           {"select": {"name": "Novo"}},
-        "Total Canais YouTube Analisados":  {"number": total_youtube},
-        "Total Observações Instagram":      {"number": total_instagram},
+        # Fixo em 0: a coleta de canais do YouTube (COLETAS YOUTUBE) foi
+        # removida desta versão — ver nota de simplificação no topo do arquivo.
+        "Total Canais YouTube Analisados":  {"number": 0},
+        "Total Observações Instagram":      {"number": total_entradas},
     }
     for titulo_prompt, propriedade, _chave_json in SECOES:
         properties[propriedade] = _rt(secoes.get(titulo_prompt, ""))
@@ -356,14 +311,13 @@ def _buscar_linha_mes_existente(data_source_id: str):
     return resultados[0]["id"] if resultados else None
 
 
-def salvar_analise_na_base(secoes: dict, total_youtube: int, total_instagram: int):
+def salvar_analise_na_base(secoes: dict, total_entradas: int):
     """
     Salva o benchmark como uma LINHA em "🎯 Benchmarks de Concorrência (Mensal)".
     Reprocessar o mesmo mês ATUALIZA a linha existente (chave "ID Mês"), em vez de
-    criar uma nova — protege contra duplicatas mesmo se o cron disparar mais de uma
-    vez no mesmo mês (ex.: reexecução manual, ou falha de agendamento).
+    criar uma nova.
     """
-    properties = _montar_properties(secoes, total_youtube, total_instagram)
+    properties = _montar_properties(secoes, total_entradas)
 
     try:
         data_source_id = resolver_data_source_id(NOTION_BENCHMARKS_DB_ID)
@@ -387,7 +341,7 @@ def salvar_analise_na_base(secoes: dict, total_youtube: int, total_instagram: in
 
 # ── Salvar no insights.json (alimenta o dashboard) ───────────────────────────
 
-def salvar_no_insights_json(secoes: dict, total_youtube: int, total_instagram: int):
+def salvar_no_insights_json(secoes: dict, total_entradas: int):
     """
     Salva o mesmo benchmark em insights.json, bloco "concorrencia" — mesmo padrão
     de bootstrap defensivo e upsert por id usado em
@@ -406,7 +360,7 @@ def salvar_no_insights_json(secoes: dict, total_youtube: int, total_instagram: i
         "id": MES_ID,
         "periodo": MES_LABEL,
         "gerado_em": AGORA.strftime("%Y-%m-%d"),
-        "canais_analisados": {"youtube": total_youtube, "instagram": total_instagram},
+        "canais_analisados": {"youtube": 0, "instagram": total_entradas},
     }
     for titulo_prompt, _propriedade, chave_json in SECOES:
         entrada[chave_json] = secoes.get(titulo_prompt, "")
@@ -437,42 +391,34 @@ def marcar_processado(page_id: str):
 def main():
     print(f"\n=== Análise de Concorrência — {MES_LABEL} ===\n")
 
-    print("Buscando coletas YouTube do mês (base COLETAS YOUTUBE)...")
-    linhas_youtube, youtube_data = buscar_coletas_youtube()
-    print(f"  {len(linhas_youtube)} canal(is) encontrado(s).")
-
-    print("Buscando observações manuais de Instagram (base FICHIERS INSTAGRAM)...")
-    entradas_ig, instagram_texto = buscar_observacoes_instagram()
-    print(f"  {len(entradas_ig)} observação(ões) manual(is) encontrada(s).")
-
     print("Buscando prints de concorrentes analisados (base Inputs Benchmark Instagram)...")
-    entradas_prints, prints_texto = buscar_prints_concorrencia_instagram()
-    print(f"  {len(entradas_prints)} print(s) encontrado(s).")
+    entradas = buscar_prints_concorrencia_instagram()
+    print(f"  {len(entradas)} print(s) encontrado(s).")
 
-    total_instagram = len(entradas_ig) + len(entradas_prints)
-    instagram_data = (
-        f"### Notas manuais (FICHIERS INSTAGRAM)\n{instagram_texto}\n\n"
-        f"### Prints de concorrentes analisados (Inputs Benchmark Instagram)\n{prints_texto}"
-    )
-
-    if not linhas_youtube and total_instagram == 0:
+    if not entradas:
         print("Nenhum dado de concorrência disponível este mês — pulando geração de benchmark.")
         return
 
+    dados_formatados = formatar_entradas(entradas)
+
     print("Enviando para Claude...")
-    analise = analisar_com_claude(youtube_data, instagram_data)
+    analise = analisar_com_claude(dados_formatados)
+
+    if analise is None:
+        print("  ⚠ Falha ao gerar análise (ver erro acima) — entradas mantidas como 'Analisado' "
+              "para nova tentativa na próxima rodada, em vez de marcar PROCESSADO.")
+        return
+
     secoes = parsear_secoes(analise)
 
     print("Salvando em 🎯 Benchmarks de Concorrência (Mensal)...")
-    salvar_analise_na_base(secoes, len(linhas_youtube), total_instagram)
+    salvar_analise_na_base(secoes, len(entradas))
 
     print("Atualizando insights.json (dashboard)...")
-    salvar_no_insights_json(secoes, len(linhas_youtube), total_instagram)
+    salvar_no_insights_json(secoes, len(entradas))
 
     print("Marcando entradas usadas como processadas...")
-    for e in entradas_ig:
-        marcar_processado(e["id"])
-    for e in entradas_prints:
+    for e in entradas:
         marcar_processado(e["id"])
 
     print("\n=== Análise de concorrência concluída ===")

@@ -56,9 +56,10 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          NOTION_DB_ID: ${{ secrets.NOTION_DB_ID }}
+          # NOTION_DB_ID e NOTION_COLETAS_DB_ID removidos em 31/07/2026: o script
+          # foi simplificado para ler só Inputs Benchmark Instagram (mesma fonte
+          # que analyze_audiencia.py usa) — ver nota no topo de analyze_concorrencia.py.
           NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
-          NOTION_COLETAS_DB_ID: ${{ secrets.NOTION_COLETAS_DB_ID }}
           NOTION_BENCHMARKS_DB_ID: ${{ secrets.NOTION_BENCHMARKS_DB_ID }}
           # Caminho do insights.json na raiz do repo (mesmo arquivo que o dashboard lê):
           INSIGHTS_JSON_PATH: insights.json
