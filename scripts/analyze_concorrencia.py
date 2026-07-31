@@ -153,6 +153,7 @@ def buscar_prints_concorrencia_instagram() -> list:
         tema    = _texto_rt(props, "Tema do Concorrente")
         gancho  = _texto_rt(props, "Gancho")
         adaptar = _texto_rt(props, "O Que Dá Pra Adaptar")
+        evitar  = _texto_rt(props, "O Que Evitar")
         texte   = _texto_rt(props, "Texte")
 
         linha = f"**{nome}**"
@@ -168,10 +169,13 @@ def buscar_prints_concorrencia_instagram() -> list:
             linha += f"\n  Resumo: {texte}"
         if adaptar:
             linha += f"\n  O que dá pra adaptar: {adaptar}"
+        if evitar:
+            linha += f"\n  O que evitar: {evitar}"
 
         entradas.append({
             "id": page["id"], "nome": nome, "texto": linha, "plataforma": plataforma,
-            "perfil": perfil, "tema": tema, "formato": formato, "gancho": gancho, "adaptar": adaptar,
+            "perfil": perfil, "tema": tema, "formato": formato, "gancho": gancho,
+            "adaptar": adaptar, "evitar": evitar,
         })
 
     return entradas
@@ -404,6 +408,7 @@ def salvar_no_insights_json(secoes: dict, entradas: list):
             "formato": e.get("formato", ""),
             "gancho": e.get("gancho", ""),
             "adaptar": e.get("adaptar", ""),
+            "evitar": e.get("evitar", ""),
             "plataforma": e["plataforma"],
             "mes_id": MES_ID,
         })

@@ -22,11 +22,13 @@ Fluxo deste script:
    - AUDIÊNCIA: transcrição + dor/necessidade, insight, ideia de conteúdo, pilar,
      prioridade, palavras-chave, persona
    - CONCORRÊNCIA: transcrição + perfil do concorrente, formato do post, tema, gancho,
-     ideia de adaptação, palavras-chave, prioridade
+     ideia de adaptação ("O Que Dá Pra Adaptar"), ponto fraco a evitar ("O Que Evitar" —
+     adicionado em 31/07/2026 pra alimentar as pílulas de fazer/não-fazer por canal no
+     dashboard), palavras-chave, prioridade
 3. Preenche essas propriedades diretamente na linha e marca STATUS="Analisado"
 4. Depois, cada categoria é agregada por um script diferente:
    - AUDIÊNCIA  → analyze_audiencia.py (bilan semanal)
-   - CONCORRÊNCIA → analyze_concorrencia.py (benchmark mensal, junto com FICHIERS INSTAGRAM)
+   - CONCORRÊNCIA → analyze_concorrencia.py (benchmark mensal)
    Ambos leem STATUS="Analisado" e marcam STATUS="PROCESSADO" ao final.
 
 Se o parse do JSON falhar ou o download da imagem falhar para uma entrada,
@@ -259,6 +261,7 @@ ENTRY_SCHEMA_CONCORRENCIA_JSON = """{
   "tema_concorrente": "string",
   "gancho": "string (a frase ou imagem de abertura usada pelo concorrente)",
   "o_que_da_pra_adaptar": "string (ideia concreta de conteúdo pro Por Dentro inspirada nisso, sem copiar)",
+  "o_que_evitar": "string (o ponto fraco, armadilha ou erro deste post/perfil — o que o Por Dentro NÃO deve replicar)",
   "palavras_chave": "string (3 a 6 palavras separadas por vírgula)",
   "prioridade": "Alta|Média|Baixa"
 }"""
@@ -308,6 +311,7 @@ Onde:
 - tema_concorrente: assunto/tema coberto pelo concorrente
 - gancho: a frase ou imagem de abertura usada pelo concorrente pra prender atenção
 - o_que_da_pra_adaptar: uma ideia concreta de conteúdo pro Por Dentro inspirada neste post — adaptando pro nosso posicionamento, sem copiar
+- o_que_evitar: o que especificamente NÃO funciona ou não cabe no posicionamento do Por Dentro neste post — um ponto fraco, uma armadilha de tom, ou uma lacuna que o concorrente deixa aberta
 - palavras_chave: 3 a 6 palavras-chave separadas por vírgula
 - prioridade: Alta se é um padrão forte/recorrente que vale testar, Média ou Baixa caso contrário"""
 
@@ -393,6 +397,7 @@ def montar_properties_concorrencia(analise: dict, page: dict):
         "Tema do Concorrente": _rt(analise.get("tema_concorrente", "")),
         "Gancho": _rt(analise.get("gancho", "")),
         "O Que Dá Pra Adaptar": _rt(analise.get("o_que_da_pra_adaptar", "")),
+        "O Que Evitar": _rt(analise.get("o_que_evitar", "")),
         "Palavras-chave": _rt(analise.get("palavras_chave", "")),
         "STATUS": {"select": {"name": "Analisado"}},
     }

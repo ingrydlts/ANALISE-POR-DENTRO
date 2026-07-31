@@ -1,48 +1,64 @@
 {
-  "atualizado_em": "2026-07-14",
-  "nota": "Preencher com os concorrentes reais monitorados. collect.py lê a base COLETAS YOUTUBE do Notion (não este arquivo) para a coleta automática — este arquivo é a lista de referência exibida no dashboard, categorizada conforme o Módulo 3 do documento de arquitetura.",
+  "atualizado_em": "2026-07-31",
+  "nota": "Preencher com os concorrentes reais monitorados. collect.py lê a base COLETAS YOUTUBE do Notion (não este arquivo) para a coleta automática — este arquivo é a lista de referência exibida no dashboard, categorizada conforme o Módulo 3 do documento de arquitetura. Cada canal tem 'fazer' (o que vale adaptar) e 'nao_fazer' (armadilha ou lacuna a evitar) — derivados manualmente da avaliação de cada canal em 31/07/2026, revisar/ajustar conforme necessário.",
   "categoria_a_diretos": [
     {
       "nome": "Max Petterson — Em Paris desde 2014",
       "plataforma": "YOUTUBE",
-      "nota": "Mais de 33M de views acumulados. Mais voltado a entretenimento e vida parisiense do que educação sobre imigração."
+      "descricao": "Mais de 33M de views acumulados.",
+      "fazer": "Estudar a consistência de publicação de anos — é o que sustenta o volume de views, não o conteúdo em si.",
+      "nao_fazer": "Não copiar o foco em entretenimento e vida parisiense — é lifestyle, não educação sobre imigração."
     },
     {
       "nome": "Bruna — Au Pair na França desde 2018",
       "plataforma": "YOUTUBE",
-      "nota": "Nicho dentro do nicho: foco específico no programa Au Pair. Útil para quem quer esse caminho, mas escopo limitado."
+      "descricao": "Nicho dentro do nicho: foco específico no programa Au Pair.",
+      "fazer": "Útil como referência de profundidade num caminho de imigração específico.",
+      "nao_fazer": "Não restringir o posicionamento do Por Dentro a um único caminho de imigração — escopo dela é limitado demais pro público mais amplo."
     },
     {
       "nome": "Conexão Paris",
       "plataforma": "YOUTUBE",
-      "nota": "Projeto guarda-chuva (site + YouTube + redes). Foco em turismo e dicas para visitantes. Fala com turista, não com imigrante. Lacuna: nenhum conteúdo sobre sistema francês para quem mora lá."
+      "descricao": "Projeto guarda-chuva (site + YouTube + redes), foco em turismo e dicas para visitantes.",
+      "fazer": "Estrutura multiplataforma (site + YouTube + redes) sob uma marca guarda-chuva vale como referência de organização de projeto.",
+      "nao_fazer": "Fala com turista, não com imigrante. Lacuna: nenhum conteúdo sobre sistema francês para quem mora lá."
     },
     {
       "nome": "Vivendo em Paris — Moema Rodriguez",
       "plataforma": "YOUTUBE",
-      "nota": "Guia brasileira em Paris há 10+ anos. Foco em turismo e lifestyle. Lacuna: pouco conteúdo sobre sistema francês (trabalho, saúde, burocracia)."
+      "descricao": "Guia brasileira em Paris há 10+ anos, foco em turismo e lifestyle.",
+      "fazer": "10+ anos de autoridade construída como guia brasileira em Paris prova que consistência de posicionamento de longo prazo funciona.",
+      "nao_fazer": "Não ficar só no turismo/lifestyle. Lacuna: pouco conteúdo sobre sistema francês (trabalho, saúde, burocracia)."
     },
     {
       "nome": "Um Brasileiro na França",
       "plataforma": "YOUTUBE",
-      "nota": "Foco em aventuras e paisagens. Mais vlog de viagem do que imigração prática. Lacuna: quase não aborda processos reais de quem mora lá."
+      "descricao": "Foco em aventuras e paisagens, mais vlog de viagem do que imigração prática.",
+      "fazer": "Qualidade estética de vlog de viagem gera engajamento visual — pode inspirar produção, não o conteúdo.",
+      "nao_fazer": "Não virar vlog de aventuras/paisagens. Lacuna: quase não aborda processos reais de quem mora lá."
     },
     {
       "nome": "Ingrid — Morando na França desde 2012",
       "plataforma": "YOUTUBE",
-      "nota": "Histórias e perrengues da imigração. Tom narrativo/emocional. Lacuna: pouca análise de sistemas e estrutura didática."
+      "descricao": "Histórias e perrengues da imigração, tom narrativo/emocional.",
+      "fazer": "Tom narrativo/emocional conecta pela história pessoal — útil pro pilar Trajetória, com moderação.",
+      "nao_fazer": "Não ficar só no relato emocional. Lacuna: pouca análise de sistemas e estrutura didática."
     },
     {
       "nome": "Carina Maccari na França",
       "plataforma": "YOUTUBE",
-      "nota": "Engenheira civil, fez pós na França. Vlogs sobre povo francês e rotina. Tom pessoal e casual. Lacuna: falta estrutura analítica e profundidade em temas de sistema."
+      "descricao": "Engenheira civil, fez pós na França. Vlogs sobre povo francês e rotina, tom pessoal e casual.",
+      "fazer": "Perfil técnico dá credibilidade ao falar de trajetória acadêmica — vale mencionar formação quando relevante.",
+      "nao_fazer": "Não ficar no tom pessoal e casual sem profundidade. Lacuna: falta estrutura analítica em temas de sistema."
     }
   ],
   "categoria_b_formato": [
     {
       "nome": "Euro Dicas",
       "plataforma": "YOUTUBE",
-      "nota": "Referência de formato — brasileiro explicando vida na Europa de forma prática, tom informativo, boa curadoria, tem escala. Monitorar como benchmark de formato."
+      "descricao": "Brasileiro explicando vida na Europa de forma prática, tom informativo, boa curadoria, tem escala.",
+      "fazer": "Tom informativo, boa curadoria e escala — usar como benchmark de FORMATO (estrutura, ritmo, curadoria).",
+      "nao_fazer": "Não copiar o escopo amplo demais (Europa toda) — o foco específico em França/imigração é a vantagem competitiva do Por Dentro."
     }
   ],
   "categoria_c_qualidade": []

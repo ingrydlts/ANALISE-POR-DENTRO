@@ -76,6 +76,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);f
 .insight-pill.ig{border-left-color:var(--ig-pink);background:rgba(225,48,108,0.05);}
 .insight-pill.yt{border-left-color:var(--yt-red);background:rgba(255,0,0,0.04);}
 .insight-pill.geral{border-left-color:var(--oliva);background:rgba(122,125,90,0.06);}
+.insight-pill.fazer{border-left-color:var(--verde);background:rgba(107,143,106,0.06);}
+.insight-pill.evitar{border-left-color:var(--vinho);background:rgba(107,39,55,0.05);}
 .insight-pill .pn{font-family:'Playfair Display',serif;font-weight:700;color:var(--ocre);flex-shrink:0;}
 @media(max-width:700px){.insight-pill{max-width:100%;}}
 /* Callout: substitui o antigo bloco sólido marrom-escuro por um card claro com
@@ -119,15 +121,10 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
 .badge-mid{background:rgba(196,154,78,0.18);color:var(--ocre);}
 
 /* CONCORRENCIA */
-.chip-group{margin-bottom:20px;}
-.chip-group-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin-bottom:10px;}
-.competitor-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-@media(max-width:800px){.competitor-grid{grid-template-columns:1fr;}}
-.competitor-card{display:flex;gap:12px;background:var(--off-white);border:1px solid rgba(61,43,31,0.08);border-radius:10px;padding:12px 14px;align-items:flex-start;box-shadow:0 1px 4px rgba(61,43,31,0.04);}
-.competitor-card .cc-body{min-width:0;}
-.competitor-card .cc-name{font-family:'Playfair Display',serif;font-size:13px;color:var(--marrom);line-height:1.3;}
-.competitor-card .cc-plat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin:2px 0 6px;}
-.competitor-card .cc-nota{font-size:11px;color:#5A4A3A;line-height:1.5;}
+.chip-group-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin:20px 0 10px;}
+.chip-group-label:first-child{margin-top:0;}
+.cc-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--marrom);line-height:1.3;}
+.cc-nota{font-size:11px;color:#5A4A3A;line-height:1.5;margin-top:2px;}
 .bench-card{background:var(--off-white);border-radius:10px;border:1px solid rgba(61,43,31,0.08);padding:20px 22px;margin-bottom:16px;}
 .bench-card .meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ocre);margin-bottom:14px;}
 .bench-block{margin-bottom:14px;}
@@ -677,46 +674,68 @@ function renderConcorrencia() {
   const canais = CANAIS || {};
   const observados = DATA.concorrentes_observados || [];
 
-  const chipGroup = (label, arr, corVar) => `
-    <div class="chip-group">
-      <div class="chip-group-label">${label}</div>
-      <div class="competitor-grid">${(arr && arr.length) ? arr.map(c => {
-        const nome = typeof c === 'string' ? c : (c.nome || c.handle || JSON.stringify(c));
-        const plataforma = (typeof c === 'object' && c.plataforma) ? c.plataforma : '';
-        const nota = (typeof c === 'object' && c.nota) ? c.nota : '';
-        return `
-          <div class="competitor-card">
-            <div class="avatar" style="background:${corVar}">${esc(iniciaisCanal(nome))}</div>
-            <div class="cc-body">
-              <div class="cc-name">${esc(nome)}</div>
-              ${plataforma ? `<div class="cc-plat">${esc(plataforma)}</div>` : ''}
-              ${nota ? `<div class="cc-nota">${esc(nota)}</div>` : ''}
-            </div>
-          </div>`;
-      }).join('') : '<div class="cc-nota" style="opacity:.6;">nenhum canal cadastrado ainda</div>'}</div>
-    </div>`;
+  // Pílulas de "fazer"/"evitar" — mesmo componente visual (insight-pill) já
+  // usado na aba Performance pra insights/ações por canal, só com variantes
+  // de cor novas (fazer=verde, evitar=vinho) em vez de por plataforma.
+  const pillList = (items, cls) => {
+    const arr = (items || []).filter(Boolean);
+    return arr.length ? `<div class="pill-wrap">${arr.map(x => `<div class="insight-pill ${cls}">${esc(x)}</div>`).join('')}</div>` : '';
+  };
 
-  // Um chip por print de concorrente já analisado no Instagram (Inputs Benchmark
-  // Instagram, CATEGORIA=CONCORRÊNCIA) — mesmo componente visual dos chips de
-  // canais do YouTube abaixo, só que a "identidade" é o perfil do concorrente
-  // (não um nome de canal) e a nota é a ideia de adaptação, não uma lacuna.
-  const instagramChips = [...observados]
-    .filter(o => o.plataforma === 'INSTAGRAM')
-    .reverse()
-    .map(o => ({ nome: o.perfil || o.nome, plataforma: o.formato || '', nota: o.adaptar || o.tema || '' }));
+  const channelCard = (nome, corVar, meta, fazerItems, evitarItems) => {
+    const fazer = (fazerItems || []).filter(Boolean);
+    const evitar = (evitarItems || []).filter(Boolean);
+    return `
+      <div class="bench-card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:${fazer.length || evitar.length ? '14px' : '0'};">
+          <div class="avatar" style="background:${corVar};flex-shrink:0;">${esc(iniciaisCanal(nome))}</div>
+          <div>
+            <div class="cc-name">${esc(nome)}</div>
+            ${meta ? `<div class="cc-nota" style="opacity:.7;">${esc(meta)}</div>` : ''}
+          </div>
+        </div>
+        ${fazer.length ? `<div class="pill-group-label">✓ Fazer</div>${pillList(fazer, 'fazer')}` : ''}
+        ${evitar.length ? `<div class="pill-group-label">✕ Evitar</div>${pillList(evitar, 'evitar')}` : ''}
+      </div>`;
+  };
 
   const bloco = (label, txt) => txt
     ? `<div class="bench-block"><div class="lbl">${label}</div><div class="txt">${esc(txt)}</div></div>`
     : '';
 
+  // Instagram: agrupa os prints já analisados por perfil do concorrente — um
+  // mesmo perfil pode ter vários posts analisados ao longo dos meses, e "cada
+  // canal numa seção" significa um card por perfil, não por post.
+  const porPerfil = {};
+  observados.filter(o => o.plataforma === 'INSTAGRAM').forEach(o => {
+    const chave = o.perfil || o.nome || 'Perfil desconhecido';
+    (porPerfil[chave] = porPerfil[chave] || []).push(o);
+  });
+  const instagramCards = Object.entries(porPerfil).map(([perfil, posts]) => channelCard(
+    perfil, 'var(--vinho)',
+    `${posts.length} post${posts.length > 1 ? 's' : ''} analisado${posts.length > 1 ? 's' : ''}`,
+    posts.map(p => p.adaptar), posts.map(p => p.evitar)
+  )).join('');
+
+  // YouTube: canais.json — curadoria manual, cada canal já vem com fazer/
+  // nao_fazer (adicionados em 31/07/2026; "nota" é o formato antigo, mantido
+  // como fallback se algum canal ainda não tiver sido migrado).
+  const ytCards = (arr, corVar) => (arr || []).map(c => channelCard(
+    c.nome, corVar, c.descricao || '', [c.fazer], [c.nao_fazer || c.nota]
+  )).join('');
+
   let html = `
-    <div class="sec-hd"><h2>Concorrência <em>monitorada</em></h2><span class="sub">Instagram + YouTube</span></div>
-    <div class="chip-group-label" style="font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--marrom);margin:0 0 4px;">📷 INSTAGRAM</div>
-    ${chipGroup('Prints de concorrentes analisados', instagramChips, 'var(--vinho)')}
-    <div class="chip-group-label" style="font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--marrom);margin:20px 0 4px;">▶ YOUTUBE</div>
-    ${chipGroup('Categoria A — Diretos (mesmo nicho, mesmo público)', canais.categoria_a_diretos, 'var(--vinho)')}
-    ${chipGroup('Categoria B — Formato (mesma lógica editorial)', canais.categoria_b_formato, 'var(--ocre)')}
-    ${chipGroup('Categoria C — Qualidade (mesmo nível de produção)', canais.categoria_c_qualidade, 'var(--azul)')}
+    <div class="sec-hd"><h2>Concorrência <em>monitorada</em></h2><span class="sub">por canal</span></div>
+
+    <div class="platform-hd ig"><span class="ico">◎</span> Instagram</div>
+    ${instagramCards || '<div class="empty-tab">Nenhum print de concorrente analisado ainda no Instagram.<br>Cole prints em "Inputs Benchmark Instagram" (CATEGORIA=CONCORRÊNCIA) no Notion.</div>'}
+
+    <div class="platform-hd yt"><span class="ico">▶</span> YouTube</div>
+    ${(canais.categoria_a_diretos || []).length ? `<div class="chip-group-label">Categoria A — Diretos (mesmo nicho, mesmo público)</div>${ytCards(canais.categoria_a_diretos, 'var(--vinho)')}` : ''}
+    ${(canais.categoria_b_formato || []).length ? `<div class="chip-group-label">Categoria B — Formato (mesma lógica editorial)</div>${ytCards(canais.categoria_b_formato, 'var(--ocre)')}` : ''}
+    ${(canais.categoria_c_qualidade || []).length ? `<div class="chip-group-label">Categoria C — Qualidade (mesmo nível de produção)</div>${ytCards(canais.categoria_c_qualidade, 'var(--azul)')}` : ''}
+    ${!(canais.categoria_a_diretos||[]).length && !(canais.categoria_b_formato||[]).length && !(canais.categoria_c_qualidade||[]).length ? '<div class="empty-tab">Nenhum canal do YouTube cadastrado ainda em canais.json.</div>' : ''}
+
     <div class="sec-hd"><h2>Benchmark <em>mensal</em></h2><span class="sub">${concorrencia.length} rodada(s)</span></div>
   `;
 
