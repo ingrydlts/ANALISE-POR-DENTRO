@@ -169,7 +169,10 @@ def buscar_prints_concorrencia_instagram() -> list:
         if adaptar:
             linha += f"\n  O que dá pra adaptar: {adaptar}"
 
-        entradas.append({"id": page["id"], "nome": nome, "texto": linha, "plataforma": plataforma})
+        entradas.append({
+            "id": page["id"], "nome": nome, "texto": linha, "plataforma": plataforma,
+            "perfil": perfil, "tema": tema, "formato": formato, "gancho": gancho, "adaptar": adaptar,
+        })
 
     return entradas
 
@@ -351,20 +354,29 @@ def salvar_analise_na_base(secoes: dict, total_entradas: int):
 
 # ── Salvar no insights.json (alimenta o dashboard) ───────────────────────────
 
-def salvar_no_insights_json(secoes: dict, total_entradas: int):
+def salvar_no_insights_json(secoes: dict, entradas: list):
     """
     Salva o mesmo benchmark em insights.json, bloco "concorrencia" — mesmo padrão
     de bootstrap defensivo e upsert por id usado em
     analyze_audiencia.salvar_bilan_no_insights_json.
+
+    Também grava/atualiza "concorrentes_observados": uma lista PERSISTENTE
+    (cresce a cada rodada, upsert por id de página — ao contrário de
+    "concorrencia", que guarda uma linha por MÊS) com um registro por print
+    de concorrente já analisado. É o que alimenta os chips de "Instagram" no
+    dashboard, no mesmo padrão visual dos chips de canais do YouTube
+    (canais.json) — adicionado em 31/07/2026.
     """
     path = Path(INSIGHTS_JSON_PATH)
+    total_entradas = len(entradas)
 
     if not path.exists():
         print(f"  ⚠ {INSIGHTS_JSON_PATH} não existe no repositório — criando esqueleto mínimo.")
-        data = {"concorrencia": []}
+        data = {"concorrencia": [], "concorrentes_observados": []}
     else:
         data = json.loads(path.read_text(encoding="utf-8"))
         data.setdefault("concorrencia", [])
+        data.setdefault("concorrentes_observados", [])
 
     entrada = {
         "id": MES_ID,
@@ -379,8 +391,26 @@ def salvar_no_insights_json(secoes: dict, total_entradas: int):
     data["concorrencia"] = [c for c in data["concorrencia"] if c.get("id") != MES_ID]
     data["concorrencia"].append(entrada)
 
+    ids_desta_rodada = {e["id"] for e in entradas}
+    data["concorrentes_observados"] = [
+        c for c in data["concorrentes_observados"] if c.get("id") not in ids_desta_rodada
+    ]
+    for e in entradas:
+        data["concorrentes_observados"].append({
+            "id": e["id"],
+            "nome": e["nome"],
+            "perfil": e.get("perfil", ""),
+            "tema": e.get("tema", ""),
+            "formato": e.get("formato", ""),
+            "gancho": e.get("gancho", ""),
+            "adaptar": e.get("adaptar", ""),
+            "plataforma": e["plataforma"],
+            "mes_id": MES_ID,
+        })
+
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"  ✓ Atualizado {INSIGHTS_JSON_PATH} (concorrencia: {len(data['concorrencia'])} rodada(s))")
+    print(f"  ✓ Atualizado {INSIGHTS_JSON_PATH} (concorrencia: {len(data['concorrencia'])} rodada(s), "
+          f"concorrentes_observados: {len(data['concorrentes_observados'])} no total)")
 
 
 def marcar_processado(page_id: str):
@@ -425,7 +455,7 @@ def main():
     salvar_analise_na_base(secoes, len(entradas))
 
     print("Atualizando insights.json (dashboard)...")
-    salvar_no_insights_json(secoes, len(entradas))
+    salvar_no_insights_json(secoes, entradas)
 
     print("Marcando entradas usadas como processadas...")
     for e in entradas:

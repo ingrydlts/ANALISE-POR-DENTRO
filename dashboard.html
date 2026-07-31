@@ -675,6 +675,7 @@ function renderConcorrencia() {
   const pane = document.getElementById('pane-concorrencia');
   const concorrencia = DATA.concorrencia || [];
   const canais = CANAIS || {};
+  const observados = DATA.concorrentes_observados || [];
 
   const chipGroup = (label, arr, corVar) => `
     <div class="chip-group">
@@ -695,12 +696,28 @@ function renderConcorrencia() {
       }).join('') : '<div class="cc-nota" style="opacity:.6;">nenhum canal cadastrado ainda</div>'}</div>
     </div>`;
 
+  // Um chip por print de concorrente já analisado no Instagram (Inputs Benchmark
+  // Instagram, CATEGORIA=CONCORRÊNCIA) — mesmo componente visual dos chips de
+  // canais do YouTube abaixo, só que a "identidade" é o perfil do concorrente
+  // (não um nome de canal) e a nota é a ideia de adaptação, não uma lacuna.
+  const instagramChips = [...observados]
+    .filter(o => o.plataforma === 'INSTAGRAM')
+    .reverse()
+    .map(o => ({ nome: o.perfil || o.nome, plataforma: o.formato || '', nota: o.adaptar || o.tema || '' }));
+
+  const bloco = (label, txt) => txt
+    ? `<div class="bench-block"><div class="lbl">${label}</div><div class="txt">${esc(txt)}</div></div>`
+    : '';
+
   let html = `
-    <div class="sec-hd"><h2>Canais <em>monitorados</em></h2><span class="sub">canais.json</span></div>
+    <div class="sec-hd"><h2>Concorrência <em>monitorada</em></h2><span class="sub">Instagram + YouTube</span></div>
+    <div class="chip-group-label" style="font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--marrom);margin:0 0 4px;">📷 INSTAGRAM</div>
+    ${chipGroup('Prints de concorrentes analisados', instagramChips, 'var(--vinho)')}
+    <div class="chip-group-label" style="font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--marrom);margin:20px 0 4px;">▶ YOUTUBE</div>
     ${chipGroup('Categoria A — Diretos (mesmo nicho, mesmo público)', canais.categoria_a_diretos, 'var(--vinho)')}
     ${chipGroup('Categoria B — Formato (mesma lógica editorial)', canais.categoria_b_formato, 'var(--ocre)')}
     ${chipGroup('Categoria C — Qualidade (mesmo nível de produção)', canais.categoria_c_qualidade, 'var(--azul)')}
-    <div class="sec-hd"><h2>Benchmark de <em>Concorrência</em></h2><span class="sub">${concorrencia.length} rodada(s)</span></div>
+    <div class="sec-hd"><h2>Benchmark <em>mensal</em></h2><span class="sub">${concorrencia.length} rodada(s)</span></div>
   `;
 
   if (!concorrencia.length) {
@@ -710,14 +727,12 @@ function renderConcorrencia() {
       html += `
         <div class="bench-card">
           <div class="meta">${esc(c.periodo || c.id)} · ${fmtNum((c.canais_analisados||{}).youtube)} canais YT · ${fmtNum((c.canais_analisados||{}).instagram)} observações IG</div>
-          <div class="quadrant-grid">
-            <div class="quadrant aplicar"><div class="qh">✓ O que está funcionando no nicho</div><ul><li>${esc(c.o_que_funciona) || '—'}</li></ul></div>
-            <div class="quadrant confirmar"><div class="qh">⟳ Sinais de algoritmo do período</div><ul><li>${esc(c.sinais_algoritmo) || '—'}</li></ul></div>
-            <div class="quadrant testar"><div class="qh">→ Lacunas que o Por Dentro pode ocupar</div><ul><li>${esc(c.lacunas_oportunidades) || '—'}</li></ul></div>
-            <div class="quadrant ignorar"><div class="qh">✕ O que não fazer</div><ul><li>${esc(c.o_que_nao_fazer) || '—'}</li></ul></div>
-          </div>
-          ${c.insights_por_concorrente ? `<div class="bench-block"><div class="lbl">Insights por concorrente</div><div class="txt">${esc(c.insights_por_concorrente)}</div></div>` : ''}
-          ${c.sugestoes_conteudo ? `<div class="bench-block"><div class="lbl">Sugestões de conteúdo</div><div class="txt">${esc(c.sugestoes_conteudo)}</div></div>` : ''}
+          ${bloco('✓ O que está funcionando no nicho', c.o_que_funciona)}
+          ${bloco('Insights por concorrente', c.insights_por_concorrente)}
+          ${bloco('⟳ Sinais de algoritmo do período', c.sinais_algoritmo)}
+          ${bloco('→ Lacunas que o Por Dentro pode ocupar', c.lacunas_oportunidades)}
+          ${bloco('Sugestões de conteúdo', c.sugestoes_conteudo)}
+          ${bloco('✕ O que não fazer', c.o_que_nao_fazer)}
           ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">★ Recomendação editorial do mês</div><div class="txt">${esc(c.recomendacao_editorial)}</div></div>` : ''}
         </div>`;
     });
