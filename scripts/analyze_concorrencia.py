@@ -95,19 +95,52 @@ def resolver_data_source_id(database_id: str) -> str:
     return data_source_id
 
 
+def _query_com_diagnostico(data_source_id: str, filtro: dict, contexto: str):
+    """
+    Wrapper de notion.data_sources.query(): se a API rejeitar uma propriedade do
+    filtro (erro 400 "Could not find property with name or id: X"), lista as
+    propriedades reais dessa base nos logs antes de relançar o erro.
+
+    Isso já aconteceu em produção (31/07/2026) com "CATEGORIA" — a base em si
+    tinha a propriedade certa, o problema era uma secret do GitHub
+    (NOTION_DB_ID / NOTION_COLETAS_DB_ID / NOTION_DB_IG) apontando para o
+    database ID errado. Sem esse diagnóstico, o log só mostra o 400 cru e não dá
+    pra saber, sem entrar no Notion, se a base é a errada ou se a propriedade
+    mudou de nome.
+    """
+    try:
+        return notion.data_sources.query(data_source_id=data_source_id, filter=filtro)
+    except APIResponseError as e:
+        if "Could not find property" in str(e):
+            try:
+                ds = notion.data_sources.retrieve(data_source_id=data_source_id)
+                propriedades = ", ".join(sorted(ds.get("properties", {}).keys())) or "(nenhuma)"
+            except APIResponseError:
+                propriedades = "(não foi possível listar as propriedades — ver erro original acima)"
+            print(
+                f"  ✖ Erro ao consultar '{contexto}' (data_source {data_source_id}): {e}\n"
+                f"    Propriedades reais desta base: {propriedades}\n"
+                f"    Se a propriedade esperada não aparecer na lista acima, a secret do GitHub "
+                f"para '{contexto}' provavelmente aponta para o database ID errado — confira em "
+                f"Settings → Secrets and variables → Actions."
+            )
+        raise
+
+
 # ── Busca de dados ────────────────────────────────────────────────────────────
 
 def buscar_coletas_youtube() -> tuple[list, str]:
     """Lê as linhas da base COLETAS YOUTUBE (CATEGORIA=CONCORRÊNCIA) do mês atual."""
     data_source_id = resolver_data_source_id(NOTION_COLETAS_DB_ID)
-    resp = notion.data_sources.query(
-        data_source_id=data_source_id,
-        filter={
+    resp = _query_com_diagnostico(
+        data_source_id,
+        {
             "and": [
                 {"property": "CATEGORIA", "select": {"equals": "CONCORRÊNCIA"}},
                 {"property": "Mês",       "select": {"equals": MES_ATUAL_PT}},
             ]
-        }
+        },
+        "COLETAS YOUTUBE (NOTION_COLETAS_DB_ID)"
     )
     linhas = resp.get("results", [])
     textos = []
@@ -136,15 +169,16 @@ def buscar_coletas_youtube() -> tuple[list, str]:
 def buscar_observacoes_instagram() -> tuple[list, str]:
     """Notas manuais em texto sobre concorrência no Instagram, em FICHIERS INSTAGRAM."""
     data_source_id = resolver_data_source_id(NOTION_DB_ID)
-    resp = notion.data_sources.query(
-        data_source_id=data_source_id,
-        filter={
+    resp = _query_com_diagnostico(
+        data_source_id,
+        {
             "and": [
                 {"property": "CATEGORIA",  "select": {"equals": "CONCORRÊNCIA"}},
                 {"property": "PLATAFORMA", "select": {"equals": "INSTAGRAM"}},
                 {"property": "STATUS",     "select": {"equals": "NOVO"}}
             ]
-        }
+        },
+        "FICHIERS INSTAGRAM (NOTION_DB_ID)"
     )
 
     entradas = resp.get("results", [])
@@ -170,15 +204,16 @@ def _texto_rt(props: dict, campo: str) -> str:
 def buscar_prints_concorrencia_instagram() -> tuple[list, str]:
     """Prints de concorrentes já transcritos pela Claude, em Inputs Benchmark Instagram."""
     data_source_id = resolver_data_source_id(NOTION_DB_IG)
-    resp = notion.data_sources.query(
-        data_source_id=data_source_id,
-        filter={
+    resp = _query_com_diagnostico(
+        data_source_id,
+        {
             "and": [
                 {"property": "CATEGORIA",  "select": {"equals": "CONCORRÊNCIA"}},
                 {"property": "PLATAFORMA", "select": {"equals": "INSTAGRAM"}},
                 {"property": "STATUS",     "select": {"equals": "Analisado"}}
             ]
-        }
+        },
+        "Inputs Benchmark Instagram (NOTION_DB_IG)"
     )
 
     entradas = resp.get("results", [])
