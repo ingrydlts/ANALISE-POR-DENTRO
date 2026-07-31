@@ -82,6 +82,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);f
 .insight-pill.geral{border-left-color:var(--oliva);background:rgba(122,125,90,0.06);}
 .insight-pill.fazer{border-left-color:var(--verde);background:rgba(107,143,106,0.06);}
 .insight-pill.evitar{border-left-color:var(--vinho);background:rgba(107,39,55,0.05);}
+.insight-pill.info{border-left-color:var(--azul);background:rgba(143,165,184,0.08);}
+.insight-pill.oportunidade{border-left-color:var(--ocre);background:rgba(196,154,78,0.07);}
+.pill-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:6px;}
+.pill-stack .insight-pill{max-width:none;}
+.insight-pill .ip-title{font-weight:700;color:var(--marrom);margin-bottom:3px;}
 .insight-pill .pn{font-family:'Playfair Display',serif;font-weight:700;color:var(--ocre);flex-shrink:0;}
 @media(max-width:700px){.insight-pill{max-width:100%;}}
 /* Callout: substitui o antigo bloco sólido marrom-escuro por um card claro com
@@ -152,15 +157,21 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
 .persona-body{padding:12px 18px 16px;font-size:12px;color:#5A4A3A;}
 .persona-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
 .persona-tag{font-size:10px;padding:3px 9px;border-radius:20px;background:var(--bege-escuro);color:var(--marrom);}
-.persona-cta{padding:0 18px 14px;font-size:11px;color:var(--cinza);text-align:right;}
-.persona-detail{display:none;padding:0 18px 18px;border-top:1px solid rgba(61,43,31,0.08);margin-top:4px;padding-top:14px;}
-.persona-card.expanded .persona-detail{display:block;}
+.persona-cta{padding:0 18px 14px;font-size:11px;color:var(--ocre);text-align:right;font-weight:600;cursor:pointer;}
+.persona-cta:hover{text-decoration:underline;}
+.persona-detail{padding:0;}
 .persona-detail .dl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--oliva);font-weight:600;margin:12px 0 5px;}
 .persona-detail .dl:first-child{margin-top:0;}
 .persona-detail ul{list-style:none;font-size:12px;color:#5A4A3A;}
 .persona-detail ul li{padding:3px 0;}
 .persona-detail ul li::before{content:'— ';color:var(--cinza);}
 .persona-detail p{font-size:12px;color:#5A4A3A;line-height:1.6;}
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(61,43,31,0.55);z-index:1000;align-items:center;justify-content:center;padding:24px;}
+.modal-backdrop.open{display:flex;}
+.modal-box{background:var(--off-white);border-radius:14px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;padding:30px 32px;position:relative;box-shadow:0 16px 48px rgba(0,0,0,0.28);}
+.modal-close{position:absolute;top:14px;right:16px;width:28px;height:28px;border-radius:50%;background:var(--bege-escuro);border:none;font-size:15px;color:var(--marrom);cursor:pointer;line-height:1;}
+.modal-close:hover{background:var(--ocre);color:#fff;}
+@media(max-width:640px){.modal-box{padding:24px 20px;max-height:90vh;}}
 
 .journey-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
 @media(max-width:700px){.journey-row{grid-template-columns:1fr 1fr;}}
@@ -267,6 +278,10 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
   <div class="empty">Carregando insights.json…</div>
 </div>
 
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
 <script>
 const TABS = [
   {id:'metas',       label:'Metas'},
@@ -317,6 +332,41 @@ function deltaClass(n) {
   return n >= 0 ? 'pos' : 'neg';
 }
 function esc(s) { return (s === null || s === undefined) ? '' : String(s); }
+
+/* ══════════════════════ MODAL genérico ══════════════════════ */
+function abrirModal(innerHtml) {
+  document.getElementById('modal-box').innerHTML = `<button class="modal-close" onclick="fecharModal()" aria-label="Fechar">✕</button>${innerHtml}`;
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+function fecharModal() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+}
+document.getElementById('modal-backdrop')?.addEventListener('click', (e) => {
+  if (e.target.id === 'modal-backdrop') fecharModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') fecharModal();
+});
+
+function abrirPersonaModal(id) {
+  const p = (window.__PERSONAS || []).find(x => x.id === id);
+  if (!p) return;
+  abrirModal(`
+    <div class="persona-id">${p.id} · ${esc(p.arquetipo)}</div>
+    <div class="persona-name" style="font-size:22px;margin:6px 0 2px;">${esc(p.nome)}${p.idade ? ', ' + p.idade + ' anos' : ''}</div>
+    <div class="persona-sub">${esc(p.perfil)}</div>
+    ${p.quote ? `<div class="persona-quote" style="margin:14px 0 0;">"${esc(p.quote)}"</div>` : ''}
+    <div class="persona-detail" style="margin-top:18px;">
+      <div class="dl">Medos</div><ul>${(p.fears||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+      <div class="dl">Sonhos</div><ul>${(p.dreams||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+      <div class="dl">Comportamento YouTube</div><p>${esc(p.youtube_behavior)}</p>
+      <div class="dl">Comportamento Instagram</div><p>${esc(p.instagram_behavior)}</p>
+      <div class="dl">Insight observado</div><p>${esc(p.insight)}</p>
+      <div class="dl">Gatilhos de título</div><ul>${(p.gatilhos_titulo||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+      <div class="dl">Pautas sugeridas</div><ul>${(p.pautas_sugeridas||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+    </div>
+  `);
+}
 
 // "criado_em" é a data de criação do arquivo (nunca muda) — não serve pra dizer
 // se o dashboard está atualizado. Usa a data mais recente entre todos os pontos
@@ -709,9 +759,37 @@ function renderConcorrencia() {
       </div>`;
   };
 
-  const bloco = (label, txt) => txt
-    ? `<div class="bench-block"><div class="lbl">${label}</div><div class="txt">${esc(txt)}</div></div>`
-    : '';
+  // Transforma o texto corrido da Claude (markdown solto: "1. **X**: texto",
+  // "- **X**: texto", "**@handle** — texto", parágrafos separados por linha
+  // em branco) em pílulas legíveis — sem asterisco literal, um item por
+  // pílula, título em negrito de verdade quando existir. Bem mais fácil de
+  // escanear do que o textão original que a Claude devolve.
+  const escHtml = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const mdInline = s => escHtml(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+  const parseItens = (txt) => {
+    const limpo = String(txt || '').replace(/^\s*---\s*$/gm, '').trim();
+    if (!limpo) return [];
+    return limpo.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean).map(b => {
+      const semMarcador = b.replace(/^(?:\d+\.|-)\s*/, '');
+      const m = semMarcador.match(/^\*\*(.+?)\*\*\s*[:—-]?\s*/);
+      return m ? { titulo: m[1], corpo: semMarcador.slice(m[0].length).trim() } : { titulo: null, corpo: semMarcador };
+    });
+  };
+
+  const bloco = (label, txt, cls) => {
+    const itens = parseItens(txt);
+    if (!itens.length) return '';
+    return `
+      <div class="pill-group-label">${label}</div>
+      <div class="pill-stack">${itens.map(it => `
+        <div class="insight-pill ${cls}">
+          <div>
+            ${it.titulo ? `<div class="ip-title">${mdInline(it.titulo)}</div>` : ''}
+            ${it.corpo ? `<div>${mdInline(it.corpo)}</div>` : ''}
+          </div>
+        </div>`).join('')}</div>`;
+  };
 
   // Instagram: agrupa os prints já analisados por perfil do concorrente — um
   // mesmo perfil pode ter vários posts analisados ao longo dos meses, e "cada
@@ -742,13 +820,13 @@ function renderConcorrencia() {
   const benchmarkCard = (c) => `
     <div class="bench-card">
       <div class="meta">Benchmark · ${esc(c.periodo || c.id)}</div>
-      ${bloco('✓ O que está funcionando no nicho', c.o_que_funciona)}
-      ${bloco('Insights por concorrente', c.insights_por_concorrente)}
-      ${bloco('⟳ Sinais de algoritmo do período', c.sinais_algoritmo)}
-      ${bloco('→ Lacunas que o Por Dentro pode ocupar', c.lacunas_oportunidades)}
-      ${bloco('Sugestões de conteúdo', c.sugestoes_conteudo)}
-      ${bloco('✕ O que não fazer', c.o_que_nao_fazer)}
-      ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">★ Recomendação editorial do mês</div><div class="txt">${esc(c.recomendacao_editorial)}</div></div>` : ''}
+      ${bloco('✓ O que está funcionando no nicho', c.o_que_funciona, 'fazer')}
+      ${bloco('Insights por concorrente', c.insights_por_concorrente, 'geral')}
+      ${bloco('⟳ Sinais de algoritmo do período', c.sinais_algoritmo, 'info')}
+      ${bloco('→ Lacunas que o Por Dentro pode ocupar', c.lacunas_oportunidades, 'oportunidade')}
+      ${bloco('Sugestões de conteúdo', c.sugestoes_conteudo, 'oportunidade')}
+      ${bloco('✕ O que não fazer', c.o_que_nao_fazer, 'evitar')}
+      ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">★ Recomendação editorial do mês</div><div class="txt">${mdInline(c.recomendacao_editorial)}</div></div>` : ''}
     </div>`;
 
   const rodadas = [...concorrencia].reverse();
@@ -783,13 +861,15 @@ function renderAudiencia() {
 
   let html = `<div class="sec-hd"><h2>Personas de <em>Audiência</em></h2><span class="sub">atualizado ${esc(ap.atualizado_em)}</span></div>`;
 
+  window.__PERSONAS = personas;
+
   if (!personas.length) {
     html += `<div class="empty-tab">Nenhuma persona cadastrada.</div>`;
   } else {
     html += `<div class="persona-grid">`;
     personas.forEach(p => {
       html += `
-        <div class="persona-card" data-p="${p.id}" onclick="this.classList.toggle('expanded')">
+        <div class="persona-card" data-p="${p.id}">
           <div class="persona-top">
             <div class="persona-id">${p.id} · ${esc(p.arquetipo)}</div>
             <div class="persona-name">${esc(p.nome)}${p.idade ? ', ' + p.idade + ' anos' : ''}</div>
@@ -803,16 +883,7 @@ function renderAudiencia() {
               <span class="persona-tag">${esc(p.representacao)}</span>
             </div>
           </div>
-          <div class="persona-cta">Ver perfil completo ↓</div>
-          <div class="persona-detail">
-            <div class="dl">Medos</div><ul>${(p.fears||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
-            <div class="dl">Sonhos</div><ul>${(p.dreams||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
-            <div class="dl">Comportamento YouTube</div><p>${esc(p.youtube_behavior)}</p>
-            <div class="dl">Comportamento Instagram</div><p>${esc(p.instagram_behavior)}</p>
-            <div class="dl">Insight observado</div><p>${esc(p.insight)}</p>
-            <div class="dl">Gatilhos de título</div><ul>${(p.gatilhos_titulo||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
-            <div class="dl">Pautas sugeridas</div><ul>${(p.pautas_sugeridas||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
-          </div>
+          <div class="persona-cta" onclick="abrirPersonaModal('${p.id}')">Ver perfil completo →</div>
         </div>`;
     });
     html += `</div>`;
