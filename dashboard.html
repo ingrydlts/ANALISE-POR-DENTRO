@@ -716,6 +716,8 @@ function renderConcorrencia() {
             <div class="quadrant testar"><div class="qh">→ Lacunas que o Por Dentro pode ocupar</div><ul><li>${esc(c.lacunas_oportunidades) || '—'}</li></ul></div>
             <div class="quadrant ignorar"><div class="qh">✕ O que não fazer</div><ul><li>${esc(c.o_que_nao_fazer) || '—'}</li></ul></div>
           </div>
+          ${c.insights_por_concorrente ? `<div class="bench-block"><div class="lbl">Insights por concorrente</div><div class="txt">${esc(c.insights_por_concorrente)}</div></div>` : ''}
+          ${c.sugestoes_conteudo ? `<div class="bench-block"><div class="lbl">Sugestões de conteúdo</div><div class="txt">${esc(c.sugestoes_conteudo)}</div></div>` : ''}
           ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">★ Recomendação editorial do mês</div><div class="txt">${esc(c.recomendacao_editorial)}</div></div>` : ''}
         </div>`;
     });
