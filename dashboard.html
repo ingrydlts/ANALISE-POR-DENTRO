@@ -72,6 +72,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);f
 .pill-group-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin:16px 0 8px;font-weight:600;}
 .pill-group-label:first-child{margin-top:0;}
 .pill-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+.fazer-evitar-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;align-items:start;}
+.fazer-evitar-grid .pill-wrap{flex-direction:column;flex-wrap:nowrap;}
+.fazer-evitar-grid .insight-pill{max-width:none;}
+@media(max-width:640px){.fazer-evitar-grid{grid-template-columns:1fr;}}
 .insight-pill{display:flex;align-items:flex-start;gap:8px;background:var(--off-white);border-radius:18px;padding:11px 16px;font-size:12.5px;line-height:1.5;color:#5A4A3A;max-width:360px;box-shadow:0 1px 3px rgba(61,43,31,0.05);border-left:3px solid var(--cinza);}
 .insight-pill.ig{border-left-color:var(--ig-pink);background:rgba(225,48,108,0.05);}
 .insight-pill.yt{border-left-color:var(--yt-red);background:rgba(255,0,0,0.04);}
@@ -694,8 +698,14 @@ function renderConcorrencia() {
             ${meta ? `<div class="cc-nota" style="opacity:.7;">${esc(meta)}</div>` : ''}
           </div>
         </div>
+        ${fazer.length && evitar.length ? `
+        <div class="fazer-evitar-grid">
+          <div><div class="pill-group-label">✓ Fazer</div>${pillList(fazer, 'fazer')}</div>
+          <div><div class="pill-group-label">✕ Evitar</div>${pillList(evitar, 'evitar')}</div>
+        </div>` : `
         ${fazer.length ? `<div class="pill-group-label">✓ Fazer</div>${pillList(fazer, 'fazer')}` : ''}
         ${evitar.length ? `<div class="pill-group-label">✕ Evitar</div>${pillList(evitar, 'evitar')}` : ''}
+        `}
       </div>`;
   };
 
