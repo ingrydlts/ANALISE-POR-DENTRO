@@ -394,6 +394,57 @@
         "processo": 1,
         "franca": 0
       }
+    },
+    {
+      "id": "2026-W31",
+      "data": "2026-07-31",
+      "periodo_label": "Semana de 31/07/2026",
+      "total_entradas_analisadas": 2,
+      "perguntas_recorrentes": [
+        "Como consigo ver se tenho CPF na França?",
+        "Quanto tenho de CPF?",
+        "Onde posso usar o CPF francês?"
+      ],
+      "dores_nao_atendidas": [
+        "Bolsas de estudo e financiamento durante graduação na França",
+        "Orientações práticas para estudantes de graduação"
+      ],
+      "pedidos_conteudo": [
+        "Guia prático sobre CPF francês",
+        "Informações sobre sanduíches/bolsas na graduação francesa"
+      ],
+      "perfil_momento": "Estudantes em graduação na França e recém-chegados explorando sistemas administrativos básicos (CPF). Audiência em fase de adaptação inicial buscando respostas práticas e objetivas.",
+      "diferenca_plataformas": "Sem dados suficientes de YouTube para comparação. Instagram concentra dúvidas operacionais diretas e pedidos de continuação de temas já abordados.",
+      "pautas_sugeridas": [
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "CPF na França: tudo que você precisa saber (e usar)",
+          "porque": "Pergunta recorrente com 3 desdobramentos diferentes. Conteúdo em série (carousel ou reels) responderia simultaneamente: o que é, como verificar, onde usar."
+        },
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "Bolsas e sanduíches na graduação francesa: guia para estudantes",
+          "porque": "Dor não atendida. Usuária em graduação buscou continuação de conteúdo anterior. Potencial alto de engajamento com público em transição."
+        },
+        {
+          "plataforma": "INSTAGRAM",
+          "titulo": "Primeiros passos administrativos na França: checklist do recém-chegado",
+          "porque": "CPF aparece como primeira dúvida. Conteúdo-guia ordenado (stories com enquetes ou reels) posiciona o canal como referência para fase inicial."
+        }
+      ],
+      "temas_audiencia": [
+        "CPF francês",
+        "burocracia administrativa",
+        "educação/graduação",
+        "bolsas e financiamento",
+        "guias práticos",
+        "recém-chegados"
+      ],
+      "segmentos": {
+        "brasil": 0,
+        "processo": 1,
+        "franca": 1
+      }
     }
   ],
   "ciclos": [
