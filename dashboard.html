@@ -69,9 +69,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);f
 .pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:10px;letter-spacing:1px;text-transform:uppercase;margin-right:8px;}
 .pill-yt{background:var(--yt-red);color:#fff;}
 .pill-ig{background:var(--ig-pink);color:#fff;}
-.decisao{background:var(--marrom);color:var(--off-white);border-radius:10px;padding:20px 24px;margin-top:20px;}
-.decisao .tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);margin-bottom:8px;}
-.decisao p{font-family:'Playfair Display',serif;font-size:17px;line-height:1.4;font-style:italic;}
+/* Callout: substitui o antigo bloco sólido marrom-escuro por um card claro com
+   borda colorida — mesmo destaque, leitura mais leve. Usado em decisão editorial,
+   recomendação de concorrência e princípio editorial. */
+.decisao, .bench-reco{background:var(--off-white);border:1px solid rgba(196,154,78,0.3);border-left:4px solid var(--ocre);border-radius:0 10px 10px 0;padding:18px 22px;margin-top:20px;}
+.decisao .tag, .bench-reco .lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);margin-bottom:8px;font-weight:600;}
+.decisao p, .bench-reco .txt{font-family:'Playfair Display',serif;font-size:16px;line-height:1.5;font-style:italic;color:var(--marrom);}
+
+/* PLATFORM DIVIDER — separa blocos de Instagram e YouTube nas abas Performance */
+.platform-hd{display:flex;align-items:center;gap:10px;margin:36px 0 18px;padding:12px 18px;border-radius:8px;font-family:'Playfair Display',serif;font-size:16px;color:#fff;letter-spacing:0.3px;}
+.platform-hd:first-child{margin-top:0;}
+.platform-hd .ico{font-size:15px;}
+.platform-hd.ig{background:linear-gradient(90deg,var(--ig-purple),var(--ig-pink));}
+.platform-hd.yt{background:var(--yt-red);}
+
+/* AVATAR — iniciais coloridas pra representar concorrentes sem depender de foto externa */
+.avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:14px;color:#fff;flex-shrink:0;}
 .empty{padding:60px 40px;text-align:center;color:var(--cinza);font-family:'DM Mono',monospace;font-size:12px;}
 .empty-tab{padding:40px 30px;text-align:center;color:var(--cinza);font-family:'DM Mono',monospace;font-size:11px;line-height:1.9;background:var(--off-white);border-radius:10px;border:1px dashed rgba(61,43,31,0.18);}
 .footer-note{margin-top:40px;font-size:11px;color:var(--cinza);text-align:center;}
@@ -94,21 +107,24 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
 .badge{display:inline-block;font-size:9px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:8px;letter-spacing:0.5px;}
 .badge-on{background:rgba(107,143,106,0.18);color:var(--verde);}
 .badge-off{background:rgba(158,158,142,0.18);color:var(--cinza);}
+.badge-mid{background:rgba(196,154,78,0.18);color:var(--ocre);}
 
 /* CONCORRENCIA */
-.chip-group{margin-bottom:10px;}
-.chip-group-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin-bottom:8px;}
-.chip-row{display:flex;flex-wrap:wrap;gap:8px;}
-.chip{background:var(--off-white);border:1px solid rgba(61,43,31,0.12);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--marrom);}
+.chip-group{margin-bottom:20px;}
+.chip-group-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin-bottom:10px;}
+.competitor-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:800px){.competitor-grid{grid-template-columns:1fr;}}
+.competitor-card{display:flex;gap:12px;background:var(--off-white);border:1px solid rgba(61,43,31,0.08);border-radius:10px;padding:12px 14px;align-items:flex-start;box-shadow:0 1px 4px rgba(61,43,31,0.04);}
+.competitor-card .cc-body{min-width:0;}
+.competitor-card .cc-name{font-family:'Playfair Display',serif;font-size:13px;color:var(--marrom);line-height:1.3;}
+.competitor-card .cc-plat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin:2px 0 6px;}
+.competitor-card .cc-nota{font-size:11px;color:#5A4A3A;line-height:1.5;}
 .bench-card{background:var(--off-white);border-radius:10px;border:1px solid rgba(61,43,31,0.08);padding:20px 22px;margin-bottom:16px;}
 .bench-card .meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ocre);margin-bottom:14px;}
 .bench-block{margin-bottom:14px;}
 .bench-block:last-child{margin-bottom:0;}
 .bench-block .lbl{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--oliva);margin-bottom:5px;font-weight:600;}
 .bench-block .txt{font-size:13px;color:#5A4A3A;white-space:pre-line;}
-.bench-reco{background:var(--marrom);color:var(--off-white);border-radius:8px;padding:16px 18px;margin-top:16px;}
-.bench-reco .lbl{color:var(--ocre);}
-.bench-reco .txt{color:var(--off-white);font-style:italic;font-family:'Playfair Display',serif;font-size:14px;}
 
 /* AUDIENCIA */
 .persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;}
@@ -150,7 +166,9 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
 
 /* BOAS PRATICAS */
 .quadrant-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.quadrant-grid.cols-3{grid-template-columns:repeat(3,1fr);}
 @media(max-width:700px){.quadrant-grid{grid-template-columns:1fr;}}
+@media(max-width:900px){.quadrant-grid.cols-3{grid-template-columns:1fr;}}
 .quadrant{background:var(--off-white);border-radius:10px;padding:16px 18px;border-left:4px solid var(--cinza);}
 .quadrant.aplicar{border-left-color:var(--verde);}
 .quadrant.testar{border-left-color:var(--ocre);}
@@ -163,7 +181,6 @@ table.data-tbl tr:nth-child(even) td{background:rgba(61,43,31,0.02);}
 .quadrant li strong{color:var(--marrom);}
 
 /* CALENDARIO */
-.season-tbl-wrap{margin-bottom:32px;}
 .week-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;}
 @media(max-width:800px){.week-grid{grid-template-columns:1fr 1fr;}}
 .week-card{background:var(--off-white);border-radius:8px;padding:14px;border:1px solid rgba(61,43,31,0.08);}
@@ -336,6 +353,19 @@ function go(i) {
 }
 
 /* ══════════════════════ METAS ══════════════════════ */
+// baseline/seguidores_necessarios só mudam quando alguém publica um novo número real
+// (não há API de contagem de seguidores) — mas os ganhos diários do instagram_diario
+// já são reais e automáticos, então usamos eles pra estimar o "atual" entre uma
+// atualização manual de baseline e outra, em vez de mostrar sempre o baseline parado.
+function seguidoresAtuaisEstimado(s) {
+  if (s.baseline == null) return null;
+  const desde = s.baseline_data || '';
+  const ganhos = (DATA.instagram_diario || [])
+    .filter(d => d.data > desde)
+    .reduce((sum, d) => sum + (d.seguidores_ganhos || 0), 0);
+  return s.baseline + ganhos;
+}
+
 function renderMetas() {
   const m = DATA.metas || {};
   const s = m.seguidores || {};
@@ -351,14 +381,17 @@ function renderMetas() {
     diasRestantes = Math.max(1, Math.round((metaData - hoje) / 86400000));
     ritmoRecalc = s.seguidores_necessarios != null ? (s.seguidores_necessarios / diasRestantes) : null;
   }
-  const pctProgresso = (s.baseline != null && s.meta != null) ? Math.min(100, Math.max(0, (s.baseline - s.baseline) / (s.meta - s.baseline) * 100)) : 0;
+  const atual = seguidoresAtuaisEstimado(s) ?? s.baseline;
+  const pctProgresso = (atual != null && s.meta != null && s.baseline != null && s.meta !== s.baseline)
+    ? Math.min(100, Math.max(0, (atual - s.baseline) / (s.meta - s.baseline) * 100)) : 0;
+  const faltam = (s.meta != null && atual != null) ? Math.max(0, s.meta - atual) : s.seguidores_necessarios;
 
   pane.innerHTML = `
     <div class="sec-hd"><h2>Meta de <em>Seguidores</em></h2></div>
     <div class="progress-wrap">
-      <div class="progress-labels"><span>${fmtNum(s.baseline)} (baseline ${esc(s.baseline_data)})</span><span>${fmtNum(s.meta)} (prazo ${esc(s.meta_data)})</span></div>
+      <div class="progress-labels"><span>${fmtNum(atual)} atual <span style="color:var(--cinza);">(baseline ${fmtNum(s.baseline)} em ${esc(s.baseline_data)})</span></span><span>${fmtNum(s.meta)} (prazo ${esc(s.meta_data)})</span></div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${pctProgresso}%"></div></div>
-      <div class="progress-foot"><span>Faltam ${fmtNum(s.seguidores_necessarios)} seguidores</span><span>${diasRestantes!=null ? diasRestantes+' dias restantes' : ''}</span></div>
+      <div class="progress-foot"><span>Faltam ${fmtNum(faltam)} seguidores</span><span>${diasRestantes!=null ? diasRestantes+' dias restantes' : ''}</span></div>
     </div>
     <div class="kpi-grid">
       <div class="kpi"><div class="kl">Ritmo necessário / dia</div><div class="kv">${s.ritmo_necessario_dia ?? '—'}</div><div class="kn">recalculado hoje: ${ritmoRecalc ? ritmoRecalc.toFixed(1) : '—'}/dia</div></div>
@@ -380,6 +413,26 @@ function renderMetas() {
 }
 
 /* ══════════════════════ SEMANAL ══════════════════════ */
+// Rótulo "S28" (semana ISO do ano) em vez do range de datas por extenso —
+// mais limpo nos eixos dos gráficos. O range completo continua na tabela, como subtítulo.
+function isoWeekOfDate(dt) {
+  const d = new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
+  const dayNum = (d.getUTCDay() + 6) % 7;
+  d.setUTCDate(d.getUTCDate() - dayNum + 3);
+  const firstThursday = new Date(Date.UTC(d.getUTCFullYear(), 0, 4));
+  const firstDayNum = (firstThursday.getUTCDay() + 6) % 7;
+  firstThursday.setUTCDate(firstThursday.getUTCDate() - firstDayNum + 3);
+  return 1 + Math.round((d - firstThursday) / (7 * 86400000));
+}
+function semanaWeekLabel(s) {
+  const m = /^(\d+)/.exec(s.periodo || '');
+  if (m && s.mes_ref) {
+    const dt = new Date(`${s.mes_ref}-${m[1].padStart(2,'0')}T00:00:00`);
+    if (!isNaN(dt)) return 'W' + isoWeekOfDate(dt);
+  }
+  return s.periodo || s.id || '—';
+}
+
 function renderSemanal() {
   const semanas = DATA.semanas || [];
   const diario = DATA.instagram_diario || [];
@@ -410,7 +463,7 @@ function renderSemanal() {
 
   const rows = semanas.map(s => `
     <tr>
-      <td>${esc(s.periodo)}</td>
+      <td>${semanaWeekLabel(s)}<br><span style="color:var(--cinza);font-size:10px;">${esc(s.periodo)}</span></td>
       <td>${fmtNum(s.alcance)}</td>
       <td>${fmtNum(s.interacoes)}</td>
       <td>${s.seguidores_ganhos != null ? '+' + fmtNum(s.seguidores_ganhos) : '—'}</td>
@@ -451,7 +504,7 @@ function renderSemanal() {
 
   if (!semanas.length) return;
 
-  const labels = semanas.map(s => s.periodo);
+  const labels = semanas.map(s => semanaWeekLabel(s));
   new Chart(document.getElementById('chart-semanal-alcance'), {
     type:'line',
     data:{labels, datasets:[{label:'Alcance', data:semanas.map(s=>s.alcance), borderColor:'#C49A4E', backgroundColor:'rgba(196,154,78,0.15)', fill:true, tension:0.3}]},
@@ -498,27 +551,28 @@ function renderPerformance() {
     const ig = c.instagram || {};
 
     contentDiv.innerHTML = `
+      <div class="platform-hd ig"><span class="ico">◎</span> Instagram</div>
       <div class="kpi-grid">
-        <div class="kpi"><div class="kl">▶ Views YouTube</div><div class="kv">${fmtNum(yt.views)}</div><div class="kn">${yt.views_variacao_pct != null ? fmtDelta(yt.views_variacao_pct) + ' vs. ciclo anterior' : 'sem comparação'}</div></div>
-        <div class="kpi"><div class="kl">▶ Retenção média</div><div class="kv">${yt.retencao_media_pct != null ? yt.retencao_media_pct + '%' : '—'}</div><div class="kn">status: ${esc(yt.status_retencao) || '—'}</div></div>
-        <div class="kpi"><div class="kl">▶ CTR médio</div><div class="kv">${yt.ctr_medio_pct != null ? yt.ctr_medio_pct + '%' : '—'}</div><div class="kn">status: ${esc(yt.status_ctr) || '—'} · +${fmtNum(yt.inscritos_ganhos)} inscritos</div></div>
-        <div class="kpi"><div class="kl">◎ Alcance Instagram</div><div class="kv ig">${fmtNum(ig.alcance)}</div><div class="kn">${fmtNum(ig.seguidores_ganhos)} seguidores ganhos · ${fmtPct(ig.engajamento_medio_pct)}</div></div>
+        <div class="kpi"><div class="kl">Alcance</div><div class="kv ig">${fmtNum(ig.alcance)}</div><div class="kn">no ciclo</div></div>
+        <div class="kpi"><div class="kl">Seguidores ganhos</div><div class="kv ig">+${fmtNum(ig.seguidores_ganhos)}</div><div class="kn">no ciclo</div></div>
+        <div class="kpi"><div class="kl">Engajamento médio</div><div class="kv ig">${fmtPct(ig.engajamento_medio_pct)}</div><div class="kn">média do ciclo</div></div>
+        <div class="kpi"><div class="kl">Visitas ao perfil</div><div class="kv ig" style="font-size:20px;">${fmtNum(ig.visitas_perfil)}</div><div class="kn">${fmtNum(ig.interacoes)} interações totais</div></div>
       </div>
-
-      <div class="charts-grid">
-        <div class="chart-card"><h3>Views YouTube — histórico</h3><canvas id="chart-views" height="180"></canvas></div>
-        <div class="chart-card"><h3>Alcance Instagram — histórico</h3><canvas id="chart-alcance" height="180"></canvas></div>
-      </div>
-
-      <div class="sec-hd"><h2>Detalhe do <em>ciclo</em></h2></div>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="kl">Watchtime</div><div class="kv" style="font-size:20px;">${yt.watchtime_horas ?? '—'}h</div><div class="kn">${fmtNum(yt.impressoes)} impressões</div></div>
-        <div class="kpi"><div class="kl">Top vídeo</div><div class="kv" style="font-size:13px;line-height:1.3;">${esc(yt.top_video_titulo) || '—'}</div><div class="kn">${fmtNum(yt.top_video_views)} views</div></div>
-        <div class="kpi"><div class="kl">Fonte principal (YT)</div><div class="kv" style="font-size:16px;">${esc(yt.principal_fonte_trafego) || '—'}</div><div class="kn">${yt.principal_fonte_pct != null ? yt.principal_fonte_pct+'%' : ''}</div></div>
-        <div class="kpi"><div class="kl">Visitas ao perfil (IG)</div><div class="kv ig" style="font-size:20px;">${fmtNum(ig.visitas_perfil)}</div><div class="kn">${fmtNum(ig.interacoes)} interações totais</div></div>
-      </div>
-
+      <div class="chart-card" style="margin-bottom:20px;"><h3>Alcance Instagram — histórico</h3><canvas id="chart-alcance" height="160"></canvas></div>
       ${ig.top_post_descricao ? `<div class="insight-card"><div class="meta">Destaque Instagram</div><div style="font-size:13px;color:#5A4A3A;">${esc(ig.top_post_descricao)}</div>${ig.top_post_metrica ? `<div style="font-size:12px;color:var(--oliva);margin-top:8px;">${esc(ig.top_post_metrica)}</div>` : ''}</div>` : ''}
+
+      <div class="platform-hd yt"><span class="ico">▶</span> YouTube</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kl">Views</div><div class="kv">${fmtNum(yt.views)}</div><div class="kn">${yt.views_variacao_pct != null ? fmtDelta(yt.views_variacao_pct) + ' vs. ciclo anterior' : 'sem comparação'}</div></div>
+        <div class="kpi"><div class="kl">Retenção média</div><div class="kv">${yt.retencao_media_pct != null ? yt.retencao_media_pct + '%' : '—'}</div><div class="kn">status: ${esc(yt.status_retencao) || '—'}</div></div>
+        <div class="kpi"><div class="kl">CTR médio</div><div class="kv">${yt.ctr_medio_pct != null ? yt.ctr_medio_pct + '%' : '—'}</div><div class="kn">status: ${esc(yt.status_ctr) || '—'} · +${fmtNum(yt.inscritos_ganhos)} inscritos</div></div>
+        <div class="kpi"><div class="kl">Watchtime</div><div class="kv" style="font-size:20px;">${yt.watchtime_horas ?? '—'}h</div><div class="kn">${fmtNum(yt.impressoes)} impressões</div></div>
+      </div>
+      <div class="chart-card" style="margin-bottom:20px;"><h3>Views YouTube — histórico</h3><canvas id="chart-views" height="160"></canvas></div>
+      <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="kpi"><div class="kl">Top vídeo</div><div class="kv" style="font-size:13px;line-height:1.3;">${esc(yt.top_video_titulo) || '—'}</div><div class="kn">${fmtNum(yt.top_video_views)} views</div></div>
+        <div class="kpi"><div class="kl">Fonte principal</div><div class="kv" style="font-size:16px;">${esc(yt.principal_fonte_trafego) || '—'}</div><div class="kn">${yt.principal_fonte_pct != null ? yt.principal_fonte_pct+'%' : ''}</div></div>
+      </div>
 
       <div class="sec-hd"><h2>Insights do <em>ciclo</em></h2></div>
       <div class="insight-card">
@@ -578,26 +632,43 @@ function renderPerformance() {
 }
 
 /* ══════════════════════ CONCORRENCIA ══════════════════════ */
+function iniciaisCanal(nome) {
+  const limpo = (nome || '').split('—')[0].split(' - ')[0].trim();
+  const partes = limpo.split(/\s+/).filter(Boolean);
+  if (!partes.length) return '?';
+  if (partes.length === 1) return partes[0].slice(0, 2).toUpperCase();
+  return (partes[0][0] + partes[1][0]).toUpperCase();
+}
+
 function renderConcorrencia() {
   const pane = document.getElementById('pane-concorrencia');
   const concorrencia = DATA.concorrencia || [];
   const canais = CANAIS || {};
 
-  const chipGroup = (label, arr) => `
+  const chipGroup = (label, arr, corVar) => `
     <div class="chip-group">
       <div class="chip-group-label">${label}</div>
-      <div class="chip-row">${(arr && arr.length) ? arr.map(c => {
+      <div class="competitor-grid">${(arr && arr.length) ? arr.map(c => {
         const nome = typeof c === 'string' ? c : (c.nome || c.handle || JSON.stringify(c));
+        const plataforma = (typeof c === 'object' && c.plataforma) ? c.plataforma : '';
         const nota = (typeof c === 'object' && c.nota) ? c.nota : '';
-        return `<span class="chip" ${nota ? `title="${esc(nota)}"` : ''}>${esc(nome)}</span>`;
-      }).join('') : '<span class="chip" style="opacity:.5;">nenhum canal cadastrado ainda</span>'}</div>
+        return `
+          <div class="competitor-card">
+            <div class="avatar" style="background:${corVar}">${esc(iniciaisCanal(nome))}</div>
+            <div class="cc-body">
+              <div class="cc-name">${esc(nome)}</div>
+              ${plataforma ? `<div class="cc-plat">${esc(plataforma)}</div>` : ''}
+              ${nota ? `<div class="cc-nota">${esc(nota)}</div>` : ''}
+            </div>
+          </div>`;
+      }).join('') : '<div class="cc-nota" style="opacity:.6;">nenhum canal cadastrado ainda</div>'}</div>
     </div>`;
 
   let html = `
     <div class="sec-hd"><h2>Canais <em>monitorados</em></h2><span class="sub">canais.json</span></div>
-    ${chipGroup('Categoria A — Diretos (mesmo nicho, mesmo público)', canais.categoria_a_diretos)}
-    ${chipGroup('Categoria B — Formato (mesma lógica editorial)', canais.categoria_b_formato)}
-    ${chipGroup('Categoria C — Qualidade (mesmo nível de produção)', canais.categoria_c_qualidade)}
+    ${chipGroup('Categoria A — Diretos (mesmo nicho, mesmo público)', canais.categoria_a_diretos, 'var(--vinho)')}
+    ${chipGroup('Categoria B — Formato (mesma lógica editorial)', canais.categoria_b_formato, 'var(--ocre)')}
+    ${chipGroup('Categoria C — Qualidade (mesmo nível de produção)', canais.categoria_c_qualidade, 'var(--azul)')}
     <div class="sec-hd"><h2>Benchmark de <em>Concorrência</em></h2><span class="sub">${concorrencia.length} rodada(s)</span></div>
   `;
 
@@ -608,11 +679,13 @@ function renderConcorrencia() {
       html += `
         <div class="bench-card">
           <div class="meta">${esc(c.periodo || c.id)} · ${fmtNum((c.canais_analisados||{}).youtube)} canais YT · ${fmtNum((c.canais_analisados||{}).instagram)} observações IG</div>
-          <div class="bench-block"><div class="lbl">O que está funcionando no nicho</div><div class="txt">${esc(c.o_que_funciona) || '—'}</div></div>
-          <div class="bench-block"><div class="lbl">Sinais de algoritmo do período</div><div class="txt">${esc(c.sinais_algoritmo) || '—'}</div></div>
-          <div class="bench-block"><div class="lbl">Lacunas que o Por Dentro pode ocupar</div><div class="txt">${esc(c.lacunas_oportunidades) || '—'}</div></div>
-          <div class="bench-block"><div class="lbl">O que não fazer</div><div class="txt">${esc(c.o_que_nao_fazer) || '—'}</div></div>
-          ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">Recomendação editorial do mês</div><div class="txt">${esc(c.recomendacao_editorial)}</div></div>` : ''}
+          <div class="quadrant-grid">
+            <div class="quadrant aplicar"><div class="qh">✓ O que está funcionando no nicho</div><ul><li>${esc(c.o_que_funciona) || '—'}</li></ul></div>
+            <div class="quadrant confirmar"><div class="qh">⟳ Sinais de algoritmo do período</div><ul><li>${esc(c.sinais_algoritmo) || '—'}</li></ul></div>
+            <div class="quadrant testar"><div class="qh">→ Lacunas que o Por Dentro pode ocupar</div><ul><li>${esc(c.lacunas_oportunidades) || '—'}</li></ul></div>
+            <div class="quadrant ignorar"><div class="qh">✕ O que não fazer</div><ul><li>${esc(c.o_que_nao_fazer) || '—'}</li></ul></div>
+          </div>
+          ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">★ Recomendação editorial do mês</div><div class="txt">${esc(c.recomendacao_editorial)}</div></div>` : ''}
         </div>`;
     });
   }
@@ -681,14 +754,16 @@ function renderAudiencia() {
       html += `
         <div class="bilan-card">
           <div class="meta">${esc(b.periodo_label || b.id)} · ${fmtNum(b.total_entradas_analisadas)} entradas analisadas</div>
-          ${b.perfil_momento ? `<p style="font-size:13px;color:#5A4A3A;margin-bottom:8px;"><strong>Perfil do momento:</strong> ${esc(b.perfil_momento)}</p>` : ''}
-          ${(b.perguntas_recorrentes||[]).length ? `<div class="bench-block"><div class="lbl">Perguntas recorrentes</div><ul class="insight-list">${b.perguntas_recorrentes.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-          ${(b.dores_nao_atendidas||[]).length ? `<div class="bench-block"><div class="lbl">Dores não atendidas</div><ul class="insight-list">${b.dores_nao_atendidas.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}
-          ${(b.pautas_sugeridas||[]).length ? `<div class="bench-block"><div class="lbl">Pautas sugeridas</div><ul class="insight-list">${b.pautas_sugeridas.map(x=>`<li>[${esc(x.plataforma)}] ${esc(x.titulo)} — ${esc(x.porque)}</li>`).join('')}</ul></div>` : ''}
+          ${b.perfil_momento ? `<div class="nota-box" style="margin:0 0 14px;"><strong>Perfil do momento:</strong> ${esc(b.perfil_momento)}</div>` : ''}
+          <div class="quadrant-grid cols-3">
+            <div class="quadrant confirmar"><div class="qh">? Perguntas recorrentes</div><ul>${(b.perguntas_recorrentes||[]).map(x=>`<li>${esc(x)}</li>`).join('') || '<li>—</li>'}</ul></div>
+            <div class="quadrant ignorar"><div class="qh">⚠ Dores não atendidas</div><ul>${(b.dores_nao_atendidas||[]).map(x=>`<li>${esc(x)}</li>`).join('') || '<li>—</li>'}</ul></div>
+            <div class="quadrant testar"><div class="qh">→ Pautas sugeridas</div><ul>${(b.pautas_sugeridas||[]).map(x=>`<li>[${esc(x.plataforma)}] ${esc(x.titulo)} — ${esc(x.porque)}</li>`).join('') || '<li>—</li>'}</ul></div>
+          </div>
           ${b.segmentos ? `<div class="segment-row">
-            <span class="segment-pill">Brasil: ${fmtNum(b.segmentos.brasil)}</span>
-            <span class="segment-pill">Processo: ${fmtNum(b.segmentos.processo)}</span>
-            <span class="segment-pill">França: ${fmtNum(b.segmentos.franca)}</span>
+            <span class="segment-pill" style="border-left:3px solid var(--ocre);">Brasil: ${fmtNum(b.segmentos.brasil)}</span>
+            <span class="segment-pill" style="border-left:3px solid var(--vinho);">Processo: ${fmtNum(b.segmentos.processo)}</span>
+            <span class="segment-pill" style="border-left:3px solid var(--azul);">França: ${fmtNum(b.segmentos.franca)}</span>
           </div>` : ''}
         </div>`;
     });
@@ -741,26 +816,6 @@ function renderBoasPraticas() {
 }
 
 /* ══════════════════════ CALENDARIO ══════════════════════ */
-// Reescrito em 2026-07-23: a versão anterior era um calendário cultural
-// francês genérico (Voeux, Black Friday, feriados) — não falava de emprego,
-// alternance, titre de séjour nem imposto, os temas que a audiência (personas
-// P01–P04, ver aba Audiência) realmente está resolvendo. Datas/janelas abaixo
-// checadas via busca (fontes no commit): calendário de alternance (IGENSIA,
-// Meteojob, EMD, Parcoursup), declaração de imposto (impots.gouv.fr,
-// economie.gouv.fr), renovação de titre de séjour (service-public/préfectures),
-// sazonalidade de recrutamento (France Travail, Hellowork).
-const CALENDARIO_SAZONAL = [
-  {mes:'Janeiro', tema:'Comece a pesquisar alternance da rentrée de setembro (ideal 6–12 meses antes) — e revise se algum título de séjour vence este ano'},
-  {mes:'Fev–Mar', tema:'Abre a temporada de candidaturas de alternance: currículo, lettre de motivation, primeiras inscrições'},
-  {mes:'Mar–Mai', tema:'Pico de recrutamento de alternance do ano — mais concorrido, mas também mais vagas abertas'},
-  {mes:'Abr–Mai', tema:'Déclaration de revenus: primeira declaração é obrigatória mesmo pra quem chegou no meio do ano anterior — prazo ~21 de maio'},
-  {mes:'Junho', tema:'Fim do ano letivo: quem terminou alternance/curso decide o próximo passo — CDI, renovar contrato ou mudar de rumo'},
-  {mes:'Jul–Ago', tema:'Verão não é "parada" no recrutamento: empresas montam equipe pra rentrée de setembro — continue candidatando'},
-  {mes:'Setembro', tema:'Rentrée: pico real de contratação (serviços, construção, transporte) + prazo final Parcoursup para vagas de alternance'},
-  {mes:'Outubro', tema:'Última leva de admissões de alternance do ano — e comece a renovar titre de séjour que vence no fim do ano (janela: 120 a 60 dias antes)'},
-  {mes:'Nov–Dez', tema:'Bilan do ano: carreira, processo de imigração, moradia — e planejamento do próximo ciclo'},
-];
-
 const DOW_LABELS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 const MES_NOMES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
 let realCalMonth = null;
@@ -778,6 +833,16 @@ function stageClass(estagio) {
    propõe posts no tom/formato da marca e pesquisa fontes reais quando o tema é
    verificável (burocracia, visto, imposto etc). Mostrado aqui pra revisão manual —
    o mesmo script já cria o rascunho em Stage=Idea no Notion, isso aqui é só espelho. */
+
+// A sugestão em si nunca muda depois de criada (histórico), mas o post real no
+// Notion pode avançar de estágio a qualquer momento — cruza por título com
+// calendario_posts (que É atualizado a cada rodada) pra saber o status atual,
+// em vez de mostrar sempre "pendente" mesmo depois de já ter sido agendada.
+function _postRealDaSugestao(titulo) {
+  const alvo = (titulo || '').trim().toLowerCase();
+  return (DATA.calendario_posts || []).find(p => (p.titulo || '').trim().toLowerCase() === alvo) || null;
+}
+
 function renderSugestoesConteudo() {
   const sugestoes = [...(DATA.sugestoes_conteudo || [])]
     .sort((a, b) => (b.gerado_em || '').localeCompare(a.gerado_em || '') || (b.id || '').localeCompare(a.id || ''));
@@ -786,7 +851,25 @@ function renderSugestoesConteudo() {
   if (!sugestoes.length) {
     corpo = `<div class="empty-tab">Nenhuma sugestão gerada ainda. Roda toda segunda-feira (Módulo 5) e também a cada upload de performance Instagram — cruza audiência + concorrência + calendário e propõe posts novos, com fontes quando o tema exige.</div>`;
   } else {
-    corpo = sugestoes.map((s, idx) => `
+    corpo = sugestoes.map((s, idx) => {
+      const postReal = _postRealDaSugestao(s.titulo);
+      let statusHtml;
+      if (!postReal) {
+        statusHtml = s.notion_criada
+          ? '<span class="badge badge-off">✓ rascunho criado no Notion (Stage = Idea)</span>'
+          : '<span class="badge badge-off">⚠ não foi possível criar o rascunho no Notion — adicione manualmente se quiser usar</span>';
+      } else {
+        const cls = stageClass(postReal.estagio);
+        const quando = postReal.data ? ' — ' + esc(postReal.data) : '';
+        if (cls === 'stage-done') {
+          statusHtml = `<span class="badge badge-on">✓ já agendada${quando} (${esc(postReal.estagio || '')})</span>`;
+        } else if (cls === 'stage-progress') {
+          statusHtml = `<span class="badge badge-mid">→ em andamento no Notion (${esc(postReal.estagio || '')})</span>`;
+        } else {
+          statusHtml = `<span class="badge badge-off">pendente de revisão no Notion (${esc(postReal.estagio || 'Idea')})</span>`;
+        }
+      }
+      return `
       <div class="dd-card${idx === 0 ? ' open' : ''}" id="dd-sug-${esc(s.id)}">
         <div class="dd-header" onclick="document.getElementById('dd-sug-${esc(s.id)}').classList.toggle('open')">
           <div>
@@ -804,9 +887,10 @@ function renderSugestoesConteudo() {
               <div class="lbl">Fontes pesquisadas — confira antes de publicar</div>
               <ul class="insight-list">${s.fontes.map(f => `<li><a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">${esc(f.titulo || f.url)}</a></li>`).join('')}</ul>
             </div>` : `<div class="meta" style="margin-top:10px;">Sem fontes externas — sugestão de storytelling/trajetória pessoal.</div>`}
-          <div class="meta" style="margin-top:10px;">${s.notion_criada ? '✓ rascunho já criado no Notion (Stage = Idea)' : '⚠ não foi possível criar o rascunho no Notion — adicione manualmente se quiser usar'}</div>
+          <div style="margin-top:10px;">${statusHtml}</div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
 
   return `
@@ -819,16 +903,7 @@ function renderCalendario() {
   const pane = document.getElementById('pane-calendario');
   const cal = DATA.calendario || [];
 
-  const seasonRows = CALENDARIO_SAZONAL.map(s => `<tr><td>${s.mes}</td><td>${s.tema}</td></tr>`).join('');
-
   let html = `
-    <div class="sec-hd"><h2>Calendário <em>Sazonal</em></h2><span class="sub">referência fixa de priorização</span></div>
-    <div class="tbl-wrap season-tbl-wrap">
-      <table class="data-tbl"><thead><tr><th>Período</th><th>Tema prioritário</th></tr></thead><tbody>${seasonRows}</tbody></table>
-    </div>
-
-    ${renderSugestoesConteudo()}
-
     <div class="sec-hd"><h2>Calendário <em>Real</em></h2><span class="sub">replicado do Notion — clique num post pra ver os detalhes</span></div>
     <div id="real-cal-tabs" class="real-cal-tabs"></div>
     <div id="real-cal-stats" class="real-cal-stats"></div>
@@ -839,6 +914,8 @@ function renderCalendario() {
     </div>
     <div class="real-cal-scroll"><div id="real-cal-grid" class="real-cal-grid"></div></div>
     <div id="real-cal-detail"></div>
+
+    ${renderSugestoesConteudo()}
 
     <div class="sec-hd"><h2>Calendário <em>Editorial</em></h2><span class="sub">${cal.length} análise(s) publicada(s)</span></div>
   `;

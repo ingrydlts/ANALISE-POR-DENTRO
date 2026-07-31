@@ -5,19 +5,19 @@
   "criado_em": "2026-06-19",
   "metas": {
     "seguidores": {
-      "baseline": 985,
-      "baseline_data": "2026-07-02",
+      "baseline": 1686,
+      "baseline_data": "2026-07-31",
       "meta": 10000,
-      "prazo_dias": 365,
+      "prazo_dias": 336,
       "meta_data": "2027-07-02",
-      "seguidores_necessarios": 9015,
+      "seguidores_necessarios": 8314,
       "ritmo_necessario_dia": 24.7,
-      "ritmo_necessario_semana": 172.9,
+      "ritmo_necessario_semana": 173.2,
       "ritmo_referencia_dia_junho": 10.5,
       "ritmo_referencia_semana_junho": 73.5,
-      "projecao_365d_no_ritmo_junho": 4818,
-      "gap_ritmo_pct": -57.5,
-      "nota": "Ritmo necessário assume crescimento linear constante até a meta_data. Ritmo de referência é a média diária de Junho/2026 (único ciclo com dados completos de Instagram) — serve de comparação, não é a meta em si. No ritmo de Junho, a projeção em 365 dias fica bem abaixo de 10.000 — por isso a cadência de publicação precisa aumentar, não só manter."
+      "projecao_365d_no_ritmo_junho": 3832,
+      "gap_ritmo_pct": -57.6,
+      "nota": "Ritmo necessário assume crescimento linear constante até a meta_data. Ritmo de referência é a média diária de Junho/2026 (único ciclo com dados completos de Instagram) — serve de comparação, não é a meta em si. No ritmo de Junho, a projeção em 365 dias fica bem abaixo de 10.000 — por isso a cadência de publicação precisa aumentar, não só manter. Baseline atualizado manualmente em 31/07/2026 (1.686 seguidores) — recalcule aqui a cada nova atualização real do contador do Instagram."
     },
     "engajamento": {
       "metodo": "media_movel_propria",
