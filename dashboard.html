@@ -63,12 +63,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);f
 .insight-list{list-style:none;margin-bottom:14px;}
 .insight-list li{font-size:13px;color:#5A4A3A;padding:8px 0;border-bottom:1px solid rgba(61,43,31,0.06);}
 .insight-list li:last-child{border-bottom:none;}
-.action-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(61,43,31,0.06);align-items:flex-start;}
-.action-row:last-child{border-bottom:none;}
-.action-num{font-family:'Playfair Display',serif;font-weight:700;color:var(--ocre);width:20px;flex-shrink:0;}
 .pill{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;padding:2px 8px;border-radius:10px;letter-spacing:1px;text-transform:uppercase;margin-right:8px;}
 .pill-yt{background:var(--yt-red);color:#fff;}
 .pill-ig{background:var(--ig-pink);color:#fff;}
+
+/* INSIGHT/AÇÃO PILLS — cada insight ou ação vira uma cápsula independente
+   em vez de linha de lista corrida; mais fácil de escanear e reter. */
+.pill-group-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--cinza);margin:16px 0 8px;font-weight:600;}
+.pill-group-label:first-child{margin-top:0;}
+.pill-wrap{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+.insight-pill{display:flex;align-items:flex-start;gap:8px;background:var(--off-white);border-radius:18px;padding:11px 16px;font-size:12.5px;line-height:1.5;color:#5A4A3A;max-width:360px;box-shadow:0 1px 3px rgba(61,43,31,0.05);border-left:3px solid var(--cinza);}
+.insight-pill.ig{border-left-color:var(--ig-pink);background:rgba(225,48,108,0.05);}
+.insight-pill.yt{border-left-color:var(--yt-red);background:rgba(255,0,0,0.04);}
+.insight-pill.geral{border-left-color:var(--oliva);background:rgba(122,125,90,0.06);}
+.insight-pill .pn{font-family:'Playfair Display',serif;font-weight:700;color:var(--ocre);flex-shrink:0;}
+@media(max-width:700px){.insight-pill{max-width:100%;}}
 /* Callout: substitui o antigo bloco sólido marrom-escuro por um card claro com
    borda colorida — mesmo destaque, leitura mais leve. Usado em decisão editorial,
    recomendação de concorrência e princípio editorial. */
@@ -519,6 +528,32 @@ function renderSemanal() {
 
 /* ══════════════════════ PERFORMANCE (CICLOS) ══════════════════════ */
 let chartViews, chartAlcance;
+
+// insights/ações vêm como string (formato antigo) ou {texto, plataforma} —
+// normaliza pra sempre poder agrupar por canal.
+function normItem(x) {
+  if (typeof x === 'string') return { texto: x, plataforma: 'geral' };
+  return { texto: x.texto || '', plataforma: x.plataforma || 'geral' };
+}
+function porPlataforma(arr, plataforma) {
+  return (arr || []).map(normItem).filter(x => x.plataforma === plataforma);
+}
+function pillsInsights(items, cls) {
+  if (!items.length) return '';
+  return `<div class="pill-wrap">${items.map(x => `<div class="insight-pill ${cls}">${esc(x.texto)}</div>`).join('')}</div>`;
+}
+function pillsAcoes(items, cls) {
+  if (!items.length) return '';
+  return `<div class="pill-wrap">${items.map((x,i) => `<div class="insight-pill ${cls}"><span class="pn">${i+1}</span>${esc(x.texto)}</div>`).join('')}</div>`;
+}
+function blocoInsightsAcoes(insights, acoes, cls) {
+  if (!insights.length && !acoes.length) return '';
+  return `
+    ${insights.length ? `<div class="pill-group-label">Insights do ciclo</div>${pillsInsights(insights, cls)}` : ''}
+    ${acoes.length ? `<div class="pill-group-label">Ações para o próximo ciclo</div>${pillsAcoes(acoes, cls)}` : ''}
+  `;
+}
+
 function renderPerformance() {
   const ciclos = DATA.ciclos || [];
   const pane = document.getElementById('pane-performance');
@@ -550,6 +585,13 @@ function renderPerformance() {
     const yt = c.youtube || {};
     const ig = c.instagram || {};
 
+    const insightsIG = porPlataforma(c.insights, 'instagram');
+    const insightsYT = porPlataforma(c.insights, 'youtube');
+    const insightsGeral = porPlataforma(c.insights, 'geral');
+    const acoesIG = porPlataforma(c.acoes_proximo_ciclo, 'instagram');
+    const acoesYT = porPlataforma(c.acoes_proximo_ciclo, 'youtube');
+    const acoesGeral = porPlataforma(c.acoes_proximo_ciclo, 'geral');
+
     contentDiv.innerHTML = `
       <div class="platform-hd ig"><span class="ico">◎</span> Instagram</div>
       <div class="kpi-grid">
@@ -560,6 +602,7 @@ function renderPerformance() {
       </div>
       <div class="chart-card" style="margin-bottom:20px;"><h3>Alcance Instagram — histórico</h3><canvas id="chart-alcance" height="160"></canvas></div>
       ${ig.top_post_descricao ? `<div class="insight-card"><div class="meta">Destaque Instagram</div><div style="font-size:13px;color:#5A4A3A;">${esc(ig.top_post_descricao)}</div>${ig.top_post_metrica ? `<div style="font-size:12px;color:var(--oliva);margin-top:8px;">${esc(ig.top_post_metrica)}</div>` : ''}</div>` : ''}
+      ${blocoInsightsAcoes(insightsIG, acoesIG, 'ig')}
 
       <div class="platform-hd yt"><span class="ico">▶</span> YouTube</div>
       <div class="kpi-grid">
@@ -573,24 +616,12 @@ function renderPerformance() {
         <div class="kpi"><div class="kl">Top vídeo</div><div class="kv" style="font-size:13px;line-height:1.3;">${esc(yt.top_video_titulo) || '—'}</div><div class="kn">${fmtNum(yt.top_video_views)} views</div></div>
         <div class="kpi"><div class="kl">Fonte principal</div><div class="kv" style="font-size:16px;">${esc(yt.principal_fonte_trafego) || '—'}</div><div class="kn">${yt.principal_fonte_pct != null ? yt.principal_fonte_pct+'%' : ''}</div></div>
       </div>
+      ${blocoInsightsAcoes(insightsYT, acoesYT, 'yt')}
 
-      <div class="sec-hd"><h2>Insights do <em>ciclo</em></h2></div>
-      <div class="insight-card">
-        <div class="meta">${esc(c.periodo)}</div>
-        <ul class="insight-list">
-          ${(c.insights || []).map(i => `<li>${esc(i)}</li>`).join('') || '<li>Nenhum insight registrado.</li>'}
-        </ul>
-      </div>
-
-      <div class="sec-hd"><h2>Ações para o <em>próximo ciclo</em></h2></div>
-      <div class="insight-card">
-        ${(c.acoes_proximo_ciclo || []).map((a,i) => `
-          <div class="action-row">
-            <div class="action-num">${i+1}</div>
-            <div style="font-size:13px;color:#5A4A3A;">${esc(a)}</div>
-          </div>
-        `).join('') || '<div class="empty">Nenhuma ação registrada.</div>'}
-      </div>
+      ${(insightsGeral.length || acoesGeral.length) ? `
+      <div class="sec-hd"><h2>Insights & <em>Ações</em> Gerais</h2><span class="sub">não específicos de um canal</span></div>
+      ${blocoInsightsAcoes(insightsGeral, acoesGeral, 'geral')}
+      ` : ''}
 
       ${c.decisao_editorial ? `
       <div class="decisao">
