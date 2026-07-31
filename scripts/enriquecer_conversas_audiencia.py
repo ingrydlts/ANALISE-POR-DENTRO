@@ -357,7 +357,7 @@ def montar_properties_audiencia(analise: dict, page: dict):
         "Name": {"title": [{"text": {"content": (analise.get("nome_curto") or "Conversa de audiência")[:200]}}]},
         "Texte": _rt(analise.get("texte", "")),
         "Dor/Necessidade Identificada": _rt(analise.get("dor_necessidade", "")),
-        "Insight de Audiência": _rt(analise.get("insight_audiencia", "")),
+        "Insight": _rt(analise.get("insight_audiencia", "")),
         "Ideia de Conteúdo Gerada": _rt(analise.get("ideia_conteudo", "")),
         "Palavras-chave": _rt(analise.get("palavras_chave", "")),
         "STATUS": {"select": {"name": "Analisado"}},
