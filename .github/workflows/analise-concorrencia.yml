@@ -50,6 +50,20 @@ jobs:
         if: steps.guard.outputs.run == 'true'
         run: pip install -r scripts/requirements.txt
 
+      - name: Enriquecer prints de concorrência (lê os prints, por entrada)
+        # enriquecer_conversas_audiencia.py é quem transcreve os screenshots
+        # (CATEGORIA=AUDIÊNCIA ou CONCORRÊNCIA, STATUS=NOVO) e vira STATUS=Analisado
+        # — sem este passo, entradas de concorrência ficam paradas em NOVO pra
+        # sempre, porque analyze_concorrencia.py só lê STATUS=Analisado. Esse
+        # gap existia desde a simplificação de 31/07/2026 (mesmo padrão de
+        # analise-audiencia.yml, que já roda este passo antes da análise).
+        if: steps.guard.outputs.run == 'true'
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_DB_IG: ${{ secrets.NOTION_DB_IG }}
+        run: python scripts/enriquecer_conversas_audiencia.py
+
       - name: Executar análise de concorrência
         if: steps.guard.outputs.run == 'true'
         run: python scripts/analyze_concorrencia.py
