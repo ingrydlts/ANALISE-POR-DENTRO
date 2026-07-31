@@ -724,38 +724,41 @@ function renderConcorrencia() {
     c.nome, corVar, c.descricao || '', [c.fazer], [c.nao_fazer || c.nota]
   )).join('');
 
-  let html = `
+  // Benchmark mensal: em vez de um textão solto no fim da aba, cada rodada
+  // aparece DENTRO da seção da plataforma que ela realmente cobriu naquele
+  // mês (canais_analisados.instagram / .youtube > 0 é quem decide onde
+  // entra) — coerente com "cada canal na sua seção". Uma rodada pode
+  // aparecer nas duas seções se cobriu as duas plataformas no mesmo mês.
+  const benchmarkCard = (c) => `
+    <div class="bench-card">
+      <div class="meta">Benchmark · ${esc(c.periodo || c.id)}</div>
+      ${bloco('✓ O que está funcionando no nicho', c.o_que_funciona)}
+      ${bloco('Insights por concorrente', c.insights_por_concorrente)}
+      ${bloco('⟳ Sinais de algoritmo do período', c.sinais_algoritmo)}
+      ${bloco('→ Lacunas que o Por Dentro pode ocupar', c.lacunas_oportunidades)}
+      ${bloco('Sugestões de conteúdo', c.sugestoes_conteudo)}
+      ${bloco('✕ O que não fazer', c.o_que_nao_fazer)}
+      ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">★ Recomendação editorial do mês</div><div class="txt">${esc(c.recomendacao_editorial)}</div></div>` : ''}
+    </div>`;
+
+  const rodadas = [...concorrencia].reverse();
+  const benchIG = rodadas.filter(c => ((c.canais_analisados || {}).instagram || 0) > 0).map(benchmarkCard).join('');
+  const benchYT = rodadas.filter(c => ((c.canais_analisados || {}).youtube || 0) > 0).map(benchmarkCard).join('');
+
+  const html = `
     <div class="sec-hd"><h2>Concorrência <em>monitorada</em></h2><span class="sub">por canal</span></div>
 
     <div class="platform-hd ig"><span class="ico">◎</span> Instagram</div>
     ${instagramCards || '<div class="empty-tab">Nenhum print de concorrente analisado ainda no Instagram.<br>Cole prints em "Inputs Benchmark Instagram" (CATEGORIA=CONCORRÊNCIA) no Notion.</div>'}
+    ${benchIG ? `<div class="chip-group-label">Benchmark mensal — Instagram</div>${benchIG}` : ''}
 
     <div class="platform-hd yt"><span class="ico">▶</span> YouTube</div>
     ${(canais.categoria_a_diretos || []).length ? `<div class="chip-group-label">Categoria A — Diretos (mesmo nicho, mesmo público)</div>${ytCards(canais.categoria_a_diretos, 'var(--vinho)')}` : ''}
     ${(canais.categoria_b_formato || []).length ? `<div class="chip-group-label">Categoria B — Formato (mesma lógica editorial)</div>${ytCards(canais.categoria_b_formato, 'var(--ocre)')}` : ''}
     ${(canais.categoria_c_qualidade || []).length ? `<div class="chip-group-label">Categoria C — Qualidade (mesmo nível de produção)</div>${ytCards(canais.categoria_c_qualidade, 'var(--azul)')}` : ''}
     ${!(canais.categoria_a_diretos||[]).length && !(canais.categoria_b_formato||[]).length && !(canais.categoria_c_qualidade||[]).length ? '<div class="empty-tab">Nenhum canal do YouTube cadastrado ainda em canais.json.</div>' : ''}
-
-    <div class="sec-hd"><h2>Benchmark <em>mensal</em></h2><span class="sub">${concorrencia.length} rodada(s)</span></div>
+    ${benchYT ? `<div class="chip-group-label">Benchmark mensal — YouTube</div>${benchYT}` : ''}
   `;
-
-  if (!concorrencia.length) {
-    html += `<div class="empty-tab">Nenhum benchmark de concorrência publicado ainda.<br>Roda automaticamente na primeira segunda-feira do mês via <code>scripts/analyze_concorrencia.py</code>, ou publique manualmente pelo painel-atualizacao.html.</div>`;
-  } else {
-    [...concorrencia].reverse().forEach(c => {
-      html += `
-        <div class="bench-card">
-          <div class="meta">${esc(c.periodo || c.id)} · ${fmtNum((c.canais_analisados||{}).youtube)} canais YT · ${fmtNum((c.canais_analisados||{}).instagram)} observações IG</div>
-          ${bloco('✓ O que está funcionando no nicho', c.o_que_funciona)}
-          ${bloco('Insights por concorrente', c.insights_por_concorrente)}
-          ${bloco('⟳ Sinais de algoritmo do período', c.sinais_algoritmo)}
-          ${bloco('→ Lacunas que o Por Dentro pode ocupar', c.lacunas_oportunidades)}
-          ${bloco('Sugestões de conteúdo', c.sugestoes_conteudo)}
-          ${bloco('✕ O que não fazer', c.o_que_nao_fazer)}
-          ${c.recomendacao_editorial ? `<div class="bench-reco"><div class="lbl">★ Recomendação editorial do mês</div><div class="txt">${esc(c.recomendacao_editorial)}</div></div>` : ''}
-        </div>`;
-    });
-  }
 
   pane.innerHTML = html;
 }
