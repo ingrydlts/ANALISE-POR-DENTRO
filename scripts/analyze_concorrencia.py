@@ -9,7 +9,9 @@ CONCORRÊNCIA, e a cadência de semanal pra mensal):
 1. Busca prints de concorrentes já transcritos pela Claude, em "Inputs
    Benchmark Instagram" (CATEGORIA=CONCORRÊNCIA + STATUS=Analisado — já
    enriquecidos por enriquecer_conversas_audiencia.py)
-2. Envia tudo para Claude, que gera o BENCHMARK do mês em seções fixas (##)
+2. Envia tudo para Claude, que gera o BENCHMARK do mês em seções fixas (##) —
+   incluindo insights por concorrente (não só agregado do nicho) e sugestões
+   concretas de conteúdo pro Por Dentro derivadas das lacunas identificadas
 3. Salva/atualiza UMA LINHA na base "🎯 Benchmarks de Concorrência (Mensal)"
    (chave "ID Mês" — reprocessar o mesmo mês atualiza a linha em vez de duplicar)
 4. Salva o mesmo benchmark em insights.json — bloco estruturado em "concorrencia",
@@ -195,11 +197,13 @@ def formatar_entradas(entradas: list) -> str:
 # correspondente na base "🎯 Benchmarks de Concorrência (Mensal)" e para a chave
 # correspondente no bloco salvo em insights.json.
 SECOES = [
-    ("O QUE ESTÁ FUNCIONANDO NO NICHO",      "O Que Está Funcionando",  "o_que_funciona"),
-    ("SINAIS DE ALGORITMO DO PERÍODO",       "Sinais de Algoritmo",     "sinais_algoritmo"),
-    ("LACUNAS QUE O POR DENTRO PODE OCUPAR", "Lacunas",                 "lacunas_oportunidades"),
-    ("O QUE NÃO FAZER",                      "O Que Não Fazer",         "o_que_nao_fazer"),
-    ("RECOMENDAÇÃO EDITORIAL DO MÊS",        "Recomendação Editorial",  "recomendacao_editorial"),
+    ("O QUE ESTÁ FUNCIONANDO NO NICHO",      "O Que Está Funcionando",     "o_que_funciona"),
+    ("INSIGHTS POR CONCORRENTE",             "Insights por Concorrente",   "insights_por_concorrente"),
+    ("SINAIS DE ALGORITMO DO PERÍODO",       "Sinais de Algoritmo",        "sinais_algoritmo"),
+    ("LACUNAS QUE O POR DENTRO PODE OCUPAR", "Lacunas",                    "lacunas_oportunidades"),
+    ("SUGESTÕES DE CONTEÚDO",                "Sugestões de Conteúdo",      "sugestoes_conteudo"),
+    ("O QUE NÃO FAZER",                      "O Que Não Fazer",            "o_que_nao_fazer"),
+    ("RECOMENDAÇÃO EDITORIAL DO MÊS",        "Recomendação Editorial",     "recomendacao_editorial"),
 ]
 
 # Teto de segurança no texto agregado enviado à Claude — mesmo padrão de
@@ -229,11 +233,17 @@ Gere o output na estrutura abaixo, usando EXATAMENTE esses títulos de seção (
 ## O QUE ESTÁ FUNCIONANDO NO NICHO
 3 tendências com exemplos concretos dos dados acima.
 
+## INSIGHTS POR CONCORRENTE
+Para cada concorrente citado nos dados (pelo nome/perfil), 1-2 frases sobre o que ele especificamente faz bem ou diferente — não repita o "O que está funcionando" geral, seja específico por perfil. Se só houver dados de um concorrente, foque nele.
+
 ## SINAIS DE ALGORITMO DO PERÍODO
 Padrões de títulos, thumbnails, frequência e formato que aparecem nos dados.
 
 ## LACUNAS QUE O POR DENTRO PODE OCUPAR
 3 oportunidades específicas que nenhum concorrente está cobrindo bem agora.
+
+## SUGESTÕES DE CONTEÚDO
+3 ideias concretas de conteúdo pro Por Dentro, cada uma decorrente de uma lacuna ou insight acima. Para cada uma, no formato "[PLATAFORMA/formato] Título ou ângulo — por que isso faz sentido agora".
 
 ## O QUE NÃO FAZER
 Temas saturados ou formatos que não fazem sentido para o posicionamento do Por Dentro.
@@ -244,7 +254,7 @@ Uma decisão clara e acionável para o próximo calendário editorial."""
     try:
         resp = claude.messages.create(
             model="claude-haiku-4-5-20251001",
-            max_tokens=2000,
+            max_tokens=3000,
             messages=[{"role": "user", "content": prompt}]
         )
     except anthropic.APIStatusError as e:
