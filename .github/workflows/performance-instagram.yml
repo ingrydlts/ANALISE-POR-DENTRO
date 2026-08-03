@@ -11,6 +11,17 @@ on:
       - 'dados/instagram/**'
   workflow_dispatch: {}
 
+# Upload em lote (vários CSVs de uma vez pelo painel) dispara uma run por
+# arquivo, quase simultâneas — sem isso, todas competem pelo mesmo push em
+# insights.json e só a primeira consegue commitar (confirmado em produção,
+# 2026-08-03: 6 runs em 7s, 5 falharam no passo de commit mesmo com retry).
+# Com o lock, cada run espera a anterior terminar em vez de correr em
+# paralelo — cancel-in-progress:false porque cada uma processa um CSV
+# diferente, cancelar perderia dado.
+concurrency:
+  group: performance-instagram-main
+  cancel-in-progress: false
+
 jobs:
   performance-e-cascata:
     runs-on: ubuntu-latest

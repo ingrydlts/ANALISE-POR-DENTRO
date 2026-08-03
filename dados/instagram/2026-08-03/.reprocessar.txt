@@ -1,0 +1,3 @@
+Marcador pra reprocessar os CSVs desta pasta depois do fix do concurrency lock —
+as runs #3-7 de 03/08/2026 falharam no commit por corrida entre uploads simultâneos.
+Este arquivo só existe pra disparar o workflow de novo; não é lido pelo script (só *.csv).
