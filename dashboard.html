@@ -38,6 +38,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bege);color:var(--text);f
 .cycle-picker{display:flex;align-items:center;gap:10px;margin-bottom:28px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--cinza);}
 .cycle-picker select{font-family:'DM Sans',sans-serif;font-size:13px;padding:6px 10px;border-radius:6px;border:1px solid rgba(61,43,31,0.2);background:var(--off-white);color:var(--marrom);}
 
+/* PERIOD FILTER — barra de botões (Este mês/Mês passado/3m/6m/Ano) reutilizada
+   nas abas Metas, Semanal e Performance para recortar KPIs e gráficos. */
+.period-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;}
+.period-btn{font-family:'DM Sans',sans-serif;font-size:11.5px;letter-spacing:0.3px;padding:7px 14px;border-radius:20px;border:1px solid rgba(61,43,31,0.15);background:var(--off-white);color:var(--oliva);cursor:pointer;transition:all .15s;}
+.period-btn:hover{border-color:var(--ocre);color:var(--marrom);}
+.period-btn.on{background:var(--marrom);border-color:var(--marrom);color:var(--ocre);}
+
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(61,43,31,0.12);border-radius:8px;overflow:hidden;margin-bottom:28px;}
 .kpi{background:var(--off-white);padding:20px 22px;}
 .kv{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--marrom);line-height:1;margin-bottom:4px;}
@@ -333,6 +340,56 @@ function deltaClass(n) {
 }
 function esc(s) { return (s === null || s === undefined) ? '' : String(s); }
 
+/* ══════════════════════ FILTRO DE PERÍODO (compartilhado) ══════════════════════
+   Usado nas abas Metas, Semanal e Performance. Cada aba guarda seu próprio
+   período selecionado (podem divergir entre si) e re-renderiza ao clicar. */
+const PERIOD_OPTIONS = [
+  { id: 'mes_atual',   label: 'Este mês' },
+  { id: 'mes_passado', label: 'Mês passado' },
+  { id: '3m',          label: '3 meses' },
+  { id: '6m',          label: '6 meses' },
+  { id: 'ano',         label: 'Ano todo' },
+];
+function ymd(d) { return d.toISOString().slice(0, 10); }
+// {inicio, fim} em 'YYYY-MM-DD' (inclusive nos dois lados); fim=null = sem limite superior (até hoje).
+function periodoRange(id) {
+  const hoje = new Date();
+  const anoAtual = hoje.getFullYear(), mesAtual = hoje.getMonth();
+  switch (id) {
+    case 'mes_atual':
+      return { inicio: ymd(new Date(anoAtual, mesAtual, 1)), fim: null };
+    case 'mes_passado': {
+      const inicio = new Date(anoAtual, mesAtual - 1, 1);
+      const fim = new Date(anoAtual, mesAtual, 0);
+      return { inicio: ymd(inicio), fim: ymd(fim) };
+    }
+    case '3m':
+      return { inicio: ymd(new Date(anoAtual, mesAtual - 2, 1)), fim: null };
+    case '6m':
+      return { inicio: ymd(new Date(anoAtual, mesAtual - 5, 1)), fim: null };
+    case 'ano':
+      return { inicio: ymd(new Date(anoAtual, 0, 1)), fim: null };
+    default:
+      return { inicio: null, fim: null };
+  }
+}
+function dentroDoPeriodo(dataStr, range) {
+  if (!dataStr) return false;
+  if (range.inicio && dataStr < range.inicio) return false;
+  if (range.fim && dataStr > range.fim) return false;
+  return true;
+}
+// Renderiza a barra de botões dentro de `container` (elemento já no DOM) e liga
+// o clique a `onChange(id)`. `estado` é o id atualmente selecionado.
+function renderPeriodFilter(container, estado, onChange) {
+  container.innerHTML = PERIOD_OPTIONS.map(o =>
+    `<button class="period-btn${o.id === estado ? ' on' : ''}" data-id="${o.id}">${o.label}</button>`
+  ).join('');
+  container.querySelectorAll('.period-btn').forEach(btn => {
+    btn.addEventListener('click', () => onChange(btn.dataset.id));
+  });
+}
+
 /* ══════════════════════ MODAL genérico ══════════════════════ */
 function abrirModal(innerHtml) {
   document.getElementById('modal-box').innerHTML = `<button class="modal-close" onclick="fecharModal()" aria-label="Fechar">✕</button>${innerHtml}`;
@@ -413,18 +470,39 @@ function go(i) {
 }
 
 /* ══════════════════════ METAS ══════════════════════ */
-// baseline/seguidores_necessarios só mudam quando alguém publica um novo número real
-// (não há API de contagem de seguidores) — mas os ganhos diários do instagram_diario
-// já são reais e automáticos, então usamos eles pra estimar o "atual" entre uma
-// atualização manual de baseline e outra, em vez de mostrar sempre o baseline parado.
-function seguidoresAtuaisEstimado(s) {
-  if (s.baseline == null) return null;
-  const desde = s.baseline_data || '';
-  const ganhos = (DATA.instagram_diario || [])
-    .filter(d => d.data > desde)
-    .reduce((sum, d) => sum + (d.seguidores_ganhos || 0), 0);
-  return s.baseline + ganhos;
+// "atual" = o valor REAL mais recente que você publicou (nunca uma soma
+// estimada) + os ganhos diários registrados depois dessa data. Duas fontes
+// de número real existem: metas.seguidores.baseline (em baseline_data) e o
+// "Seguidores total" de cada ciclo publicado (ciclo.instagram.seguidores_total,
+// vem do CSV do Instagram ou digitado no painel — data = fim do mês do ciclo).
+// Usa sempre a mais recente das duas, nunca soma as duas entre si.
+function seguidoresRealMaisRecente(s) {
+  let valor = null, data = null;
+  if (s.baseline != null && s.baseline_data) {
+    valor = s.baseline;
+    data = s.baseline_data;
+  }
+  (DATA.ciclos || []).forEach(c => {
+    const total = (c.instagram || {}).seguidores_total;
+    if (total == null || !c.id) return;
+    const [ano, mes] = c.id.split('-').map(Number);
+    if (!ano || !mes) return;
+    const dataRef = ymd(new Date(ano, mes, 0)); // último dia do mês do ciclo
+    if (!data || dataRef > data) { valor = total; data = dataRef; }
+  });
+  return { valor, data };
 }
+function seguidoresAtuaisEstimado(s) {
+  const { valor, data } = seguidoresRealMaisRecente(s);
+  if (valor == null) return null;
+  const ganhosDepois = (DATA.instagram_diario || [])
+    .filter(d => d.data > data)
+    .reduce((sum, d) => sum + (d.seguidores_ganhos || 0), 0);
+  return valor + ganhosDepois;
+}
+
+let periodoMetas = '3m';
+let chartMetasProgresso;
 
 function renderMetas() {
   const m = DATA.metas || {};
@@ -435,9 +513,8 @@ function renderMetas() {
   const hoje = new Date();
   const baseline = s.baseline_data ? new Date(s.baseline_data) : null;
   const metaData = s.meta_data ? new Date(s.meta_data) : null;
-  let diasPassados = null, diasRestantes = null, ritmoRecalc = null;
+  let diasRestantes = null, ritmoRecalc = null;
   if (baseline && metaData) {
-    diasPassados = Math.max(0, Math.round((hoje - baseline) / 86400000));
     diasRestantes = Math.max(1, Math.round((metaData - hoje) / 86400000));
     ritmoRecalc = s.seguidores_necessarios != null ? (s.seguidores_necessarios / diasRestantes) : null;
   }
@@ -445,11 +522,15 @@ function renderMetas() {
   const pctProgresso = (atual != null && s.meta != null && s.baseline != null && s.meta !== s.baseline)
     ? Math.min(100, Math.max(0, (atual - s.baseline) / (s.meta - s.baseline) * 100)) : 0;
   const faltam = (s.meta != null && atual != null) ? Math.max(0, s.meta - atual) : s.seguidores_necessarios;
+  const fonte = seguidoresRealMaisRecente(s);
+  const ganhosDepoisDaFonte = fonte.data
+    ? (DATA.instagram_diario || []).filter(d => d.data > fonte.data).reduce((sum, d) => sum + (d.seguidores_ganhos || 0), 0)
+    : 0;
 
   pane.innerHTML = `
     <div class="sec-hd"><h2>Meta de <em>Seguidores</em></h2></div>
     <div class="progress-wrap">
-      <div class="progress-labels"><span>${fmtNum(atual)} atual <span style="color:var(--cinza);">(baseline ${fmtNum(s.baseline)} em ${esc(s.baseline_data)})</span></span><span>${fmtNum(s.meta)} (prazo ${esc(s.meta_data)})</span></div>
+      <div class="progress-labels"><span>${fmtNum(atual)} atual <span style="color:var(--cinza);">(último valor real: ${fmtNum(fonte.valor)} em ${esc(fonte.data)}${ganhosDepoisDaFonte ? ' + ' + fmtNum(ganhosDepoisDaFonte) + ' ganhos depois' : ''})</span></span><span>${fmtNum(s.meta)} (prazo ${esc(s.meta_data)})</span></div>
       <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${pctProgresso}%"></div></div>
       <div class="progress-foot"><span>Faltam ${fmtNum(faltam)} seguidores</span><span>${diasRestantes!=null ? diasRestantes+' dias restantes' : ''}</span></div>
     </div>
@@ -461,6 +542,10 @@ function renderMetas() {
     </div>
     ${s.nota ? `<div class="nota-box">${esc(s.nota)}</div>` : ''}
 
+    <div class="sec-hd"><h2>Ritmo real por <em>Período</em></h2><span class="sub">compara com o ritmo necessário acima</span></div>
+    <div id="metas-period-filter" class="period-filter"></div>
+    <div id="metas-period-content"></div>
+
     <div class="sec-hd"><h2>Piso de <em>Engajamento</em></h2></div>
     <div class="kpi-grid">
       <div class="kpi"><div class="kl">Média atual</div><div class="kv">${fmtPct(e.media_atual_pct, 2)}</div><div class="kn">método: ${esc(e.metodo)}</div></div>
@@ -470,6 +555,54 @@ function renderMetas() {
     </div>
     ${e.nota ? `<div class="nota-box">${esc(e.nota)}</div>` : ''}
   `;
+
+  renderPeriodFilter(document.getElementById('metas-period-filter'), periodoMetas, (id) => {
+    periodoMetas = id;
+    renderMetasPeriodo(s);
+  });
+  renderMetasPeriodo(s);
+}
+
+function renderMetasPeriodo(s) {
+  document.querySelectorAll('#metas-period-filter .period-btn').forEach(b => b.classList.toggle('on', b.dataset.id === periodoMetas));
+  const range = periodoRange(periodoMetas);
+  const diario = (DATA.instagram_diario || [])
+    .filter(d => dentroDoPeriodo(d.data, range))
+    .sort((a, b) => a.data.localeCompare(b.data));
+  const content = document.getElementById('metas-period-content');
+
+  if (chartMetasProgresso) { chartMetasProgresso.destroy(); chartMetasProgresso = null; }
+
+  if (!diario.length) {
+    content.innerHTML = `<div class="empty-tab">Nenhum dado de Instagram nesse período.</div>`;
+    return;
+  }
+
+  const ganhosPeriodo = diario.reduce((sum, d) => sum + (d.seguidores_ganhos || 0), 0);
+  const dias = diario.length;
+  const ritmoReal = ganhosPeriodo / dias;
+  const ritmoNecessario = s.ritmo_necessario_dia;
+  const gapPct = ritmoNecessario ? ((ritmoReal - ritmoNecessario) / ritmoNecessario * 100) : null;
+
+  content.innerHTML = `
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kl">Seguidores ganhos</div><div class="kv">+${fmtNum(ganhosPeriodo)}</div><div class="kn">${dias} dia(s) com dado no período</div></div>
+      <div class="kpi"><div class="kl">Ritmo real / dia</div><div class="kv">${ritmoReal.toFixed(1)}</div><div class="kn">média no período</div></div>
+      <div class="kpi"><div class="kl">Ritmo necessário / dia</div><div class="kv">${ritmoNecessario ?? '—'}</div><div class="kn">pra bater a meta no prazo</div></div>
+      <div class="kpi"><div class="kl">Ritmo real vs. necessário</div><div class="kv ${deltaClass(gapPct)}">${gapPct != null ? fmtDelta(gapPct, 1) : '—'}</div><div class="kn">${gapPct == null ? '—' : (gapPct >= 0 ? 'no ritmo ou acima' : 'abaixo do ritmo')}</div></div>
+    </div>
+    <div class="chart-card"><h3>Seguidores acumulados no período</h3><canvas id="chart-metas-progresso" height="160"></canvas></div>
+  `;
+
+  let acumulado = 0;
+  const labels = diario.map(d => d.data.slice(5));
+  const dataAcum = diario.map(d => { acumulado += (d.seguidores_ganhos || 0); return acumulado; });
+
+  chartMetasProgresso = new Chart(document.getElementById('chart-metas-progresso'), {
+    type: 'line',
+    data: { labels, datasets: [{ label: 'Seguidores ganhos (acumulado)', data: dataAcum, borderColor: '#3D2B1F', backgroundColor: 'rgba(61,43,31,0.1)', fill: true, tension: 0.25, pointRadius: 0 }] },
+    options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true }, x: { ticks: { maxTicksLimit: 10 } } } }
+  });
 }
 
 /* ══════════════════════ SEMANAL ══════════════════════ */
@@ -493,33 +626,64 @@ function semanaWeekLabel(s) {
   return s.periodo || s.id || '—';
 }
 
+// Data de início (YYYY-MM-DD) de uma semana registrada, pra poder filtrar por período —
+// reaproveita o mesmo parsing de "1–7 Mai 2026" + mes_ref que semanaWeekLabel já usa.
+function semanaInicioISO(s) {
+  const m = /^(\d+)/.exec(s.periodo || '');
+  if (m && s.mes_ref) {
+    const iso = `${s.mes_ref}-${m[1].padStart(2, '0')}`;
+    if (!isNaN(new Date(iso + 'T00:00:00'))) return iso;
+  }
+  return null;
+}
+
+let periodoSemanal = '3m';
+let chartDiarioAlcance, chartDiarioInteracoes, chartSemanalAlcance, chartSemanalSeg;
+
 function renderSemanal() {
-  const semanas = DATA.semanas || [];
-  const diario = DATA.instagram_diario || [];
   const pane = document.getElementById('pane-semanal');
-  if (!semanas.length && !diario.length) {
+  if (!(DATA.semanas || []).length && !(DATA.instagram_diario || []).length) {
     pane.innerHTML = `<div class="empty-tab">Nenhum check-in semanal registrado ainda.<br>Use <code>python3 scripts/atualizar_semana.py</code> ou o painel-atualizacao.html.</div>`;
     return;
   }
+  pane.innerHTML = `
+    <div id="semanal-period-filter" class="period-filter"></div>
+    <div id="semanal-period-content"></div>
+  `;
+  renderPeriodFilter(document.getElementById('semanal-period-filter'), periodoSemanal, (id) => {
+    periodoSemanal = id;
+    renderSemanalPeriodo();
+  });
+  renderSemanalPeriodo();
+}
 
-  let htmlDiario = '';
-  if (diario.length) {
-    const soma = campo => diario.reduce((s, d) => s + (d[campo] || 0), 0);
-    const media = campo => Math.round(soma(campo) / diario.length);
-    htmlDiario = `
-      <div class="sec-hd"><h2>Instagram <em>Diário</em></h2><span class="sub">${diario.length} dia(s) · ${esc(diario[0].data)} a ${esc(diario[diario.length-1].data)} · sobe pelo painel-atualizacao.html</span></div>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="kl">Alcance médio/dia</div><div class="kv">${fmtNum(media('alcance'))}</div><div class="kn">${fmtNum(soma('alcance'))} no período</div></div>
-        <div class="kpi"><div class="kl">Interações totais</div><div class="kv">${fmtNum(soma('interacoes'))}</div><div class="kn">${fmtNum(media('interacoes'))}/dia em média</div></div>
-        <div class="kpi"><div class="kl">Seguidores ganhos</div><div class="kv">+${fmtNum(soma('seguidores_ganhos'))}</div><div class="kn">no período</div></div>
-        <div class="kpi"><div class="kl">Cliques em link</div><div class="kv">${fmtNum(soma('cliques_link'))}</div><div class="kn">${fmtNum(soma('visitas_perfil'))} visitas ao perfil</div></div>
-      </div>
-      <div class="charts-grid">
-        <div class="chart-card"><h3>Alcance diário</h3><canvas id="chart-diario-alcance" height="180"></canvas></div>
-        <div class="chart-card"><h3>Interações diárias</h3><canvas id="chart-diario-interacoes" height="180"></canvas></div>
-      </div>
-    `;
-  }
+function renderSemanalPeriodo() {
+  document.querySelectorAll('#semanal-period-filter .period-btn').forEach(b => b.classList.toggle('on', b.dataset.id === periodoSemanal));
+  const range = periodoRange(periodoSemanal);
+  const content = document.getElementById('semanal-period-content');
+
+  const diario = (DATA.instagram_diario || [])
+    .filter(d => dentroDoPeriodo(d.data, range))
+    .sort((a, b) => a.data.localeCompare(b.data));
+  const semanas = (DATA.semanas || []).filter(s => dentroDoPeriodo(semanaInicioISO(s), range));
+
+  [chartDiarioAlcance, chartDiarioInteracoes, chartSemanalAlcance, chartSemanalSeg].forEach(c => c && c.destroy());
+  chartDiarioAlcance = chartDiarioInteracoes = chartSemanalAlcance = chartSemanalSeg = null;
+
+  const somaDiario = campo => diario.reduce((s, d) => s + (d[campo] || 0), 0);
+  const htmlDiario = diario.length ? `
+    <div class="sec-hd"><h2>Instagram <em>Diário</em></h2><span class="sub">${diario.length} dia(s) · ${esc(diario[0].data)} a ${esc(diario[diario.length - 1].data)} · sobe pelo painel-atualizacao.html</span></div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kl">Alcance médio/dia</div><div class="kv">${fmtNum(Math.round(somaDiario('alcance') / diario.length))}</div><div class="kn">${fmtNum(somaDiario('alcance'))} no período</div></div>
+      <div class="kpi"><div class="kl">Interações totais</div><div class="kv">${fmtNum(somaDiario('interacoes'))}</div><div class="kn">${fmtNum(Math.round(somaDiario('interacoes') / diario.length))}/dia em média</div></div>
+      <div class="kpi"><div class="kl">Seguidores ganhos</div><div class="kv">+${fmtNum(somaDiario('seguidores_ganhos'))}</div><div class="kn">no período</div></div>
+      <div class="kpi"><div class="kl">Cliques em link</div><div class="kv">${fmtNum(somaDiario('cliques_link'))}</div><div class="kn">${fmtNum(somaDiario('visitas_perfil'))} visitas ao perfil</div></div>
+    </div>
+    <div class="charts-grid">
+      <div class="chart-card"><h3>Alcance diário</h3><canvas id="chart-diario-alcance" height="180"></canvas></div>
+      <div class="chart-card"><h3>Interações diárias</h3><canvas id="chart-diario-interacoes" height="180"></canvas></div>
+    </div>
+  ` : `<div class="sec-hd"><h2>Instagram <em>Diário</em></h2></div><div class="empty-tab">Sem dados diários nesse período.</div>`;
 
   const rows = semanas.map(s => `
     <tr>
@@ -533,7 +697,7 @@ function renderSemanal() {
     </tr>`).join('');
 
   const htmlSemanal = semanas.length ? `
-    <div class="sec-hd"><h2>Check-ins <em>Semanais</em></h2><span class="sub">${semanas.length} semana(s) registrada(s)</span></div>
+    <div class="sec-hd"><h2>Check-ins <em>Semanais</em></h2><span class="sub">${semanas.length} semana(s) no período</span></div>
     <div class="charts-grid">
       <div class="chart-card"><h3>Alcance por semana</h3><canvas id="chart-semanal-alcance" height="180"></canvas></div>
       <div class="chart-card"><h3>Seguidores ganhos por semana</h3><canvas id="chart-semanal-seg" height="180"></canvas></div>
@@ -544,42 +708,40 @@ function renderSemanal() {
         <tbody>${rows}</tbody>
       </table>
     </div>
-  ` : '';
+  ` : `<div class="sec-hd"><h2>Check-ins <em>Semanais</em></h2></div><div class="empty-tab">Sem check-ins semanais nesse período.</div>`;
 
-  pane.innerHTML = htmlDiario + htmlSemanal;
+  content.innerHTML = htmlDiario + htmlSemanal;
 
   if (diario.length) {
     const labelsDiario = diario.map(d => d.data.slice(5)); // MM-DD, mais legível numa série longa
-    new Chart(document.getElementById('chart-diario-alcance'), {
-      type:'line',
-      data:{labels:labelsDiario, datasets:[{label:'Alcance', data:diario.map(d=>d.alcance ?? null), borderColor:'#C49A4E', backgroundColor:'rgba(196,154,78,0.12)', fill:true, tension:0.25, pointRadius:0}]},
-      options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}, x:{ticks:{maxTicksLimit:10}}}}
+    chartDiarioAlcance = new Chart(document.getElementById('chart-diario-alcance'), {
+      type: 'line',
+      data: { labels: labelsDiario, datasets: [{ label: 'Alcance', data: diario.map(d => d.alcance ?? null), borderColor: '#C49A4E', backgroundColor: 'rgba(196,154,78,0.12)', fill: true, tension: 0.25, pointRadius: 0 }] },
+      options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true }, x: { ticks: { maxTicksLimit: 10 } } } }
     });
-    new Chart(document.getElementById('chart-diario-interacoes'), {
-      type:'line',
-      data:{labels:labelsDiario, datasets:[{label:'Interações', data:diario.map(d=>d.interacoes ?? null), borderColor:'#6B2737', backgroundColor:'rgba(107,39,55,0.1)', fill:true, tension:0.25, pointRadius:0}]},
-      options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}, x:{ticks:{maxTicksLimit:10}}}}
+    chartDiarioInteracoes = new Chart(document.getElementById('chart-diario-interacoes'), {
+      type: 'line',
+      data: { labels: labelsDiario, datasets: [{ label: 'Interações', data: diario.map(d => d.interacoes ?? null), borderColor: '#6B2737', backgroundColor: 'rgba(107,39,55,0.1)', fill: true, tension: 0.25, pointRadius: 0 }] },
+      options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true }, x: { ticks: { maxTicksLimit: 10 } } } }
     });
   }
 
-  if (!semanas.length) return;
-
-  const labels = semanas.map(s => semanaWeekLabel(s));
-  new Chart(document.getElementById('chart-semanal-alcance'), {
-    type:'line',
-    data:{labels, datasets:[{label:'Alcance', data:semanas.map(s=>s.alcance), borderColor:'#C49A4E', backgroundColor:'rgba(196,154,78,0.15)', fill:true, tension:0.3}]},
-    options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}
-  });
-  new Chart(document.getElementById('chart-semanal-seg'), {
-    type:'bar',
-    data:{labels, datasets:[{label:'Seguidores ganhos', data:semanas.map(s=>s.seguidores_ganhos), backgroundColor:'#6B2737'}]},
-    options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}
-  });
+  if (semanas.length) {
+    const labels = semanas.map(s => semanaWeekLabel(s));
+    chartSemanalAlcance = new Chart(document.getElementById('chart-semanal-alcance'), {
+      type: 'line',
+      data: { labels, datasets: [{ label: 'Alcance', data: semanas.map(s => s.alcance), borderColor: '#C49A4E', backgroundColor: 'rgba(196,154,78,0.15)', fill: true, tension: 0.3 }] },
+      options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+    });
+    chartSemanalSeg = new Chart(document.getElementById('chart-semanal-seg'), {
+      type: 'bar',
+      data: { labels, datasets: [{ label: 'Seguidores ganhos', data: semanas.map(s => s.seguidores_ganhos), backgroundColor: '#6B2737' }] },
+      options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+    });
+  }
 }
 
 /* ══════════════════════ PERFORMANCE (CICLOS) ══════════════════════ */
-let chartViews, chartAlcance;
-
 // insights/ações vêm como string (formato antigo) ou {texto, plataforma} —
 // normaliza pra sempre poder agrupar por canal.
 function normItem(x) {
@@ -633,41 +795,25 @@ function renderPerformance() {
 
   function renderCycle(idx) {
     const c = ciclos[idx];
-    const yt = c.youtube || {};
-    const ig = c.instagram || {};
-
     const insightsIG = porPlataforma(c.insights, 'instagram');
     const insightsYT = porPlataforma(c.insights, 'youtube');
     const insightsGeral = porPlataforma(c.insights, 'geral');
     const acoesIG = porPlataforma(c.acoes_proximo_ciclo, 'instagram');
     const acoesYT = porPlataforma(c.acoes_proximo_ciclo, 'youtube');
     const acoesGeral = porPlataforma(c.acoes_proximo_ciclo, 'geral');
+    const vazio = !(insightsIG.length || acoesIG.length || insightsYT.length || acoesYT.length ||
+      insightsGeral.length || acoesGeral.length || c.decisao_editorial || c.pergunta_editorial);
 
     contentDiv.innerHTML = `
+      ${(insightsIG.length || acoesIG.length) ? `
       <div class="platform-hd ig"><span class="ico">◎</span> Instagram</div>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="kl">Alcance</div><div class="kv ig">${fmtNum(ig.alcance)}</div><div class="kn">no ciclo</div></div>
-        <div class="kpi"><div class="kl">Seguidores ganhos</div><div class="kv ig">+${fmtNum(ig.seguidores_ganhos)}</div><div class="kn">no ciclo</div></div>
-        <div class="kpi"><div class="kl">Engajamento médio</div><div class="kv ig">${fmtPct(ig.engajamento_medio_pct)}</div><div class="kn">média do ciclo</div></div>
-        <div class="kpi"><div class="kl">Visitas ao perfil</div><div class="kv ig" style="font-size:20px;">${fmtNum(ig.visitas_perfil)}</div><div class="kn">${fmtNum(ig.interacoes)} interações totais</div></div>
-      </div>
-      <div class="chart-card" style="margin-bottom:20px;"><h3>Alcance Instagram — histórico</h3><canvas id="chart-alcance" height="160"></canvas></div>
-      ${ig.top_post_descricao ? `<div class="insight-card"><div class="meta">Destaque Instagram</div><div style="font-size:13px;color:#5A4A3A;">${esc(ig.top_post_descricao)}</div>${ig.top_post_metrica ? `<div style="font-size:12px;color:var(--oliva);margin-top:8px;">${esc(ig.top_post_metrica)}</div>` : ''}</div>` : ''}
       ${blocoInsightsAcoes(insightsIG, acoesIG, 'ig')}
+      ` : ''}
 
+      ${(insightsYT.length || acoesYT.length) ? `
       <div class="platform-hd yt"><span class="ico">▶</span> YouTube</div>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="kl">Views</div><div class="kv">${fmtNum(yt.views)}</div><div class="kn">${yt.views_variacao_pct != null ? fmtDelta(yt.views_variacao_pct) + ' vs. ciclo anterior' : 'sem comparação'}</div></div>
-        <div class="kpi"><div class="kl">Retenção média</div><div class="kv">${yt.retencao_media_pct != null ? yt.retencao_media_pct + '%' : '—'}</div><div class="kn">status: ${esc(yt.status_retencao) || '—'}</div></div>
-        <div class="kpi"><div class="kl">CTR médio</div><div class="kv">${yt.ctr_medio_pct != null ? yt.ctr_medio_pct + '%' : '—'}</div><div class="kn">status: ${esc(yt.status_ctr) || '—'} · +${fmtNum(yt.inscritos_ganhos)} inscritos</div></div>
-        <div class="kpi"><div class="kl">Watchtime</div><div class="kv" style="font-size:20px;">${yt.watchtime_horas ?? '—'}h</div><div class="kn">${fmtNum(yt.impressoes)} impressões</div></div>
-      </div>
-      <div class="chart-card" style="margin-bottom:20px;"><h3>Views YouTube — histórico</h3><canvas id="chart-views" height="160"></canvas></div>
-      <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
-        <div class="kpi"><div class="kl">Top vídeo</div><div class="kv" style="font-size:13px;line-height:1.3;">${esc(yt.top_video_titulo) || '—'}</div><div class="kn">${fmtNum(yt.top_video_views)} views</div></div>
-        <div class="kpi"><div class="kl">Fonte principal</div><div class="kv" style="font-size:16px;">${esc(yt.principal_fonte_trafego) || '—'}</div><div class="kn">${yt.principal_fonte_pct != null ? yt.principal_fonte_pct+'%' : ''}</div></div>
-      </div>
       ${blocoInsightsAcoes(insightsYT, acoesYT, 'yt')}
+      ` : ''}
 
       ${(insightsGeral.length || acoesGeral.length) ? `
       <div class="sec-hd"><h2>Insights & <em>Ações</em> Gerais</h2><span class="sub">não específicos de um canal</span></div>
@@ -683,30 +829,8 @@ function renderPerformance() {
       ${c.pergunta_editorial ? `
       <div class="nota-box" style="margin-top:14px;"><strong>Pergunta em aberto:</strong> ${esc(c.pergunta_editorial)}</div>` : ''}
 
-      <div class="footer-note">Dados de ${ciclos.length} ciclo(s) acumulado(s) — nunca sobrescritos. Para publicar um novo ciclo, use o painel-atualizacao.html.</div>
+      ${vazio ? `<div class="empty-tab">Esse ciclo não tem insights ou ações registradas.</div>` : ''}
     `;
-
-    drawPerformanceCharts();
-  }
-
-  function drawPerformanceCharts() {
-    const labels = ciclos.map(c => c.periodo || c.id);
-    const views = ciclos.map(c => (c.youtube||{}).views ?? null);
-    const alcance = ciclos.map(c => (c.instagram||{}).alcance ?? null);
-
-    if (chartViews) chartViews.destroy();
-    if (chartAlcance) chartAlcance.destroy();
-
-    chartViews = new Chart(document.getElementById('chart-views'), {
-      type:'line',
-      data:{labels, datasets:[{label:'Views', data:views, borderColor:'#C49A4E', backgroundColor:'rgba(196,154,78,0.15)', fill:true, tension:0.3}]},
-      options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}
-    });
-    chartAlcance = new Chart(document.getElementById('chart-alcance'), {
-      type:'line',
-      data:{labels, datasets:[{label:'Alcance', data:alcance, borderColor:'#E1306C', backgroundColor:'rgba(225,48,108,0.1)', fill:true, tension:0.3}]},
-      options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}
-    });
   }
 
   select.addEventListener('change', () => renderCycle(parseInt(select.value)));
