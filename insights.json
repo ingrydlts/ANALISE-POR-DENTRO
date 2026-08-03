@@ -237,6 +237,42 @@
       "conta_para_meta": true,
       "origem": "instagram_diario_auto",
       "nota": "Gerado automaticamente a partir de 6 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-07-S3",
+      "periodo": "15–21 Jul 2026",
+      "mes_ref": "2026-07",
+      "alcance": 0,
+      "interacoes": 0,
+      "seguidores_ganhos": 179,
+      "engajamento_pct": 0.0,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 7 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-07-S4",
+      "periodo": "22–28 Jul 2026",
+      "mes_ref": "2026-07",
+      "alcance": 0,
+      "interacoes": 0,
+      "seguidores_ganhos": 297,
+      "engajamento_pct": 0.0,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 7 dia(s) de dados reais (instagram_diario)."
+    },
+    {
+      "id": "2026-07-S5",
+      "periodo": "29–31 Jul 2026",
+      "mes_ref": "2026-07",
+      "alcance": 0,
+      "interacoes": 0,
+      "seguidores_ganhos": 61,
+      "engajamento_pct": 0.0,
+      "conta_para_meta": true,
+      "origem": "instagram_diario_auto",
+      "nota": "Gerado automaticamente a partir de 3 dia(s) de dados reais (instagram_diario)."
     }
   ],
   "bilans_audiencia": [
@@ -3509,10 +3545,83 @@
       "vues": 2339,
       "interacoes": 273,
       "visitas_perfil": 37,
-      "cliques_link": 0
+      "cliques_link": 0,
+      "seguidores_ganhos": 23
+    },
+    {
+      "data": "2026-07-14",
+      "seguidores_ganhos": 20
+    },
+    {
+      "data": "2026-07-15",
+      "seguidores_ganhos": 31
+    },
+    {
+      "data": "2026-07-16",
+      "seguidores_ganhos": 23
+    },
+    {
+      "data": "2026-07-17",
+      "seguidores_ganhos": 31
+    },
+    {
+      "data": "2026-07-18",
+      "seguidores_ganhos": 25
+    },
+    {
+      "data": "2026-07-19",
+      "seguidores_ganhos": 23
+    },
+    {
+      "data": "2026-07-20",
+      "seguidores_ganhos": 28
+    },
+    {
+      "data": "2026-07-21",
+      "seguidores_ganhos": 18
+    },
+    {
+      "data": "2026-07-22",
+      "seguidores_ganhos": 16
+    },
+    {
+      "data": "2026-07-23",
+      "seguidores_ganhos": 19
+    },
+    {
+      "data": "2026-07-24",
+      "seguidores_ganhos": 79
+    },
+    {
+      "data": "2026-07-25",
+      "seguidores_ganhos": 41
+    },
+    {
+      "data": "2026-07-26",
+      "seguidores_ganhos": 34
+    },
+    {
+      "data": "2026-07-27",
+      "seguidores_ganhos": 68
+    },
+    {
+      "data": "2026-07-28",
+      "seguidores_ganhos": 40
+    },
+    {
+      "data": "2026-07-29",
+      "seguidores_ganhos": 27
+    },
+    {
+      "data": "2026-07-30",
+      "seguidores_ganhos": 21
+    },
+    {
+      "data": "2026-07-31",
+      "seguidores_ganhos": 13
     }
   ],
-  "instagram_diario_atualizado_em": "2026-07-14",
+  "instagram_diario_atualizado_em": "2026-08-03",
   "sugestoes_conteudo": [
     {
       "id": "2026-07-24-Alternância em setembro vs. janeiro: qua",
