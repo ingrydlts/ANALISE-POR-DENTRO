@@ -150,7 +150,7 @@
       "alcance": 5273,
       "interacoes": 791,
       "seguidores_ganhos": 43,
-      "engajamento_pct": 15.0,
+      "engajamento_pct": 15,
       "conta_para_meta": false,
       "origem": "migrado_do_ciclo_mensal",
       "posts_notion": {
@@ -917,6 +917,82 @@
       ],
       "decisao_editorial": "Julho deve ter publicação sistemática (2× semana no Instagram) com foco em replicar o padrão dos picos de Junho — urgência prática + grande escala de afetados. A partir de julho, o acompanhamento passa a ser semanal, com o bilan mensal mantido para a leitura estratégica.",
       "pergunta_editorial": "Se 2 publicações geraram 70% do crescimento de Junho, qual é o padrão que define esse tipo de conteúdo — tema, formato, gancho ou dia — e como transformar isso em sistema replicável para Julho?"
+    },
+    {
+      "id": "2026-07",
+      "periodo": "Julho 2026",
+      "adicionado_em": "2026-08-03",
+      "youtube": {
+        "views": 0,
+        "views_variacao_pct": 0,
+        "watchtime_horas": 0,
+        "retencao_media_pct": 0,
+        "ctr_medio_pct": 0,
+        "inscritos_ganhos": 0,
+        "inscritos_total": 0,
+        "impressoes": 0,
+        "top_video_titulo": "",
+        "top_video_views": 0,
+        "principal_fonte_trafego": "",
+        "principal_fonte_pct": 0,
+        "status_retencao": "",
+        "status_ctr": ""
+      },
+      "instagram": {
+        "alcance": 52412,
+        "alcance_variacao_pct": 0,
+        "impressoes": 92604,
+        "seguidores_ganhos": 777,
+        "seguidores_total": 0,
+        "salvamentos": 0,
+        "compartilhamentos": 0,
+        "visitas_perfil": 1729,
+        "cliques_link": 9,
+        "engajamento_medio_pct": 17.99,
+        "top_post_descricao": "Conteúdo com CTA direto (guia, passo a passo) — gerou maior volume de DMs",
+        "top_post_metrica": "609 DMs gerados no período",
+        "formato_destaque": ""
+      },
+      "audiencia": {
+        "dms_analisados": 609,
+        "comentarios": 592,
+        "segmento_brasil": 4,
+        "segmento_processo": 14,
+        "segmento_franca": 1,
+        "temas_audiencia": [
+          {
+            "tema": "Guia / Lead Magnet",
+            "mencoes": 118
+          },
+          {
+            "tema": "Visto / Documentação",
+            "mencoes": 21
+          },
+          {
+            "tema": "Trabalho / Carreira",
+            "mencoes": 20
+          },
+          {
+            "tema": "Finanças / Custo",
+            "mencoes": 10
+          },
+          {
+            "tema": "Qualidade de Vida",
+            "mencoes": 8
+          }
+        ]
+      },
+      "insights": [
+        "609 conversas de DM detectadas — audiência altamente engajada buscando orientação prática.",
+        "Tema dominante: \"Guia / Lead Magnet\" (118 menções) — alta demanda latente.",
+        "Preenche os campos de métricas numéricas para uma análise quantitativa completa."
+      ],
+      "acoes_proximo_ciclo": [
+        "Criar conteúdo aprofundado sobre \"Guia / Lead Magnet\" — frequência alta nos DMs indica lacuna no feed.",
+        "Selecionar as melhores citações dos DMs para usar como \"prova social\" nos próximos posts.",
+        "Usar os temas identificados como pauta para o calendário editorial do próximo ciclo."
+      ],
+      "decisao_editorial": "Aprofundar conteúdo prático — Guia / Lead Magnet é onde a audiência demonstra maior urgência."
     }
   ],
   "concorrencia": [
