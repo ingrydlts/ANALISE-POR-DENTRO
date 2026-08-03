@@ -1,0 +1,10 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "analise-por-dentro",
+      "url": "http://localhost:8791",
+      "port": 8791
+    }
+  ]
+}
