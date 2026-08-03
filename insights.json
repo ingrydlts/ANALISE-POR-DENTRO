@@ -3542,7 +3542,7 @@
     {
       "data": "2026-07-13",
       "alcance": 1357,
-      "vues": 2339,
+      "vues": 2340,
       "interacoes": 273,
       "visitas_perfil": 37,
       "cliques_link": 0,
@@ -3550,75 +3550,165 @@
     },
     {
       "data": "2026-07-14",
-      "seguidores_ganhos": 20
+      "seguidores_ganhos": 20,
+      "interacoes": 372,
+      "vues": 3020,
+      "alcance": 1294,
+      "cliques_link": 0,
+      "visitas_perfil": 65
     },
     {
       "data": "2026-07-15",
-      "seguidores_ganhos": 31
+      "seguidores_ganhos": 31,
+      "interacoes": 403,
+      "vues": 2956,
+      "alcance": 1552,
+      "cliques_link": 0,
+      "visitas_perfil": 63
     },
     {
       "data": "2026-07-16",
-      "seguidores_ganhos": 23
+      "seguidores_ganhos": 23,
+      "interacoes": 295,
+      "vues": 2408,
+      "alcance": 1152,
+      "cliques_link": 8,
+      "visitas_perfil": 68
     },
     {
       "data": "2026-07-17",
-      "seguidores_ganhos": 31
+      "seguidores_ganhos": 31,
+      "interacoes": 277,
+      "vues": 2108,
+      "alcance": 1253,
+      "cliques_link": 1,
+      "visitas_perfil": 53
     },
     {
       "data": "2026-07-18",
-      "seguidores_ganhos": 25
+      "seguidores_ganhos": 25,
+      "interacoes": 208,
+      "vues": 1670,
+      "alcance": 1016,
+      "cliques_link": 0,
+      "visitas_perfil": 43
     },
     {
       "data": "2026-07-19",
-      "seguidores_ganhos": 23
+      "seguidores_ganhos": 23,
+      "interacoes": 194,
+      "vues": 1640,
+      "alcance": 1053,
+      "cliques_link": 0,
+      "visitas_perfil": 35
     },
     {
       "data": "2026-07-20",
-      "seguidores_ganhos": 28
+      "seguidores_ganhos": 28,
+      "interacoes": 288,
+      "vues": 1922,
+      "alcance": 1110,
+      "cliques_link": 0,
+      "visitas_perfil": 42
     },
     {
       "data": "2026-07-21",
-      "seguidores_ganhos": 18
+      "seguidores_ganhos": 18,
+      "interacoes": 245,
+      "vues": 2138,
+      "alcance": 1264,
+      "cliques_link": 0,
+      "visitas_perfil": 33
     },
     {
       "data": "2026-07-22",
-      "seguidores_ganhos": 16
+      "seguidores_ganhos": 16,
+      "interacoes": 382,
+      "vues": 2708,
+      "alcance": 1554,
+      "cliques_link": 0,
+      "visitas_perfil": 66
     },
     {
       "data": "2026-07-23",
-      "seguidores_ganhos": 19
+      "seguidores_ganhos": 19,
+      "interacoes": 216,
+      "vues": 1842,
+      "alcance": 1148,
+      "cliques_link": 0,
+      "visitas_perfil": 38
     },
     {
       "data": "2026-07-24",
-      "seguidores_ganhos": 79
+      "seguidores_ganhos": 79,
+      "interacoes": 1017,
+      "vues": 11451,
+      "alcance": 5735,
+      "cliques_link": 0,
+      "visitas_perfil": 146
     },
     {
       "data": "2026-07-25",
-      "seguidores_ganhos": 41
+      "seguidores_ganhos": 41,
+      "interacoes": 463,
+      "vues": 4862,
+      "alcance": 2411,
+      "cliques_link": 0,
+      "visitas_perfil": 64
     },
     {
       "data": "2026-07-26",
-      "seguidores_ganhos": 34
+      "seguidores_ganhos": 34,
+      "interacoes": 341,
+      "vues": 3151,
+      "alcance": 2001,
+      "cliques_link": 0,
+      "visitas_perfil": 54
     },
     {
       "data": "2026-07-27",
-      "seguidores_ganhos": 68
+      "seguidores_ganhos": 68,
+      "interacoes": 753,
+      "vues": 8185,
+      "alcance": 5143,
+      "cliques_link": 0,
+      "visitas_perfil": 125
     },
     {
       "data": "2026-07-28",
-      "seguidores_ganhos": 40
+      "seguidores_ganhos": 40,
+      "interacoes": 384,
+      "vues": 4170,
+      "alcance": 2566,
+      "cliques_link": 0,
+      "visitas_perfil": 102
     },
     {
       "data": "2026-07-29",
-      "seguidores_ganhos": 27
+      "seguidores_ganhos": 27,
+      "interacoes": 333,
+      "vues": 3732,
+      "alcance": 1995,
+      "cliques_link": 0,
+      "visitas_perfil": 55
     },
     {
       "data": "2026-07-30",
-      "seguidores_ganhos": 21
+      "seguidores_ganhos": 21,
+      "interacoes": 200,
+      "vues": 1974,
+      "alcance": 1225,
+      "cliques_link": 0,
+      "visitas_perfil": 38
     },
     {
       "data": "2026-07-31",
-      "seguidores_ganhos": 13
+      "seguidores_ganhos": 13,
+      "interacoes": 179,
+      "vues": 2159,
+      "alcance": 1355,
+      "cliques_link": 0,
+      "visitas_perfil": 49
     }
   ],
   "instagram_diario_atualizado_em": "2026-08-03",
@@ -4021,6 +4111,121 @@
         }
       ],
       "data_sugerida": "2026-09-24",
+      "notion_criada": true,
+      "gerado_em": "2026-08-03"
+    },
+    {
+      "id": "2026-08-03-CPF: Financiar seu Curso de Francês (e N",
+      "titulo": "CPF: Financiar seu Curso de Francês (e Não Pagar do Bolso) — A Verdade Sobre Quanto Você Pode Usar",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "promessa": "Como usar seus direitos CPF para financiar cursos de língua, quanto de verdade você recupera em 2026, e a armadilha que ninguém menciona.",
+      "justificativa": "Audiência pede conteúdo sobre CPF (pergunta recorrente) e financiamento de cursos de francês. Concorrentes falam DE CPF sem contextualizar brasileiro recém-chegado: quanto custa realmente um curso, quanto o CPF cobre. Cruzar experiência real (quanto gastou, quanto o CPF pagou) + regras 2026 (resto a cargo de 150€, novas exigências a partir de junho) diferencia. Benchmarking: @franova trata CPF como regra isolada; Por Dentro conecta a necessidade prática.",
+      "fontes": [
+        {
+          "titulo": "CPF France 2026: droits, accès et pièges",
+          "url": "https://demarchesetrangers.fr/demarches/cpf-formation-professionnelle-etranger-france"
+        },
+        {
+          "titulo": "CPF formation pro langue à l'étranger 2026: financement et nouvelles règles",
+          "url": "https://www.nacel.fr/formation-professionnelle/actualites/guide-financer-sa-formation-en-langue"
+        }
+      ],
+      "data_sugerida": "2026-10-06",
+      "notion_criada": true,
+      "gerado_em": "2026-08-03"
+    },
+    {
+      "id": "2026-08-03-Alternância em 2026: Os Números Reais — ",
+      "titulo": "Alternância em 2026: Os Números Reais — Quanto Você Ganha vs. Quanto Gasta em Paris (Simulação Prática)",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Salário mínimo de alternância em 2026 (por idade), impostos que ninguém prevê, custo real de vida em Paris, e se sobra dinheiro ou não.",
+      "justificativa": "Audiência em semana de 23/07 pediu 'como funciona na prática' com dados concretos sobre viabilidade financeira. Calendário agendado tem pautas sobre alternância (timing, legais, bolsas), mas nenhuma sobre 'números reais do bolso'. Pesquisa confirma: SMIC 2026 é €1.867,02 (desde junho); um alternante de 21-25 anos em 1ª ano ganha 53% do SMIC (€989,52); e existe complicação nova em 2025 sobre exoneration de cotisações reduzida para contatos assinados após março (impacta salário líquido). Conteúdo de números + experiência vivida (quanto é aluguel em Marais vs. Bobigny?) não existe em concorrência. Gancho de reel: 'O salário de alternância em Paris é maior que no Brasil — vira deficiente quando você vê o aluguel'.",
+      "fontes": [
+        {
+          "titulo": "Salaire alternance 2026: Grille Complète",
+          "url": "https://www.isce-alternance.fr/salaire-alternance-2026/"
+        },
+        {
+          "titulo": "Salaires en alternance 2026: grille complète par âge et niveau",
+          "url": "https://thotismedia.com/salaires-en-alternance-2026/"
+        },
+        {
+          "titulo": "Salaire alternance 2026 avec augmentation du Smic",
+          "url": "https://www.letudiant.fr/etudes/alternance/alternance-avec-la-hausse-du-smic-combien-gagnerez-vous.html"
+        }
+      ],
+      "data_sugerida": "2026-10-05",
+      "notion_criada": true,
+      "gerado_em": "2026-08-03"
+    },
+    {
+      "id": "2026-08-03-Alternância em Janeiro vs. Setembro: Qua",
+      "titulo": "Alternância em Janeiro vs. Setembro: Qual Timing Funciona de Verdade (E Qual é Armadilha para Estrangeira)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Por que setembro é 'fácil em teoria' mas janeiro é mais realista para estrangeira sem rede, com números de oferta e risco claro.",
+      "justificativa": "Audiência semana 23/07 pediu especificamente: 'realmente existe alternância em janeiro ou é mais arriscado?' Está sugerido no backlog ('Alternância em janeiro vs setembro'), mas não foi agendado. Pesquisa confirma: Janeiro/fevereiro são 'rentrées décalées' (sim, existem), mas 'com menos escolha de formação' (esgrh.fr); timing ideal é janeiro-março para setembro (6 meses antes); e pode-se assinar até 3 meses após início (até dezembro). Para estrangeira brasileira, isso muda tudo: chegou sem visto? Setembro é massivo (concorrência selvagem), janeiro dá fôlego. Conteúdo de concorrência (meteojob, thotis) é genérico; Por Dentro mapeia 'qual funciona para você' (estudante bolsista vs autônoma, com/sem rede na França, com/sem empregador pré-acertado). Tom: educativo sem assustar, realista sobre risco.",
+      "fontes": [
+        {
+          "titulo": "Comment trouver une alternance en 2026: le guide complet en 5 étapes",
+          "url": "https://www.meteojob.com/blog-emploi/alternance/comment-trouver-une-alternance-en-2026-le-guide-complet-en-5-etapes"
+        },
+        {
+          "titulo": "Quelle est la date limite pour trouver une alternance?",
+          "url": "https://www.esgrh.fr/ressources/orientation-date-limite-alternance"
+        },
+        {
+          "titulo": "Quand commencer à chercher son alternance?",
+          "url": "https://thotismedia.com/quand-commencer-chercher-alternance"
+        }
+      ],
+      "data_sugerida": "2026-10-08",
+      "notion_criada": true,
+      "gerado_em": "2026-08-03"
+    },
+    {
+      "id": "2026-08-03-VLS Long Duration vs. Visto de Estudante",
+      "titulo": "VLS Long Duration vs. Visto de Estudante: Qual Escolher Antes de Pagar a Passagem (Diferenças que Importam)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada"
+      ],
+      "promessa": "VLS-TS vs. VLS-T vs. sem universidade — direitos, validação, trabalho permitido, e qual evita surpresa depois de gastar €2k.",
+      "justificativa": "Está no backlog sugerido ('VLS Long Duration vs Intercâmbio Universitário') desde antes de julho, nunca foi agendado. Audiência semana 14/07 pediu 'comparação entre tipos de visto'. Lacuna real: pré-chegada não sabe se faz sentido pagar curso de francês fora de universidade (VLS-T, talvez visitante) vs. entrar logo em programa formal (VLS-TS étudiant). Pesquisa confirma: VLS-TS étudiant exige inscrição formal em instituição e vale como titre de séjour (pode renovar na França); VLS-T não precisa validação em prefeitura (mais 'passageiro'), não é renovável; ambos têm direitos diferentes a trabalho/auxílios. Conteúdo por competência específica: 'Você quer estudar francês solto? VLS-T. Quer diploma + trabalhar? VLS-TS. Aqui porque cada um faz sentido.' Diferencia de @keys_to_france que lista custos sem dizer 'qual visto é seu'.",
+      "fontes": [
+        {
+          "titulo": "Quels sont les différents types de visas étudiant en France?",
+          "url": "https://help.livin-france.com/knowledge/what-are-the-different-types-of-student-visas-in-france"
+        },
+        {
+          "titulo": "Long Term Visa used as Residence Permit (VLS-TS)",
+          "url": "https://www.campusfrance.org/en/student-long-stay-visa"
+        },
+        {
+          "titulo": "The Temporary Long Term Visa (VLS-T)",
+          "url": "https://www.campusfrance.org/en/the-temporary-long-term-visa-or-vls-t"
+        },
+        {
+          "titulo": "VLS-TS étudiant: tout comprendre sur le visa long séjour",
+          "url": "https://etudiant.ma/articles/vls-ts-tudiant-tout-comprendre-sur-le-visa-long-sjour-pour-tudier-en-france"
+        }
+      ],
+      "data_sugerida": "2026-10-13",
       "notion_criada": true,
       "gerado_em": "2026-08-03"
     }
