@@ -1558,18 +1558,6 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/p/Como-Declarar-Imposto-pela-primeira-vez-na-Fran-a-2f7d602254ce80ddb0e7f1ebb95ccb5d",
-      "titulo": "Como Declarar Imposto pela primeira vez na França?",
-      "data": "2026-05-01",
-      "formato": "Carrossel",
-      "estagio": "Backlog",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
       "url": "https://app.notion.com/p/Aumento-valor-do-titre-de-sejour-352d602254ce80519110dbc0387a982c",
       "titulo": "Aumento valor do titre de sejour",
       "data": "2026-05-02",
@@ -2169,22 +2157,6 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/p/Forma-o-de-franc-s-financiada-pelo-CPF-como-passar-no-exame-em-2026-sem-gastar-do-seu-bolso-38cd602254ce818bba1fe83bd5151c6c",
-      "titulo": "Formação de francês financiada pelo CPF: como passar no exame em 2026 sem gastar do seu bolso",
-      "data": "2026-07-23",
-      "formato": "Carrossel",
-      "estagio": "DRAFT",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [
-        "SAVE"
-      ],
-      "publico": [],
-      "serie": [],
-      "promessa": "Você sabe que pode fazer um curso de francês GRÁTIS com CPF e ainda garantir direitos na França? A maioria das brasileiras não usa isso."
-    },
-    {
       "url": "https://app.notion.com/p/PRE-REQUISITOS-CAF-3a6d602254ce80439bb7e6d7e24b26c9",
       "titulo": "PRE REQUISITOS CAF",
       "data": "2026-07-24",
@@ -2195,22 +2167,6 @@
       "publico": [],
       "serie": [],
       "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/Institut-Convergences-Migrations-quem-s-o-os-pesquisadores-que-moldam-a-pol-tica-de-imigra-o-na-Fr-38cd602254ce819abe25dbd7ea1cf849",
-      "titulo": "Institut Convergences Migrations: quem são os pesquisadores que moldam a política de imigração na França",
-      "data": "2026-07-24",
-      "formato": "Reel",
-      "estagio": "DRAFT",
-      "pilares": [
-        "Sociedade"
-      ],
-      "meta": [
-        "SAVE"
-      ],
-      "publico": [],
-      "serie": [],
-      "promessa": "Você já parou pra pensar em quem estuda imigração na França? Por trás de cada lei, cada regra de visto, cada debate sobre brasileiras imigrantes, tem gente pesquisando. A gente te apresenta o instituto que está no meio dessa conversa há 9 anos."
     },
     {
       "url": "https://app.notion.com/p/Prime-d-activit-para-auto-empreendedora-na-Fran-a-vale-a-pena-38cd602254ce81609f91f7e96fadc833",
@@ -2277,7 +2233,7 @@
       "promessa": "Você tem 3 meses para validar o VLS-TS na França — e muita gente não sabe disso."
     },
     {
-      "url": "https://app.notion.com/p/CPF-sua-forma-o-ficou-mais-cara-a-partir-de-abril-3b0d602254ce81b5a569ec07617cf4ba",
+      "url": "https://app.notion.com/p/CPF-sua-forma-o-ficou-mais-cara-a-partir-de-abril-3c5d602254ce81748aa5d4c6ba295086",
       "titulo": "CPF: sua formação ficou mais cara (a partir de abril)",
       "data": "2026-08-01",
       "formato": "Carrossel",
@@ -2306,18 +2262,6 @@
       "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Audiência (bilans 23/07) questiona especificamente viabilidade de alternância em janeiro/fevereiro vs. setembro — dor recorrente sem resposta. Tema não está no calendário. Formato carrossel atende salvamento/compartilhamento (dúvida imediata). — Descubra por que setembro é o ciclo real de alternância na França, quanto custa cada período e quando (sim/não) vale começar fora do ciclo."
     },
     {
-      "url": "https://app.notion.com/p/CTO-vs-PEA-qual-investimento-compensa-mesmo-para-brasileira-na-Fran-a-394d602254ce8189baf3d37ea6d7163c",
-      "titulo": "CTO vs PEA: qual investimento compensa mesmo para brasileira na França",
-      "data": "2026-08-02",
-      "formato": "Carrossel",
-      "estagio": "DRAFT",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": "Se você tem grana parada ou investe em ações, esse cálculo muda tudo em 2026"
-    },
-    {
       "url": "https://app.notion.com/p/VLS-Long-Duration-vs-Visto-de-Interc-mbio-Universit-rio-qual-escolher-antes-de-pagar-passagem-39dd602254ce816eb073ea0fba6ab519",
       "titulo": "VLS Long Duration vs Visto de Intercâmbio Universitário: qual escolher antes de pagar passagem?",
       "data": "2026-08-04",
@@ -2344,6 +2288,18 @@
       "publico": [],
       "serie": [],
       "promessa": "Se você tem CPF francês, tem uma obrigação nova a partir de 2026 — e ignorar isso pode te custar caro."
+    },
+    {
+      "url": "https://app.notion.com/p/CTO-vs-PEA-qual-investimento-compensa-mesmo-para-brasileira-na-Fran-a-3c5d602254ce811db6a0ee9af84adbb9",
+      "titulo": "CTO vs PEA: qual investimento compensa mesmo para brasileira na França",
+      "data": "2026-08-08",
+      "formato": "Carrossel",
+      "estagio": "Design",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Se você tem grana parada ou investe em ações, esse cálculo muda tudo em 2026"
     },
     {
       "url": "https://app.notion.com/p/SMIC-2026-contratos-e-imposto-o-que-voc-precisa-saber-agora-38cd602254ce81868a5ff39d91ddbe14",
@@ -2422,20 +2378,16 @@
       "promessa": "Como identificar e evitar o golpe do bail fantôme antes de perder caução e primeiro aluguel."
     },
     {
-      "url": "https://app.notion.com/p/Quanto-custa-viver-na-Fran-a-em-2026-N-meros-reais-por-cidade-3a2d602254ce81c38305f73be5f8a075",
-      "titulo": "Quanto custa viver na França em 2026? Números reais por cidade",
+      "url": "https://app.notion.com/p/Infla-o-na-Fran-a-em-2026-o-que-subiu-no-seu-carrinho-de-compras-3c5d602254ce81f08951dd25eced0d50",
+      "titulo": "Inflação na França em 2026: o que subiu no seu carrinho de compras",
       "data": "2026-08-12",
       "formato": "Carrossel",
       "estagio": "Design",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [
-        "SAVE"
-      ],
+      "pilares": [],
+      "meta": [],
       "publico": [],
       "serie": [],
-      "promessa": "Aluguel em Paris é 40% mais caro que em Lyon. Mas tem mais: internet, comida, transporte — tudo que você precisa saber antes de se mudar (ou se planejar melhor)."
+      "promessa": "A energia disparou, mas nem tudo ficou mais caro. Veja o que realmente impacta seu bolso este ano."
     },
     {
       "url": "https://app.notion.com/p/O-que-muda-para-estrangeiras-em-situa-o-irregular-na-Europa-e-por-que-voc-precisa-saber-384d602254ce81599bc1ccadd1463337",
@@ -2454,22 +2406,6 @@
       "promessa": "A UE aprovou novas regras sobre expulsão de estrangeiras. Não é pânico, mas é informação que toda brasileira precisa ter clara."
     },
     {
-      "url": "https://app.notion.com/p/Infla-o-na-Fran-a-em-2026-o-que-subiu-no-seu-carrinho-de-compras-38cd602254ce81c6a6d0fda0315c5785",
-      "titulo": "Inflação na França em 2026: o que subiu no seu carrinho de compras",
-      "data": "2026-08-16",
-      "formato": "Carrossel",
-      "estagio": "Design",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [
-        "SAVE"
-      ],
-      "publico": [],
-      "serie": [],
-      "promessa": "A energia disparou, mas nem tudo ficou mais caro. Veja o que realmente impacta seu bolso este ano."
-    },
-    {
       "url": "https://app.notion.com/p/O-QUE-A-CONTA-CPF-39dd602254ce8177a79bc010712e0c35",
       "titulo": "O QUE É A CONTA CPF",
       "data": "2026-08-17",
@@ -2486,35 +2422,11 @@
       "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W29] Roteiro passo a passo de burocracia francesa com prazos realistas — pedido direto e recorrente da audiência, tema que nenhum concorrente mapeado cobre com profundidade."
     },
     {
-      "url": "https://app.notion.com/p/Voc-entende-o-sistema-de-forma-o-Como-isso-muda-sua-posi-o-no-mercado-de-trabalho-38dd602254ce808cbb85f1af85c1eebf",
-      "titulo": "Você entende o sistema de formação. Como isso muda sua posição no mercado de trabalho?\"",
-      "data": "2026-08-17",
-      "formato": null,
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/Coisas-que-os-brasileiros-deveriam-aprender-com-os-franceses-392d602254ce80fc9300dfe850dfbd3a",
-      "titulo": "Coisas que os brasileiros deveriam aprender com os franceses",
-      "data": "2026-08-18",
-      "formato": "Reel",
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
       "url": "https://app.notion.com/p/TITRE-PROFESSIONNEL-36ed602254ce80eb8309c3794d775df8",
       "titulo": "TITRE PROFESSIONNEL",
       "data": "2026-08-19",
       "formato": "Reel",
-      "estagio": "to film",
+      "estagio": "to edit",
       "pilares": [],
       "meta": [],
       "publico": [],
@@ -2522,34 +2434,18 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/p/Altern-ncia-com-30-a-verdade-sobre-o-limite-de-idade-para-visto-de-estudante-3a7d602254ce81789ebde5c454053324",
-      "titulo": "Alternância com 30+: a verdade sobre o limite de idade para visto de estudante",
+      "url": "https://app.notion.com/p/CPF-4-cursos-que-ningu-m-te-conta-que-d-pra-fazer-sendo-imigrante-3c0d602254ce813f88a1e91a6380c80e",
+      "titulo": "CPF: 4 cursos que ninguém te conta que dá pra fazer sendo imigrante",
       "data": "2026-08-20",
       "formato": "Carrossel",
-      "estagio": "Idea",
+      "estagio": "Design",
       "pilares": [
         "Sistema"
       ],
       "meta": [],
-      "publico": [
-        "Pré-chegada",
-        "Recém-chegado",
-        "Adaptado"
-      ],
-      "serie": [],
-      "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Dor recorrente (bilans 03/07): 'tem 30 anos, rejeitada em escolas, quer entender se alternância é viável'. Calendário tem post sobre 'CAP com 30 anos' mas não sobre restrição legal de idade (visto + alternância = até 30). Lacuna crítica para público acima de 30. — Entenda por que 30 anos é o limite para contratar alternância com visto de estudante, o que muda depois e por que algumas conseguem (mas fica mais difícil). Fontes: Mestrado em alternância: quem pode fazer? (https://carlanagringa.com/mestrado-em-alternancia-quem-pode-fazer/)"
-    },
-    {
-      "url": "https://app.notion.com/p/CPF-na-Fran-a-como-financiar-seu-curso-de-franc-s-e-n-o-pagar-do-bolso-394d602254ce81338efbf9a17d2f2fdb",
-      "titulo": "CPF na França: como financiar seu curso de francês (e não pagar do bolso)",
-      "data": "2026-08-20",
-      "formato": "Carrossel",
-      "estagio": "Design",
-      "pilares": [],
-      "meta": [],
       "publico": [],
       "serie": [],
-      "promessa": "Você chegou na França e o francês ainda é uma barreira. Mas sabe o que poucos sabem? Tem grana parada esperando você usar para estudar."
+      "promessa": "Você tem dinheiro parado no CPF e provavelmente só pensa em usar pra aprender francês — tem muito mais na mesa do que isso."
     },
     {
       "url": "https://app.notion.com/p/Coisas-que-os-brasileiros-precisam-aprender-com-os-franceses-3bad602254ce802a83efe2887d060c22",
@@ -2564,19 +2460,7 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/p/Checklist-do-pacote-expat-o-que-negociar-antes-de-embarcar-38dd602254ce8065a31fc1539b53b425",
-      "titulo": "Checklist do pacote expat — o que negociar antes de embarcar\"",
-      "data": "2026-08-21",
-      "formato": "Carrossel",
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/Pr-sidentielle-2027-por-que-a-condena-o-de-Le-Pen-n-o-a-freia-3bed602254ce81c3b199e0671458c5ef",
+      "url": "https://app.notion.com/p/Pr-sidentielle-2027-por-que-a-condena-o-de-Le-Pen-n-o-a-freia-3c5d602254ce81ea82a1e014aa82a662",
       "titulo": "Présidentielle 2027: por que a condenação de Le Pen não a freia",
       "data": "2026-08-23",
       "formato": "Carrossel",
@@ -2588,23 +2472,11 @@
       "promessa": "Marine Le Pen condenada judicialmente e mesmo assim lidera pesquisas para 2027. O que isso significa para brasileiras na França?"
     },
     {
-      "url": "https://app.notion.com/p/Como-se-preparar-para-a-rentr-e-38dd602254ce804380a4f7b75fc1daea",
-      "titulo": "Como se preparar para a rentrée",
-      "data": "2026-08-23",
-      "formato": "Carrossel",
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
       "url": "https://app.notion.com/p/militariza-ao-das-fronteiras-parte-II-3bad602254ce804dae54ed3e5a3de7e0",
       "titulo": "militarizaçao das fronteiras parte II",
       "data": "2026-08-24",
       "formato": "Reel",
-      "estagio": "to film",
+      "estagio": "to edit",
       "pilares": [],
       "meta": [],
       "publico": [],
@@ -2612,84 +2484,51 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/p/Como-recome-ar-bem-na-Fran-a-38dd602254ce804aa977e1c965dd27d5",
-      "titulo": "Como recomeçar bem na França",
-      "data": "2026-08-24",
-      "formato": null,
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/Altern-ncia-em-janeiro-vs-setembro-qual-timing-realmente-funciona-e-qual-armadilha-3aad602254ce81438be4e5a94c2d7d8a",
-      "titulo": "Alternância em janeiro vs. setembro: qual timing realmente funciona (e qual é armadilha)",
+      "url": "https://app.notion.com/p/Por-que-se-informar-sua-maior-vantagem-como-imigrante-agora-3c0d602254ce81ac9a56c549fd29413c",
+      "titulo": "Por que se informar é sua maior vantagem como imigrante agora",
       "data": "2026-08-25",
       "formato": "Carrossel",
       "estagio": "Idea",
       "pilares": [
-        "Sistema"
+        "Sociedade"
       ],
       "meta": [],
-      "publico": [
-        "Pré-chegada",
-        "Recém-chegado"
-      ],
+      "publico": [],
       "serie": [],
-      "promessa": "[Sugestão automática — 2026-07-27, data é um slot proposto]: Dor recorrente não atendida (semana 23/07): audiência questiona especificamente a viabilidade de períodos alternativos e precisa de clareza sobre risco vs. oportunidade. Posts agendados cobrem tema mas não detalham a dinâmica prática de entrada em ciclos não-tradicionais. Lacuna: nenhum conteúdo explica realmente por que setembro concentra vagas (rentrée) e qual é o risco financeiro/burocrático de entrar em janeiro. — Entenda por que setembro é ciclo tradicional, quando janeiro é viável, quanto custam os meses de transição e por que nem toda oportunidade fora do ciclo é boa. Fontes: Mestrado em Alternância na França: Guia Completo (https://partiuintercambio.org/mestrado-em-alternancia-na-franca/); Salário do Alternante na França em 2026 – Carla na Gringa (https://carlanagringa.com/salario-alternante-franca-2026/)"
+      "promessa": "A diferença entre viver com ansiedade constante e viver preparada não é o cenário político — é o quanto você se organiza dentro dele."
     },
     {
-      "url": "https://app.notion.com/p/Direitos-trabalhistas-38dd602254ce80f983e4fa29b7ae0cbe",
-      "titulo": "Direitos trabalhistas",
+      "url": "https://app.notion.com/p/Como-comunidades-de-imigrantes-est-o-se-organizando-e-voc-pode-fazer-parte-3c0d602254ce81fd8b23ffb1e029207d",
+      "titulo": "Como comunidades de imigrantes estão se organizando (e você pode fazer parte)",
       "data": "2026-08-26",
-      "formato": null,
+      "formato": "Carrossel",
+      "estagio": "DRAFT",
+      "pilares": [
+        "Sociedade"
+      ],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Em vez de mais uma notícia sobre o que está piorando, esse post mostra o que as próprias imigrantes estão construindo pra se apoiar."
+    },
+    {
+      "url": "https://app.notion.com/p/Como-se-preparar-para-a-rentr-e-38dd602254ce804380a4f7b75fc1daea",
+      "titulo": "Como se preparar para a rentrée",
+      "data": "2026-08-27",
+      "formato": "Carrossel",
       "estagio": "Idea",
       "pilares": [],
       "meta": [],
       "publico": [],
       "serie": [],
       "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/VAE-em-2026-como-validar-sua-experi-ncia-profissional-e-conseguir-um-diploma-franc-s-38cd602254ce8133b482c1033db1a7c1",
-      "titulo": "VAE em 2026: como validar sua experiência profissional e conseguir um diploma francês",
-      "data": "2026-08-26",
-      "formato": "Reel",
-      "estagio": "to review",
-      "pilares": [
-        "Trajetória"
-      ],
-      "meta": [
-        "SAVE"
-      ],
-      "publico": [],
-      "serie": [],
-      "promessa": "Você tem experiência de trabalho no Brasil, mas o diploma francês não sai? A VAE é a solução — e o CPF pode pagar tudo."
-    },
-    {
-      "url": "https://app.notion.com/p/Altern-ncia-fora-do-Brasil-europeia-aplicando-da-It-lia-Portugal-outro-pa-s-como-funciona-3aad602254ce81c3a799fae3fc6b0890",
-      "titulo": "Alternância fora do Brasil: europeia aplicando da Itália/Portugal/outro país — como funciona",
-      "data": "2026-08-27",
-      "formato": "Carrossel",
-      "estagio": "Idea",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [],
-      "publico": [
-        "Pré-chegada"
-      ],
-      "serie": [],
-      "promessa": "[Sugestão automática — 2026-07-27, data é um slot proposto]: Pedido de conteúdo específico (semana 23/07 — YOUTUBE): 'Alternância para estrangeiros da UE: como candidatar de outro país (B1 de francês é suficiente?)'. Audiência é europeia fora da França com dúvida sobre burocracia de visto, nível linguístico e estratégia de candidatura. Lacuna: nenhum conteúdo atual cobre esse perfil específico (diferente de brasileiro recém-chegado ou já na França). — Se você é europeia fora da França: nível de francês exigido, como candidatar sem estar no país, direitos de trabalho imediatos, e por que seu CPF pode financiar a formação. Fontes: Alternance & Apprentissage na França para Estudantes Internacionais (2026) (https://studyartinfrance.com/pt/guides/alternance-apprentissage/)"
     },
     {
       "url": "https://app.notion.com/p/DESMISTIFICANDO-PODER-DE-COMPRA-3bad602254ce80eabb82ee325f9f334d",
       "titulo": "DESMISTIFICANDO PODER DE COMPRA",
       "data": "2026-08-31",
       "formato": "Reel",
-      "estagio": "to film",
+      "estagio": "to edit",
       "pilares": [],
       "meta": [],
       "publico": [],
@@ -2697,39 +2536,10 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/p/Como-matricular-filho-na-escola-p-blica-38dd602254ce803f80c1db439d6d5c89",
-      "titulo": "Como matricular filho na escola pública",
-      "data": "2026-08-31",
-      "formato": "Reel",
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/Viver-de-altern-ncia-em-Paris-quanto-voc-realmente-gasta-vs-quanto-ganha-simula-o-real-3aad602254ce81a2959cdc08459ec0f8",
-      "titulo": "Viver de alternância em Paris: quanto você realmente gasta vs. quanto ganha (simulação real)",
+      "url": "https://app.notion.com/p/Quanto-custa-viver-na-Fran-a-em-2026-N-meros-reais-por-cidade-3a2d602254ce81c38305f73be5f8a075",
+      "titulo": "Quanto custa viver na França em 2026? Números reais por cidade",
       "data": "2026-09-01",
       "formato": "Carrossel",
-      "estagio": "Idea",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [],
-      "publico": [
-        "Recém-chegado",
-        "Adaptado"
-      ],
-      "serie": [],
-      "promessa": "[Sugestão automática — 2026-07-27, data é um slot proposto]: Dor não atendida (semana 23/07): 'dúvida sobre custo de vida em Paris com salário de alternância'. Calendário tem posts sobre 'custo de viver em 2026' e 'mestrado em alternância — quanto ganha vs. quanto gasta', mas nenhum cruza dados reais de SMIC alternância com custo real de vida por cidade. Audiência recém-chegada precisa de simulação tangível antes de se mudar. — Simulação honesta: 21-25 anos (±990€), 26+ (1.867€), aluguel, transporte, comida — quanto sobra? Onde cortar. Por que Paris pode ser insustentável e qual é o real diferencial de outras cidades. Fontes: Salário do Alternante na França em 2026 – Carla na Gringa (https://carlanagringa.com/salario-alternante-franca-2026/); Salário Mínimo França 2026: Custo de Vida, Salário de Profissões e Mais (https://www.nomadglobal.com/conteudos/salario-minimo-franca)"
-    },
-    {
-      "url": "https://app.notion.com/p/Auto-entrepreneur-tranger-o-que-voc-precisa-saber-para-abrir-sua-microempresa-na-Fran-a-38cd602254ce81eab95fef52411f2c23",
-      "titulo": "Auto-entrepreneur étranger: o que você precisa saber para abrir sua microempresa na França",
-      "data": "2026-09-01",
-      "formato": "Reel",
       "estagio": "Design",
       "pilares": [
         "Sistema"
@@ -2739,29 +2549,13 @@
       ],
       "publico": [],
       "serie": [],
-      "promessa": "Você pode ser auto-empreendedora na França sendo estrangeira? A resposta depende do seu titre de séjour — e tem regras bem específicas para 2026."
+      "promessa": "Aluguel em Paris é 40% mais caro que em Lyon. Mas tem mais: internet, comida, transporte — tudo que você precisa saber antes de se mudar (ou se planejar melhor)."
     },
     {
-      "url": "https://app.notion.com/p/CAP-Petite-Enfance-com-30-anos-armadilha-ou-porta-de-entrada-real-39dd602254ce818da4d9d07c851103bc",
-      "titulo": "CAP Petite Enfance com 30 anos: é armadilha ou porta de entrada real?",
+      "url": "https://app.notion.com/p/Poupar-na-Fran-a-Como-guardar-dinheiro-para-al-m-da-conta-corrente-sem-pagar-imposto-por-ele-38cd602254ce81119dc6dcfdf6d0afae",
+      "titulo": "Poupar na França. Como guardar dinheiro para além da conta corrente? - sem pagar imposto por ele!",
       "data": "2026-09-02",
-      "formato": "Reel",
-      "estagio": "Idea",
-      "pilares": [
-        "Trajetória"
-      ],
-      "meta": [],
-      "publico": [
-        "Pré-chegada"
-      ],
-      "serie": [],
-      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W27] Pergunta direta de quem foi rejeitado por escola — audiência precisa entender se compensa fazer CAP inicial só para viabilizar visto ou se há caminho melhor."
-    },
-    {
-      "url": "https://app.notion.com/p/Poupar-na-Fran-a-sendo-expatriada-al-m-da-conta-corrente-38cd602254ce81119dc6dcfdf6d0afae",
-      "titulo": "Poupar na França sendo expatriada: além da conta corrente",
-      "data": "2026-09-02",
-      "formato": "Reel",
+      "formato": "Carrossel",
       "estagio": "Design",
       "pilares": [
         "Sistema"
@@ -2774,6 +2568,18 @@
       "promessa": "Você está guardando dinheiro numa conta corrente comum enquanto poderia estar ganhando 3% ao ano sem risco? A gente explica os produtos que ninguém te conta."
     },
     {
+      "url": "https://app.notion.com/p/CPF-na-Fran-a-como-financiar-seu-curso-de-franc-s-e-n-o-pagar-do-bolso-3c5d602254ce81688478e12948c004d8",
+      "titulo": "CPF na França: como financiar seu curso de francês (e não pagar do bolso)",
+      "data": "2026-09-03",
+      "formato": "Carrossel",
+      "estagio": "Design",
+      "pilares": [],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Você chegou na França e o francês ainda é uma barreira. Mas sabe o que poucos sabem? Tem grana parada esperando você usar para estudar."
+    },
+    {
       "url": "https://app.notion.com/p/Cursos-intensivos-de-franc-s-em-Paris-vale-a-pena-E-para-quem-394d602254ce81fa89e7c7bc5694405d",
       "titulo": "Cursos intensivos de francês em Paris: vale a pena? (E para quem)",
       "data": "2026-09-03",
@@ -2784,6 +2590,34 @@
       "publico": [],
       "serie": [],
       "promessa": "Se você chegou na França e o francês ainda é uma barreira — ou quer acelerar a aprovação em DELF/DALF — existem cursos que realmente funcionam. Mas nem todos servem para o seu caso."
+    },
+    {
+      "url": "https://app.notion.com/p/A-culpa-de-gastar-errado-nos-primeiros-meses-na-Fran-a-3c0d602254ce811ea336f9ff87189d6e",
+      "titulo": "A culpa de 'gastar errado' nos primeiros meses na França",
+      "data": "2026-09-04",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Se você se sente culpada por 'gastar mal' desde que chegou na França, esse post é pra te lembrar que o problema nunca foi você."
+    },
+    {
+      "url": "https://app.notion.com/p/5-erros-financeiros-que-toda-brasileira-rec-m-chegada-comete-3c0d602254ce81748017fa1f1f37b042",
+      "titulo": "5 erros financeiros que toda brasileira recém-chegada comete",
+      "data": "2026-09-05",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Os 5 erros financeiros mais comuns de quem acabou de chegar — pra você não repetir os mesmos que quase todo mundo comete."
     },
     {
       "url": "https://app.notion.com/p/GRWM-assunto-reflexivo-pro-nicho-3b2d602254ce80aebc11d8c69ccf3940",
@@ -2800,21 +2634,219 @@
       "promessa": ""
     },
     {
-      "url": "https://app.notion.com/p/Direitos-de-crian-a-sem-documenta-o-38dd602254ce8018b31de180c92ae8a2",
-      "titulo": "Direitos de criança sem documentação",
-      "data": "2026-09-07",
-      "formato": null,
+      "url": "https://app.notion.com/p/Viver-de-altern-ncia-em-Paris-quanto-voc-realmente-gasta-vs-quanto-ganha-simula-o-real-3aad602254ce81a2959cdc08459ec0f8",
+      "titulo": "Viver de alternância em Paris: quanto você realmente gasta vs. quanto ganha (simulação real)",
+      "data": "2026-09-08",
+      "formato": "Carrossel",
       "estagio": "Idea",
-      "pilares": [],
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-27, data é um slot proposto]: Dor não atendida (semana 23/07): 'dúvida sobre custo de vida em Paris com salário de alternância'. Calendário tem posts sobre 'custo de viver em 2026' e 'mestrado em alternância — quanto ganha vs. quanto gasta', mas nenhum cruza dados reais de SMIC alternância com custo real de vida por cidade. Audiência recém-chegada precisa de simulação tangível antes de se mudar. — Simulação honesta: 21-25 anos (±990€), 26+ (1.867€), aluguel, transporte, comida — quanto sobra? Onde cortar. Por que Paris pode ser insustentável e qual é o real diferencial de outras cidades. Fontes: Salário do Alternante na França em 2026 – Carla na Gringa (https://carlanagringa.com/salario-alternante-franca-2026/); Salário Mínimo França 2026: Custo de Vida, Salário de Profissões e Mais (https://www.nomadglobal.com/conteudos/salario-minimo-franca)"
+    },
+    {
+      "url": "https://app.notion.com/p/VAE-em-2026-como-validar-sua-experi-ncia-profissional-e-conseguir-um-diploma-franc-s-38cd602254ce8133b482c1033db1a7c1",
+      "titulo": "VAE em 2026: como validar sua experiência profissional e conseguir um diploma francês",
+      "data": "2026-09-09",
+      "formato": "Reel",
+      "estagio": "to edit",
+      "pilares": [
+        "Trajetória"
+      ],
+      "meta": [
+        "SAVE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": "Você tem experiência de trabalho no Brasil, mas o diploma francês não sai? A VAE é a solução — e o CPF pode pagar tudo."
+    },
+    {
+      "url": "https://app.notion.com/p/O-hack-que-ningu-m-te-conta-pra-parar-de-perder-dinheiro-na-Fran-a-3c0d602254ce81a5ae5fe23d521a8bb7",
+      "titulo": "O hack que ninguém te conta pra parar de perder dinheiro na França",
+      "data": "2026-09-10",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
       "meta": [],
       "publico": [],
       "serie": [],
-      "promessa": ""
+      "promessa": "O hack não é um truque escondido de imposto — é parar de usar ferramenta errada pra um problema que só quem vive fora do Brasil realmente tem."
     },
     {
-      "url": "https://app.notion.com/p/Altern-ncia-em-janeiro-vs-setembro-qual-timing-funciona-mesmo-em-2026-e-qual-armadilha-3aed602254ce8117b13deb14da866079",
-      "titulo": "Alternância em janeiro vs. setembro: qual timing funciona mesmo em 2026 (e qual é armadilha)",
-      "data": "2026-09-08",
+      "url": "https://app.notion.com/p/Checklist-financeiro-dos-primeiros-90-dias-na-Fran-a-3c0d602254ce811c97f4e4daabe60ca4",
+      "titulo": "Checklist financeiro dos primeiros 90 dias na França",
+      "data": "2026-09-13",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [],
+      "serie": [],
+      "promessa": "Um roteiro claro, com prazos realistas, pra você não se perder na parte financeira dos primeiros três meses aqui."
+    },
+    {
+      "url": "https://app.notion.com/p/Viver-de-Altern-ncia-em-2026-A-Simula-o-Real-Quanto-Voc-Ganha-Quanto-Gasta-em-Paris-vs-Cidades-3c6d602254ce818ba78bf12b242ca1c1",
+      "titulo": "Viver de Alternância em 2026: A Simulação Real (Quanto Você Ganha, Quanto Gasta em Paris vs. Cidades Menores)",
+      "data": "2026-09-14",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Adaptado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-08-24, data é um slot proposto]: Dor identificada no bilan de 23/07 (viabilidade financeira de alternância com salário SMI) e 14/07 (timeline realista com custos). Post 'Alternância em 2026: Os Números Reais' já está agendado, mas pode ser desdobrado em Reel mais viral (hook: 'aqui está por que alguns alternantes saem no vermelho'). Concorrência descreve salários mas não cruzam com custos reais. Gap claro: ninguém compara Paris vs. interior com cenário real de bolso. — Simulação lado-a-lado: salário de alternância (55% SMIC aos 21+) menos aluguel, comida, transporte — sobra dinheiro mesmo em Paris? Ou você precisa ir pra Lyon? Sem romantizar, números reais. Fontes: Salário do alternante na França em 2026 (https://carlanagringa.com/salario-alternante-franca-2026/); Salário mínimo na França 2026 (https://www.intercultural.com.br/salario-minimo-franca/); Custo de vida na França 2026 (https://www.nomadglobal.com/conteudos/custo-de-vida-franca)"
+    },
+    {
+      "url": "https://app.notion.com/p/Altern-ncia-com-30-o-que-as-escolas-REALMENTE-procuram-e-por-que-idade-importa-menos-que-voc-pen-3aed602254ce8137b947d7341c805616",
+      "titulo": "Alternância com 30+: o que as escolas REALMENTE procuram (e por que idade importa menos que você pensa)",
+      "data": "2026-09-15",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Adaptado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor recorrente em bilan 03/07: audiência pergunta 'é possível alternância com 30+ anos?'. Pautas sugeridas indicam isso é dúvida massiva. Calendário tem post sobre 'por que é difícil', mas falta decodificar as REGRAS oficiais (limite de 29 anos com exceção até 34 anos) e como usar isso a favor. Conteúdo usa dado verificável (Campus France) + ângulo prático. — Explica limite de idade real para alternância, exceções legítimas (Campus France autoriza até 34 anos em casos), e estratégia de candidatura aos 30+. Fontes: Mestrado em alternância na França: guia completo - Partiu Intercâmbio (https://partiuintercambio.org/mestrado-em-alternancia-na-franca/)"
+    },
+    {
+      "url": "https://app.notion.com/p/Trabalho-Estudos-O-Que-Muda-Para-Voc-Com-a-Nova-Taxa-de-Valida-o-VLS-TS-em-2026-300-em-Vez-de-3c6d602254ce81c097c1fe9d8e224557",
+      "titulo": "Trabalho + Estudos: O Que Muda Para Você Com a Nova Taxa de Validação VLS-TS em 2026 (€300 em Vez de €200)",
+      "data": "2026-09-16",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sociedade"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-08-24, data é um slot proposto]: Lacuna de cobertura: nenhum post agendado menciona mudança legislativa 2026 com impacto direto em recém-chegados. Benchmark aponta que concorrência não contextualiza legislação para imigrante (quem é afetado, quando, por quê). Post aproveitaria gancho de atualização legal (trending em 2026) mas com perspectiva Por Dentro: \"se você é estudante, ainda é €100; se é outro tipo de VLS, agora é €300.\" Diferencia Por Dentro de educadores genéricos — fala COM imigrante, não para imigrante. — Lei de 2026 aumentou validação de visto de €200 para €300 (ou €100 se estudante). Parece pouco? Somado ao aluguel, documentação e primeira semana, impacta o bolso. Aqui está o que mudou E como se preparar. Fontes: Relocation In Paris - French Long Stay Visa: 2026 (https://relocation-in-paris.fr/en/blog/long-stay-visa-france-process); France Long-Stay Visa (VLS-TS Étudiant) 2026 (https://iasservices.org.uk/fr/france-long-stay-visa-vls/)"
+    },
+    {
+      "url": "https://app.notion.com/p/CPF-na-Fran-a-verificar-saldo-gastar-antes-de-perder-e-3-regras-que-ningu-m-explica-3b1d602254ce81aabd7cd56d7fe949c6",
+      "titulo": "CPF na França: verificar saldo, gastar antes de perder (e 3 regras que ninguém explica)",
+      "data": "2026-09-17",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Adaptado",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-08-03, data é um slot proposto]: Pergunta recorrente não respondida: 'Como verifico meu CPF? Quanto tenho? Onde uso?' Aparece em 3 semanas de bilans. Concorrentes não abordam com clareza a diferença entre saldo em euros (2026), limite de 150€ de participação do trabalhador (desde abril 2026) e expiração. Oportunidade: explicar como quem chega na França acessa MonCompteFormation, entende plafonds atuais (1.500€ em formações de língua) e não perde direitos — tom educativo, sem academicismo. — Passo a passo real para consultar seu CPF online, entender onde gastar e não deixar crédito expirar — sem assustar com prazos. Fontes: Comment vérifier son solde CPF en 2026 (guide 2 minutes) (https://www.elitek.fr/post/solde-cpf-guide-2026); Vérifier votre compte CPF en 2026 : le guide pratique complet (https://www.lv3dofficiel.fr/post/verifier-compte-cpf); Consulter son CPF en 2026 : guide pratique Mon Compte Formation (https://up-academie.com/consulter-son-cpf/)"
+    },
+    {
+      "url": "https://app.notion.com/p/Auto-entrepreneur-tranger-o-que-voc-precisa-saber-para-abrir-sua-microempresa-na-Fran-a-38cd602254ce81eab95fef52411f2c23",
+      "titulo": "Auto-entrepreneur étranger: o que você precisa saber para abrir sua microempresa na França",
+      "data": "2026-09-19",
+      "formato": "Reel",
+      "estagio": "Design",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [
+        "SAVE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": "Você pode ser auto-empreendedora na França sendo estrangeira? A resposta depende do seu titre de séjour — e tem regras bem específicas para 2026."
+    },
+    {
+      "url": "https://app.notion.com/p/Como-pedir-sua-Carte-Vitale-os-3-documentos-que-voc-precisa-ter-agora-38cd602254ce8136be9fc3c27245ca71",
+      "titulo": "Como pedir sua Carte Vitale: os 3 documentos que você precisa ter agora",
+      "data": "2026-09-20",
+      "formato": "Carrossel",
+      "estagio": "Design",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [
+        "SAVE"
+      ],
+      "publico": [],
+      "serie": [],
+      "promessa": "Você acabou de assinar o contrato na França e agora? A Carte Vitale não sai sozinha. A gente mostra exatamente o que levar."
+    },
+    {
+      "url": "https://app.notion.com/p/Altern-ncia-com-30-anos-por-que-as-escolas-querem-voc-e-como-aproveitar-3aad602254ce810292fcf31c57546566",
+      "titulo": "Alternância com 30+ anos: por que as escolas querem você (e como aproveitar)",
+      "data": "2026-09-21",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Adaptado",
+        "Recém-chegado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-27, data é um slot proposto]: Dor recorrente (semana 03/07 e 23/07): 'tem sido muito difícil achar alternância com 30 anos' e 'qual é realmente o limite de idade'. Posts agendados existem mas não cobrem o ângulo positivo de ser 30+: salário garantido desde ano 1, menos concorrência com jovens de 21-25, viabilidade legal clara. Lacuna: nenhum post explora o lado estratégico/positivo da idade. — Aos 26+, você entra em contrato com 100% do SMIC: saiba o que muda legalmente, por que você é mais atrativo, e como posicionar esse diferencial em candidaturas. Fontes: Salário do Alternante na França em 2026 – Carla na Gringa (https://carlanagringa.com/salario-alternante-franca-2026/); Alternance & Apprentissage na França para Estudantes Internacionais (2026) (https://studyartinfrance.com/pt/guides/alternance-apprentissage/)"
+    },
+    {
+      "url": "https://app.notion.com/p/Bolsas-para-gradua-o-na-Fran-a-Bienvenue-en-France-o-que-ningu-m-te-diz-sobre-o-custo-de-vida-re-3b1d602254ce8155965cf81eed103bc4",
+      "titulo": "Bolsas para graduação na França: Bienvenue en France + o que ninguém te diz sobre o custo de vida real",
+      "data": "2026-09-22",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-08-03, data é um slot proposto]: Dor não atendida em bilan (semana 31/07): 'Bolsas de estudo e financiamento durante graduação na França' + 'Orientações práticas para estudantes de graduação' apareceu como lacuna. Concorrência (@franova, @keys_to_france) fala DE Paris, não PARA quem quer estudar aqui. Por Dentro pode: contar experiência de recém-chegado que estudou com bolsa parcial (Bienvenue paga mensalidade reduzida mas não renda), mostrar custo real de RU/moradia/transporte e responder: 'Com quantos euros meu pai precisa mandar por mês?' Tom: realista sem catastrofizar. Pesquisa confirma: Bienvenue cobre redução taxas (paga só ~243€/ano em vez de 3-4k) mas não renda, exige comprovação de 245€/mês de complemento. — Como funciona Bienvenue en France, quanto você realmente gasta em Paris vs. cidades menores durante licença, e se bolsa parcial compensa sem ter grana de reserva. Fontes: Bienvenue en France: bolsas para graduação e mestrado na França (https://partiuintercambio.org/bolsas-de-estudo/bienvenue-en-france-bolsas/); Como conseguir bolsa para estudar na França? (https://partiuintercambio.org/como-conseguir-uma-bolsa-para-estudar-na-franca/); Bolsas de estudos - Campus France (https://www.bresil.campusfrance.org/bolsas-estudos)"
+    },
+    {
+      "url": "https://app.notion.com/p/VLS-Long-Duration-vs-Visto-de-Interc-mbio-qual-escolher-antes-de-gastar-dinheiro-3aed602254ce818c8702cf1f12c87765",
+      "titulo": "VLS Long Duration vs. Visto de Intercâmbio: qual escolher antes de gastar dinheiro",
+      "data": "2026-09-23",
+      "formato": "Reel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sistema"
+      ],
+      "meta": [],
+      "publico": [
+        "Pré-chegada"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor específica levantada em bilan 03/07 (Dany gastando tempo/dinheiro sem saber qual visto escolher). Nunca foi coberto no calendário. VLS-TS é categoria confusa para pré-chegada; falta clareza sobre diferença de direitos, custos reais e risco de rejeição. Reel como hook + carrossel detalha. — Compara custo, tempo e direitos entre VLS-TS (sem instituição) e visto de intercâmbio. Responde: vale a pena investir em teste de francês presencial antes de confirmar visto? Fontes: Intercâmbio na França: o guia para brasileiros em 2026 - SKEMA (https://www.skema.edu/br/news/intercambio-franca); Visto de estudante para França: guia completo 2026 - FrenchXpert (https://frenchxpert.com/visto-de-estudante-para-franca/); Como tirar visto de estudante para França - Euro Dicas (https://www.eurodicas.com.br/visto-de-estudante-para-a-franca/)"
+    },
+    {
+      "url": "https://app.notion.com/p/Altern-ncia-real-em-2026-quanto-voc-REALMENTE-ganha-quanto-gasta-em-Paris-sobra-dinheiro-ou-n-o-3b1d602254ce81099acbf98f500754d0",
+      "titulo": "Alternância real em 2026: quanto você REALMENTE ganha, quanto gasta em Paris, sobra dinheiro ou não?",
+      "data": "2026-09-24",
       "formato": "Carrossel",
       "estagio": "Idea",
       "pilares": [
@@ -2826,13 +2858,30 @@
         "Recém-chegado"
       ],
       "serie": [],
-      "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor recorrente confirmada em 3 bilans (23/07, 03/07). Audiência pergunta especificamente sobre viabilidade de janeiro/fevereiro vs. setembro. Calendário já tem post sobre timing, mas este tem ângulo diferente: não é 'qual é o melhor', é 'qual timing realmente existe e qual é armadilha'. Carrossel permite checklist prático e salvamento. — Destrói o mito de que alternância só começa em setembro: explica timing real, risco de rejeição fora do ciclo e como contornar. Fontes: Calendário de candidaturas 2025-2026 - Campus France Brasil (https://www.bresil.campusfrance.org/calendario-candidaturas-2025-2026); Calendário Campus France 2026-2027 (https://www.bresil.campusfrance.org/10-dias-para-as-candidaturas)"
+      "promessa": "[Sugestão automática — 2026-08-03, data é um slot proposto]: Já sugerido em ideias por entrada ('Alternância em 2026: os números reais'), mas gap real está aqui: audiência quer transparência. Aparecem perguntas tipo 'quanto ganha alternante?' mas ninguém diz 'e quanto custa Paris, então sobra ou não?' Concorrência (@keys_to_france faz bem estruturado mas genérico; @franova é mais legal/visto). Por Dentro ganha ao contar: 'fiz, aqui é o que realmente gastei.' Números atuais (pesquisa june 2026): alternante 21-25 anos, 1ª ano = ~990€ brut (~990€ net porque exoneração até 933€), aluguel compartilhado Paris = 600-800€, RU ~ 3-5€, transporte ~ 80€, telefone/streaming/misc ~ 100€. Resultado: apertado mas viável, especialmente se dividir T2. Ou cidades menores = muito melhor. Tom: 'sem romantizar nem assustar, aqui está o que funciona.' — Simulação honesta de orçamento mensal de quem faz alternância em Paris: salário mínimo, descontos reais, aluguel, comida — e se é viável viver de alternância ou precisa de grana extra. Fontes: Salaire en alternance 2026 : grille et barèmes officiels (https://labonnealternance.apprentissage.beta.gouv.fr/guide-alternant/comprendre-la-remuneration); Salaire alternance 2026 : avec l'augmentation du Smic, combien gagnerez-vous ? (https://www.letudiant.fr/etudes/alternance/alternance-avec-la-hausse-du-smic-combien-gagnerez-vous.html); Salaires en alternance 2026 : grille complète par âge et niveau (https://thotismedia.com/salaires-en-alternance-2026/)"
     },
     {
-      "url": "https://app.notion.com/p/Visto-vs-Visto-qual-escolher-se-voc-quer-estudar-trabalhar-ou-vir-com-c-njuge-39dd602254ce81b9bc4dedaf8329432d",
-      "titulo": "Visto vs. Visto: qual escolher se você quer estudar, trabalhar ou vir com cônjuge?",
-      "data": "2026-09-09",
-      "formato": "Reel",
+      "url": "https://app.notion.com/p/Lei-2026-Qual-Mudan-a-Te-Afeta-Spoiler-Talvez-Nenhuma-3b1d602254ce81c0acbdd8d185f6040b",
+      "titulo": "Lei 2026: Qual Mudança Te Afeta? (Spoiler: Talvez Nenhuma)",
+      "data": "2026-09-29",
+      "formato": "Carrossel",
+      "estagio": "Idea",
+      "pilares": [
+        "Sociedade"
+      ],
+      "meta": [],
+      "publico": [
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "serie": [],
+      "promessa": "[Sugestão automática — 2026-08-03, data é um slot proposto]: Lacuna de concorrência detectada: nenhum concorrente contextualiza legislação nova para o imigrante específico. Audiência pediu conteúdo sobre 'o que ninguém te diz' sobre sistema francês. O benchmark sugeriu este ângulo. Setembro/outubro é período de renovações e reavaliações. Gancho real: leis de 2026 já em vigor (entradas em vigor 01.01.2026). Segmentação por perfil (trabalhador/estudante/residente/candidato a cidadania) = diferencial vs. concorrência. — Descubra que leis francesas realmente impactam SUA situação em 2026: nível de francês, exame civíco, renovação de título — sem assustar. Fontes: Loi immigration 2026 — Tous les changements pour les étrangers (https://demarchesetrangers.fr/blog/loi-immigration-2026-ce-qui-change); Droit des étrangers en France en 2026 : tout ce que vous devez savoir (https://www.eduf.fr/post/droit-des-etrangers-en-france-en-2026-tout-ce-que-vous-devez-savoir); Réforme Immigration 2025-2026 : nouveaux critères pour les titres de séjour (https://ouali-avocat.fr/reforme-immigration-2025-2026/)"
+    },
+    {
+      "url": "https://app.notion.com/p/Altern-ncia-em-Janeiro-vs-Setembro-Qual-Timing-Voc-REALMENTE-Deve-Escolher-E-O-Que-Muda-Para-Seu-3c6d602254ce81358e6bd0b3ca21c8a2",
+      "titulo": "Alternância em Janeiro vs. Setembro: Qual Timing Você REALMENTE Deve Escolher (E O Que Muda Para Seu Orçamento)",
+      "data": "2026-10-01",
+      "formato": "Carrossel",
       "estagio": "Idea",
       "pilares": [
         "Sistema"
@@ -2843,39 +2892,10 @@
         "Recém-chegado"
       ],
       "serie": [],
-      "promessa": "[Sugestão automática — 14/07/2026, origem: bilan de audiência 2026-W29] Audiência segmentada por motivo de imigração (estudo/trabalho/cônjuge) precisa de comparação clara antes de decidir qual caminho de visto seguir."
-    },
-    {
-      "url": "https://app.notion.com/p/Direitos-da-crian-a-na-Fran-a-guia-para-fam-lias-38dd602254ce80089c7ef3c964b0e5e2",
-      "titulo": "Direitos da criança na França — guia para famílias",
-      "data": "2026-09-10",
-      "formato": null,
-      "estagio": "Idea",
-      "pilares": [],
-      "meta": [],
-      "publico": [],
-      "serie": [],
-      "promessa": ""
-    },
-    {
-      "url": "https://app.notion.com/p/Mestrado-em-altern-ncia-2026-quanto-voc-realmente-ganha-vs-quanto-gasta-em-Paris-3a7d602254ce8182af6ad9002a8625a3",
-      "titulo": "Mestrado em alternância 2026: quanto você realmente ganha vs. quanto gasta em Paris",
-      "data": "2026-09-14",
-      "formato": "Reel",
-      "estagio": "Idea",
-      "pilares": [
-        "Sistema"
-      ],
-      "meta": [],
-      "publico": [
-        "Pré-chegada",
-        "Recém-chegado"
-      ],
-      "serie": [],
-      "promessa": "[Sugestão automática — 2026-07-24, data é um slot proposto]: Calendário tem conteúdo genérico sobre alternância e sobre custo de vida (separados), mas falta comparação prática que responda: 'ganho 1.000-1.867€/mês, gasto quanto?' Dor de segmentação: novo alternante em M1 precisa de realismo financeiro antes de deixar o Brasil. — Números reais: salário mensal de alternante em 2026 (por idade), custo de vida em Paris vs. cidades menores, e se sobra dinheiro ou você endivida. Fontes: Salário do alternante na França em 2026: quanto você vai receber no mestrado (https://carlanagringa.com/salario-alternante-franca-2026/); Salário mínimo França 2026: Custo de vida, salário de profissões e mais (https://www.nomadglobal.com/conteudos/salario-minimo-franca)"
+      "promessa": "[Sugestão automática — 2026-08-24, data é um slot proposto]: Pedido recorrente no bilan de 23/07 com dor específica: timing estratégico e viabilidade fora do ciclo tradicional. Não há conteúdo no calendário que aborde isso com números práticos (quanto você ganha em janeiro vs. setembro, custos de alojamento temporário, diferença de fluxo de caixa). Concorrentes não segmentam por período de entrada. Cruzando ideias já existentes (Alternância em janeiro vs. setembro; Alternância real em 2026: números reais por período). — Desfaz a confusão: janeiro E setembro são viáveis, mas o timing muda seu primeiro salário, quando começa a pagar aluguel e se sobra dinheiro. Números reais, não promessas. Fontes: Salário do alternante na França em 2026 (https://carlanagringa.com/salario-alternante-franca-2026/); Custo de vida na França para estudante (https://frenchxpert.com/custo-de-vida-na-franca-para-estudante/)"
     }
   ],
-  "calendario_posts_atualizado_em": "2026-08-17",
+  "calendario_posts_atualizado_em": "2026-08-24",
   "instagram_diario": [
     {
       "data": "2026-05-01",
@@ -4338,6 +4358,113 @@
       "data_sugerida": "2026-10-22",
       "notion_criada": true,
       "gerado_em": "2026-08-17"
+    },
+    {
+      "id": "2026-08-24-Alternância em Janeiro vs. Setembro: Qua",
+      "titulo": "Alternância em Janeiro vs. Setembro: Qual Timing Você REALMENTE Deve Escolher (E O Que Muda Para Seu Orçamento)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Desfaz a confusão: janeiro E setembro são viáveis, mas o timing muda seu primeiro salário, quando começa a pagar aluguel e se sobra dinheiro. Números reais, não promessas.",
+      "justificativa": "Pedido recorrente no bilan de 23/07 com dor específica: timing estratégico e viabilidade fora do ciclo tradicional. Não há conteúdo no calendário que aborde isso com números práticos (quanto você ganha em janeiro vs. setembro, custos de alojamento temporário, diferença de fluxo de caixa). Concorrentes não segmentam por período de entrada. Cruzando ideias já existentes (Alternância em janeiro vs. setembro; Alternância real em 2026: números reais por período).",
+      "fontes": [
+        {
+          "titulo": "Salário do alternante na França em 2026",
+          "url": "https://carlanagringa.com/salario-alternante-franca-2026/"
+        },
+        {
+          "titulo": "Custo de vida na França para estudante",
+          "url": "https://frenchxpert.com/custo-de-vida-na-franca-para-estudante/"
+        }
+      ],
+      "data_sugerida": "2026-10-01",
+      "notion_criada": true,
+      "gerado_em": "2026-08-24"
+    },
+    {
+      "id": "2026-08-24-Viver de Alternância em 2026: A Simulaçã",
+      "titulo": "Viver de Alternância em 2026: A Simulação Real (Quanto Você Ganha, Quanto Gasta em Paris vs. Cidades Menores)",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Adaptado"
+      ],
+      "promessa": "Simulação lado-a-lado: salário de alternância (55% SMIC aos 21+) menos aluguel, comida, transporte — sobra dinheiro mesmo em Paris? Ou você precisa ir pra Lyon? Sem romantizar, números reais.",
+      "justificativa": "Dor identificada no bilan de 23/07 (viabilidade financeira de alternância com salário SMI) e 14/07 (timeline realista com custos). Post 'Alternância em 2026: Os Números Reais' já está agendado, mas pode ser desdobrado em Reel mais viral (hook: 'aqui está por que alguns alternantes saem no vermelho'). Concorrência descreve salários mas não cruzam com custos reais. Gap claro: ninguém compara Paris vs. interior com cenário real de bolso.",
+      "fontes": [
+        {
+          "titulo": "Salário do alternante na França em 2026",
+          "url": "https://carlanagringa.com/salario-alternante-franca-2026/"
+        },
+        {
+          "titulo": "Salário mínimo na França 2026",
+          "url": "https://www.intercultural.com.br/salario-minimo-franca/"
+        },
+        {
+          "titulo": "Custo de vida na França 2026",
+          "url": "https://www.nomadglobal.com/conteudos/custo-de-vida-franca"
+        }
+      ],
+      "data_sugerida": "2026-09-14",
+      "notion_criada": true,
+      "gerado_em": "2026-08-24"
+    },
+    {
+      "id": "2026-08-24-VLS-TS Long Duration vs. Visto de Estuda",
+      "titulo": "VLS-TS Long Duration vs. Visto de Estudante: Qual Escolher ANTES de Pagar a Passagem (E Por Que Essa Decisão Muda Seu Acesso a Trabalho)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada"
+      ],
+      "promessa": "A grande dúvida: cursar francês ou outro programa sem estar ligada a universidade? VLS-TS visiteur deixa você trabalhar à noite enquanto estuda? Ou você precisa do visto de estudante? Compara acesso a trabalho, custos de validação 2026, renovação.",
+      "justificativa": "Dor não atendida identificada no bilan de 31/07 (guias práticos sobre cursos de francês, bolsas) e nas ideias de conteúdo ('VLS Long Duration vs Intercâmbio Universitário'). Público em pré-chegada com dúvida sobre qual visto usar antes de investir em passagem e alojamento. Concorrência genérica; falta comparação prática estruturada com foco em trabalho e custos 2026 (validação agora custa €100-300, mudança importante em 2026). Lacuna clara: \"eu estudo francês 6 meses em escola privada — qual visto preciso? Posso trabalhar?\"",
+      "fontes": [
+        {
+          "titulo": "France Student Visa (VLS-TS Étudiant) 2026",
+          "url": "https://iasservices.org.uk/fr/france-student-visa-vls/"
+        },
+        {
+          "titulo": "France Long-Stay Visa (VLS-T & VLS-TS)",
+          "url": "https://iasservices.org.uk/fr/france-long-stay-visa-vls/"
+        },
+        {
+          "titulo": "Relocation In Paris - French Long Stay Visa: 2026",
+          "url": "https://relocation-in-paris.fr/en/blog/long-stay-visa-france-process"
+        }
+      ],
+      "data_sugerida": "2026-10-27",
+      "notion_criada": true,
+      "gerado_em": "2026-08-24"
+    },
+    {
+      "id": "2026-08-24-Trabalho + Estudos: O Que Muda Para Você",
+      "titulo": "Trabalho + Estudos: O Que Muda Para Você Com a Nova Taxa de Validação VLS-TS em 2026 (€300 em Vez de €200)",
+      "formato": "Reel",
+      "pilar": "Sociedade",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Lei de 2026 aumentou validação de visto de €200 para €300 (ou €100 se estudante). Parece pouco? Somado ao aluguel, documentação e primeira semana, impacta o bolso. Aqui está o que mudou E como se preparar.",
+      "justificativa": "Lacuna de cobertura: nenhum post agendado menciona mudança legislativa 2026 com impacto direto em recém-chegados. Benchmark aponta que concorrência não contextualiza legislação para imigrante (quem é afetado, quando, por quê). Post aproveitaria gancho de atualização legal (trending em 2026) mas com perspectiva Por Dentro: \"se você é estudante, ainda é €100; se é outro tipo de VLS, agora é €300.\" Diferencia Por Dentro de educadores genéricos — fala COM imigrante, não para imigrante.",
+      "fontes": [
+        {
+          "titulo": "Relocation In Paris - French Long Stay Visa: 2026",
+          "url": "https://relocation-in-paris.fr/en/blog/long-stay-visa-france-process"
+        },
+        {
+          "titulo": "France Long-Stay Visa (VLS-TS Étudiant) 2026",
+          "url": "https://iasservices.org.uk/fr/france-long-stay-visa-vls/"
+        }
+      ],
+      "data_sugerida": "2026-09-16",
+      "notion_criada": true,
+      "gerado_em": "2026-08-24"
     }
   ],
   "concorrentes_observados": [
