@@ -2735,7 +2735,7 @@
     {
       "url": "https://app.notion.com/p/Viver-de-Altern-ncia-em-2026-A-Simula-o-Real-Quanto-Voc-Ganha-Quanto-Gasta-em-Paris-vs-Cidades-3c6d602254ce818ba78bf12b242ca1c1",
       "titulo": "Viver de Alternância em 2026: A Simulação Real (Quanto Você Ganha, Quanto Gasta em Paris vs. Cidades Menores)",
-      "data": "2026-09-14",
+      "data": "2026-09-15",
       "formato": "Reel",
       "estagio": "Idea",
       "pilares": [
@@ -2882,7 +2882,7 @@
       "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor específica levantada em bilan 03/07 (Dany gastando tempo/dinheiro sem saber qual visto escolher). Nunca foi coberto no calendário. VLS-TS é categoria confusa para pré-chegada; falta clareza sobre diferença de direitos, custos reais e risco de rejeição. Reel como hook + carrossel detalha. — Compara custo, tempo e direitos entre VLS-TS (sem instituição) e visto de intercâmbio. Responde: vale a pena investir em teste de francês presencial antes de confirmar visto? Fontes: Intercâmbio na França: o guia para brasileiros em 2026 - SKEMA (https://www.skema.edu/br/news/intercambio-franca); Visto de estudante para França: guia completo 2026 - FrenchXpert (https://frenchxpert.com/visto-de-estudante-para-franca/); Como tirar visto de estudante para França - Euro Dicas (https://www.eurodicas.com.br/visto-de-estudante-para-a-franca/)"
     }
   ],
-  "calendario_posts_atualizado_em": "2026-09-07",
+  "calendario_posts_atualizado_em": "2026-09-14",
   "instagram_diario": [
     {
       "data": "2026-05-01",
@@ -4628,6 +4628,104 @@
       "data_sugerida": "2026-11-12",
       "notion_criada": true,
       "gerado_em": "2026-09-07"
+    },
+    {
+      "id": "2026-09-14-Mestrado M1 na França: Quanto Custa de V",
+      "titulo": "Mestrado M1 na França: Quanto Custa de Verdade Se Você Pagar Do Seu Bolso",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Simulação real de custo/benefício para M1 sem alternância: inscrição, taxa de vida, 3 estratégias práticas para ganhar euros enquanto estuda (e quanto você realmente faz).",
+      "justificativa": "Dor não atendida (bilan 14/07). Audiência perguntou sobre 'viabilidade financeira de mestrado sem renda em M1' e o calendário só tem 'alternância real em 2026'. Falta conteúdo que mostre: (1) quanto custa M1 fora de Paris; (2) alternativas legais de trabalho permitidas (20h/semana com visto); (3) bolsa real que conseguem. Tom prático sem romantizar: 'não é gratuito, mas dá pra se virar'. Diferencia Por Dentro porque mostra trajetória real (eu fiz, aqui está quanto gastei) em vez de listar regras.",
+      "fontes": [
+        {
+          "titulo": "Mestrado na França: tudo o que você precisa saber",
+          "url": "https://www.eurodicas.com.br/mestrado-na-franca/"
+        },
+        {
+          "titulo": "Frenchxpert: Mestrado na França 2026",
+          "url": "https://frenchxpert.com/mestrado-na-franca/"
+        }
+      ],
+      "data_sugerida": "2026-09-29",
+      "notion_criada": true,
+      "gerado_em": "2026-09-14"
+    },
+    {
+      "id": "2026-09-14-Bolsa de Estudo + Sanduíche na Graduação",
+      "titulo": "Bolsa de Estudo + Sanduíche na Graduação Francesa: O Que Ninguém Te Conta Sobre o RU",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "3 coisas que surpreendem brasileiros no RU francês + custo real de bolsa completa + simulação de orçamento mensal (e por que comer em casa é parte da estratégia).",
+      "justificativa": "Dor não atendida (bilan 31/07 + 23/07). Pergunta recorrente: 'Bolsas e sanduíches na graduação francesa' com interesse específico em vida estudantil (alimentação, custo de vida, rotina). Calendário tem 'Bolsas para graduação: Bienvenue en France' mas falta ângulo de *vida real*: alimentação no RU, diferenças culturais, impacto no orçamento. Lacuna da concorrência: ninguém conecta bolsa → refeição → custo de vida adaptado. Reel de 60s funciona: hook nos primeiros 3s é surpresa (ex: 'o RU custa 4€ mas não comem o que você pensa'), corpo = dicas práticas (o que oferecem, como economizar, onde comer barato além do RU), encerramento educativo sem clickbait.",
+      "fontes": [],
+      "data_sugerida": "2026-09-28",
+      "notion_criada": true,
+      "gerado_em": "2026-09-14"
+    },
+    {
+      "id": "2026-09-14-VLS Long Duration: O Visto Para Estudar ",
+      "titulo": "VLS Long Duration: O Visto Para Estudar Francês Sem Universidade (Quando Faz Sentido, Quando É Risco)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Comparação clara: VLS-TS Visiteur (cursos de idioma, nenhuma instituição) vs. Visto de Estudante (université/école). Quanto custa? Quanto tempo leva? Quando desistir ante de gastar. Simulação de caso real.",
+      "justificativa": "Dor não atendida (backlog de ideias levantadas). Audiência específica busca informação sobre 'qual visto escolher pra estudar francês na França sem estar vinculada a instituição' com receio de investir dinheiro em processo longo sem testar nível. Calendário tem 'VLS Long Duration vs. Intercâmbio Universitário' mas é genérico; aqui propomos ângulo 'idioma apenas'. Pesquisa confirma: VLS-TS Visiteur exige validação online em 3 meses (€300 a partir maio 2026), recursos de ~€1.426/mês (SMIC), seguro privado, sem direito a trabalhar — diferente de visto de estudante que permite até 960h/ano. Por Dentro diferencia porque **não vende a ilusão**: explica cenários onde vale a pena (teste seu nível antes de mestrado) vs. onde é risco (se o dinheiro é pouco, volta melhor). Cita legislação real 2026.",
+      "fontes": [
+        {
+          "titulo": "Expat in France: Long-Stay Visitor Visa 2026",
+          "url": "https://expat-in-france.com/france-long-term-visa/"
+        },
+        {
+          "titulo": "Relocation In Paris: French Long Stay Visa Process",
+          "url": "https://relocation-in-paris.fr/en/blog/long-stay-visa-france-process"
+        },
+        {
+          "titulo": "Country To Live: VLS-TS 2026",
+          "url": "https://www.countrytolive.com/residence/france-long-stay-visiteur-vls-ts"
+        }
+      ],
+      "data_sugerida": "2026-10-01",
+      "notion_criada": true,
+      "gerado_em": "2026-09-14"
+    },
+    {
+      "id": "2026-09-14-CPF Francês: Verificar Saldo Online + 3 ",
+      "titulo": "CPF Francês: Verificar Saldo Online + 3 Cenários De Quem Gasta (E Quem Perde Os Créditos)",
+      "formato": "Reel",
+      "pilar": "Sistema",
+      "publico": [
+        "Adaptado"
+      ],
+      "promessa": "Tutorial rápido: como entrar em Mon Compte Formation + quanto você acumula por ano (€500 vs €800 conforme experiência) + 3 cenários reais de quem aproveitou o CPF (e um de quem perdeu tudo por não usar a tempo).",
+      "justificativa": "Pergunta recorrente (bilan 31/07): 'Como consigo ver se tenho CPF na França? / Quanto tenho de CPF? / Onde posso usar o CPF francês?' — já agendado em backlog mas merece treatment curto/viral porque é dúvida que bloqueia ação. Reel atua como 'primeiro passo' prático: abre conta, valida identidade digital, explica crédito anual (é progressivo conforme tempo de trabalho), mostra que participação mínima agora é €150 (decreto 2026). Diferencia Por Dentro: tom 'sem assustar', mostra caso de sucesso (aplicou CPF para TOEFL, conseguiu bolsa extra depois) e fracasso (trabalhou 2 anos, nunca olhou o saldo, perdeu 1k€ por expiração). Legislação 2026 confirma participação em €150 (a partir abril 2026).",
+      "fontes": [
+        {
+          "titulo": "Compte Personnel de Formation — Wikipédia",
+          "url": "https://fr.wikipedia.org/wiki/Compte_personnel_de_formation"
+        },
+        {
+          "titulo": "Aide Sociale: Compte personnel de formation",
+          "url": "https://www.aide-sociale.fr/compte-personnel-formation/"
+        },
+        {
+          "titulo": "Universal Languages: CPF 2026 Guide",
+          "url": "https://universal-languages.fr/compte-personnel-formation-cpf-2026-guide/"
+        }
+      ],
+      "data_sugerida": "2026-09-30",
+      "notion_criada": true,
+      "gerado_em": "2026-09-14"
     }
   ],
   "concorrentes_observados": [
