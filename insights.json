@@ -2882,7 +2882,7 @@
       "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor específica levantada em bilan 03/07 (Dany gastando tempo/dinheiro sem saber qual visto escolher). Nunca foi coberto no calendário. VLS-TS é categoria confusa para pré-chegada; falta clareza sobre diferença de direitos, custos reais e risco de rejeição. Reel como hook + carrossel detalha. — Compara custo, tempo e direitos entre VLS-TS (sem instituição) e visto de intercâmbio. Responde: vale a pena investir em teste de francês presencial antes de confirmar visto? Fontes: Intercâmbio na França: o guia para brasileiros em 2026 - SKEMA (https://www.skema.edu/br/news/intercambio-franca); Visto de estudante para França: guia completo 2026 - FrenchXpert (https://frenchxpert.com/visto-de-estudante-para-franca/); Como tirar visto de estudante para França - Euro Dicas (https://www.eurodicas.com.br/visto-de-estudante-para-a-franca/)"
     }
   ],
-  "calendario_posts_atualizado_em": "2026-09-14",
+  "calendario_posts_atualizado_em": "2026-09-21",
   "instagram_diario": [
     {
       "data": "2026-05-01",
@@ -4726,6 +4726,118 @@
       "data_sugerida": "2026-09-30",
       "notion_criada": true,
       "gerado_em": "2026-09-14"
+    },
+    {
+      "id": "2026-09-21-Alternância em Janeiro vs. Setembro: A V",
+      "titulo": "Alternância em Janeiro vs. Setembro: A Verdade Sobre Os Dois Períodos (E Por Que Um É Mais Difícil)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "promessa": "Responder a dúvida recorrente: qual período realmente abre portas para alternância? Sem romantizar, sem assustar—só prática.",
+      "justificativa": "Dor identificada no bilan de 23/07: audiência questiona especificamente 'realmente existe alternância em janeiro/fevereiro ou é mais arriscado?' Nenhum concorrente aborda isso com dados reais. A lacuna é tática: não é 'existe ou não', é 'qual timing funciona na prática e por quê'. Formato carrossel permite quebrar complexidade em slides salváreis. Potencial: estudantes em transição + trabalhadores explorando re-orientação.",
+      "fontes": [
+        {
+          "titulo": "Master em alternance - Campus France",
+          "url": "https://www.bresil.campusfrance.org/master-em-alternance-fr"
+        },
+        {
+          "titulo": "Salário do alternante na França em 2026: quanto você vai receber no mestrado",
+          "url": "https://carlanagringa.com/salario-alternante-franca-2026/"
+        }
+      ],
+      "data_sugerida": "2026-10-06",
+      "notion_criada": true,
+      "gerado_em": "2026-09-21"
+    },
+    {
+      "id": "2026-09-21-CPF: Quanto Você TEM, Quanto Pode GASTAR",
+      "titulo": "CPF: Quanto Você TEM, Quanto Pode GASTAR em 2026 (E Como Não Perder Os Créditos)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "promessa": "Tirar a confusão: verificar saldo real, entender os plafonds novos de 2026, saber o que rola gastar e como não ficar com créditos perdidos.",
+      "justificativa": "Pedido direto no bilan de 31/07: 'Guia prático sobre CPF francês'. Três subperguntas específicas não respondidas: 'Como consigo ver se tenho CPF? Quanto tenho? Onde uso?' Já agendado genérico 'CPF Francês: Verificar Saldo Online', mas lacuna real é educação sobre regras 2026 (plafonds, perda de créditos, domínios novos). Público francófono brasileiro não sabe que em fev/2026 entraram tetos de €1.500 para certas formações. Concorrentes ignoram legislação 2026 específica. Por Dentro diferencia ao contextualizar 'você é imigrante/residente—isso muda tudo'. Alto potencial: trabalhadores + aspirantes a formação.",
+      "fontes": [
+        {
+          "titulo": "Quelles évolutions en 2026 pour l'utilisation du CPF?",
+          "url": "https://www.service-public.gouv.fr/particuliers/actualites/A18831?lang=en"
+        },
+        {
+          "titulo": "CPF 2026 : nouvelles règles",
+          "url": "https://pro.choisirmonmetier-paysdelaloire.fr/cpf-2026-nouvelles-regles/"
+        },
+        {
+          "titulo": "Compte Personnel Formation (CPF) 2026: Guide Complet pour Utiliser vos Droits",
+          "url": "https://universal-languages.fr/compte-personnel-formation-cpf-2026-guide/"
+        }
+      ],
+      "data_sugerida": "2026-10-08",
+      "notion_criada": true,
+      "gerado_em": "2026-09-21"
+    },
+    {
+      "id": "2026-09-21-Estudar na França em 2026: O Que Realmen",
+      "titulo": "Estudar na França em 2026: O Que Realmente Mudou Para Brasileiros (Visto, Francês, Civismo)",
+      "formato": "Reel",
+      "pilar": "Sociedade",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Entender qual lei de 2026 te afeta (ou não). Spoiler: nem tudo que mudou serve para você.",
+      "justificativa": "Gancho trending em julho (política/lei). Benchmark revela: nenhum concorrente segmenta legislação por perfil do imigrante (estudante vs. trabalhador vs. candidato a cidadania). Mediapart fala de política; Keys to France fala de procedimentos. Por Dentro pode ser a ponte: 'você é estudante? Aqui tá por que essa lei não muda seu visto / essa lei SIM muda seu exame de francês.' Lacuna específica: <cite index=\"29-1,29-2\">lei de imigração após exame do Conselho Constitucional não contém medidas sobre estudantes internacionais, e a 'caução de retorno' foi removida</cite>, mas <cite index=\"32-2,32-4,32-5\">a partir de 2026 há novos testes obrigatórios de francês e conhecimento cívico para residência plurianual/permanente e naturalização</cite>. Educação para imigrante = diferencial. Alto engajamento potencial: preocupação legítima + call-to-action para DM.",
+      "fontes": [
+        {
+          "titulo": "Lei de imigração: mudanças não afetam os estudantes internacionais",
+          "url": "https://www.bresil.campusfrance.org/lei-de-imigracao-mudancas-nao-afetam-os-estudantes-internacionais"
+        },
+        {
+          "titulo": "As novas regras para quem quer morar na França a partir de 2026",
+          "url": "https://www.diariodocentrodomundo.com.br/as-novas-regras-para-quem-quer-morar-na-franca-a-partir-de-2026/"
+        },
+        {
+          "titulo": "Cidadania francesa ficará mais difícil em 2026 - entenda o impacto para brasileiros",
+          "url": "https://www.eurodicas.com.br/novos-requisitos-da-nacionalidade-francesa/"
+        }
+      ],
+      "data_sugerida": "2026-10-05",
+      "notion_criada": true,
+      "gerado_em": "2026-09-21"
+    },
+    {
+      "id": "2026-09-21-Sanduíche Na Graduação: O Que Ninguém Te",
+      "titulo": "Sanduíche Na Graduação: O Que Ninguém Te Conta Sobre A Vida de Estudante Brasileiro No RU Francês",
+      "formato": "Reel",
+      "pilar": "Trajetória",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Expectativa vs. realidade: quanto custa comer bem, quanto sobra do bolso, se vale a pena o RU, dicas de quem passou.",
+      "justificativa": "Pedido direto e não respondido no bilan de 31/07: 'Sanduíche na graduação francesa: guia para estudantes' + 'Curiosidade sobre alimentação/vida cotidiana durante graduação + possível surpresa/humor sobre diferenças culturais'. Já agendado genérico 'Bolsa de Estudo + Sanduíche na Graduação Francesa: O Que Ninguém Te Conta Sobre o RU', mas gap real é voz: está no backlog, não em produção. Lacuna é storytelling 1ª pessoa + realismo financeiro. <cite index=\"25-2\">RU custa €3,30 com cardápio completo (€1 para bolsistas CROUS)</cite>, <cite index=\"20-1\">em convênios estudante costuma custear moradia, alimentação, transporte</cite>. Público: brasileiros em pré-chegada com dúvidas sobre viabilidade; bolsistas querendo economizar. Diferencial: tom humanizado (decepcções reais, economias criativas, comparação Brasil), não só custo/preço. Alto potencial: presença em comunidades estudantis, salvamento.",
+      "fontes": [
+        {
+          "titulo": "Restaurante Universitário (RU) - vida de estudante na França",
+          "url": "https://frenchxpert.com/vida-de-estudante-na-franca/"
+        },
+        {
+          "titulo": "Brasil e França: por que o país europeu é destino comum na graduação sanduíche",
+          "url": "https://querobolsa.com.br/revista/brasil-e-franca-por-que-o-pais-europeu-e-destino-comum-na-graduacao-sanduiche"
+        },
+        {
+          "titulo": "Custo de vida para estudante na França",
+          "url": "https://frenchxpert.com/custo-de-vida-na-franca-para-estudante/"
+        }
+      ],
+      "data_sugerida": "2026-10-07",
+      "notion_criada": true,
+      "gerado_em": "2026-09-21"
     }
   ],
   "concorrentes_observados": [
