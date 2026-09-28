@@ -2882,7 +2882,7 @@
       "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor específica levantada em bilan 03/07 (Dany gastando tempo/dinheiro sem saber qual visto escolher). Nunca foi coberto no calendário. VLS-TS é categoria confusa para pré-chegada; falta clareza sobre diferença de direitos, custos reais e risco de rejeição. Reel como hook + carrossel detalha. — Compara custo, tempo e direitos entre VLS-TS (sem instituição) e visto de intercâmbio. Responde: vale a pena investir em teste de francês presencial antes de confirmar visto? Fontes: Intercâmbio na França: o guia para brasileiros em 2026 - SKEMA (https://www.skema.edu/br/news/intercambio-franca); Visto de estudante para França: guia completo 2026 - FrenchXpert (https://frenchxpert.com/visto-de-estudante-para-franca/); Como tirar visto de estudante para França - Euro Dicas (https://www.eurodicas.com.br/visto-de-estudante-para-a-franca/)"
     }
   ],
-  "calendario_posts_atualizado_em": "2026-09-21",
+  "calendario_posts_atualizado_em": "2026-09-28",
   "instagram_diario": [
     {
       "data": "2026-05-01",
@@ -4838,6 +4838,111 @@
       "data_sugerida": "2026-10-07",
       "notion_criada": true,
       "gerado_em": "2026-09-21"
+    },
+    {
+      "id": "2026-09-28-CPF Francês: As 3 Coisas Que Eu NÃO Sabi",
+      "titulo": "CPF Francês: As 3 Coisas Que Eu NÃO Sabia Quando Comecei a Trabalhar (E Perdi Créditos)",
+      "formato": "Reel",
+      "pilar": "Trajetória",
+      "publico": [
+        "Adaptado"
+      ],
+      "promessa": "Aprendi na prática quanto de CPF você realmente pode gastar em 2026, por que plafons importam e como não deixar créditos mofarem.",
+      "justificativa": "Audiência pergunta recorrentemente 'quanto tenho de CPF' e 'onde posso usar'. Bilans de 23/07 e 31/07 rastreiam essa dor. Concorrência (@franova_naturalisation, @keys_to_france) explica regras sem perspectiva vivida. Lacuna: storytelling 1ª pessoa de erro + aprendizado. Novo decreto 26/02/2026 introduz plafons que mudam tudo — ninguém na concorrência conecta 'você trabalha na França' a 'isso afeta seu CPF agora'.",
+      "fontes": [
+        {
+          "titulo": "Plafonnement CPF 2026 : Ce Qui Change pour Votre Formation Excel",
+          "url": "https://drf-formation.fr/blog-plafonnement-cpf-2026/"
+        },
+        {
+          "titulo": "CPF : comment l'utiliser en 2026 et connaître ses droits",
+          "url": "https://quickms.fr/cpf/"
+        },
+        {
+          "titulo": "Plafond CPF 2026 : 5 000 € de droits et plafonds formation",
+          "url": "https://www.filiz.io/blog/cpf-plafonds-reste-a-charge"
+        }
+      ],
+      "data_sugerida": "2026-10-12",
+      "notion_criada": true,
+      "gerado_em": "2026-09-28"
+    },
+    {
+      "id": "2026-09-28-Alternância em 2026: Quanto Você Realmen",
+      "titulo": "Alternância em 2026: Quanto Você Realmente Ganha vs. Quanto Gasta em Paris, Lyon e Toulouse",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Simulação real com SMIC 2026 + custo de vida por cidade. Sobra dinheiro ou fica no vermelho? Resposta honesta.",
+      "justificativa": "Bilans de 23/07 mapeiam dor específica: 'Viabilidade de alternância em períodos fora do ciclo tradicional + como a alternância funciona para estrangeiros + timing estratégico'. Audiência questiona se é viável financeiramente. Já agendado 'Alternância real em 2026: quanto você REALMENTE ganha' mas sem detalhe por cidade. Pesquisa confima SMIC junho 2026 em €1.867,02 brutos; salário alternante 21-25 anos = 53% SMIC (~€990). Concorrência não compara cidades — brecha editorial clara.",
+      "fontes": [
+        {
+          "titulo": "Salário do alternante na França em 2026: quanto você vai receber no mestrado",
+          "url": "https://carlanagringa.com/salario-alternante-franca-2026/"
+        },
+        {
+          "titulo": "Salário mínimo na França 2026: valores atualizados - Intercultural",
+          "url": "https://www.intercultural.com.br/salario-minimo-franca/"
+        },
+        {
+          "titulo": "Dá para Viver na França com o Salário Mínimo? Comparei 4 Cidades (dados reais de 2026)",
+          "url": "https://www.youtube.com/watch?v=TZFT8-JSYh8"
+        }
+      ],
+      "data_sugerida": "2026-10-13",
+      "notion_criada": true,
+      "gerado_em": "2026-09-28"
+    },
+    {
+      "id": "2026-09-28-RU Francês: As Surpresas Que Ninguém Te ",
+      "titulo": "RU Francês: As Surpresas Que Ninguém Te Avisa (Spoiler: Não É Tudo Ruim)",
+      "formato": "Reel",
+      "pilar": "Identidade",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Experiência vivida no restaurante universitário francês: comida, preço, rotina de estudante. O que achei estranho vs. o que adorei.",
+      "justificativa": "Bilans de 31/07 registram pedido explícito: 'Sanduíche na graduação francesa: O que esperar da vida estudantil na França — alimentação no RU, diferenças culturais, custo de vida, rotina de estudante brasileiro'. Audiência quer validação/surpresas culturais. Já agendado 'Sanduíche Na Graduação: O Que Ninguém Te Conta Sobre A Vida de Estudante Brasileiro No RU Francês' mas sem diferencial editorial claro. Oportunidade: reel narrativo (30-60s) que mostra dia típico + reação honesta (não romantiza nem catastrofiza). Concorrência tem guias utilitários — falta perspectiva emocional/cultural.",
+      "fontes": [],
+      "data_sugerida": "2026-10-14",
+      "notion_criada": true,
+      "gerado_em": "2026-09-28"
+    },
+    {
+      "id": "2026-09-28-Bolsa de Estudo na França para Graduação",
+      "titulo": "Bolsa de Estudo na França para Graduação: Quem REALMENTE Consegue + Quanto É (Simulação 2026)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada"
+      ],
+      "promessa": "Detalhe as 3 bolsas acessíveis a brasileiros em graduação 2026, valores reais, prazos e por que nem toda bolsa serve para todos.",
+      "justificativa": "Bilans de 31/07 listam 'Bolsas de estudo e financiamento durante graduação na França' como dor não atendida + pedido de conteúdo 'Bolsas e sanduíches na graduação francesa: guia para estudantes'. Usuária em transição (graduação) buscou continuação. Pesquisa confirma: Eiffel (mestrado/doutorado, não graduação), Victor Hugo (pós-graduação), TerrEE (doutorado específico). Para graduação: bolsa de excelência M2 (tarde, pós-graduação), Bienvenue en France. Concorrência (@keys_to_france) lista superficialmente. Lacuna: simulação clara 'se você é estudante de 1º ano de graduação, qual bolsa serve?' — educação segmentada por perfil, nunca feita.",
+      "fontes": [
+        {
+          "titulo": "Edital 2026 Bolsas de Excelência Master 2 na França | A França no Brasil",
+          "url": "https://br.diplomatie.gouv.fr/pt-br/edital-2026-bolsas-de-excelencia-master-2-na-franca"
+        },
+        {
+          "titulo": "Bolsas Eiffel do governo francês para pós-graduação na França",
+          "url": "https://www.estudarfora.org.br/bolsas-eiffel/"
+        },
+        {
+          "titulo": "As 5 melhores bolsas para estudar em França em 2026",
+          "url": "https://esim.holafly.com/pt/estudantes/bolsas-estudo-franca/"
+        },
+        {
+          "titulo": "Como conseguir bolsa de estudos na França em 2026",
+          "url": "https://frenchxpert.com/como-conseguir-bolsa-de-estudos-na-franca/"
+        }
+      ],
+      "data_sugerida": "2026-10-15",
+      "notion_criada": true,
+      "gerado_em": "2026-09-28"
     }
   ],
   "concorrentes_observados": [
