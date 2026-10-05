@@ -2882,7 +2882,7 @@
       "promessa": "[Sugestão automática — 2026-07-31, data é um slot proposto]: Dor específica levantada em bilan 03/07 (Dany gastando tempo/dinheiro sem saber qual visto escolher). Nunca foi coberto no calendário. VLS-TS é categoria confusa para pré-chegada; falta clareza sobre diferença de direitos, custos reais e risco de rejeição. Reel como hook + carrossel detalha. — Compara custo, tempo e direitos entre VLS-TS (sem instituição) e visto de intercâmbio. Responde: vale a pena investir em teste de francês presencial antes de confirmar visto? Fontes: Intercâmbio na França: o guia para brasileiros em 2026 - SKEMA (https://www.skema.edu/br/news/intercambio-franca); Visto de estudante para França: guia completo 2026 - FrenchXpert (https://frenchxpert.com/visto-de-estudante-para-franca/); Como tirar visto de estudante para França - Euro Dicas (https://www.eurodicas.com.br/visto-de-estudante-para-a-franca/)"
     }
   ],
-  "calendario_posts_atualizado_em": "2026-09-28",
+  "calendario_posts_atualizado_em": "2026-10-05",
   "instagram_diario": [
     {
       "data": "2026-05-01",
@@ -4943,6 +4943,117 @@
       "data_sugerida": "2026-10-15",
       "notion_criada": true,
       "gerado_em": "2026-09-28"
+    },
+    {
+      "id": "2026-10-05-CPF Francês: Como Verificar Saldo Online",
+      "titulo": "CPF Francês: Como Verificar Saldo Online e Não Perder Seus Créditos em 2026",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Recém-chegado",
+        "Adaptado"
+      ],
+      "promessa": "Passo a passo para consultar seu saldo CPF online + os 3 cenários onde você perde créditos (sem assustar, mas com atenção às regras de 2026)",
+      "justificativa": "Pergunta recorrente com 3 desdobramentos diferentes segundo bilans (31/07/2026). Audiência não sabe verificar saldo ou perdeu créditos involuntariamente — é prático, educativo e resolve dor real. CPF é sistema francês concreto que impacta bolsa de formação profissional.",
+      "fontes": [
+        {
+          "titulo": "Crédits CPF: comprendre et utiliser votre compte formation",
+          "url": "https://clic-campus.fr/cpf/comment-obtenir-et-utiliser-mes-credits-cpf/"
+        },
+        {
+          "titulo": "Comptes formation: le guide complet 2026 pour consulter et utiliser vos droits CPF",
+          "url": "https://universal-languages.fr/comptes-formation-guide-complet-2026-consulter-utiliser-droits-cpf-sans-erreur/"
+        }
+      ],
+      "data_sugerida": "2026-10-20",
+      "notion_criada": true,
+      "gerado_em": "2026-10-05"
+    },
+    {
+      "id": "2026-10-05-Abrir Conta Bancária na França: Document",
+      "titulo": "Abrir Conta Bancária na França: Documentos Reais que os Bancos Pedem (Checklist do Recém-Chegado)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Recém-chegado",
+        "Pré-chegada"
+      ],
+      "promessa": "Qual documento levar, em que ordem apresentar, e o que fazer se um banco recusar (inclui alternativa 'droit au compte')",
+      "justificativa": "Dor não atendida segundo bilan (14/07/2026): 'Como abrir conta bancária na França' é pergunta recorrente. Nenhum concorrente lista documentos específicos que cada instituição realmente pede ou menciona o procedimento 'droit au compte'. Conteúdo prático evita surpresas na chegada.",
+      "fontes": [
+        {
+          "titulo": "Abrir conta na França: principais bancos e documentos necessários",
+          "url": "https://www.eurodicas.com.br/abrir-conta-na-franca/"
+        },
+        {
+          "titulo": "Guia Completo: Como Abrir uma Conta Bancária na França",
+          "url": "https://www.uniplaces.com/city-explorer/abrir-conta-bancaria-franca/"
+        },
+        {
+          "titulo": "Checklist: prepare a sua chegada na França!",
+          "url": "https://www.bresil.campusfrance.org/checklist-prepare-a-sua-chegada-na-franca"
+        }
+      ],
+      "data_sugerida": "2026-10-22",
+      "notion_criada": true,
+      "gerado_em": "2026-10-05"
+    },
+    {
+      "id": "2026-10-05-VLS Long Duration vs Visto de Estudante:",
+      "titulo": "VLS Long Duration vs Visto de Estudante: Qual Escolher Para Estudar Francês na França (Sem Perder Dinheiro)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada"
+      ],
+      "promessa": "Comparação honesta: custos reais, direitos, limitações e quando cada um faz sentido — sem romantizar nem assustar",
+      "justificativa": "Falta de clareza sobre qual visto usar (VLS-T/VLS-TS visiteur vs VLS-TS étudiant) para estudar francês sem instituição formal, segundo ideias de conteúdo em backlog. Imigrante quer saber 'e daí? Como isso afeta meu salário/multa/direitos?' Sugestão preenche lacuna: nenhum concorrente segmenta essa escolha crítica para quem estuda só francês.",
+      "fontes": [
+        {
+          "titulo": "France VLS-TS Visitor Visa 2026: Requirements & Steps",
+          "url": "https://migaku.com/blog/language-fun/france-long-stay-visitor-visa-vls-ts-who-qualifies-and-how-to-apply"
+        },
+        {
+          "titulo": "Vistos para estudar e trabalhar na França",
+          "url": "https://francabrasil.com.br/visto/"
+        },
+        {
+          "titulo": "Student Visa for France (VLS-TS) — Complete Guide for 2026",
+          "url": "https://gabble.ai/blog/student-visa-for-france"
+        }
+      ],
+      "data_sugerida": "2026-10-27",
+      "notion_criada": true,
+      "gerado_em": "2026-10-05"
+    },
+    {
+      "id": "2026-10-05-Bolsa de Estudo + Sanduíche na Graduação",
+      "titulo": "Bolsa de Estudo + Sanduíche na Graduação Francesa: Quem REALMENTE Consegue (Simulação 2026 com Valores)",
+      "formato": "Carrossel",
+      "pilar": "Sistema",
+      "publico": [
+        "Pré-chegada",
+        "Recém-chegado"
+      ],
+      "promessa": "Qual bolsa existe pra brasileiro em graduação, quanto cobre de verdade, e qual é o 'sanduíche' (não é tudo romantizado nem derrotista)",
+      "justificativa": "Dor não atendida segundo bilan (31/07/2026): 'Bolsas de estudo e financiamento durante graduação na França' + 'Guia prático sobre sanduíches/bolsas na graduação francesa'. Audiência está em transição (estudante que quer vir ou recém-chegada questionando viabilidade). Concorrência foca mestrado/doutorado — Por Dentro ganha diferencial cobrindo graduação com honestidade sobre limitações reais.",
+      "fontes": [
+        {
+          "titulo": "Bolsa de Excelência Master 2 2026-2027: edital aberto!",
+          "url": "https://www.bresil.campusfrance.org/bolsa-m2-2026"
+        },
+        {
+          "titulo": "As 5 melhores bolsas para estudar em França em 2026",
+          "url": "https://esim.holafly.com/pt/estudantes/bolsas-estudo-franca/"
+        },
+        {
+          "titulo": "Como conseguir bolsa de estudos na França em 2026",
+          "url": "https://frenchxpert.com/como-conseguir-bolsa-de-estudos-na-franca/"
+        }
+      ],
+      "data_sugerida": "2026-10-29",
+      "notion_criada": true,
+      "gerado_em": "2026-10-05"
     }
   ],
   "concorrentes_observados": [
